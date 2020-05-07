@@ -1,0 +1,34 @@
+openapi: 3.0.0
+info:
+  title: Denefits
+  version: '1.0'
+  description: Denefits Business APIs
+servers:
+  - url: 'https://api.denefits.com:8005'
+paths:
+  /provider:
+    get:
+      summary: Get Providers registered with your account
+      tags: []
+      operationId: get-plans
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+            examples: {}
+      description: This API returns all the providers registered with you.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+    parameters: []
+components:
+  schemas: {}
