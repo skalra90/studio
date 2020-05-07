@@ -30,7 +30,41 @@ paths:
               schema:
                 type: object
                 properties: {}
+      parameters:
+        - schema:
+            type: string
+          in: query
     parameters: []
+    post:
+      summary: ''
+      operationId: post-provider
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  email:
+                    type: string
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  phone:
+                    type: string
+              examples:
+                example:
+                  value:
+                    token: test_token
+                    email: Charles.one@bridgingtech.com
+                    first_name: Charles
+                    last_name: One
+                    phone: '1234567890'
+      description: To add a new Business for a provider account
   /plans:
     get:
       summary: Get plans
