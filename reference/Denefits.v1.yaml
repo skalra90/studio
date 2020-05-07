@@ -9,7 +9,8 @@ paths:
   /provider:
     get:
       summary: Get Providers registered with your account
-      tags: []
+      tags:
+        - Providers
       operationId: get-providers
       requestBody:
         content:
