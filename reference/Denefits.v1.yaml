@@ -1,0 +1,75 @@
+openapi: 3.0.0
+info:
+  title: Denefits
+  version: '1.0'
+  description: Denefits Business APIs
+servers:
+  - url: 'https://api.denefits.com:8005'
+paths:
+  /provider:
+    get:
+      summary: Get Providers registered with your account
+      tags: []
+      operationId: get-plans
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+            examples: {}
+      description: This API returns all the providers registered with you.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+    parameters: []
+  /plans:
+    get:
+      summary: Get plans
+      tags:
+        - Plans
+      responses:
+        '200':
+          description: OK
+      operationId: get-plans
+      description: Get plans for making contract.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: token
+      requestBody:
+        description: Provider Id of the provider.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                provider_id:
+                  type: number
+components:
+  schemas:
+    Plans:
+      title: Plans
+      type: array
+      x-examples:
+        example-1: []
+      items:
+        $ref: '#/components/schemas/Plan'
+      x-tags:
+        - Plans
+    Plan:
+      title: Plan
+      type: object
+      properties:
+        month:
+          type: number
+        recurring_amount:
+          type: number
