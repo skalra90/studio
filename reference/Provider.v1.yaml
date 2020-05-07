@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Denefits
   version: '1.0'
-  description: Denefits Business APIs 123231231232
+  description: Denefits Business APIs
 servers:
   - url: 'https://api.denefits.com:8005'
 paths:
