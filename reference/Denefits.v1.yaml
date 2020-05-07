@@ -10,7 +10,7 @@ paths:
     get:
       summary: Get Providers registered with your account
       tags: []
-      operationId: get-plans
+      operationId: get-providers
       requestBody:
         content:
           application/json:
