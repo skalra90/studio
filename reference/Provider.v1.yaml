@@ -31,7 +31,7 @@ paths:
                   message:
                     type: string
               examples:
-                example-1:
+                A Successfull response of Providers List for the token used:
                   value:
                     data:
                       count: 5
@@ -55,7 +55,7 @@ paths:
                           phone: +1-8855774499
                           provider_id: 1234
                     message: Request executed successfully
-                example-2:
+                A Successfull Response of Provider Details when provider_id is used:
                   value:
                     data:
                       provider_data:
@@ -79,7 +79,7 @@ paths:
                   message:
                     type: string
               examples:
-                example-1:
+                If token is missing in the headers:
                   value:
                     data: []
                     message: "Mandatory parameter 'token' is missing."
@@ -96,7 +96,7 @@ paths:
                   message:
                     type: string
               examples:
-                example-1:
+                If token is wrong:
                   value:
                     data: []
                     message: Invalid auth token provided
@@ -113,7 +113,7 @@ paths:
                   message:
                     type: string
               examples:
-                example-1:
+                'If provider_id is not valid ':
                   value:
                     data: []
                     message: Invalid provider ID
@@ -149,7 +149,7 @@ paths:
                       type: object
                       properties:
                         provider_id:
-                          type: integer
+                          type: number
                   message:
                     type: string
               examples:
@@ -171,14 +171,14 @@ paths:
                   message:
                     type: string
               examples:
-                If token is not added in headers:
+                If token is missing in headers:
                   value:
                     data: []
                     message: "Mandatory parameter 'token' is missing."
-                If any of the required field_name is missing in the body:
+                If any of the required_field is missing in the body:
                   value:
                     data: []
-                    message: '"field_name" is required'
+                    message: '"required_field" is required'
                 If wrong mobile number is entered:
                   value:
                     data: []
@@ -187,6 +187,10 @@ paths:
                   value:
                     data: []
                     message: '"email" must be a valid email'
+                If email is empty:
+                  value:
+                    data: []
+                    message: '"email" is not allowed to be empty'
         '401':
           description: Authentication Failed
           content:
@@ -200,7 +204,7 @@ paths:
                   message:
                     type: string
               examples:
-                example-1:
+                If token is wrong:
                   value:
                     data: []
                     message: Invalid auth token provided
@@ -217,7 +221,7 @@ paths:
                   message:
                     type: string
               examples:
-                If mobile number is already exist in the system for other individual:
+                If mobile number is already exist in the system.:
                   value:
                     data: []
                     message: Same Mobile

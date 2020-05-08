@@ -16,7 +16,47 @@ paths:
             application/json:
               schema:
                 type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        contract_id:
+                          type: number
+                  message:
+                    type: string
+              examples:
+                Customer Financed Successfully:
+                  value:
+                    data:
+                      contract_id: 16633
+                    message: Customer Financed Successfully
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        contract_id:
+                          type: number
+                  message:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    data:
+                      contract_id: 16633
+                    message: Customer Financed Successfully
+            multipart/form-data:
+              schema:
+                type: object
                 properties: {}
+              examples:
+                example-1: {}
         '400':
           description: Bad Request
           content:
@@ -25,14 +65,45 @@ paths:
                 type: object
                 properties:
                   data:
-                    type: string
+                    type: array
+                    items: {}
                   message:
                     type: string
               examples:
-                example-1:
+                If token is missing in headers:
                   value:
                     data: []
                     message: "Mandatory parameter 'token' is missing."
+                If any of the required_field is missing:
+                  value:
+                    data: []
+                    message: '"required_field" is required'
+                If financed_amount is empty or is not a number:
+                  value:
+                    data: []
+                    message: '"financed_amount" must be a number'
+                If months are not valid:
+                  value:
+                    message: Number of payments or financed amount are not valid
+                If start_date is empty or not a valid date.:
+                  value:
+                    data: []
+                    message: '"start_date" must be a valid date'
+                If customer_email is empty:
+                  value:
+                    data: []
+                    message: '"customer_email" is not allowed to be empty'
+                If customer_email is not a valid email:
+                  value:
+                    data: []
+                    message: '"customer_email" must be a valid email'
+                If customer_mobile is invalid:
+                  value:
+                    data: []
+                    message: 'Invalid "customer_mobile" provided '
+                Somethng went wrong:
+                  value:
+                    message: Contract not financed
         '401':
           description: Authentication Failed
           content:
@@ -40,10 +111,17 @@ paths:
               schema:
                 type: object
                 properties:
+                  data:
+                    type: array
+                    items: {}
                   message:
                     type: string
               examples:
-                example-1:
+                If token is wrong:
+                  value:
+                    data: []
+                    message: Invalid auth token provided
+                If provider_id is wrong:
                   value:
                     message: Provider does not belong to this partner
         '402':
@@ -110,5 +188,4 @@ components:
         - start_date
         - customer_email
         - customer_first_name
-        - customer_last_name
         - customer_phone
