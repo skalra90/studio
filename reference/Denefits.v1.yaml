@@ -20,7 +20,7 @@ paths:
             examples: {}
       description: |
         ## GET API -
-        This API returns all the providers registered with the account using **provider token in headers** and you can get a particular provider under your account using **provider_id in query params**.
+        This API returns all the providers registered with the account using **Provider token in headers** and you can get a particular provider under your account using **Provider Id in query params** with the same token in headers.
       responses:
         '200':
           description: A Successfull Response
@@ -55,7 +55,7 @@ paths:
       operationId: post-provider
       responses:
         '200':
-          description: OK
+          description: A Successfull Response
           content:
             application/json:
               schema:
@@ -77,9 +77,17 @@ paths:
                     first_name: Charles
                     last_name: One
                     phone: '1234567890'
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Failed
+        '402':
+          description: Request Failed
+        '500':
+          description: Internal Server Error
       description: |-
         ## POST API -
-        This API creates a new provider with the account of using **token in headers** and a **new request object in body**.
+        This API creates a new business under the provider account by using **provider token in headers** and a **new business object in body**.
       parameters:
         - schema:
             type: string
@@ -89,28 +97,46 @@ paths:
         - Providers
   /plans:
     get:
-      summary: Get plans
+      summary: Get plans for the Finance Amount
       tags:
         - Plans
       responses:
         '200':
-          description: OK
+          description: A Successfull Response
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Failed
+        '402':
+          description: Request Failed
+        '500':
+          description: Internal Server Error
       operationId: get-plans
-      description: Get plans for making contract.
+      description: |-
+        ## GET API -
+        This API returns all the plans for the given **Financed Amount in query params** under the provider having**token in headers** and **Provider Id in query params**
       parameters:
+        - schema:
+            type: string
+          in: query
+          name: financed_amount
+          description: Amount to Finance
         - schema:
             type: string
           in: header
           name: token
+          description: Provider token
+        - schema:
+            type: string
+          in: query
+          name: provider_id
+          description: For a particular provider
       requestBody:
         description: Provider Id of the provider.
         content:
           application/json:
             schema:
               type: object
-              properties:
-                provider_id:
-                  type: number
 components:
   schemas:
     Plans:
