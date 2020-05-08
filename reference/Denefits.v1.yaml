@@ -13,7 +13,7 @@ paths:
         - Providers
       operationId: get-providers
       description: |
-        ## GET API -
+        ### GET Method -
         This API returns all the providers registered with the account using **Provider token in headers** and you can get a particular provider under your account using **Provider Id in query params** with the same token in headers.
       responses:
         '200':
@@ -55,7 +55,7 @@ paths:
         '500':
           description: Internal Server Error
       description: |-
-        ## POST API -
+        ### POST Method -
         This API creates a new business under the provider account by using **provider token in headers** and a **new business object in body**.
       parameters:
         - schema:
@@ -110,7 +110,7 @@ paths:
           description: Internal Server Error
       operationId: get-plans
       description: |-
-        ## GET API -
+        ### GET Method-
         This API returns all the plans for the given **Financed Amount in query params** under the provider having**token in headers** and **Provider Id in query params**
       parameters:
         - schema:
@@ -153,7 +153,7 @@ paths:
           name: token
           description: A Provider Token
       description: |-
-        ## POST API -
+        ### POST Method -
         This API is to finance a customer under the provider account by using **provider token in headers** and a **customer object in body**.
       requestBody:
         content:
@@ -218,7 +218,7 @@ paths:
           description: Internal Server Error
       operationId: get-zipcode
       description: |-
-        ## GET API -
+        ### GET Method -
         This API returns all the cities for the given **zipcode in query params** under the **provider token in headers**
       parameters:
         - schema:
