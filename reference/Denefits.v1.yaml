@@ -111,7 +111,7 @@ paths:
       operationId: get-plans
       description: |-
         ### GET Method-
-        This API returns all the plans for the given **Financed Amount in query params** under the provider having**token in headers** and **Provider Id in query params**
+        This API returns all the plans for the given **Financed Amount in query params** under the provider having **token in headers** and **Provider Id in query params**
       parameters:
         - schema:
             type: string
