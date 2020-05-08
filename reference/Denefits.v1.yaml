@@ -8,7 +8,7 @@ servers:
 paths:
   /provider:
     get:
-      summary: Get Providers registered with your account
+      summary: Get Providers registered with your account or a particular Provider.
       tags:
         - Providers
       operationId: get-providers
@@ -17,26 +17,41 @@ paths:
           application/json:
             schema:
               type: object
-              properties:
-                token:
-                  type: string
             examples: {}
-      description: This API returns all the providers registered with you.
+      description: |
+        ## GET API -
+        This API returns all the providers registered with the account using **provider token in headers** and you can get a particular provider under your account using **provider_id in query params**.
       responses:
         '200':
-          description: OK
+          description: A Successfull Response
           content:
             application/json:
               schema:
                 type: object
                 properties: {}
+          headers: {}
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Failed
+        '402':
+          description: ' Request Faild'
+        '500':
+          description: Internal Server Error
       parameters:
         - schema:
             type: string
           in: query
+          name: provider_id
+          description: To get a particular provider
+        - schema:
+            type: string
+          in: header
+          name: token
+          description: To get all providers registered with this account
     parameters: []
     post:
-      summary: ''
+      summary: To Add a new business with your account
       operationId: post-provider
       responses:
         '200':
@@ -46,8 +61,6 @@ paths:
               schema:
                 type: object
                 properties:
-                  token:
-                    type: string
                   email:
                     type: string
                   first_name:
@@ -64,7 +77,16 @@ paths:
                     first_name: Charles
                     last_name: One
                     phone: '1234567890'
-      description: To add a new Business for a provider account
+      description: |-
+        ## POST API -
+        This API creates a new provider with the account of using **token in headers** and a **new request object in body**.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: token
+      tags:
+        - Providers
   /plans:
     get:
       summary: Get plans
