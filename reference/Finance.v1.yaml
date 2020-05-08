@@ -12,10 +12,40 @@ paths:
       responses:
         '200':
           description: A Successfull Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    data: []
+                    message: "Mandatory parameter 'token' is missing."
         '401':
           description: Authentication Failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    message: Provider does not belong to this partner
         '402':
           description: Request Failed
         '500':
@@ -35,7 +65,16 @@ paths:
             schema:
               $ref: '#/components/schemas/Customer'
             examples:
-              example: {}
+              example:
+                value:
+                  provider_id: '1234'
+                  financed_amount: '1000'
+                  month: '12'
+                  start_date: '2020-04-30'
+                  customer_email: charles.ones@bridgingtech.com
+                  customer_first_name: Charles
+                  customer_last_name: One
+                  customer_mobile: '1234567890'
         description: Customer Object
       tags:
         - Finance
@@ -45,16 +84,7 @@ components:
     Customer:
       title: Customer
       type: object
-      x-examples:
-        example:
-          provider_id: '1234'
-          financed_amount: '1000'
-          month: '12'
-          start_date: '2020-04-30'
-          customer_email: charles.ones@bridgingtech.com
-          customer_first_name: Charles
-          customer_last_name: One
-          customer_mobile: +1-1234567890
+      x-examples: {}
       description: Customer Object
       properties:
         provider_id:

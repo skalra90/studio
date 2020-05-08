@@ -1,0 +1,268 @@
+openapi: 3.0.0
+info:
+  title: Providers
+  description: This Section is related with Providers List and Accounts.
+servers:
+  - url: 'https://api.denefits.com:8005'
+paths:
+  /v1/provider:
+    get:
+      summary: Get Providers registered with your account or a particular Provider.
+      tags:
+        - Providers
+      operationId: get-providers
+      description: |
+        ### GET Method -
+        This API returns all the providers registered with the account using **Provider token in headers** and you can get a particular provider under your account using **Provider Id in query params** with the same token in headers.
+      responses:
+        '200':
+          description: A Successfull Response
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: string
+                  providers_list:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    data:
+                      count: 5
+                      providers_list:
+                        - date_registered: '2020-05-08T05:19:20.000Z'
+                          email: test.123@gmail.com
+                          first_name: test name
+                          last_name: test
+                          phone: +1-1212312345
+                          provider_id: 9101
+                        - date_registered: '2020-05-01T15:36:41.000Z'
+                          email: demo.123@yopmail.com
+                          first_name: Demo
+                          last_name: now
+                          phone: +1-8855226644
+                          provider_id: 5678
+                        - date_registered: '2020-05-01T10:05:49.000Z'
+                          email: demo.provider@yopmail.com
+                          first_name: Demo
+                          last_name: Provider
+                          phone: +1-8855774499
+                          provider_id: 1234
+                    message: Request executed successfully
+                example-2:
+                  value:
+                    data:
+                      provider_data:
+                        date_registered: '2020-05-08T11:20:59.000Z'
+                        email: charles.one1@bridgingtech.com
+                        first_name: Charles
+                        last_name: One
+                        phone: +1-1277567890
+                        provider_id: 1234
+                    message: Request executed successfully
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    data: []
+                    message: "Mandatory parameter 'token' is missing."
+        '401':
+          description: Authentication Failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    data: []
+                    message: Invalid auth token provided
+        '402':
+          description: ' Request Faild'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    data: []
+                    message: Invalid provider ID
+        '500':
+          description: Internal Server Error
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: provider_id
+          description: To get a particular provider
+        - schema:
+            type: string
+          in: header
+          name: token
+          description: To get all providers registered with this account
+          required: true
+    parameters: []
+    post:
+      summary: To Add a new business with your account
+      operationId: post-provider
+      responses:
+        '200':
+          description: A Successfull Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        provider_id:
+                          type: integer
+                  message:
+                    type: string
+              examples:
+                Provider added successfully:
+                  value:
+                    data:
+                      provider_id: 6410
+                    message: Provider added successfully
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+              examples:
+                If token is not added in headers:
+                  value:
+                    data: []
+                    message: "Mandatory parameter 'token' is missing."
+                If any of the required field_name is missing in the body:
+                  value:
+                    data: []
+                    message: '"field_name" is required'
+                If wrong mobile number is entered:
+                  value:
+                    data: []
+                    message: 'Invalid "phone" provided '
+                If wrong email is entered:
+                  value:
+                    data: []
+                    message: '"email" must be a valid email'
+        '401':
+          description: Authentication Failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    data: []
+                    message: Invalid auth token provided
+        '402':
+          description: Request Failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+              examples:
+                If mobile number is already exist in the system for other individual:
+                  value:
+                    data: []
+                    message: Same Mobile
+        '500':
+          description: Internal Server Error
+      description: |-
+        ### POST Method -
+        This API creates a new business under the provider account by using **provider token in headers** and a **new business object in body**.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: token
+          required: true
+      tags:
+        - Providers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Business'
+            examples:
+              example:
+                value:
+                  email: Charles.one@bridgingtech.com
+                  first_name: Charles
+                  last_name: One
+                  phone: '1234567890'
+        description: Business Object
+components:
+  schemas:
+    Business:
+      title: Business
+      type: object
+      x-examples: {}
+      properties:
+        email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone:
+          type: string
+      required:
+        - email
+        - first_name
+        - phone
