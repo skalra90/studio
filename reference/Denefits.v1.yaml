@@ -12,23 +12,12 @@ paths:
       tags:
         - Providers
       operationId: get-providers
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-            examples: {}
       description: |
         ## GET API -
         This API returns all the providers registered with the account using **Provider token in headers** and you can get a particular provider under your account using **Provider Id in query params** with the same token in headers.
       responses:
         '200':
           description: A Successfull Response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
           headers: {}
         '400':
           description: Bad Request
@@ -49,6 +38,7 @@ paths:
           in: header
           name: token
           description: To get all providers registered with this account
+          required: true
     parameters: []
     post:
       summary: To Add a new business with your account
@@ -56,27 +46,6 @@ paths:
       responses:
         '200':
           description: A Successfull Response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  email:
-                    type: string
-                  first_name:
-                    type: string
-                  last_name:
-                    type: string
-                  phone:
-                    type: string
-              examples:
-                example:
-                  value:
-                    token: test_token
-                    email: Charles.one@bridgingtech.com
-                    first_name: Charles
-                    last_name: One
-                    phone: '1234567890'
         '400':
           description: Bad Request
         '401':
@@ -93,8 +62,36 @@ paths:
             type: string
           in: header
           name: token
+          required: true
       tags:
         - Providers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                phone:
+                  type: string
+              required:
+                - email
+                - first_name
+                - last_name
+                - phone
+            examples:
+              example:
+                value:
+                  email: Charles.one@bridgingtech.com
+                  first_name: Charles
+                  last_name: One
+                  phone: '1234567890'
+        description: Business Object
   /plans:
     get:
       summary: Get plans for the Finance Amount
@@ -121,38 +118,85 @@ paths:
           in: query
           name: financed_amount
           description: Amount to Finance
+          required: true
         - schema:
             type: string
           in: header
           name: token
           description: Provider token
+          required: true
         - schema:
             type: string
           in: query
           name: provider_id
           description: For a particular provider
+          required: true
+  /finance_customer:
+    post:
+      summary: To Finance a Customer
+      operationId: post-finance_customer
+      responses:
+        '200':
+          description: A Successfull Response
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Failed
+        '402':
+          description: Request Failed
+        '500':
+          description: Internal Server Error
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: token
+          description: A Provider Token
+      description: |-
+        ## POST API -
+        This API is to finance a customer under the provider account by using **provider token in headers** and a **customer object in body**.
       requestBody:
-        description: Provider Id of the provider.
         content:
           application/json:
             schema:
               type: object
+              properties:
+                provider_id:
+                  type: string
+                financed_amount:
+                  type: string
+                month:
+                  type: string
+                start_date:
+                  type: string
+                customer_email:
+                  type: string
+                customer_first_name:
+                  type: string
+                customer_last_name:
+                  type: string
+                customer_mobile:
+                  type: string
+              required:
+                - provider_id
+                - financed_amount
+                - month
+                - start_date
+                - customer_email
+                - customer_first_name
+                - customer_last_name
+                - customer_mobile
+            examples:
+              example:
+                value:
+                  provider_id: '1234'
+                  financed_amount: '1000'
+                  month: '12'
+                  start_date: '2020-04-30'
+                  customer_email: charles.ones@bridgingtech.com
+                  customer_first_name: Charles
+                  customer_last_name: One
+                  customer_mobile: +1-1234567890
+        description: Customer Object
 components:
-  schemas:
-    Plans:
-      title: Plans
-      type: array
-      x-examples:
-        example-1: []
-      items:
-        $ref: '#/components/schemas/Plan'
-      x-tags:
-        - Plans
-    Plan:
-      title: Plan
-      type: object
-      properties:
-        month:
-          type: number
-        recurring_amount:
-          type: number
+  schemas: {}
