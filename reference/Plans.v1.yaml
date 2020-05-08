@@ -1,0 +1,49 @@
+openapi: 3.0.0
+info:
+  title: Plans
+  description: This Section is related with Financing Plans.
+servers:
+  - url: 'https://api.denefits.com:8005'
+paths:
+  /v1/plans:
+    get:
+      summary: Get plans for the Finance Amount
+      tags:
+        - Plans
+      responses:
+        '200':
+          description: A Successfull Response
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Failed
+        '402':
+          description: Request Failed
+        '500':
+          description: Internal Server Error
+      operationId: get-plans
+      description: |-
+        ### GET Method-
+        This API returns all the plans for the given **Financed Amount in query params** under the provider having **token in headers** and **Provider Id in query params**
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: financed_amount
+          description: Amount to Finance
+          required: true
+        - schema:
+            type: string
+          in: header
+          name: token
+          description: Provider token
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: provider_id
+          description: For a particular provider
+          required: true
+    parameters: []
+components:
+  schemas: {}

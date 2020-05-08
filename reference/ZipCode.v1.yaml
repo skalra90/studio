@@ -1,0 +1,43 @@
+openapi: 3.0.0
+info:
+  title: Providers
+  d  description: This Section is related with Cities Information.
+paths:
+  /v1/zipcode:
+    get:
+      summary: To get all the Cities for the ZipCode
+      tags:
+        - ZipCode
+      responses:
+        '200':
+          description: A Successfull Response
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Failed
+        '402':
+          description: Request Failed
+        '500':
+          description: Internal Server Error
+      operationId: get-zipcode
+      description: |-
+        ### GET Method -
+        This API returns all the cities for the given **zipcode in query params** under the **provider token in headers**
+      parameters:
+        - schema:
+            type: string
+          in: query
+          required: true
+          name: zipcode
+          description: ZipCode
+        - schema:
+            type: string
+          in: header
+          name: token
+          required: true
+          description: A Provider Token
+    parameters: []
+components:
+  schemas: {}
+ers:
+  - url: 'https://api.denefits.com:8005'

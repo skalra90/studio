@@ -1,0 +1,84 @@
+openapi: 3.0.0
+info:
+  title: Finance
+  description: Denefits Business APIs
+servers:
+  - url: 'https://api.denefits.com:8005'
+paths:
+  /v1/finance_customer:
+    post:
+      summary: To Finance a Customer
+      operationId: post-finance_customer
+      responses:
+        '200':
+          description: A Successfull Response
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Failed
+        '402':
+          description: Request Failed
+        '500':
+          description: Internal Server Error
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: token
+          description: A Provider Token
+      description: |-
+        ### POST Method -
+        This API is to finance a customer under the provider account by using **provider token in headers** and a **customer object in body**.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+            examples:
+              example: {}
+        description: Customer Object
+      tags:
+        - Finance
+    parameters: []
+components:
+  schemas:
+    Customer:
+      title: Customer
+      type: object
+      x-examples:
+        example:
+          provider_id: '1234'
+          financed_amount: '1000'
+          month: '12'
+          start_date: '2020-04-30'
+          customer_email: charles.ones@bridgingtech.com
+          customer_first_name: Charles
+          customer_last_name: One
+          customer_mobile: +1-1234567890
+      description: Customer Object
+      properties:
+        provider_id:
+          type: string
+        financed_amount:
+          type: string
+        month:
+          type: string
+        start_date:
+          type: string
+        customer_email:
+          type: string
+        customer_first_name:
+          type: string
+        customer_last_name:
+          type: string
+        customer_phone:
+          type: string
+      required:
+        - provider_id
+        - financed_amount
+        - month
+        - start_date
+        - customer_email
+        - customer_first_name
+        - customer_last_name
+        - customer_phone

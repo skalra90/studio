@@ -1,0 +1,98 @@
+openapi: 3.0.0
+info:
+  title: Providers
+  description: This Section is related with Providers List and Accounts.
+servers:
+  - url: 'https://api.denefits.com:8005'
+paths:
+  /v1/provider:
+    get:
+      summary: Get Providers registered with your account or a particular Provider.
+      tags:
+        - Providers
+      operationId: get-providers
+      description: |
+        ### GET Method -
+        This API returns all the providers registered with the account using **Provider token in headers** and you can get a particular provider under your account using **Provider Id in query params** with the same token in headers.
+      responses:
+        '200':
+          description: A Successfull Response
+          headers: {}
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Failed
+        '402':
+          description: ' Request Faild'
+        '500':
+          description: Internal Server Error
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: provider_id
+          description: To get a particular provider
+        - schema:
+            type: string
+          in: header
+          name: token
+          description: To get all providers registered with this account
+          required: true
+    parameters: []
+    post:
+      summary: To Add a new business with your account
+      operationId: post-provider
+      responses:
+        '200':
+          description: A Successfull Response
+        '400':
+          description: Bad Request
+        '401':
+          description: Authentication Failed
+        '402':
+          description: Request Failed
+        '500':
+          description: Internal Server Error
+      description: |-
+        ### POST Method -
+        This API creates a new business under the provider account by using **provider token in headers** and a **new business object in body**.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: token
+          required: true
+      tags:
+        - Providers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Business'
+            examples: {}
+        description: Business Object
+components:
+  schemas:
+    Business:
+      title: Business
+      type: object
+      x-examples:
+        example:
+          email: Charles.one@bridgingtech.com
+          first_name: Charles
+          last_name: One
+          phone: '1234567890'
+      properties:
+        email:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        phone:
+          type: string
+      required:
+        - email
+        - first_name
+        - last_name
+        - phone
