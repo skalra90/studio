@@ -529,7 +529,7 @@
                   "Success Response": {
                     "value": {
                       "data": {
-                        "count": 5,
+                        "count": 2,
                         "list": [
                           {
                             "date_registered": "2020-05-08T05:19:20.000Z",
@@ -546,14 +546,6 @@
                             "last_name": "now",
                             "phone": "855226644",
                             "provider_id": 5678
-                          },
-                          {
-                            "date_registered": "2020-05-01T10:05:49.000Z",
-                            "email": "demo.provider@yopmail.com",
-                            "first_name": "Demo",
-                            "last_name": "Provider",
-                            "phone": "+1-8855774499",
-                            "provider_id": 1234
                           }
                         ]
                       },
@@ -800,9 +792,6 @@
                 }
               }
             }
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         },
         "description": "Creates a new provider under your account.",
@@ -856,6 +845,51 @@
         }
       },
       "parameters": []
+    },
+    "/provider/bank": {
+      "post": {
+        "summary": "Add bank account",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {},
+        "operationId": "post-provider-bank"
+      },
+      "get": {
+        "summary": "Retrieve bank account",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {},
+        "operationId": "get-provider-bank",
+        "description": "Returns provider's bank details.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "description": "Authentication Token",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      }
     }
   },
   "components": {
