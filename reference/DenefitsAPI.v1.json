@@ -479,7 +479,7 @@
       "parameters": []
     },
     "/provider": {
-      "get": {
+      "get":  {
         "summary": "List of Providers",
         "tags": [
           "Providers"
