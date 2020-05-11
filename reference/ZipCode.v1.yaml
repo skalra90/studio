@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Zipcode
-  d  description: This Section is related with Cities Information.
+  description: This Section is related with Cities Information.
 paths:
   /v1/zipcode:
     get:
@@ -133,5 +133,5 @@ paths:
     parameters: []
 components:
   schemas: {}
-ers:
+servers:
   - url: 'https://api.denefits.com:8005'
