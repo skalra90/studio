@@ -370,7 +370,7 @@
                     "type": "string"
                   },
                   "zipcode": {
-                    "type": "string"
+                    "type": "number"
                   },
                   "business_address": {
                     "type": "string"
