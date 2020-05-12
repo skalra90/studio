@@ -20,427 +20,6 @@
     }
   ],
   "paths": {
-    "/contract/select": {
-      "post": {
-        "summary": "Select a Plan",
-        "operationId": "contract-create",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "contract_id": {
-                            "type": "number"
-                          }
-                        }
-                      }
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {}
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "contract_id": {
-                            "type": "number"
-                          }
-                        }
-                      }
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "data": {
-                        "contract_id": 16633
-                      },
-                      "message": "Customer Financed Successfully"
-                    }
-                  }
-                }
-              },
-              "multipart/form-data": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                },
-                "examples": {
-                  "example-1": {}
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {}
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If token is missing in headers": {
-                    "value": {
-                      "data": [],
-                      "message": "Mandatory parameter 'token' is missing."
-                    }
-                  },
-                  "If any of the required_field is missing": {
-                    "value": {
-                      "data": [],
-                      "message": "\"required_field\" is required"
-                    }
-                  },
-                  "If financed_amount is empty or is not a number": {
-                    "value": {
-                      "data": [],
-                      "message": "\"financed_amount\" must be a number"
-                    }
-                  },
-                  "If months are not valid": {
-                    "value": {
-                      "message": "Number of payments or financed amount are not valid"
-                    }
-                  },
-                  "If start_date is empty or not a valid date.": {
-                    "value": {
-                      "data": [],
-                      "message": "\"start_date\" must be a valid date"
-                    }
-                  },
-                  "If customer_email is empty": {
-                    "value": {
-                      "data": [],
-                      "message": "\"customer_email\" is not allowed to be empty"
-                    }
-                  },
-                  "If customer_email is not a valid email": {
-                    "value": {
-                      "data": [],
-                      "message": "\"customer_email\" must be a valid email"
-                    }
-                  },
-                  "If customer_mobile is invalid": {
-                    "value": {
-                      "data": [],
-                      "message": "Invalid \"customer_mobile\" provided "
-                    }
-                  },
-                  "Somethng went wrong": {
-                    "value": {
-                      "message": "Contract not financed"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authentication Failed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {}
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If token is wrong": {
-                    "value": {
-                      "data": [],
-                      "message": "Invalid auth token provided"
-                    }
-                  },
-                  "If provider_id is wrong": {
-                    "value": {
-                      "message": "Provider does not belong to this partner"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Request Failed"
-          }
-        },
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "description": "Auth token",
-            "required": true
-          }
-        ],
-        "description": "Create a contract ",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Customer"
-              },
-              "examples": {
-                "example": {
-                  "value": {
-                    "provider_id": "1234",
-                    "financed_amount": "1000",
-                    "month": "12",
-                    "start_date": "2020-04-30",
-                    "customer_email": "charles.ones@bridgingtech.com",
-                    "customer_first_name": "Charles",
-                    "customer_last_name": "One",
-                    "customer_mobile": "1234567890"
-                  }
-                }
-              }
-            }
-          },
-          "description": "Customer Object"
-        },
-        "tags": [
-          "Contract"
-        ]
-      },
-      "parameters": []
-    },
-    "/contract/plans": {
-      "get": {
-        "summary": "List of Plans",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "plans": {
-                            "type": "array",
-                            "items": {
-                              "type": "object",
-                              "properties": {
-                                "contract_fee": {
-                                  "type": "number",
-                                  "description": "Denefits' Flat fee for creating a contract. "
-                                },
-                                "interest_rate": {
-                                  "type": "number",
-                                  "description": "Interest rate on which customer is financed."
-                                },
-                                "month": {
-                                  "type": "integer",
-                                  "description": "Duration of the contract."
-                                },
-                                "recurring_amount": {
-                                  "type": "number"
-                                },
-                                "recurring_transaction_fee": {
-                                  "type": "number"
-                                },
-                                "upfront_fee": {
-                                  "type": "number"
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {}
-              }
-            },
-            "headers": {}
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {}
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If token is missing in headers": {
-                    "value": {
-                      "data": [],
-                      "message": "Mandatory parameter 'token' is missing."
-                    }
-                  },
-                  "If provider_id is missing in query params": {
-                    "value": {
-                      "data": [],
-                      "message": "Mandatory parameter 'provider_id' is missing."
-                    }
-                  },
-                  "If financed amount is missing or less than 0": {
-                    "value": {
-                      "data": [],
-                      "message": "\"financed_amount\" is required"
-                    }
-                  },
-                  "If financed_amount is not a valid amount": {
-                    "value": {
-                      "data": [],
-                      "message": "\"financed_amount\" must be a safe number"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authentication Failed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {}
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If token is wrong": {
-                    "value": {
-                      "data": [],
-                      "message": "Invalid auth token provided"
-                    }
-                  },
-                  "if provider_id is wrong": {
-                    "value": {
-                      "message": "Provider does not belong to this partner"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Request Failed"
-          }
-        },
-        "operationId": "get-plans",
-        "description": "Returns plans for creating a contract.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "description": "Auth Token",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "provider_id": {
-                    "type": "number",
-                    "description": "Contract will belong to this provider."
-                  },
-                  "amount": {
-                    "type": "number",
-                    "description": "Amount to be financed."
-                  },
-                  "credit_score": {
-                    "type": [
-                      "string",
-                      "number",
-                      "integer",
-                      "null"
-                    ]
-                  },
-                  "months": {
-                    "type": "array",
-                    "example": "[12]",
-                    "uniqueItems": true,
-                    "items": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "required": [
-                  "provider_id",
-                  "amount"
-                ]
-              }
-            }
-          },
-          "description": ""
-        },
-        "tags": [
-          "Contract"
-        ]
-      },
-      "parameters": []
-    },
     "/provider": {
       "get": {
         "summary": "List of Providers",
@@ -789,8 +368,22 @@
                   },
                   "phone": {
                     "type": "string"
+                  },
+                  "zipcode": {
+                    "type": "string"
+                  },
+                  "business_address": {
+                    "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "first_name",
+                  "last_name",
+                  "email",
+                  "phone",
+                  "zipcode",
+                  "business_address"
+                ]
               },
               "examples": {
                 "example": {
@@ -798,7 +391,9 @@
                     "email": "charles.one@denefiys.com",
                     "first_name": "Charles",
                     "last_name": "One",
-                    "phone": "1234567890"
+                    "phone": "1234567890",
+                    "zipcode": "23433",
+                    "business_address": "test address"
                   }
                 }
               }
@@ -853,6 +448,427 @@
           "description": ""
         }
       }
+    },
+    "/contract/plans": {
+      "get": {
+        "summary": "List of Plans",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "plans": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "contract_fee": {
+                                  "type": "number",
+                                  "description": "Denefits' Flat fee for creating a contract. "
+                                },
+                                "interest_rate": {
+                                  "type": "number",
+                                  "description": "Interest rate on which customer is financed."
+                                },
+                                "month": {
+                                  "type": "integer",
+                                  "description": "Duration of the contract."
+                                },
+                                "recurring_amount": {
+                                  "type": "number"
+                                },
+                                "recurring_transaction_fee": {
+                                  "type": "number"
+                                },
+                                "upfront_fee": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {}
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is missing in headers": {
+                    "value": {
+                      "data": [],
+                      "message": "Mandatory parameter 'token' is missing."
+                    }
+                  },
+                  "If provider_id is missing in query params": {
+                    "value": {
+                      "data": [],
+                      "message": "Mandatory parameter 'provider_id' is missing."
+                    }
+                  },
+                  "If financed amount is missing or less than 0": {
+                    "value": {
+                      "data": [],
+                      "message": "\"financed_amount\" is required"
+                    }
+                  },
+                  "If financed_amount is not a valid amount": {
+                    "value": {
+                      "data": [],
+                      "message": "\"financed_amount\" must be a safe number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication Failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is wrong": {
+                    "value": {
+                      "data": [],
+                      "message": "Invalid auth token provided"
+                    }
+                  },
+                  "if provider_id is wrong": {
+                    "value": {
+                      "message": "Provider does not belong to this partner"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Request Failed"
+          }
+        },
+        "operationId": "get-plans",
+        "description": "Returns plans for creating a contract.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "description": "Auth Token",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "number",
+                    "description": "Contract will belong to this provider."
+                  },
+                  "amount": {
+                    "type": "number",
+                    "description": "Amount to be financed."
+                  },
+                  "credit_score": {
+                    "type": [
+                      "string",
+                      "number",
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "months": {
+                    "type": "array",
+                    "example": "[12]",
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "amount"
+                ]
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Contract"
+        ]
+      },
+      "parameters": []
+    },
+    "/contract/select": {
+      "post": {
+        "summary": "Select a Plan",
+        "operationId": "contract-create",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "contract_id": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {}
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "contract_id": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "data": {
+                        "contract_id": 16633
+                      },
+                      "message": "Customer Financed Successfully"
+                    }
+                  }
+                }
+              },
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "example-1": {}
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is missing in headers": {
+                    "value": {
+                      "data": [],
+                      "message": "Mandatory parameter 'token' is missing."
+                    }
+                  },
+                  "If any of the required_field is missing": {
+                    "value": {
+                      "data": [],
+                      "message": "\"required_field\" is required"
+                    }
+                  },
+                  "If financed_amount is empty or is not a number": {
+                    "value": {
+                      "data": [],
+                      "message": "\"financed_amount\" must be a number"
+                    }
+                  },
+                  "If months are not valid": {
+                    "value": {
+                      "message": "Number of payments or financed amount are not valid"
+                    }
+                  },
+                  "If start_date is empty or not a valid date.": {
+                    "value": {
+                      "data": [],
+                      "message": "\"start_date\" must be a valid date"
+                    }
+                  },
+                  "If customer_email is empty": {
+                    "value": {
+                      "data": [],
+                      "message": "\"customer_email\" is not allowed to be empty"
+                    }
+                  },
+                  "If customer_email is not a valid email": {
+                    "value": {
+                      "data": [],
+                      "message": "\"customer_email\" must be a valid email"
+                    }
+                  },
+                  "If customer_mobile is invalid": {
+                    "value": {
+                      "data": [],
+                      "message": "Invalid \"customer_mobile\" provided "
+                    }
+                  },
+                  "Somethng went wrong": {
+                    "value": {
+                      "message": "Contract not financed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication Failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is wrong": {
+                    "value": {
+                      "data": [],
+                      "message": "Invalid auth token provided"
+                    }
+                  },
+                  "If provider_id is wrong": {
+                    "value": {
+                      "message": "Provider does not belong to this partner"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Request Failed"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "description": "Auth token",
+            "required": true
+          }
+        ],
+        "description": "Create a contract ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Customer"
+              },
+              "examples": {
+                "example": {
+                  "value": {
+                    "provider_id": "1234",
+                    "financed_amount": "1000",
+                    "month": "12",
+                    "start_date": "2020-04-30",
+                    "customer_email": "charles.ones@bridgingtech.com",
+                    "customer_first_name": "Charles",
+                    "customer_last_name": "One",
+                    "customer_mobile": "1234567890"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Customer Object"
+        },
+        "tags": [
+          "Contract"
+        ]
+      },
+      "parameters": []
     }
   },
   "components": {
@@ -864,9 +880,6 @@
         "description": "Customer Object",
         "properties": {
           "provider_id": {
-            "type": "string"
-          },
-          "amount": {
             "type": "string"
           },
           "month": {
@@ -885,6 +898,9 @@
             "type": "string"
           },
           "customer_phone": {
+            "type": "string"
+          },
+          "amount": {
             "type": "string"
           }
         },
