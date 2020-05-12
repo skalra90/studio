@@ -20,13 +20,13 @@
     }
   ],
   "paths": {
-    "/finance_customer": {
+    "/contract/select": {
       "post": {
-        "summary": "Create Contract",
-        "operationId": "post-finance_customer",
+        "summary": "Select a Plan",
+        "operationId": "contract-create",
         "responses": {
           "200": {
-            "description": "A Successfull Response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -48,16 +48,7 @@
                     }
                   }
                 },
-                "examples": {
-                  "Customer Financed Successfully": {
-                    "value": {
-                      "data": {
-                        "contract_id": 16633
-                      },
-                      "message": "Customer Financed Successfully"
-                    }
-                  }
-                }
+                "examples": {}
               },
               "application/xml": {
                 "schema": {
@@ -208,9 +199,6 @@
           },
           "402": {
             "description": "Request Failed"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         },
         "parameters": [
@@ -220,10 +208,11 @@
             },
             "in": "header",
             "name": "token",
-            "description": "A Provider Token"
+            "description": "Auth token",
+            "required": true
           }
         ],
-        "description": "Add description here",
+        "description": "Create a contract ",
         "requestBody": {
           "content": {
             "application/json": {
@@ -249,20 +238,17 @@
           "description": "Customer Object"
         },
         "tags": [
-          "Finance"
+          "Contract"
         ]
       },
       "parameters": []
     },
-    "/plans": {
+    "/contract/plans": {
       "get": {
         "summary": "List of Plans",
-        "tags": [
-          "Plans"
-        ],
         "responses": {
           "200": {
-            "description": "A Successfull Response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -273,22 +259,22 @@
                       "items": {
                         "type": "object",
                         "properties": {
-                          "financing_plans": {
+                          "plans": {
                             "type": "array",
                             "items": {
                               "type": "object",
                               "properties": {
-                                "contract_creation_fee": {
-                                  "type": "number"
-                                },
-                                "downpayment_transaction_fee": {
-                                  "type": "number"
+                                "contract_fee": {
+                                  "type": "number",
+                                  "description": "Denefits' Flat fee for creating a contract. "
                                 },
                                 "interest_rate": {
-                                  "type": "number"
+                                  "type": "number",
+                                  "description": "Interest rate on which customer is financed."
                                 },
                                 "month": {
-                                  "type": "number"
+                                  "type": "integer",
+                                  "description": "Duration of the contract."
                                 },
                                 "recurring_amount": {
                                   "type": "number"
@@ -310,55 +296,10 @@
                     }
                   }
                 },
-                "examples": {
-                  "A Successfull Response": {
-                    "value": {
-                      "data": {
-                        "financing_plans": [
-                          {
-                            "contract_creation_fee": 30,
-                            "downpayment_transaction_fee": 3,
-                            "interest_rate": 16.99,
-                            "month": 12,
-                            "recurring_amount": 112.37,
-                            "recurring_transaction_fee": 3.37,
-                            "upfront_fee": 112.37
-                          },
-                          {
-                            "contract_creation_fee": 30,
-                            "downpayment_transaction_fee": 3,
-                            "interest_rate": 16.99,
-                            "month": 13,
-                            "recurring_amount": 105.82,
-                            "recurring_transaction_fee": 3.17,
-                            "upfront_fee": 105.82
-                          },
-                          {
-                            "contract_creation_fee": 30,
-                            "downpayment_transaction_fee": 3,
-                            "interest_rate": 16.99,
-                            "month": 14,
-                            "recurring_amount": 100.16,
-                            "recurring_transaction_fee": 3,
-                            "upfront_fee": 100.16
-                          },
-                          {
-                            "contract_creation_fee": 30,
-                            "downpayment_transaction_fee": 3,
-                            "interest_rate": 16.99,
-                            "month": 15,
-                            "recurring_amount": 95.23,
-                            "recurring_transaction_fee": 3,
-                            "upfront_fee": 95.23
-                          }
-                        ]
-                      },
-                      "message": "Suceess"
-                    }
-                  }
-                }
+                "examples": {}
               }
-            }
+            },
+            "headers": {}
           },
           "400": {
             "description": "Bad Request",
@@ -439,9 +380,6 @@
           },
           "402": {
             "description": "Request Failed"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         },
         "operationId": "get-plans",
@@ -451,35 +389,60 @@
             "schema": {
               "type": "string"
             },
-            "in": "query",
-            "name": "financed_amount",
-            "description": "Amount to Finance",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
             "in": "header",
             "name": "token",
-            "description": "Provider token",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "provider_id",
-            "description": "For a particular provider",
+            "description": "Auth Token",
             "required": true
           }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "number",
+                    "description": "Contract will belong to this provider."
+                  },
+                  "amount": {
+                    "type": "number",
+                    "description": "Amount to be financed."
+                  },
+                  "credit_score": {
+                    "type": [
+                      "string",
+                      "number",
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "months": {
+                    "type": "array",
+                    "example": "[12]",
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "amount"
+                ]
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Contract"
         ]
       },
       "parameters": []
     },
     "/provider": {
-      "get":  {
+      "get": {
         "summary": "List of Providers",
         "tags": [
           "Providers"
@@ -493,7 +456,7 @@
             },
             "in": "header",
             "name": "token",
-            "description": "Authentication token",
+            "description": "Auth token",
             "required": true
           }
         ],
@@ -803,7 +766,7 @@
             "in": "header",
             "name": "token",
             "required": true,
-            "description": "Authentication token"
+            "description": "Auth token"
           }
         ],
         "tags": [
@@ -870,7 +833,7 @@
             },
             "in": "header",
             "name": "token",
-            "description": "Authentication Token",
+            "description": "Auth Token",
             "required": true
           }
         ],
@@ -903,7 +866,7 @@
           "provider_id": {
             "type": "string"
           },
-          "financed_amount": {
+          "amount": {
             "type": "string"
           },
           "month": {
@@ -927,7 +890,7 @@
         },
         "required": [
           "provider_id",
-          "financed_amount",
+          "amount",
           "month",
           "start_date",
           "customer_email",
