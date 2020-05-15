@@ -449,12 +449,12 @@
                   }
                 },
                 "examples": {
-                  "Missing required field": {
+                  "If required field is missing": {
                     "value": {
                       "message": "\"provider_id\" is required"
                     }
                   },
-                  "Use invalid file ID": {
+                  "If invalid file ID is used": {
                     "value": {
                       "message": "Invalid dl_front provided"
                     }
@@ -476,12 +476,12 @@
                   }
                 },
                 "examples": {
-                  "Invalid bank token": {
+                  "If Invalid bank token is used": {
                     "value": {
                       "message": "No such token: btok_37499879"
                     }
                   },
-                  "Use same file again": {
+                  "If same file ID is used again": {
                     "value": {
                       "message": "This file upload is already attached to an account."
                     }
@@ -630,7 +630,7 @@
                   }
                 },
                 "examples": {
-                  "Missing required field": {
+                  "if required field is missing": {
                     "value": {
                       "message": "Mandatory parameter 'provider_id' is missing."
                     }
@@ -652,7 +652,7 @@
                   }
                 },
                 "examples": {
-                  "Wrong provider ID": {
+                  "If wrong provider ID provided": {
                     "value": {
                       "message": "Provider does not belong to this partner."
                     }
@@ -1431,14 +1431,14 @@
                   }
                 },
                 "examples": {
-                  "Empty file": {
+                  "If file is not provided": {
                     "value": {
                       "message": "file is required"
                     }
                   },
-                  "Wrong purpose": {
+                  "If purpose is not from possible values provided": {
                     "value": {
-                      "message": "Possible values for purpose is 'bank_doc'"
+                      "message": "Possible values for purpose is 'bank_document,denefits_file'"
                     }
                   }
                 }
