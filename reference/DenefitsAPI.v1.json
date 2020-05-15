@@ -53,7 +53,37 @@
                         "list": {
                           "type": "array",
                           "items": {
-                            "$ref": "#/components/schemas/Provider"
+                            "type": "object",
+                            "properties": {
+                              "provider_id": {
+                                "type": "number",
+                                "description": "Provider's Unique Identifier."
+                              },
+                              "date_registered": {
+                                "type": "string",
+                                "format": "date-time",
+                                "example": "2020-05-08T11:58:25.000Z",
+                                "description": "Provider's date of registration."
+                              },
+                              "phone": {
+                                "type": "string",
+                                "description": "Provider's phone number."
+                              },
+                              "last_name": {
+                                "type": "string",
+                                "description": "Provider's last name."
+                              },
+                              "first_name": {
+                                "type": "string",
+                                "description": "Provider's first name."
+                              },
+                              "email": {
+                                "type": "string",
+                                "format": "email",
+                                "example": "charles90@denefits.com",
+                                "description": "Provider's email address. "
+                              }
+                            }
                           }
                         },
                         "count": {
@@ -2067,42 +2097,6 @@
   },
   "components": {
     "schemas": {
-      "Provider": {
-        "title": "Provider Object",
-        "type": "object",
-        "description": "",
-        "x-examples": {},
-        "properties": {
-          "provider_id": {
-            "type": "number",
-            "description": "Provider's Unique Identifier."
-          },
-          "date_registered": {
-            "type": "string",
-            "format": "date-time",
-            "example": "2020-05-08T11:58:25.000Z",
-            "description": "Provider's date of registration."
-          },
-          "phone": {
-            "type": "string",
-            "description": "Provider's phone number."
-          },
-          "last_name": {
-            "type": "string",
-            "description": "Provider's last name."
-          },
-          "first_name": {
-            "type": "string",
-            "description": "Provider's first name."
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "example": "charles90@denefits.com",
-            "description": "Provider's email address. "
-          }
-        }
-      }
     }
   },
   "tags": [
