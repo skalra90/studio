@@ -420,7 +420,45 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_name": {
+                          "type": "string",
+                          "description": "Name of the bank"
+                        },
+                        "routing_number": {
+                          "type": "string",
+                          "description": "Routing number."
+                        },
+                        "last4": {
+                          "type": "string",
+                          "description": "Last 4 digits of account number."
+                        },
+                        "account_holder_name": {
+                          "type": "string",
+                          "description": "Account holder name"
+                        },
+                        "account_holder_type": {
+                          "type": "string",
+                          "description": "Type of account."
+                        },
+                        "provider_id": {
+                          "type": "integer"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
                 },
                 "examples": {
                   "Success": {
@@ -429,12 +467,12 @@
                       "data": {
                         "bank_name": "STRIPE TEST BANK",
                         "routing_number": "110000000",
+                        "last4": "6789",
                         "account_holder_name": "Jenny Rosen",
                         "account_holder_type": "individual",
-                        "provider_id": 6485,
-                        "country": "US",
+                        "provider_id": 6464,
                         "currency": "usd",
-                        "last4": "6789"
+                        "country": "US"
                       }
                     }
                   }
