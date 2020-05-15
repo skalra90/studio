@@ -924,7 +924,64 @@
         "operationId": "post-upload_file",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "file_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success ": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "file_id": "file_1GiyMUGL***********"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Empty file": {
+                    "value": {
+                      "message": "file is required"
+                    }
+                  },
+                  "Wrong pupose": {
+                    "value": {
+                      "message": "Possible values for purpose is 'bank_doc'"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "description": "This API is used for uploading files and returns file_id which can be used in further API's",
@@ -935,7 +992,8 @@
             },
             "in": "header",
             "name": "token",
-            "description": "Authentication token"
+            "description": "Authentication token",
+            "required": true
           }
         ],
         "requestBody": {
@@ -951,7 +1009,11 @@
                   "pupose": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "file",
+                  "pupose"
+                ]
               }
             }
           },
