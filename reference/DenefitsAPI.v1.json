@@ -1517,7 +1517,24 @@
                   "start_date"
                 ]
               },
-              "examples": {}
+              "examples": {
+                "Example": {
+                  "value": {
+                    "plan_id": "plan_P6464M12A3000D00",
+                    "provider_id": 6464,
+                    "customer_email": "steven.gerrard08@lfc.com",
+                    "customer_first_name": "Steven",
+                    "customer_last_name": "Gerrard",
+                    "customer_address": "189 Beaver Ridge Ave.",
+                    "zipcode": "48047",
+                    "customer_mobile": "2025550130",
+                    "date_of_birth": "1980-05-30",
+                    "customer_ssn": "227392778",
+                    "start_date": "2020-07-01",
+                    "dl_number": "DL2181281230123"
+                  }
+                }
+              }
             }
           },
           "description": ""
