@@ -1588,7 +1588,7 @@
                   }
                 },
                 "examples": {
-                  "Empty Token": {
+                  "If token is not provided in header": {
                     "value": {
                       "message": "Mandatory parameter 'token' is missing."
                     }
@@ -1610,7 +1610,7 @@
                   }
                 },
                 "examples": {
-                  "Wrong token value": {
+                  "if incorrect token value is provided": {
                     "value": {
                       "message": "Invalid auth token provided"
                     }
@@ -1752,7 +1752,7 @@
                   }
                 },
                 "examples": {
-                  "Empty industry_id": {
+                  "If industry_id is not provided": {
                     "value": {
                       "message": "\"industry_id\" is required"
                     }
