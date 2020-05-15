@@ -765,16 +765,16 @@
                   }
                 },
                 "examples": {
-                  "Token missing.": {
-                    "value": {
-                      "data": [],
-                      "message": "Mandatory parameter 'token' is missing."
-                    }
-                  },
                   "Provider ID missing": {
                     "value": {
                       "data": [],
                       "message": "Mandatory parameter 'provider_id' is missing."
+                    }
+                  },
+                  "Token missing.": {
+                    "value": {
+                      "data": [],
+                      "message": "Mandatory parameter 'token' is missing."
                     }
                   }
                 }
@@ -1346,6 +1346,165 @@
             "description": "Authentication token"
           }
         ]
+      }
+    },
+    "/provider/speciality": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "speciality_list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "speciality_list": [
+                          {
+                            "id": 156,
+                            "name": "Cardio special"
+                          },
+                          {
+                            "id": 6,
+                            "name": "Chiropractics"
+                          },
+                          {
+                            "id": 12,
+                            "name": "Cosmetic Surgery"
+                          },
+                          {
+                            "id": 1,
+                            "name": "Dental"
+                          },
+                          {
+                            "id": 2,
+                            "name": "Dermatology"
+                          },
+                          {
+                            "id": 13,
+                            "name": "Diabetes and Metabolic Specialist"
+                          },
+                          {
+                            "id": 14,
+                            "name": "Dietitians"
+                          },
+                          {
+                            "id": 25,
+                            "name": "Endodontist"
+                          },
+                          {
+                            "id": 15,
+                            "name": "ENT"
+                          },
+                          {
+                            "id": 149,
+                            "name": "ENT Specialist"
+                          },
+                          {
+                            "id": 17,
+                            "name": "Gastroenterology"
+                          },
+                          {
+                            "id": 18,
+                            "name": "Hearing Aid Specialist"
+                          },
+                          {
+                            "id": 9999,
+                            "name": "Others"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Empty industry_id": {
+                    "value": {
+                      "message": "\"industry_id\" is required"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-speciality",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "required": true,
+            "description": "Authentication token"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "industry_id",
+            "required": true,
+            "description": "Enter the industry id you want the speciality list of"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "description": "Provide the speciality list with unique ids which are used in /provider(post) API"
       }
     }
   },
