@@ -59,29 +59,29 @@
                                 "type": "number",
                                 "description": "Provider's Unique Identifier."
                               },
-                              "date_registered": {
-                                "type": "string",
-                                "format": "date-time",
-                                "example": "2020-05-08T11:58:25.000Z",
-                                "description": "Provider's date of registration."
-                              },
-                              "phone": {
-                                "type": "string",
-                                "description": "Provider's phone number."
-                              },
-                              "last_name": {
-                                "type": "string",
-                                "description": "Provider's last name."
-                              },
-                              "first_name": {
-                                "type": "string",
-                                "description": "Provider's first name."
-                              },
                               "email": {
                                 "type": "string",
                                 "format": "email",
                                 "example": "charles90@denefits.com",
                                 "description": "Provider's email address. "
+                              },
+                              "first_name": {
+                                "type": "string",
+                                "description": "Provider's first name."
+                              },
+                              "last_name": {
+                                "type": "string",
+                                "description": "Provider's last name."
+                              },
+                              "phone": {
+                                "type": "string",
+                                "description": "Provider's phone number."
+                              },
+                              "date_registered": {
+                                "type": "string",
+                                "format": "date-time",
+                                "example": "2020-05-08T11:58:25.000Z",
+                                "description": "Provider's date of registration."
                               }
                             }
                           }
@@ -131,10 +131,6 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {}
-                    },
                     "message": {
                       "type": "string"
                     }
@@ -143,7 +139,6 @@
                 "examples": {
                   "If token is missing in the headers": {
                     "value": {
-                      "data": [],
                       "message": "Mandatory parameter 'token' is missing."
                     }
                   }
@@ -158,10 +153,6 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {}
-                    },
                     "message": {
                       "type": "string"
                     }
@@ -170,7 +161,6 @@
                 "examples": {
                   "If token is wrong": {
                     "value": {
-                      "data": [],
                       "message": "Invalid auth token provided"
                     }
                   }
@@ -179,34 +169,26 @@
             }
           },
           "402": {
-            "description": " Request Faild",
+            "description": " Request Failed",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {}
-                    },
                     "message": {
                       "type": "string"
                     }
                   }
                 },
                 "examples": {
-                  "If provider_id is not valid ": {
+                  "Provider id invalid": {
                     "value": {
-                      "data": [],
                       "message": "Invalid provider ID"
                     }
                   }
                 }
               }
             }
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -849,7 +831,7 @@
                             "to_pay_now": {
                               "total": 124.06,
                               "breakdown": {
-                                "denefits_enrollment_fee": "30.00",
+                                "denefits_enrollment_fee": 30.00,
                                 "upfront_payment": {
                                   "total": 94.06,
                                   "breakdown": {
@@ -874,7 +856,7 @@
                             "to_pay_now": {
                               "total": 100.29,
                               "breakdown": {
-                                "denefits_enrollment_fee": "30.00",
+                                "denefits_enrollment_fee": 30.00,
                                 "upfront_payment": {
                                   "total": 70.29,
                                   "breakdown": {
@@ -899,7 +881,7 @@
                             "to_pay_now": {
                               "total": 87.96,
                               "breakdown": {
-                                "denefits_enrollment_fee": "30.00",
+                                "denefits_enrollment_fee": 30.00,
                                 "upfront_payment": {
                                   "total": 57.96,
                                   "breakdown": {
@@ -924,7 +906,7 @@
                             "to_pay_now": {
                               "total": 80.4,
                               "breakdown": {
-                                "denefits_enrollment_fee": "30.00",
+                                "denefits_enrollment_fee": 30.00,
                                 "upfront_payment": {
                                   "total": 50.4,
                                   "breakdown": {
@@ -949,7 +931,7 @@
                             "to_pay_now": {
                               "total": 75.26,
                               "breakdown": {
-                                "denefits_enrollment_fee": "30.00",
+                                "denefits_enrollment_fee": 30.00,
                                 "upfront_payment": {
                                   "total": 45.26,
                                   "breakdown": {
@@ -974,7 +956,7 @@
                             "to_pay_now": {
                               "total": 71.5,
                               "breakdown": {
-                                "denefits_enrollment_fee": "30.00",
+                                "denefits_enrollment_fee": 30.00,
                                 "upfront_payment": {
                                   "total": 41.5,
                                   "breakdown": {
@@ -999,7 +981,7 @@
                             "to_pay_now": {
                               "total": 68.6,
                               "breakdown": {
-                                "denefits_enrollment_fee": "30.00",
+                                "denefits_enrollment_fee": 30.00,
                                 "upfront_payment": {
                                   "total": 38.6,
                                   "breakdown": {
@@ -2096,8 +2078,7 @@
     }
   },
   "components": {
-    "schemas": {
-    }
+    "schemas": {}
   },
   "tags": [
     {
