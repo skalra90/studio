@@ -356,10 +356,10 @@
                   "business_address": {
                     "type": "string"
                   },
-                  "industry_id": {
+                  "speciality_id": {
                     "type": "number"
                   },
-                  "speciality_id": {
+                  "industry_id": {
                     "type": "number"
                   }
                 },
@@ -383,8 +383,8 @@
                     "phone": "1234567890",
                     "zipcode": "23433",
                     "business_address": "test address",
-                    "industry_id": 1,
-                    "speciality_id": 2
+                    "speciality_id": 2,
+                    "industry_id": 1
                   }
                 }
               }
@@ -492,6 +492,18 @@
           }
         },
         "operationId": "post-provider-bank",
+        "description": "Add provider's bank account which will be used to receive the payouts",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "description": "Authentication token",
+            "required": true
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -563,19 +575,7 @@
             }
           },
           "description": ""
-        },
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "description": "Authentication token",
-            "required": true
-          }
-        ],
-        "description": "Add provider's bank account which will be used to receive the payouts"
+        }
       },
       "get": {
         "summary": "Retrieve bank account",
@@ -996,26 +996,26 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "message": {
+                      "type": "string"
+                    },
                     "data": {
                       "type": "array",
                       "items": {}
-                    },
-                    "message": {
-                      "type": "string"
                     }
                   }
                 },
                 "examples": {
-                  "Provider ID missing": {
-                    "value": {
-                      "data": [],
-                      "message": "Mandatory parameter 'provider_id' is missing."
-                    }
-                  },
                   "Token missing.": {
                     "value": {
-                      "data": [],
-                      "message": "Mandatory parameter 'token' is missing."
+                      "message": "Mandatory parameter 'token' is missing.",
+                      "data": []
+                    }
+                  },
+                  "Provider ID missing": {
+                    "value": {
+                      "message": "Mandatory parameter 'provider_id' is missing.",
+                      "data": []
                     }
                   }
                 }
@@ -1039,15 +1039,15 @@
                   }
                 },
                 "examples": {
+                  "if provider_id is wrong": {
+                    "value": {
+                      "message": "Provider does not belong to this partner"
+                    }
+                  },
                   "If token is wrong": {
                     "value": {
                       "data": [],
                       "message": "Invalid auth token provided"
-                    }
-                  },
-                  "if provider_id is wrong": {
-                    "value": {
-                      "message": "Provider does not belong to this partner"
                     }
                   }
                 }
@@ -1110,6 +1110,412 @@
         ]
       },
       "parameters": []
+    },
+    "/upload_file": {
+      "post": {
+        "summary": "Upload file to receive file id",
+        "operationId": "post-upload_file",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "file_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success ": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "file_id": "file_1GiyMUGL***********"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If purpose is not from possible values provided": {
+                    "value": {
+                      "message": "Possible values for purpose is 'bank_document,denefits_file'"
+                    }
+                  },
+                  "If file is not provided": {
+                    "value": {
+                      "message": "file is required"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This API is used for uploading files and returns file_id which can be used in further API's",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "description": "Authentication token",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Choose file you want to upload"
+                  },
+                  "purpose": {
+                    "type": "string",
+                    "description": "Possible values are \"bank_document\", \"denefits_file\""
+                  }
+                },
+                "required": [
+                  "file",
+                  "purpose"
+                ]
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "File"
+        ]
+      }
+    },
+    "/provider/speciality": {
+      "get": {
+        "summary": "Get provider's available speciality details",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "speciality_list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "speciality_list": [
+                          {
+                            "id": 156,
+                            "name": "Cardio special"
+                          },
+                          {
+                            "id": 6,
+                            "name": "Chiropractics"
+                          },
+                          {
+                            "id": 12,
+                            "name": "Cosmetic Surgery"
+                          },
+                          {
+                            "id": 1,
+                            "name": "Dental"
+                          },
+                          {
+                            "id": 2,
+                            "name": "Dermatology"
+                          },
+                          {
+                            "id": 13,
+                            "name": "Diabetes and Metabolic Specialist"
+                          },
+                          {
+                            "id": 14,
+                            "name": "Dietitians"
+                          },
+                          {
+                            "id": 25,
+                            "name": "Endodontist"
+                          },
+                          {
+                            "id": 15,
+                            "name": "ENT"
+                          },
+                          {
+                            "id": 149,
+                            "name": "ENT Specialist"
+                          },
+                          {
+                            "id": 17,
+                            "name": "Gastroenterology"
+                          },
+                          {
+                            "id": 18,
+                            "name": "Hearing Aid Specialist"
+                          },
+                          {
+                            "id": 9999,
+                            "name": "Others"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If industry_id is not provided": {
+                    "value": {
+                      "message": "\"industry_id\" is required"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-speciality",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "required": true,
+            "description": "Authentication token"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "industry_id",
+            "required": true,
+            "description": "Enter the industry id you want the speciality list of"
+          }
+        ],
+        "description": "Provide the speciality list with unique ids which are used in /provider(post) API"
+      }
+    },
+    "/provider/industry": {
+      "get": {
+        "summary": "Get provider's available industry details",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "industry_list"
+                      ],
+                      "properties": {
+                        "industry_list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "industry_list": [
+                          {
+                            "id": 1,
+                            "name": "Healthcare"
+                          },
+                          {
+                            "id": 56,
+                            "name": "Auto Communication"
+                          },
+                          {
+                            "id": 99,
+                            "name": "Automobile"
+                          },
+                          {
+                            "id": 58,
+                            "name": "Construction"
+                          },
+                          {
+                            "id": 45,
+                            "name": "Education"
+                          },
+                          {
+                            "id": 57,
+                            "name": "Fitness"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is not provided in header": {
+                    "value": {
+                      "message": "Mandatory parameter 'token' is missing."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "if incorrect token value is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-industry",
+        "description": "It contains the list of industries available with unique ids which are used in /provider(post) API",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "required": true,
+            "description": "Authentication token"
+          }
+        ]
+      }
     },
     "/contract/select": {
       "post": {
@@ -1268,18 +1674,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "required": [
-                  "plan_id",
-                  "provider_id",
-                  "customer_email",
-                  "customer_first_name",
-                  "customer_address",
-                  "zipcode",
-                  "customer_mobile",
-                  "date_of_birth",
-                  "customer_ssn",
-                  "start_date"
-                ],
+                "type": "object",
                 "properties": {
                   "plan_id": {
                     "type": "string",
@@ -1350,7 +1745,18 @@
                     "description": "Driving License number of the customer."
                   }
                 },
-                "type": "object"
+                "required": [
+                  "plan_id",
+                  "provider_id",
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_address",
+                  "zipcode",
+                  "customer_mobile",
+                  "date_of_birth",
+                  "customer_ssn",
+                  "start_date"
+                ]
               },
               "examples": {
                 "Example": {
@@ -1380,419 +1786,75 @@
       },
       "parameters": []
     },
-    "/upload_file": {
-      "post": {
-        "summary": "Upload file to receive file id",
-        "operationId": "post-upload_file",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "file_id": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Success ": {
-                    "value": {
-                      "message": "Request executed successfully",
-                      "data": {
-                        "file_id": "file_1GiyMUGL***********"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If file is not provided": {
-                    "value": {
-                      "message": "file is required"
-                    }
-                  },
-                  "If purpose is not from possible values provided": {
-                    "value": {
-                      "message": "Possible values for purpose is 'bank_document,denefits_file'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "This API is used for uploading files and returns file_id which can be used in further API's",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "description": "Authentication token",
-            "required": true
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "file": {
-                    "type": "string",
-                    "format": "binary",
-                    "description": "Choose file you want to upload"
-                  },
-                  "purpose": {
-                    "type": "string",
-                    "description": "Possible values are \"bank_document\", \"denefits_file\""
-                  }
-                },
-                "required": [
-                  "file",
-                  "purpose"
-                ]
-              }
-            }
-          },
-          "description": ""
-        },
-        "tags": [
-          "File"
-        ]
-      }
-    },
-    "/provider/industry": {
-      "get": {
-        "summary": "Get provider's available industry details",
-        "tags": [
-          "Providers"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "required": [
-                        "industry_list"
-                      ],
-                      "properties": {
-                        "industry_list": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "integer"
-                              },
-                              "name": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "id",
-                              "name"
-                            ]
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "required": [
-                    "message",
-                    "data"
-                  ]
-                },
-                "examples": {
-                  "Success": {
-                    "value": {
-                      "message": "Request executed successfully",
-                      "data": {
-                        "industry_list": [
-                          {
-                            "id": 1,
-                            "name": "Healthcare"
-                          },
-                          {
-                            "id": 56,
-                            "name": "Auto Communication"
-                          },
-                          {
-                            "id": 99,
-                            "name": "Automobile"
-                          },
-                          {
-                            "id": 58,
-                            "name": "Construction"
-                          },
-                          {
-                            "id": 45,
-                            "name": "Education"
-                          },
-                          {
-                            "id": 57,
-                            "name": "Fitness"
-                          }
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If token is not provided in header": {
-                    "value": {
-                      "message": "Mandatory parameter 'token' is missing."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "if incorrect token value is provided": {
-                    "value": {
-                      "message": "Invalid auth token provided"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-provider-industry",
-        "description": "It contains the list of industries available with unique ids which are used in /provider(post) API",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "required": true,
-            "description": "Authentication token"
-          }
-        ]
-      }
-    },
-    "/provider/speciality": {
-      "get": {
-        "summary": "Get provider's available speciality details",
-        "tags": [
-          "Providers"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "speciality_list": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "integer"
-                              },
-                              "name": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Success": {
-                    "value": {
-                      "message": "Request executed successfully",
-                      "data": {
-                        "speciality_list": [
-                          {
-                            "id": 156,
-                            "name": "Cardio special"
-                          },
-                          {
-                            "id": 6,
-                            "name": "Chiropractics"
-                          },
-                          {
-                            "id": 12,
-                            "name": "Cosmetic Surgery"
-                          },
-                          {
-                            "id": 1,
-                            "name": "Dental"
-                          },
-                          {
-                            "id": 2,
-                            "name": "Dermatology"
-                          },
-                          {
-                            "id": 13,
-                            "name": "Diabetes and Metabolic Specialist"
-                          },
-                          {
-                            "id": 14,
-                            "name": "Dietitians"
-                          },
-                          {
-                            "id": 25,
-                            "name": "Endodontist"
-                          },
-                          {
-                            "id": 15,
-                            "name": "ENT"
-                          },
-                          {
-                            "id": 149,
-                            "name": "ENT Specialist"
-                          },
-                          {
-                            "id": 17,
-                            "name": "Gastroenterology"
-                          },
-                          {
-                            "id": 18,
-                            "name": "Hearing Aid Specialist"
-                          },
-                          {
-                            "id": 9999,
-                            "name": "Others"
-                          }
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If industry_id is not provided": {
-                    "value": {
-                      "message": "\"industry_id\" is required"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-provider-speciality",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "required": true,
-            "description": "Authentication token"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "industry_id",
-            "required": true,
-            "description": "Enter the industry id you want the speciality list of"
-          }
-        ],
-        "description": "Provide the speciality list with unique ids which are used in /provider(post) API"
-      }
-    },
     "/contract/pay": {
       "post": {
-        "summary": "Create and Pay for Contract",
+        "summary": "Pay for Contract",
         "tags": [
           "Contract"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "contract_id": {
+                          "type": "integer",
+                          "description": "Unique identifier of contract."
+                        },
+                        "contract_code": {
+                          "type": "string",
+                          "description": "Contract code for reference."
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Customer Financed Successfully",
+                      "data": {
+                        "contract_id": 12345,
+                        "contract_code": "STEGE12345"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Token already used": {
+                    "value": {
+                      "message": "Finance token already used"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "post-contract-pay",
         "parameters": [
           {
