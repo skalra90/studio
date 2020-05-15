@@ -558,7 +558,192 @@
                     }
                   }
                 },
-                "examples": {}
+                "examples": {
+                  "Success.": {
+                    "value": {
+                      "message": "Success",
+                      "data": {
+                        "plans": [
+                          {
+                            "plan_id": "plan_P6464M12A1000D00",
+                            "number_of_payments": 12,
+                            "interest_rate": 16.99,
+                            "monthly_payable": {
+                              "total": 94.06,
+                              "breakdown": {
+                                "amount": 91.06,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 124.06,
+                              "breakdown": {
+                                "denefits_enrollment_fee": "30.00",
+                                "upfront_payment": {
+                                  "total": 94.06,
+                                  "breakdown": {
+                                    "amount": 91.06,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "plan_id": "plan_P6464M18A1000D00",
+                            "number_of_payments": 18,
+                            "interest_rate": 16.49,
+                            "monthly_payable": {
+                              "total": 70.29,
+                              "breakdown": {
+                                "amount": 67.29,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 100.29,
+                              "breakdown": {
+                                "denefits_enrollment_fee": "30.00",
+                                "upfront_payment": {
+                                  "total": 70.29,
+                                  "breakdown": {
+                                    "amount": 67.29,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "plan_id": "plan_P6464M24A1000D00",
+                            "number_of_payments": 24,
+                            "interest_rate": 15.99,
+                            "monthly_payable": {
+                              "total": 57.96,
+                              "breakdown": {
+                                "amount": 54.96,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 87.96,
+                              "breakdown": {
+                                "denefits_enrollment_fee": "30.00",
+                                "upfront_payment": {
+                                  "total": 57.96,
+                                  "breakdown": {
+                                    "amount": 54.96,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "plan_id": "plan_P6464M30A1000D00",
+                            "number_of_payments": 30,
+                            "interest_rate": 15.49,
+                            "monthly_payable": {
+                              "total": 50.4,
+                              "breakdown": {
+                                "amount": 47.4,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 80.4,
+                              "breakdown": {
+                                "denefits_enrollment_fee": "30.00",
+                                "upfront_payment": {
+                                  "total": 50.4,
+                                  "breakdown": {
+                                    "amount": 47.4,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "plan_id": "plan_P6464M36A1000D00",
+                            "number_of_payments": 36,
+                            "interest_rate": 14.99,
+                            "monthly_payable": {
+                              "total": 45.26,
+                              "breakdown": {
+                                "amount": 42.26,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 75.26,
+                              "breakdown": {
+                                "denefits_enrollment_fee": "30.00",
+                                "upfront_payment": {
+                                  "total": 45.26,
+                                  "breakdown": {
+                                    "amount": 42.26,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "plan_id": "plan_P6464M42A1000D00",
+                            "number_of_payments": 42,
+                            "interest_rate": 14.49,
+                            "monthly_payable": {
+                              "total": 41.5,
+                              "breakdown": {
+                                "amount": 38.5,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 71.5,
+                              "breakdown": {
+                                "denefits_enrollment_fee": "30.00",
+                                "upfront_payment": {
+                                  "total": 41.5,
+                                  "breakdown": {
+                                    "amount": 38.5,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "plan_id": "plan_P6464M48A1000D00",
+                            "number_of_payments": 48,
+                            "interest_rate": 13.99,
+                            "monthly_payable": {
+                              "total": 38.6,
+                              "breakdown": {
+                                "amount": 35.6,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 68.6,
+                              "breakdown": {
+                                "denefits_enrollment_fee": "30.00",
+                                "upfront_payment": {
+                                  "total": 38.6,
+                                  "breakdown": {
+                                    "amount": 35.6,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
               }
             },
             "headers": {}
@@ -580,28 +765,16 @@
                   }
                 },
                 "examples": {
-                  "If token is missing in headers": {
+                  "Token missing.": {
                     "value": {
                       "data": [],
                       "message": "Mandatory parameter 'token' is missing."
                     }
                   },
-                  "If provider_id is missing in query params": {
+                  "Provider ID missing": {
                     "value": {
                       "data": [],
                       "message": "Mandatory parameter 'provider_id' is missing."
-                    }
-                  },
-                  "If financed amount is missing or less than 0": {
-                    "value": {
-                      "data": [],
-                      "message": "\"financed_amount\" is required"
-                    }
-                  },
-                  "If financed_amount is not a valid amount": {
-                    "value": {
-                      "data": [],
-                      "message": "\"financed_amount\" must be a safe number"
                     }
                   }
                 }
@@ -667,11 +840,15 @@
           },
           {
             "schema": {
-              "type": "number"
+              "type": "number",
+              "minimum": 200,
+              "maximum": 10000,
+              "example": 1200
             },
             "in": "query",
             "name": "amount",
-            "description": "Amount to be financed."
+            "description": "Amount to be financed.",
+            "required": true
           },
           {
             "schema": {
