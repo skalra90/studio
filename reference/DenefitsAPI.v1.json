@@ -233,10 +233,6 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {}
-                    },
                     "message": {
                       "type": "string"
                     }
@@ -245,31 +241,26 @@
                 "examples": {
                   "If token is missing in headers": {
                     "value": {
-                      "data": [],
                       "message": "Mandatory parameter 'token' is missing."
                     }
                   },
                   "If any of the required_field is missing in the body": {
                     "value": {
-                      "data": [],
                       "message": "\"required_field\" is required"
                     }
                   },
                   "If wrong mobile number is entered": {
                     "value": {
-                      "data": [],
                       "message": "Invalid \"phone\" provided "
                     }
                   },
                   "If wrong email is entered": {
                     "value": {
-                      "data": [],
                       "message": "\"email\" must be a valid email"
                     }
                   },
                   "If email is empty": {
                     "value": {
-                      "data": [],
                       "message": "\"email\" is not allowed to be empty"
                     }
                   }
@@ -284,10 +275,6 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {}
-                    },
                     "message": {
                       "type": "string"
                     }
@@ -296,7 +283,6 @@
                 "examples": {
                   "If token is wrong": {
                     "value": {
-                      "data": [],
                       "message": "Invalid auth token provided"
                     }
                   }
@@ -323,8 +309,7 @@
                 "examples": {
                   "If mobile number is already exist in the system.": {
                     "value": {
-                      "data": [],
-                      "message": "Same Mobile"
+                      "message": "Phone number already registered"
                     }
                   }
                 }
@@ -370,6 +355,12 @@
                   },
                   "business_address": {
                     "type": "string"
+                  },
+                  "industry_id": {
+                    "type": "number"
+                  },
+                  "speciality_id": {
+                    "type": "number"
                   }
                 },
                 "required": [
@@ -378,18 +369,22 @@
                   "email",
                   "phone",
                   "zipcode",
-                  "business_address"
+                  "business_address",
+                  "industry_id",
+                  "speciality_id"
                 ]
               },
               "examples": {
                 "example": {
                   "value": {
-                    "email": "charles.one@denefiys.com",
+                    "email": "charles.one@denefits.com",
                     "first_name": "Charles",
                     "last_name": "One",
                     "phone": "1234567890",
                     "zipcode": "23433",
-                    "business_address": "test address"
+                    "business_address": "test address",
+                    "industry_id": 1,
+                    "speciality_id": 2
                   }
                 }
               }
