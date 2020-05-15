@@ -587,7 +587,86 @@
         "tags": [
           "Providers"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "bank_id": 2434,
+                        "doctor_id": 6485,
+                        "stripe_bank_id": "ba_1Gj0rGJU**********",
+                        "bank_name": "STRIPE TEST BANK",
+                        "routing_number": "11********",
+                        "account_number": "6789",
+                        "account_holder_name": "Jenny Rosen",
+                        "account_holder_type": "individual",
+                        "last_updated": "2020-05-15T10:33:42.000Z",
+                        "bank_details": {
+                          "account_holder_name": "Jenny Rosen",
+                          "last4": "6789",
+                          "routing_number": "11******"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Missing required field": {
+                    "value": {
+                      "message": "Mandatory parameter 'provider_id' is missing."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Wrong provider ID": {
+                    "value": {
+                      "message": "Provider does not belong to this partner."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "get-provider-bank",
         "description": "Returns provider's bank details.",
         "parameters": [
@@ -597,25 +676,19 @@
             },
             "in": "header",
             "name": "token",
-            "description": "Auth Token",
+            "description": "Authentication Token",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "description": "Provider ID ",
             "required": true
           }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "provider_id": {
-                    "type": "number"
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        }
+        ]
       }
     },
     "/contract/plans": {
