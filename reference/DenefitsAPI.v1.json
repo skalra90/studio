@@ -755,26 +755,26 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "message": {
+                      "type": "string"
+                    },
                     "data": {
                       "type": "array",
                       "items": {}
-                    },
-                    "message": {
-                      "type": "string"
                     }
                   }
                 },
                 "examples": {
-                  "Provider ID missing": {
-                    "value": {
-                      "data": [],
-                      "message": "Mandatory parameter 'provider_id' is missing."
-                    }
-                  },
                   "Token missing.": {
                     "value": {
-                      "data": [],
-                      "message": "Mandatory parameter 'token' is missing."
+                      "message": "Mandatory parameter 'token' is missing.",
+                      "data": []
+                    }
+                  },
+                  "Provider ID missing": {
+                    "value": {
+                      "message": "Mandatory parameter 'provider_id' is missing.",
+                      "data": []
                     }
                   }
                 }
@@ -798,15 +798,15 @@
                   }
                 },
                 "examples": {
+                  "if provider_id is wrong": {
+                    "value": {
+                      "message": "Provider does not belong to this partner"
+                    }
+                  },
                   "If token is wrong": {
                     "value": {
                       "data": [],
                       "message": "Invalid auth token provided"
-                    }
-                  },
-                  "if provider_id is wrong": {
-                    "value": {
-                      "message": "Provider does not belong to this partner"
                     }
                   }
                 }
@@ -863,258 +863,6 @@
         ],
         "requestBody": {
           "description": ""
-        },
-        "tags": [
-          "Contract"
-        ]
-      },
-      "parameters": []
-    },
-    "/contract/select": {
-      "post": {
-        "summary": "Select a Plan",
-        "operationId": "contract-create",
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "contract_id": {
-                            "type": "number"
-                          }
-                        }
-                      }
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {}
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {}
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If token is missing in headers": {
-                    "value": {
-                      "data": [],
-                      "message": "Mandatory parameter 'token' is missing."
-                    }
-                  },
-                  "If any of the required_field is missing": {
-                    "value": {
-                      "data": [],
-                      "message": "\"required_field\" is required"
-                    }
-                  },
-                  "If financed_amount is empty or is not a number": {
-                    "value": {
-                      "data": [],
-                      "message": "\"financed_amount\" must be a number"
-                    }
-                  },
-                  "If months are not valid": {
-                    "value": {
-                      "message": "Number of payments or financed amount are not valid"
-                    }
-                  },
-                  "If start_date is empty or not a valid date.": {
-                    "value": {
-                      "data": [],
-                      "message": "\"start_date\" must be a valid date"
-                    }
-                  },
-                  "If customer_email is empty": {
-                    "value": {
-                      "data": [],
-                      "message": "\"customer_email\" is not allowed to be empty"
-                    }
-                  },
-                  "If customer_email is not a valid email": {
-                    "value": {
-                      "data": [],
-                      "message": "\"customer_email\" must be a valid email"
-                    }
-                  },
-                  "If customer_mobile is invalid": {
-                    "value": {
-                      "data": [],
-                      "message": "Invalid \"customer_mobile\" provided "
-                    }
-                  },
-                  "Somethng went wrong": {
-                    "value": {
-                      "message": "Contract not financed"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Authentication Failed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {}
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If token is wrong": {
-                    "value": {
-                      "data": [],
-                      "message": "Invalid auth token provided"
-                    }
-                  },
-                  "If provider_id is wrong": {
-                    "value": {
-                      "message": "Provider does not belong to this partner"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Request Failed"
-          }
-        },
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "description": "Auth token",
-            "required": true
-          }
-        ],
-        "description": "Select a Plan and provide customer details.",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "plan_id": {
-                    "type": "string",
-                    "description": "Unique plan id of the plan selected for financing."
-                  },
-                  "provider_id": {
-                    "type": "integer",
-                    "format": "date",
-                    "example": 6464,
-                    "description": "Contract will belong to this Provider."
-                  },
-                  "customer_email": {
-                    "type": "string",
-                    "description": "Email address of the customer",
-                    "format": "email",
-                    "example": "steven.gerrard08@liverpoolfc.com"
-                  },
-                  "customer_first_name": {
-                    "type": "string",
-                    "description": "First name of the customer.",
-                    "example": "Steven"
-                  },
-                  "customer_last_name": {
-                    "type": "string",
-                    "description": "Last name of the customer.",
-                    "example": "Gerrard"
-                  },
-                  "customer_address": {
-                    "type": "string",
-                    "description": "Street address of the customer",
-                    "example": "189 Beaver Ridge Ave."
-                  },
-                  "zipcode": {
-                    "type": "string",
-                    "example": "48047",
-                    "minLength": 5,
-                    "maxLength": 5,
-                    "description": "Zipcode"
-                  },
-                  "customer_mobile": {
-                    "type": "string",
-                    "description": "US Mobile number(Without hyphens) of the customer.",
-                    "example": "2025550130",
-                    "minLength": 10,
-                    "maxLength": 10
-                  },
-                  "date_of_birth": {
-                    "type": "string",
-                    "description": "Date of birth of customer.",
-                    "format": "date",
-                    "example": "1980-05-30"
-                  },
-                  "customer_ssn": {
-                    "type": "string",
-                    "description": "SSN number(Without hyphens) of the customer.",
-                    "example": "227392778",
-                    "minLength": 9,
-                    "maxLength": 9
-                  },
-                  "start_date": {
-                    "type": "string",
-                    "description": "Date from which first payment will be deducted.",
-                    "format": "date",
-                    "example": "2020-07-01"
-                  },
-                  "dl_number": {
-                    "type": "string",
-                    "description": "Driving License number of the customer."
-                  }
-                },
-                "required": [
-                  "plan_id",
-                  "provider_id",
-                  "customer_email",
-                  "customer_first_name",
-                  "customer_address",
-                  "zipcode",
-                  "customer_mobile",
-                  "date_of_birth",
-                  "customer_ssn",
-                  "start_date"
-                ]
-              },
-              "examples": {}
-            }
-          },
-          "description": "Customer Object"
         },
         "tags": [
           "Contract"
@@ -1227,153 +975,6 @@
         },
         "tags": [
           "File"
-        ]
-      }
-    },
-    "/provider/industry": {
-      "get": {
-        "summary": "Get provider's available industry details",
-        "tags": [
-          "Providers"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "required": [
-                        "industry_list"
-                      ],
-                      "properties": {
-                        "industry_list": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "integer"
-                              },
-                              "name": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "id",
-                              "name"
-                            ]
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "required": [
-                    "message",
-                    "data"
-                  ]
-                },
-                "examples": {
-                  "Success": {
-                    "value": {
-                      "message": "Request executed successfully",
-                      "data": {
-                        "industry_list": [
-                          {
-                            "id": 1,
-                            "name": "Healthcare"
-                          },
-                          {
-                            "id": 56,
-                            "name": "Auto Communication"
-                          },
-                          {
-                            "id": 99,
-                            "name": "Automobile"
-                          },
-                          {
-                            "id": 58,
-                            "name": "Construction"
-                          },
-                          {
-                            "id": 45,
-                            "name": "Education"
-                          },
-                          {
-                            "id": 57,
-                            "name": "Fitness"
-                          }
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "Empty Token": {
-                    "value": {
-                      "message": "Mandatory parameter 'token' is missing."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "Wrong token value": {
-                    "value": {
-                      "message": "Invalid auth token provided"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-provider-industry",
-        "description": "It contains the list of industries available with unique ids which are used in /provider(post) API",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "required": true,
-            "description": "Authentication token"
-          }
         ]
       }
     },
@@ -1527,6 +1128,405 @@
         ],
         "description": "Provide the speciality list with unique ids which are used in /provider(post) API"
       }
+    },
+    "/provider/industry": {
+      "get": {
+        "summary": "Get provider's available industry details",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "industry_list"
+                      ],
+                      "properties": {
+                        "industry_list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "industry_list": [
+                          {
+                            "id": 1,
+                            "name": "Healthcare"
+                          },
+                          {
+                            "id": 56,
+                            "name": "Auto Communication"
+                          },
+                          {
+                            "id": 99,
+                            "name": "Automobile"
+                          },
+                          {
+                            "id": 58,
+                            "name": "Construction"
+                          },
+                          {
+                            "id": 45,
+                            "name": "Education"
+                          },
+                          {
+                            "id": 57,
+                            "name": "Fitness"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Empty Token": {
+                    "value": {
+                      "message": "Mandatory parameter 'token' is missing."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Wrong token value": {
+                    "value": {
+                      "message": "Invalid auth token provided"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-industry",
+        "description": "It contains the list of industries available with unique ids which are used in /provider(post) API",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "required": true,
+            "description": "Authentication token"
+          }
+        ]
+      }
+    },
+    "/contract/select": {
+      "post": {
+        "summary": "Select a Plan",
+        "operationId": "contract-create",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "finance_token": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {}
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is missing in headers": {
+                    "value": {
+                      "data": [],
+                      "message": "Mandatory parameter 'token' is missing."
+                    }
+                  },
+                  "If any of the required_field is missing": {
+                    "value": {
+                      "data": [],
+                      "message": "\"required_field\" is required"
+                    }
+                  },
+                  "If financed_amount is empty or is not a number": {
+                    "value": {
+                      "data": [],
+                      "message": "\"financed_amount\" must be a number"
+                    }
+                  },
+                  "If months are not valid": {
+                    "value": {
+                      "message": "Number of payments or financed amount are not valid"
+                    }
+                  },
+                  "If start_date is empty or not a valid date.": {
+                    "value": {
+                      "data": [],
+                      "message": "\"start_date\" must be a valid date"
+                    }
+                  },
+                  "If customer_email is empty": {
+                    "value": {
+                      "data": [],
+                      "message": "\"customer_email\" is not allowed to be empty"
+                    }
+                  },
+                  "If customer_email is not a valid email": {
+                    "value": {
+                      "data": [],
+                      "message": "\"customer_email\" must be a valid email"
+                    }
+                  },
+                  "If customer_mobile is invalid": {
+                    "value": {
+                      "data": [],
+                      "message": "Invalid \"customer_mobile\" provided "
+                    }
+                  },
+                  "Somethng went wrong": {
+                    "value": {
+                      "message": "Contract not financed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication Failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is wrong": {
+                    "value": {
+                      "data": [],
+                      "message": "Invalid auth token provided"
+                    }
+                  },
+                  "If provider_id is wrong": {
+                    "value": {
+                      "message": "Provider does not belong to this partner"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "description": "Auth token",
+            "required": true
+          }
+        ],
+        "description": "Select a Plan and provide customer details.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "plan_id": {
+                    "type": "string",
+                    "description": "Unique plan id of the plan selected for financing."
+                  },
+                  "provider_id": {
+                    "type": "integer",
+                    "format": "date",
+                    "example": 6464,
+                    "description": "Contract will belong to this Provider."
+                  },
+                  "customer_email": {
+                    "type": "string",
+                    "description": "Email address of the customer",
+                    "format": "email",
+                    "example": "steven.gerrard08@liverpoolfc.com"
+                  },
+                  "customer_first_name": {
+                    "type": "string",
+                    "description": "First name of the customer.",
+                    "example": "Steven"
+                  },
+                  "customer_last_name": {
+                    "type": "string",
+                    "description": "Last name of the customer.",
+                    "example": "Gerrard"
+                  },
+                  "customer_address": {
+                    "type": "string",
+                    "description": "Street address of the customer",
+                    "example": "189 Beaver Ridge Ave."
+                  },
+                  "zipcode": {
+                    "type": "string",
+                    "example": "48047",
+                    "minLength": 5,
+                    "maxLength": 5,
+                    "description": "Zipcode"
+                  },
+                  "customer_mobile": {
+                    "type": "string",
+                    "description": "US Mobile number(Without hyphens) of the customer.",
+                    "example": "2025550130",
+                    "minLength": 10,
+                    "maxLength": 10
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "description": "Date of birth of customer.",
+                    "format": "date",
+                    "example": "1980-05-30"
+                  },
+                  "customer_ssn": {
+                    "type": "string",
+                    "description": "SSN number(Without hyphens) of the customer.",
+                    "example": "227392778",
+                    "minLength": 9,
+                    "maxLength": 9
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "description": "Date from which first payment will be deducted.",
+                    "format": "date",
+                    "example": "2020-07-01"
+                  },
+                  "dl_number": {
+                    "type": "string",
+                    "description": "Driving License number of the customer."
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "provider_id",
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_address",
+                  "zipcode",
+                  "customer_mobile",
+                  "date_of_birth",
+                  "customer_ssn",
+                  "start_date"
+                ]
+              },
+              "examples": {}
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Contract"
+        ]
+      },
+      "parameters": []
     }
   },
   "components": {
