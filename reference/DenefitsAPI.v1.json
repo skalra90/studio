@@ -972,7 +972,7 @@
                       "message": "file is required"
                     }
                   },
-                  "Wrong pupose": {
+                  "Wrong purpose": {
                     "value": {
                       "message": "Possible values for purpose is 'bank_doc'"
                     }
@@ -1021,6 +1021,153 @@
         },
         "tags": [
           "File"
+        ]
+      }
+    },
+    "/provider/industry": {
+      "get": {
+        "summary": "Get provider's available industry details",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "industry_list"
+                      ],
+                      "properties": {
+                        "industry_list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "name": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "industry_list": [
+                          {
+                            "id": 1,
+                            "name": "Healthcare"
+                          },
+                          {
+                            "id": 56,
+                            "name": "Auto Communication"
+                          },
+                          {
+                            "id": 99,
+                            "name": "Automobile"
+                          },
+                          {
+                            "id": 58,
+                            "name": "Construction"
+                          },
+                          {
+                            "id": 45,
+                            "name": "Education"
+                          },
+                          {
+                            "id": 57,
+                            "name": "Fitness"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Empty Token": {
+                    "value": {
+                      "message": "Mandatory parameter 'token' is missing."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Wrong token value": {
+                    "value": {
+                      "message": "Invalid auth token provided"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-industry",
+        "description": "It contains the list of industries available with unique ids which are used in /provider(post) API",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "required": true,
+            "description": "Authentication token"
+          }
         ]
       }
     }
