@@ -899,46 +899,6 @@
                   }
                 },
                 "examples": {}
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "contract_id": {
-                            "type": "number"
-                          }
-                        }
-                      }
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "data": {
-                        "contract_id": 16633
-                      },
-                      "message": "Customer Financed Successfully"
-                    }
-                  }
-                }
-              },
-              "multipart/form-data": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                },
-                "examples": {
-                  "example-1": {}
-                }
               }
             }
           },
@@ -1062,27 +1022,96 @@
             "required": true
           }
         ],
-        "description": "Create a contract ",
+        "description": "Select a Plan and provide customer details.",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Customer"
-              },
-              "examples": {
-                "example": {
-                  "value": {
-                    "provider_id": "1234",
-                    "financed_amount": "1000",
-                    "month": "12",
-                    "start_date": "2020-04-30",
-                    "customer_email": "charles.ones@bridgingtech.com",
-                    "customer_first_name": "Charles",
-                    "customer_last_name": "One",
-                    "customer_mobile": "1234567890"
+                "type": "object",
+                "properties": {
+                  "plan_id": {
+                    "type": "string",
+                    "description": "Unique plan id of the plan selected for financing."
+                  },
+                  "provider_id": {
+                    "type": "integer",
+                    "format": "date",
+                    "example": 6464,
+                    "description": "Contract will belong to this Provider."
+                  },
+                  "customer_email": {
+                    "type": "string",
+                    "description": "Email address of the customer.",
+                    "format": "email",
+                    "example": "steven.gerrard08@lfc.com"
+                  },
+                  "customer_first_name": {
+                    "type": "string",
+                    "description": "First name of the customer.",
+                    "example": "Steven"
+                  },
+                  "customer_last_name": {
+                    "type": "string",
+                    "description": "Last name of the customer.",
+                    "example": "Gerrard"
+                  },
+                  "customer_address": {
+                    "type": "string",
+                    "description": "Street address of the customer",
+                    "example": "189 Beaver Ridge Ave."
+                  },
+                  "zipcode": {
+                    "type": "string",
+                    "example": "48047",
+                    "minLength": 5,
+                    "maxLength": 5,
+                    "description": "Zipcode"
+                  },
+                  "customer_mobile": {
+                    "type": "string",
+                    "description": "US Mobile number(Without hyphens) of the customer.",
+                    "example": "2025550130",
+                    "minLength": 10,
+                    "maxLength": 10
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "description": "Date of birth of customer.",
+                    "format": "date",
+                    "example": "1980-05-30"
+                  },
+                  "customer_ssn": {
+                    "type": "string",
+                    "description": "SSN number(Without hyphens) of the customer.",
+                    "example": "227392778",
+                    "minLength": 9,
+                    "maxLength": 9
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "description": "Date from which first payment will be deducted.",
+                    "format": "date",
+                    "example": "2020-07-01"
+                  },
+                  "dl_number": {
+                    "type": "string",
+                    "description": "Driving License number of the customer."
                   }
-                }
-              }
+                },
+                "required": [
+                  "plan_id",
+                  "provider_id",
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_address",
+                  "zipcode",
+                  "customer_mobile",
+                  "date_of_birth",
+                  "customer_ssn",
+                  "start_date"
+                ]
+              },
+              "examples": {}
             }
           },
           "description": "Customer Object"
