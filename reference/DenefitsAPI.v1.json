@@ -1043,7 +1043,7 @@
                     "type": "string",
                     "description": "Email address of the customer",
                     "format": "email",
-                    "example": "steven.gerrard08@lfc.com"
+                    "example": "steven.gerrard08@liverpoolfc.com"
                   },
                   "customer_first_name": {
                     "type": "string",
