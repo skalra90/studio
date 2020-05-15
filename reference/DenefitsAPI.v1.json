@@ -998,24 +998,18 @@
                   "properties": {
                     "message": {
                       "type": "string"
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {}
                     }
                   }
                 },
                 "examples": {
                   "Token missing.": {
                     "value": {
-                      "message": "Mandatory parameter 'token' is missing.",
-                      "data": []
+                      "message": "Mandatory parameter 'token' is missing."
                     }
                   },
                   "Provider ID missing": {
                     "value": {
-                      "message": "Mandatory parameter 'provider_id' is missing.",
-                      "data": []
+                      "message": "Mandatory parameter 'provider_id' is missing."
                     }
                   }
                 }
@@ -1029,10 +1023,6 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {}
-                    },
                     "message": {
                       "type": "string"
                     }
@@ -1046,16 +1036,12 @@
                   },
                   "If token is wrong": {
                     "value": {
-                      "data": [],
                       "message": "Invalid auth token provided"
                     }
                   }
                 }
               }
             }
-          },
-          "402": {
-            "description": "Request Failed"
           }
         },
         "operationId": "get-plans",
@@ -1786,121 +1772,6 @@
       },
       "parameters": []
     },
-    "/contract/pay": {
-      "post": {
-        "summary": "Pay for Contract",
-        "tags": [
-          "Contract"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "contract_id": {
-                          "type": "integer",
-                          "description": "Unique identifier of contract."
-                        },
-                        "contract_code": {
-                          "type": "string",
-                          "description": "Contract code for reference."
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Success": {
-                    "value": {
-                      "message": "Customer Financed Successfully",
-                      "data": {
-                        "contract_id": 12345,
-                        "contract_code": "STEGE12345"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "Token already used": {
-                    "value": {
-                      "message": "Finance token already used"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "post-contract-pay",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "required": true,
-            "description": "Auth token."
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "finance_token": {
-                    "type": "string",
-                    "description": "Finance Token."
-                  },
-                  "card_token": {
-                    "type": "string",
-                    "description": "Card Token receieved from iframe."
-                  }
-                },
-                "required": [
-                  "finance_token",
-                  "card_token"
-                ]
-              },
-              "examples": {
-                "Example": {
-                  "value": {
-                    "finance_token": "7b863ffe354d6894ece92f6564565561",
-                    "card_token": "tok_visa"
-                  }
-                }
-              }
-            }
-          },
-          "description": ""
-        }
-      }
-    },
     "/contract": {
       "get": {
         "summary": "Get contract details with contract ID",
@@ -2079,51 +1950,126 @@
         ],
         "description": "Get contract details with ID"
       }
+    },
+    "/contract/pay": {
+      "post": {
+        "summary": "Pay for Contract",
+        "tags": [
+          "Contract"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "contract_id": {
+                          "type": "integer",
+                          "description": "Unique identifier of contract."
+                        },
+                        "contract_code": {
+                          "type": "string",
+                          "description": "Contract code for reference."
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Customer Financed Successfully",
+                      "data": {
+                        "contract_id": 12345,
+                        "contract_code": "STEGE12345"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Token already used": {
+                    "value": {
+                      "message": "Finance token already used"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-contract-pay",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "required": true,
+            "description": "Auth token."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "finance_token": {
+                    "type": "string",
+                    "description": "Finance Token."
+                  },
+                  "card_token": {
+                    "type": "string",
+                    "description": "Card Token receieved from iframe."
+                  }
+                },
+                "required": [
+                  "finance_token",
+                  "card_token"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "finance_token": "7b863ffe354d6894ece92f6564565561",
+                    "card_token": "tok_visa"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Pay for contract using finance token and card token."
+      }
     }
   },
   "components": {
     "schemas": {
-      "Customer": {
-        "title": "Customer",
-        "type": "object",
-        "x-examples": {},
-        "description": "Customer Object",
-        "properties": {
-          "provider_id": {
-            "type": "string"
-          },
-          "month": {
-            "type": "string"
-          },
-          "start_date": {
-            "type": "string"
-          },
-          "customer_email": {
-            "type": "string"
-          },
-          "customer_first_name": {
-            "type": "string"
-          },
-          "customer_last_name": {
-            "type": "string"
-          },
-          "customer_phone": {
-            "type": "string"
-          },
-          "amount": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "provider_id",
-          "amount",
-          "month",
-          "start_date",
-          "customer_email",
-          "customer_first_name",
-          "customer_phone"
-        ]
-      },
       "Provider": {
         "title": "Provider Object",
         "type": "object",
