@@ -13,10 +13,6 @@
     {
       "url": "https://api.denefits.com:8005/v1",
       "description": "Development"
-    },
-    {
-      "url": "https://endpoint.denefits.com/v1",
-      "description": "Production (WIP)"
     }
   ],
   "paths": {
