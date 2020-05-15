@@ -1544,6 +1544,59 @@
         ]
       },
       "parameters": []
+    },
+    "/contract/pay": {
+      "post": {
+        "summary": "Create and Pay for Contract",
+        "tags": [
+          "Contract"
+        ],
+        "responses": {},
+        "operationId": "post-contract-pay",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "required": true,
+            "description": "Auth token."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "finance_token": {
+                    "type": "string",
+                    "description": "Finance Token."
+                  },
+                  "card_token": {
+                    "type": "string",
+                    "description": "Card Token receieved from iframe."
+                  }
+                },
+                "required": [
+                  "finance_token",
+                  "card_token"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "finance_token": "7b863ffe354d6894ece92f6564565561",
+                    "card_token": "tok_visa"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      }
     }
   },
   "components": {
