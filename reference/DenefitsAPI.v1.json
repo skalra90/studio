@@ -1250,9 +1250,6 @@
               }
             }
           },
-          "201": {
-            "description": "Created"
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -1546,6 +1543,28 @@
                   "If purpose is not from possible values provided": {
                     "value": {
                       "message": "Possible values for purpose is 'bank_document,denefits_file'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is wrong": {
+                    "value": {
+                      "message": "Invalid auth token provided"
                     }
                   }
                 }
@@ -2185,6 +2204,28 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is wrong": {
+                    "value": {
+                      "message": "Invalid auth token provided"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "operationId": "get-contract-list",
@@ -2206,7 +2247,7 @@
             "required": true
           }
         ],
-        "description": "Get Bank details of Provider"
+        "description": "Get listing of all contracts of this account"
       }
     },
     "/contract/detail": {
@@ -2349,6 +2390,28 @@
                   "If required field is not provided": {
                     "value": {
                       "message": "\"provider_id\" is required"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is wrong": {
+                    "value": {
+                      "message": "Invalid auth token provided"
                     }
                   }
                 }
