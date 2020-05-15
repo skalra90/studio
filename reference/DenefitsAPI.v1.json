@@ -1841,7 +1841,7 @@
     },
     "/contract": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Get contract details with contract ID",
         "tags": [
           "Contract"
         ],
