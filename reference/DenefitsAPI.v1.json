@@ -645,7 +645,7 @@
           }
         },
         "operationId": "get-plans",
-        "description": "Returns plans for creating a contract.",
+        "description": "Returns plans for creating a contract. By default returns, plans of 12, 18, 24, 30, 36, 42 and 48 months. **filter_month** can be set to integer from 12 to 48 for getting result of that particular month only.",
         "parameters": [
           {
             "schema": {
@@ -655,38 +655,36 @@
             "name": "token",
             "description": "Auth Token",
             "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "description": "Contract will belong to this provider.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "amount",
+            "description": "Amount to be financed.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "uniqueItems": false
+            },
+            "in": "query",
+            "name": "filter_month",
+            "description": "Data to be return for a specific month."
           }
         ],
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "provider_id": {
-                    "type": "number",
-                    "description": "Contract will belong to this provider."
-                  },
-                  "amount": {
-                    "type": "number",
-                    "description": "Amount to be financed."
-                  },
-                  "months": {
-                    "type": "array",
-                    "example": "[12]",
-                    "uniqueItems": true,
-                    "items": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "required": [
-                  "provider_id",
-                  "amount"
-                ]
-              }
-            }
-          },
           "description": ""
         },
         "tags": [
