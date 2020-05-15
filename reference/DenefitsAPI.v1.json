@@ -1351,7 +1351,9 @@
     "/provider/speciality": {
       "get": {
         "summary": "Your GET endpoint",
-        "tags": [],
+        "tags": [
+          "Providers"
+        ],
         "responses": {
           "200": {
             "description": "OK",
