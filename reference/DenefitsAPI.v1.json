@@ -1088,9 +1088,6 @@
             "description": "Return plan for this specific month."
           }
         ],
-        "requestBody": {
-          "description": ""
-        },
         "tags": [
           "Contract"
         ]
