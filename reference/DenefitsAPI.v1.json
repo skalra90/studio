@@ -1838,6 +1838,14 @@
           "description": ""
         }
       }
+    },
+    "/contract": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-contract"
+      }
     }
   },
   "components": {
