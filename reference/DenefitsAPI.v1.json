@@ -1770,7 +1770,7 @@
           },
           {
             "schema": {
-              "type": "string"
+              "type": "number"
             },
             "in": "query",
             "name": "industry_id",
