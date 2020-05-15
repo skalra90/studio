@@ -1179,21 +1179,26 @@
                 "properties": {
                   "file": {
                     "type": "string",
-                    "format": "binary"
+                    "format": "binary",
+                    "description": "Choose file you want to upload"
                   },
-                  "pupose": {
-                    "type": "string"
+                  "purpose": {
+                    "type": "string",
+                    "description": "Possible values are \"bank_document\", \"denefits_file\""
                   }
                 },
                 "required": [
                   "file",
-                  "pupose"
+                  "purpose"
                 ]
               }
             }
           },
           "description": ""
-        }
+        },
+        "tags": [
+          "File"
+        ]
       }
     }
   },
