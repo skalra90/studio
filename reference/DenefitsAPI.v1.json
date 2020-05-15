@@ -420,7 +420,45 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_name": {
+                          "type": "string",
+                          "description": "Name of the bank"
+                        },
+                        "routing_number": {
+                          "type": "string",
+                          "description": "Routing number."
+                        },
+                        "last4": {
+                          "type": "string",
+                          "description": "Last 4 digits of account number."
+                        },
+                        "account_holder_name": {
+                          "type": "string",
+                          "description": "Account holder name"
+                        },
+                        "account_holder_type": {
+                          "type": "string",
+                          "description": "Type of account."
+                        },
+                        "provider_id": {
+                          "type": "integer"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
                 },
                 "examples": {
                   "Success": {
@@ -504,6 +542,18 @@
           }
         },
         "operationId": "post-provider-bank",
+        "description": "Add provider's bank account which will be used to receive the payouts",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "description": "Authentication token",
+            "required": true
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -511,7 +561,7 @@
                 "type": "object",
                 "properties": {
                   "provider_id": {
-                    "type": "number"
+                    "type": "integer"
                   },
                   "business_email": {
                     "type": "string"
@@ -526,7 +576,7 @@
                     "type": "string"
                   },
                   "business_zipcode": {
-                    "type": "number"
+                    "type": "string"
                   },
                   "bank_token": {
                     "type": "string"
@@ -534,14 +584,16 @@
                   "ssn_number": {
                     "type": "string"
                   },
-                  "dl_front": {
+                  "front_file": {
                     "type": "string"
                   },
-                  "dl_back": {
+                  "back_file": {
                     "type": "string"
                   },
                   "date_of_birth": {
-                    "type": "string"
+                    "type": "string",
+                    "format": "date",
+                    "example": "1990-01-18"
                   }
                 },
                 "required": [
@@ -550,8 +602,6 @@
                   "business_zipcode",
                   "bank_token",
                   "ssn_number",
-                  "dl_front",
-                  "dl_back",
                   "date_of_birth"
                 ]
               },
@@ -574,20 +624,8 @@
               }
             }
           },
-          "description": ""
-        },
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "description": "Authentication token",
-            "required": true
-          }
-        ],
-        "description": "Add provider's bank account which will be used to receive the payouts"
+          "description": "Add Provider Bank"
+        }
       },
       "get": {
         "summary": "Retrieve bank account",
