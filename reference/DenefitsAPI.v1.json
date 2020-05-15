@@ -470,26 +470,85 @@
                             "items": {
                               "type": "object",
                               "properties": {
-                                "contract_fee": {
-                                  "type": "number",
-                                  "description": "Denefits' Flat fee for creating a contract. "
+                                "plan_id": {
+                                  "description": "Plan's unique identification.",
+                                  "type": "string"
                                 },
                                 "interest_rate": {
                                   "type": "number",
-                                  "description": "Interest rate on which customer is financed."
+                                  "description": "Interest rate."
                                 },
-                                "month": {
+                                "number_of_payments": {
                                   "type": "integer",
                                   "description": "Duration of the contract."
                                 },
-                                "recurring_amount": {
-                                  "type": "number"
+                                "monthly_payable": {
+                                  "type": "object",
+                                  "description": "Monthly Payable details.",
+                                  "properties": {
+                                    "total": {
+                                      "type": "number",
+                                      "description": "Total payable amount every month (Without Late Fees)"
+                                    },
+                                    "breakdown": {
+                                      "type": "object",
+                                      "description": "Breakdown of total payable amount.",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "number",
+                                          "description": "Recurring amount."
+                                        },
+                                        "transaction_fee": {
+                                          "type": "number",
+                                          "description": "Transsaction Fee."
+                                        }
+                                      }
+                                    }
+                                  }
                                 },
-                                "recurring_transaction_fee": {
-                                  "type": "number"
-                                },
-                                "upfront_fee": {
-                                  "type": "number"
+                                "to_pay_now": {
+                                  "type": "object",
+                                  "description": "Amount to pay now details.",
+                                  "properties": {
+                                    "total": {
+                                      "type": "number",
+                                      "description": "Total amount to pay now."
+                                    },
+                                    "breakdown": {
+                                      "type": "object",
+                                      "description": "Breakdown of amount.",
+                                      "properties": {
+                                        "denefits_enrollment_fee": {
+                                          "type": "number",
+                                          "description": "Flat contract creation fee."
+                                        },
+                                        "upfront_payment": {
+                                          "type": "object",
+                                          "description": "Upfront payment details.",
+                                          "properties": {
+                                            "total": {
+                                              "type": "number",
+                                              "description": "Total upfront payment."
+                                            },
+                                            "breakdown": {
+                                              "type": "object",
+                                              "description": "Breakdown of upfront payment.",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "number",
+                                                  "description": "Upfront amount."
+                                                },
+                                                "transaction_fee": {
+                                                  "type": "number",
+                                                  "description": "Upfront transaction fee."
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -498,7 +557,8 @@
                       }
                     },
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Message."
                     }
                   }
                 },
@@ -614,14 +674,6 @@
                   "amount": {
                     "type": "number",
                     "description": "Amount to be financed."
-                  },
-                  "credit_score": {
-                    "type": [
-                      "string",
-                      "number",
-                      "integer",
-                      "null"
-                    ]
                   },
                   "months": {
                     "type": "array",
