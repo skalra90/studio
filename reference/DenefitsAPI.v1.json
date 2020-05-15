@@ -421,9 +421,6 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "message": {
-                      "type": "string"
-                    },
                     "data": {
                       "type": "object",
                       "properties": {
@@ -457,6 +454,9 @@
                           "type": "string"
                         }
                       }
+                    },
+                    "message": {
+                      "type": "string"
                     }
                   }
                 },
@@ -605,20 +605,13 @@
                     "value": {
                       "message": "Bank added successfully",
                       "data": {
-                        "id": "ba_1Gj0ndIS***********",
-                        "object": "bank_account",
-                        "account": "acct_1G***********",
+                        "bank_name": "STRIPE TEST BANK",
+                        "currency": "usd",
+                        "country": "US",
+                        "routing_number": "110000000",
                         "account_holder_name": "Jenny Rosen",
                         "account_holder_type": "individual",
-                        "bank_name": "STRIPE TEST BANK",
-                        "country": "US",
-                        "currency": "usd",
-                        "default_for_currency": true,
-                        "fingerprint": "DGlQcA******",
-                        "last4": "6789",
-                        "metadata": {},
-                        "routing_number": "11******",
-                        "status": "verified"
+                        "provider_id": 6408
                       }
                     }
                   }
