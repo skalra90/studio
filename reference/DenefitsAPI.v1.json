@@ -1842,7 +1842,9 @@
     "/contract": {
       "get": {
         "summary": "Your GET endpoint",
-        "tags": [],
+        "tags": [
+          "Contract"
+        ],
         "responses": {
           "200": {
             "description": "OK",
