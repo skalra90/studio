@@ -511,7 +511,7 @@
                 "type": "object",
                 "properties": {
                   "provider_id": {
-                    "type": "integer"
+                    "type": "number"
                   },
                   "business_email": {
                     "type": "string"
@@ -526,7 +526,7 @@
                     "type": "string"
                   },
                   "business_zipcode": {
-                    "type": "integer"
+                    "type": "number"
                   },
                   "bank_token": {
                     "type": "string"
