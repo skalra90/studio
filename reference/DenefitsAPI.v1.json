@@ -1041,7 +1041,7 @@
                   },
                   "customer_email": {
                     "type": "string",
-                    "description": "Email address of the customer.",
+                    "description": "Email address of the customer",
                     "format": "email",
                     "example": "steven.gerrard08@lfc.com"
                   },
