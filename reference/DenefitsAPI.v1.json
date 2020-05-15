@@ -655,38 +655,36 @@
             "name": "token",
             "description": "Auth Token",
             "required": true
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "description": "Contract will belong to this provider.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "amount",
+            "description": "Amount to be financed."
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 12,
+              "maximum": 48
+            },
+            "in": "query",
+            "name": "filter_month",
+            "description": "Return plan for this specific month."
           }
         ],
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "provider_id": {
-                    "type": "number",
-                    "description": "Contract will belong to this provider."
-                  },
-                  "amount": {
-                    "type": "number",
-                    "description": "Amount to be financed."
-                  },
-                  "months": {
-                    "type": "array",
-                    "example": "[12]",
-                    "uniqueItems": true,
-                    "items": {
-                      "type": "integer"
-                    }
-                  }
-                },
-                "required": [
-                  "provider_id",
-                  "amount"
-                ]
-              }
-            }
-          },
           "description": ""
         },
         "tags": [
