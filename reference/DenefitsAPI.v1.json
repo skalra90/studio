@@ -402,12 +402,185 @@
     },
     "/provider/bank": {
       "post": {
-        "summary": "Add bank account",
+        "summary": "Add Provider's bank account",
         "tags": [
           "Providers"
         ],
-        "responses": {},
-        "operationId": "post-provider-bank"
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Bank added successfully",
+                      "data": {
+                        "id": "ba_1Gj0ndIS***********",
+                        "object": "bank_account",
+                        "account": "acct_1G***********",
+                        "account_holder_name": "Jenny Rosen",
+                        "account_holder_type": "individual",
+                        "bank_name": "STRIPE TEST BANK",
+                        "country": "US",
+                        "currency": "usd",
+                        "default_for_currency": true,
+                        "fingerprint": "DGlQcA******",
+                        "last4": "6789",
+                        "metadata": {},
+                        "routing_number": "11******",
+                        "status": "verified"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Missing required field": {
+                    "value": {
+                      "message": "\"provider_id\" is required"
+                    }
+                  },
+                  "Use invalid file ID": {
+                    "value": {
+                      "message": "Invalid dl_front provided"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Invalid Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Invalid bank token": {
+                    "value": {
+                      "message": "No such token: 2432432"
+                    }
+                  },
+                  "Use same file again": {
+                    "value": {
+                      "message": "This file upload is already attached to an account."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-provider-bank",
+        "description": "Add provider's bank account which will be used to receive the payouts",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "token",
+            "description": "Authentication token",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "integer"
+                  },
+                  "business_email": {
+                    "type": "string"
+                  },
+                  "business_name": {
+                    "type": "string"
+                  },
+                  "business_phone": {
+                    "type": "string"
+                  },
+                  "business_address": {
+                    "type": "string"
+                  },
+                  "business_zipcode": {
+                    "type": "integer"
+                  },
+                  "bank_token": {
+                    "type": "string"
+                  },
+                  "ssn_number": {
+                    "type": "string"
+                  },
+                  "dl_front": {
+                    "type": "string"
+                  },
+                  "dl_back": {
+                    "type": "string"
+                  },
+                  "date_of_birth": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "business_address",
+                  "business_zipcode",
+                  "bank_token",
+                  "ssn_number",
+                  "dl_front",
+                  "dl_back",
+                  "date_of_birth"
+                ]
+              },
+              "examples": {
+                "Example-1": {
+                  "value": {
+                    "provider_id": 6485,
+                    "business_email": "john@gmail.com",
+                    "business_name": "John dentals",
+                    "business_phone": "1234567890",
+                    "business_address": "#4545 street",
+                    "business_zipcode": 12345,
+                    "ssn_number": 123456789,
+                    "dl_front": "file_1GiLcuGLNiHiuNVIvOx4U3Fy",
+                    "dl_back": "file_1GiLd7GLNiHiuNVITn329MVK",
+                    "bank_token": "btok_us_verified",
+                    "date_of_birth": "28-5-1990"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
       },
       "get": {
         "summary": "Retrieve bank account",
