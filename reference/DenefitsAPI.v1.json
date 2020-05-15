@@ -1350,7 +1350,7 @@
     },
     "/provider/speciality": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Get provider's available speciality details",
         "tags": [
           "Providers"
         ],
@@ -1496,16 +1496,6 @@
             "description": "Enter the industry id you want the speciality list of"
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            }
-          }
-        },
         "description": "Provide the speciality list with unique ids which are used in /provider(post) API"
       }
     }
