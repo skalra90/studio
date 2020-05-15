@@ -475,6 +475,33 @@
               }
             }
           },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "if invalid provider_id is provided": {
+                    "value": {
+                      "message": "Provider does not belong to this partner."
+                    }
+                  },
+                  "If invalid token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "402": {
             "description": "Invalid Request",
             "content": {
@@ -496,6 +523,28 @@
                   "If same file ID is used again": {
                     "value": {
                       "message": "This file upload is already attached to an account."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider already added the bank account": {
+                    "value": {
+                      "message": "This provider already have a bank account linked with their account."
                     }
                   }
                 }
@@ -568,7 +617,7 @@
                     "dl_front": "file_1GiLcuGLNiHiuNVIvOx4U3Fy",
                     "dl_back": "file_1GiLd7GLNiHiuNVITn329MVK",
                     "bank_token": "btok_us_verified",
-                    "date_of_birth": "28-5-1990"
+                    "date_of_birth": "1990-05-29"
                   }
                 }
               }
