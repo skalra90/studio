@@ -2451,10 +2451,115 @@
         "description": "Get contract details with ID"
       },
       "parameters": []
+    },
+    "/staraligners/customer/details": {
+      "post": {
+        "summary": "Provide customer details for the contract",
+        "operationId": "post-staraligners-customer-details",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "This API collects all the details of the customer for the contract",
+        "tags": [
+          "Staraligners"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "financed_amount": {
+                    "type": "number"
+                  },
+                  "downpayment_amount": {
+                    "type": "number"
+                  },
+                  "number_of_payments": {
+                    "type": "number"
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "description": "Date should be in format \"YYYY-MM-DD\" and should be a future date"
+                  },
+                  "customer_email": {
+                    "type": "string"
+                  },
+                  "customer_first_name": {
+                    "type": "string"
+                  },
+                  "customer_last_name": {
+                    "type": "string"
+                  },
+                  "customer_address": {
+                    "type": "string"
+                  },
+                  "customer_mobile": {
+                    "type": "string"
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "description": "Date should be in format \"YYYY-MM-DD\""
+                  },
+                  "customer_ssn": {
+                    "type": "string"
+                  },
+                  "dl_number": {
+                    "type": "string"
+                  },
+                  "zipcode": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "financed_amount",
+                  "downpayment_amount",
+                  "number_of_payments",
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_mobile",
+                  "customer_ssn",
+                  "dl_number",
+                  "zipcode"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "financed_amount": 1000,
+                    "downpayment_amount": 100,
+                    "number_of_payments": 12,
+                    "start_date": "2020-08-19",
+                    "customer_email": "ted@gmail.com",
+                    "customer_first_name": "Ted",
+                    "customer_last_name": "Mosby",
+                    "customer_address": "#15 customer address test",
+                    "customer_mobile": "2055306266",
+                    "date_of_birth": "21-01-1999",
+                    "customer_ssn": "1234567890",
+                    "dl_number": "DL-4345555",
+                    "zipcode": 14056
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "parameters": []
+      }
     }
   },
   "components": {
-    "schemas": {}
+    "schemas": {},
+    "securitySchemes": {
+      "authorization": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
   },
   "tags": [
     {
