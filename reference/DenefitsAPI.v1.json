@@ -2619,12 +2619,6 @@
       }
     },
     "/staraligners/finance/pay": {
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {},
-        "operationId": "get-staraligners-finance-pay"
-      },
       "post": {
         "summary": "Pay using finance token",
         "operationId": "post-staraligners-finance-pay",
@@ -2717,14 +2711,9 @@
           }
         },
         "description": "Make the payment using finance token",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "authorization"
-          }
+        "parameters": [],
+        "tags": [
+          "Staraligners"
         ]
       }
     }
