@@ -2458,7 +2458,66 @@
         "operationId": "post-staraligners-customer-details",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Finance Token Created",
+                      "code": "SUCCESS",
+                      "flag": 4,
+                      "data": {
+                        "finance_token": "39d1aeb8a611cd8f9ec6fb2863ba8d48",
+                        "plan": [
+                          {
+                            "plan_id": "plan_P6509M12A1000D00",
+                            "number_of_payments": 12,
+                            "interest_rate": 16.99,
+                            "monthly_payable": {
+                              "total": 94.06,
+                              "breakdown": {
+                                "amount": 91.06,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 124.06,
+                              "breakdown": {
+                                "denefits_enrollment_fee": 30,
+                                "upfront_payment": {
+                                  "total": 94.06,
+                                  "breakdown": {
+                                    "amount": 91.06,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            },
+                            "recurring_amount": 91.06,
+                            "advance_interest_amount": 91.06
+                          }
+                        ],
+                        "full_amount": {
+                          "to_pay_now": {
+                            "total": 1116.63,
+                            "breakdown": {
+                              "amount": 1100,
+                              "transaction_fee": 16.63
+                            },
+                            "doctor_transaction_fee": 16.63
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "description": "This API collects all the details of the customer for the contract",
@@ -2537,8 +2596,8 @@
                     "customer_last_name": "Mosby",
                     "customer_address": "#15 customer address test",
                     "customer_mobile": "2055306266",
-                    "date_of_birth": "21-01-1999",
-                    "customer_ssn": "1234567890",
+                    "date_of_birth": "1999-08-19",
+                    "customer_ssn": "12345678",
                     "dl_number": "DL-4345555",
                     "zipcode": 14056
                   }
@@ -2548,7 +2607,15 @@
           },
           "description": ""
         },
-        "parameters": []
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "header",
+            "name": "authorization"
+          }
+        ]
       }
     }
   },
