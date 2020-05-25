@@ -686,13 +686,28 @@
                   "properties": {
                     "message": {
                       "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "flag": {
+                      "type": "number"
                     }
                   }
                 },
                 "examples": {
                   "If required field is not provided": {
                     "value": {
-                      "message": "\"contract_id\" is required"
+                      "message": "\"contract_id\" is required",
+                      "code": "PARAMETER_MISSING",
+                      "flag": 1
+                    }
+                  },
+                  "If invalid contract id is provided": {
+                    "value": {
+                      "message": "No such contract found.",
+                      "code": "REQUEST_FAILED",
+                      "flag": 5
                     }
                   }
                 }
@@ -708,13 +723,21 @@
                   "properties": {
                     "message": {
                       "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "flag": {
+                      "type": "number"
                     }
                   }
                 },
                 "examples": {
-                  "If token is wrong": {
+                  "If authorization token is wrong": {
                     "value": {
-                      "message": "Invalid auth token provided"
+                      "message": "Invalid auth token provided",
+                      "code": "AUTHENTICATION_FAILED",
+                      "flag": 3
                     }
                   }
                 }
