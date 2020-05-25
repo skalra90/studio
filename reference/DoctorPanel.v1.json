@@ -576,9 +576,6 @@
           }
         },
         "description": "This API collects all the details of the customer for the contract",
-        "tags": [
-          "Staraligners"
-        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -662,7 +659,10 @@
           },
           "description": ""
         },
-        "parameters": []
+        "parameters": [],
+        "tags": [
+          "Customers"
+        ]
       }
     }
   },
