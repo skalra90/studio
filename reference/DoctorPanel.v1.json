@@ -11,11 +11,7 @@
   },
   "servers": [
     {
-      "url": "https://api.denefits.com:8005/v1",
-      "description": "Development"
-    },
-    {
-      "url": "https://endpoint.denefits.com:3000/v1",
+      "url": "https://endpoint.denefits.com/v1",
       "description": "Whitelabel"
     }
   ],
@@ -109,6 +105,18 @@
                     "value": {
                       "message": "Invalid dl_front provided"
                     }
+                  },
+                  "If provider already added the bank account": {
+                    "value": {
+                      "message": "This provider already have a bank account linked with their account.",
+                      "code": "REQUEST_FAILED",
+                      "flag": 5
+                    }
+                  },
+                  "If same file ID is used again": {
+                    "value": {
+                      "message": "This file upload is already attached to an account."
+                    }
                   }
                 }
               }
@@ -123,13 +131,21 @@
                   "properties": {
                     "message": {
                       "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "flag": {
+                      "type": "string"
                     }
                   }
                 },
                 "examples": {
-                  "If invalid token is provided": {
+                  "If authorization token is wrong": {
                     "value": {
-                      "message": "Invalid auth token provided"
+                      "message": "Invalid auth token provided",
+                      "code": "AUTHENTICATION_FAILED",
+                      "flag": 3
                     }
                   }
                 }
@@ -149,36 +165,9 @@
                   }
                 },
                 "examples": {
-                  "If Invalid bank token is used": {
-                    "value": {
-                      "message": "No such token: btok_37499879"
-                    }
-                  },
                   "If same file ID is used again": {
                     "value": {
                       "message": "This file upload is already attached to an account."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If provider already added the bank account": {
-                    "value": {
-                      "message": "This provider already have a bank account linked with their account."
                     }
                   }
                 }
@@ -237,7 +226,6 @@
               "examples": {
                 "Example-1": {
                   "value": {
-                    "provider_id": 6485,
                     "business_email": "john@gmail.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
@@ -339,13 +327,21 @@
                   "properties": {
                     "message": {
                       "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "flag": {
+                      "type": "number"
                     }
                   }
                 },
                 "examples": {
-                  "If wrong provider ID provided": {
+                  "If authorization token is wrong": {
                     "value": {
-                      "message": "Provider does not belong to this partner."
+                      "message": "Invalid auth token provided",
+                      "code": "AUTHENTICATION_FAILED",
+                      "flag": 3
                     }
                   }
                 }
@@ -857,7 +853,34 @@
             }
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "flag": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required field is not provided": {
+                    "value": {
+                      "message": "\"financed_amount\" is required",
+                      "code": "PARAMETER_MISSING",
+                      "flag": 1
+                    }
+                  }
+                }
+              }
+            }
           },
           "401": {
             "description": "Unauthorized",
