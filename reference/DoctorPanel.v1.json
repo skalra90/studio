@@ -161,9 +161,6 @@
                     },
                     "code": {
                       "type": "string"
-                    },
-                    "flag": {
-                      "type": "number"
                     }
                   }
                 },
@@ -171,8 +168,7 @@
                   "If authorization token is missing": {
                     "value": {
                       "message": "Authorization token is missing.",
-                      "code": "PARAMETER_MISSING",
-                      "flag": 1
+                      "code": "parameter_missing"
                     }
                   }
                 }
@@ -191,9 +187,6 @@
                     },
                     "code": {
                       "type": "string"
-                    },
-                    "": {
-                      "type": "number"
                     }
                   }
                 },
@@ -201,8 +194,7 @@
                   "If authorization token is wrong": {
                     "value": {
                       "message": "Invalid auth token provided",
-                      "code": "AUTHENTICATION_FAILED",
-                      "flag": 3
+                      "code": "authentication_failed"
                     }
                   }
                 }
@@ -351,9 +343,6 @@
                     },
                     "code": {
                       "type": "string"
-                    },
-                    "flag": {
-                      "type": "number"
                     }
                   }
                 },
@@ -388,9 +377,6 @@
                     },
                     "code": {
                       "type": "string"
-                    },
-                    "flag": {
-                      "type": "number"
                     }
                   }
                 },
@@ -398,8 +384,7 @@
                   "If authorization token is wrong": {
                     "value": {
                       "message": "Invalid auth token provided",
-                      "code": "AUTHENTICATION_FAILED",
-                      "flag": 3
+                      "code": "authentication_failed"
                     }
                   }
                 }
@@ -440,9 +425,6 @@
                     "code": {
                       "type": "string"
                     },
-                    "flag": {
-                      "type": "number"
-                    },
                     "data": {
                       "type": "object",
                       "properties": {
@@ -464,8 +446,7 @@
                   "Success": {
                     "value": {
                       "message": "Finance Token Created",
-                      "code": "SUCCESS",
-                      "flag": 4,
+                      "code": "success",
                       "data": {
                         "finance_token": "39d1aeb8a611cd8f9ec6fb2863ba8d48",
                         "plan": [
@@ -526,9 +507,6 @@
                     },
                     "code": {
                       "type": "string"
-                    },
-                    "flag": {
-                      "type": "string"
                     }
                   }
                 },
@@ -536,8 +514,13 @@
                   "If required field is not provided": {
                     "value": {
                       "message": "\"financed_amount\" is required",
-                      "code": "PARAMETER_MISSING",
-                      "flag": 1
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "Invalid zipcode provided": {
+                    "value": {
+                      "message": "Please enter a valid zipcode",
+                      "code": "invalid_zip"
                     }
                   }
                 }
@@ -556,9 +539,6 @@
                     },
                     "code": {
                       "type": "string"
-                    },
-                    "flag": {
-                      "type": "number"
                     }
                   }
                 },
@@ -566,8 +546,7 @@
                   "If authorization token is wrong": {
                     "value": {
                       "message": "Invalid auth token provided",
-                      "code": "AUTHENTICATION_FAILED",
-                      "flag": 3
+                      "code": "authentication_failed"
                     }
                   }
                 }
@@ -662,6 +641,145 @@
         "parameters": [],
         "tags": [
           "Customers"
+        ]
+      }
+    },
+    "/customer/finance/status": {
+      "get": {
+        "summary": "Get finance token status",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Used token": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "status": "unused_token",
+                        "message": "This finance token is not used yet"
+                      }
+                    }
+                  },
+                  "Successful Payment": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "status": "payment_successful",
+                        "message": "Payment successful for this token"
+                      }
+                    }
+                  },
+                  "Failed Payment": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "status": "payment_failed",
+                        "message": "Payment failed with error message 'Your card has expired.'"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If finance token is missing": {
+                    "value": {
+                      "message": "\"finance_token\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "Invalid finance token is provided": {
+                    "value": {
+                      "message": "Invalid finance token",
+                      "code": "invalid_finance_token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If authorization token is wrong": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-customer-finance-status",
+        "description": "This API provides the status of the finance token whether it is used or not. If used then payment was successful or failed",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "finance_token",
+            "required": true
+          }
         ]
       }
     }
