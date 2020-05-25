@@ -487,6 +487,36 @@
               }
             }
           },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "flag": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "examples": {
+                  "If authorization token is missing": {
+                    "value": {
+                      "message": "Authorization token is missing.",
+                      "code": "PARAMETER_MISSING",
+                      "flag": 1
+                    }
+                  }
+                }
+              }
+            }
+          },
           "401": {
             "description": "Unauthorized",
             "content": {
@@ -496,13 +526,21 @@
                   "properties": {
                     "message": {
                       "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "": {
+                      "type": "number"
                     }
                   }
                 },
                 "examples": {
-                  "If token is wrong": {
+                  "If authorization token is wrong": {
                     "value": {
-                      "message": "Invalid auth token provided"
+                      "message": "Invalid auth token provided",
+                      "code": "AUTHENTICATION_FAILED",
+                      "flag": 3
                     }
                   }
                 }
