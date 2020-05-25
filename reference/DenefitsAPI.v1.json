@@ -2563,7 +2563,7 @@
                     "description": "Date should be in format \"YYYY-MM-DD\""
                   },
                   "customer_ssn": {
-                    "type": "string"
+                    "type": "number"
                   },
                   "dl_number": {
                     "type": "string"
@@ -2607,15 +2607,7 @@
           },
           "description": ""
         },
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "authorization"
-          }
-        ]
+        "parameters": []
       }
     },
     "/staraligners/finance/pay": {
@@ -2736,6 +2728,11 @@
     },
     {
       "name": "File"
+    }
+  ],
+  "security": [
+    {
+      "authorization": []
     }
   ]
 }
