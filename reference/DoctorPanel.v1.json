@@ -13,6 +13,10 @@
     {
       "url": "https://api.denefits.com:8005/v1",
       "description": "Development"
+    },
+    {
+      "url": "https://endpoint.denefits.com:3000/v1",
+      "description": "Whitelabel"
     }
   ],
   "paths": {
@@ -771,7 +775,32 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "flag": {
+                      "type": "number"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "finance_token": {
+                          "type": "string"
+                        },
+                        "plan": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "full_amount": {
+                          "type": "object"
+                        }
+                      }
+                    }
+                  }
                 },
                 "examples": {
                   "Success": {
@@ -821,6 +850,39 @@
                           }
                         }
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "flag": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "examples": {
+                  "If authorization token is wrong": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "AUTHENTICATION_FAILED",
+                      "flag": 3
                     }
                   }
                 }
