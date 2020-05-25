@@ -24,17 +24,7 @@
         ],
         "operationId": "get-providers",
         "description": "Returns providers registered with your account.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "description": "Auth token",
-            "required": true
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Success",
@@ -330,17 +320,7 @@
           }
         },
         "description": "Creates a new provider under your account.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "required": true,
-            "description": "Auth token"
-          }
-        ],
+        "parameters": [],
         "tags": [
           "Providers"
         ],
@@ -656,17 +636,7 @@
           },
           "description": "Add Provider Bank"
         },
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "description": "Authentication token",
-            "required": true
-          }
-        ],
+        "parameters": [],
         "description": "Add provider's bank account which will be used to receive the payouts"
       },
       "get": {
@@ -789,15 +759,6 @@
         "operationId": "get-provider-bank",
         "description": "Returns provider's bank details.",
         "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "description": "Authentication Token",
-            "required": true
-          },
           {
             "schema": {
               "type": "number"
@@ -1173,15 +1134,6 @@
         "parameters": [
           {
             "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "description": "Auth Token",
-            "required": true
-          },
-          {
-            "schema": {
               "type": "integer"
             },
             "in": "query",
@@ -1356,17 +1308,7 @@
             }
           }
         },
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "description": "Auth token",
-            "required": true
-          }
-        ],
+        "parameters": [],
         "description": "Select a Plan and provide customer details.",
         "requestBody": {
           "content": {
@@ -1573,17 +1515,7 @@
           }
         },
         "description": "This API is used for uploading files and returns file_id which can be used in further API's",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "description": "Authentication token",
-            "required": true
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -1748,17 +1680,7 @@
         },
         "operationId": "get-provider-industry",
         "description": "It contains the list of industries available with unique ids which are used in /provider(post) API",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "required": true,
-            "description": "Authentication token"
-          }
-        ]
+        "parameters": []
       }
     },
     "/provider/speciality": {
@@ -1914,15 +1836,6 @@
         "parameters": [
           {
             "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "required": true,
-            "description": "Authentication token"
-          },
-          {
-            "schema": {
               "type": "number"
             },
             "in": "query",
@@ -2004,17 +1917,7 @@
           }
         },
         "operationId": "post-contract-pay",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "required": true,
-            "description": "Auth token."
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2232,14 +2135,6 @@
         "parameters": [
           {
             "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "required": true
-          },
-          {
-            "schema": {
               "type": "number"
             },
             "in": "query",
@@ -2437,15 +2332,6 @@
             "in": "query",
             "name": "contract_id",
             "required": true
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "header",
-            "name": "token",
-            "description": "Authentication token",
-            "required": true
           }
         ],
         "description": "Get contract details with ID"
@@ -2608,105 +2494,6 @@
           "description": ""
         },
         "parameters": []
-      }
-    },
-    "/staraligners/finance/pay": {
-      "post": {
-        "summary": "Pay using finance token",
-        "operationId": "post-staraligners-finance-pay",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {},
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                },
-                "examples": {
-                  "Success": {
-                    "value": {
-                      "message": "Customer Financed Successfully",
-                      "code": "SUCCESS",
-                      "flag": 4,
-                      "data": {
-                        "contract_id": 17070,
-                        "contract_code": "TEMQA8K17070"
-                      }
-                    }
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                },
-                "examples": {
-                  "Sucess": {
-                    "value": {
-                      "message": "Customer Financed Successfully",
-                      "code": "SUCCESS",
-                      "flag": 4,
-                      "data": {
-                        "contract_id": 17070,
-                        "contract_code": "TEMQA8K17070"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "finance_token": {
-                    "type": "string"
-                  },
-                  "type": {
-                    "type": "number",
-                    "enum": [
-                      1,
-                      2
-                    ]
-                  },
-                  "card_token": {
-                    "type": "string"
-                  },
-                  "start_date": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "finance_token",
-                  "type",
-                  "card_token"
-                ]
-              },
-              "examples": {
-                "Example": {
-                  "value": {
-                    "finance_token": "39d1aeb8a6**************",
-                    "type": 1,
-                    "card_token": "tok********",
-                    "start_date": "2020-08-19"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Make the payment using finance token",
-        "parameters": [],
-        "tags": [
-          "Staraligners"
-        ]
       }
     }
   },
