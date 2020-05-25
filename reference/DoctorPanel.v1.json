@@ -59,16 +59,16 @@
                               "contract_status": {
                                 "type": "string"
                               },
-                              "next_emi_date": {
+                              "next_recurring_date": {
                                 "type": "string"
                               },
-                              "remaining_emi": {
+                              "remaining_terms": {
                                 "type": "number"
                               },
-                              "total_emi": {
+                              "term": {
                                 "type": "number"
                               },
-                              "emi_amount": {
+                              "recurring_amount": {
                                 "type": "number"
                               },
                               "interest_rate": {
@@ -131,10 +131,10 @@
                             "customer_signature": "https://denefits.s3.amazonaws.com/pat************",
                             "financed_amount": 1000,
                             "interest_rate": 16.49,
-                            "emi_amount": 67.29,
-                            "total_emi": 18,
-                            "remaining_emi": 18,
-                            "next_emi_date": "2020-05-15",
+                            "recurring_amount": 67.29,
+                            "term": 18,
+                            "remaining_terms": 18,
+                            "next_recurring_date": "2020-05-15",
                             "contract_status": "Active",
                             "title": "",
                             "zipcode": 12345,
@@ -266,16 +266,16 @@
                             "interest_rate": {
                               "type": "number"
                             },
-                            "emi_amount": {
+                            "recurring_amount": {
                               "type": "number"
                             },
-                            "total_emi": {
+                            "term": {
                               "type": "number"
                             },
-                            "remaining_emi": {
+                            "remaining_terms": {
                               "type": "number"
                             },
-                            "next_emi_date": {
+                            "next_recurring_date": {
                               "type": "string"
                             },
                             "contract_status": {
@@ -314,10 +314,10 @@
                           "customer_signature": "https://denefits.s3.amazonaws.com/pat************",
                           "financed_amount": 1000,
                           "interest_rate": 16.49,
-                          "emi_amount": 67.29,
-                          "total_emi": 18,
-                          "remaining_emi": 18,
-                          "next_emi_date": "2020-05-15",
+                          "recurring_amount": 67.29,
+                          "term": 18,
+                          "remaining_terms": 18,
+                          "next_recurring_date": "2020-05-15",
                           "contract_status": "Active",
                           "title": "",
                           "zipcode": 12345,
