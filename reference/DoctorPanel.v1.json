@@ -1,0 +1,1834 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Reference",
+    "version": "1.0.0",
+    "description": "The Denefits API is organized around REST. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs. You can use the Denefits API in test mode, which does not affect your live data or interact with the banking networks. The token you use to authenticate the request determines whether the request is live mode or test mode.",
+    "contact": {
+      "email": "sukhpreet@denefits.com",
+      "name": "Denefits API Support"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.denefits.com:8005/v1",
+      "description": "Development"
+    }
+  ],
+  "paths": {
+    "/provider/bank": {
+      "post": {
+        "summary": "Add Provider's bank account",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_name": {
+                          "type": "string",
+                          "description": "Name of the bank"
+                        },
+                        "routing_number": {
+                          "type": "string",
+                          "description": "Routing number."
+                        },
+                        "last4": {
+                          "type": "string",
+                          "description": "Last 4 digits of account number."
+                        },
+                        "account_holder_name": {
+                          "type": "string",
+                          "description": "Account holder name"
+                        },
+                        "account_holder_type": {
+                          "type": "string",
+                          "description": "Type of account."
+                        },
+                        "provider_id": {
+                          "type": "integer"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Bank added successfully",
+                      "data": {
+                        "account_holder_name": "Jenny Rosen",
+                        "account_holder_type": "individual",
+                        "bank_name": "STRIPE TEST BANK",
+                        "country": "US",
+                        "currency": "usd",
+                        "routing_number": "110000000",
+                        "provider_id": 6408
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid file ID is used": {
+                    "value": {
+                      "message": "Invalid dl_front provided"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Invalid Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If Invalid bank token is used": {
+                    "value": {
+                      "message": "No such token: btok_37499879"
+                    }
+                  },
+                  "If same file ID is used again": {
+                    "value": {
+                      "message": "This file upload is already attached to an account."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider already added the bank account": {
+                    "value": {
+                      "message": "This provider already have a bank account linked with their account."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-provider-bank",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "business_email": {
+                    "type": "string"
+                  },
+                  "business_name": {
+                    "type": "string"
+                  },
+                  "business_phone": {
+                    "type": "string"
+                  },
+                  "business_address": {
+                    "type": "string"
+                  },
+                  "business_zipcode": {
+                    "type": "string"
+                  },
+                  "bank_token": {
+                    "type": "string"
+                  },
+                  "ssn_number": {
+                    "type": "string"
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "example": "1990-01-18",
+                    "format": "date"
+                  },
+                  "back_file": {
+                    "type": "string"
+                  },
+                  "front_file": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "business_address",
+                  "business_zipcode",
+                  "bank_token",
+                  "ssn_number",
+                  "date_of_birth"
+                ]
+              },
+              "examples": {
+                "Example-1": {
+                  "value": {
+                    "provider_id": 6485,
+                    "business_email": "john@gmail.com",
+                    "business_name": "John dentals",
+                    "business_phone": "1234567890",
+                    "business_address": "#4545 street",
+                    "business_zipcode": 12345,
+                    "ssn_number": 123456789,
+                    "dl_front": "file_1GiLcuGLNiHiuNVIvOx4U3Fy",
+                    "dl_back": "file_1GiLd7GLNiHiuNVITn329MVK",
+                    "bank_token": "btok_us_verified",
+                    "date_of_birth": "1990-05-29"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Add Provider Bank"
+        },
+        "parameters": [],
+        "description": "Add provider's bank account which will be used to receive the payouts"
+      },
+      "get": {
+        "summary": "Retrieve bank account",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_name": {
+                          "type": "string",
+                          "description": "Name of the bank"
+                        },
+                        "routing_number": {
+                          "type": "string",
+                          "description": "Routing number."
+                        },
+                        "last4": {
+                          "type": "string",
+                          "description": "Last 4 digits of account number."
+                        },
+                        "account_holder_name": {
+                          "type": "string",
+                          "description": "Account holder name"
+                        },
+                        "account_holder_type": {
+                          "type": "string",
+                          "description": "Type of account."
+                        },
+                        "provider_id": {
+                          "type": "integer"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "bank_name": "STRIPE TEST BANK",
+                        "routing_number": "110000000",
+                        "account_holder_name": "Jenny Rosen",
+                        "account_holder_type": "individual",
+                        "last4": "6789",
+                        "currency": "usd",
+                        "country": "US",
+                        "provider_id": 6464
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If wrong provider ID provided": {
+                    "value": {
+                      "message": "Provider does not belong to this partner."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-bank",
+        "description": "Returns provider's bank details.",
+        "parameters": []
+      }
+    },
+    "/contract/plans": {
+      "get": {
+        "summary": "List of Plans",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "plans": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "plan_id": {
+                                  "description": "Plan's unique identification.",
+                                  "type": "string"
+                                },
+                                "interest_rate": {
+                                  "type": "number",
+                                  "description": "Interest rate."
+                                },
+                                "number_of_payments": {
+                                  "type": "integer",
+                                  "description": "Duration of the contract."
+                                },
+                                "monthly_payable": {
+                                  "type": "object",
+                                  "description": "Monthly Payable details.",
+                                  "properties": {
+                                    "total": {
+                                      "type": "number",
+                                      "description": "Total payable amount every month (Without Late Fees)"
+                                    },
+                                    "breakdown": {
+                                      "type": "object",
+                                      "description": "Breakdown of total payable amount.",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "number",
+                                          "description": "Recurring amount."
+                                        },
+                                        "transaction_fee": {
+                                          "type": "number",
+                                          "description": "Transsaction Fee."
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "to_pay_now": {
+                                  "type": "object",
+                                  "description": "Amount to pay now details.",
+                                  "properties": {
+                                    "total": {
+                                      "type": "number",
+                                      "description": "Total amount to pay now."
+                                    },
+                                    "breakdown": {
+                                      "type": "object",
+                                      "description": "Breakdown of amount.",
+                                      "properties": {
+                                        "denefits_enrollment_fee": {
+                                          "type": "number",
+                                          "description": "Flat contract creation fee."
+                                        },
+                                        "upfront_payment": {
+                                          "type": "object",
+                                          "description": "Upfront payment details.",
+                                          "properties": {
+                                            "total": {
+                                              "type": "number",
+                                              "description": "Total upfront payment."
+                                            },
+                                            "breakdown": {
+                                              "type": "object",
+                                              "description": "Breakdown of upfront payment.",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "number",
+                                                  "description": "Upfront amount."
+                                                },
+                                                "transaction_fee": {
+                                                  "type": "number",
+                                                  "description": "Upfront transaction fee."
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Message."
+                    }
+                  }
+                },
+                "examples": {
+                  "Success.": {
+                    "value": {
+                      "message": "Success",
+                      "data": {
+                        "plans": [
+                          {
+                            "plan_id": "plan_P6464M12A1000D00",
+                            "number_of_payments": 12,
+                            "interest_rate": 16.99,
+                            "monthly_payable": {
+                              "total": 94.06,
+                              "breakdown": {
+                                "amount": 91.06,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 124.06,
+                              "breakdown": {
+                                "denefits_enrollment_fee": 30,
+                                "upfront_payment": {
+                                  "total": 94.06,
+                                  "breakdown": {
+                                    "amount": 91.06,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "plan_id": "plan_P6464M18A1000D00",
+                            "number_of_payments": 18,
+                            "interest_rate": 16.49,
+                            "monthly_payable": {
+                              "total": 70.29,
+                              "breakdown": {
+                                "amount": 67.29,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 100.29,
+                              "breakdown": {
+                                "denefits_enrollment_fee": 30,
+                                "upfront_payment": {
+                                  "total": 70.29,
+                                  "breakdown": {
+                                    "amount": 67.29,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "plan_id": "plan_P6464M24A1000D00",
+                            "number_of_payments": 24,
+                            "interest_rate": 15.99,
+                            "monthly_payable": {
+                              "total": 57.96,
+                              "breakdown": {
+                                "amount": 54.96,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 87.96,
+                              "breakdown": {
+                                "denefits_enrollment_fee": 30,
+                                "upfront_payment": {
+                                  "total": 57.96,
+                                  "breakdown": {
+                                    "amount": 54.96,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "plan_id": "plan_P6464M30A1000D00",
+                            "number_of_payments": 30,
+                            "interest_rate": 15.49,
+                            "monthly_payable": {
+                              "total": 50.4,
+                              "breakdown": {
+                                "amount": 47.4,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 80.4,
+                              "breakdown": {
+                                "denefits_enrollment_fee": 30,
+                                "upfront_payment": {
+                                  "total": 50.4,
+                                  "breakdown": {
+                                    "amount": 47.4,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "plan_id": "plan_P6464M36A1000D00",
+                            "number_of_payments": 36,
+                            "interest_rate": 14.99,
+                            "monthly_payable": {
+                              "total": 45.26,
+                              "breakdown": {
+                                "amount": 42.26,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 75.26,
+                              "breakdown": {
+                                "denefits_enrollment_fee": 30,
+                                "upfront_payment": {
+                                  "total": 45.26,
+                                  "breakdown": {
+                                    "amount": 42.26,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "plan_id": "plan_P6464M42A1000D00",
+                            "number_of_payments": 42,
+                            "interest_rate": 14.49,
+                            "monthly_payable": {
+                              "total": 41.5,
+                              "breakdown": {
+                                "amount": 38.5,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 71.5,
+                              "breakdown": {
+                                "denefits_enrollment_fee": 30,
+                                "upfront_payment": {
+                                  "total": 41.5,
+                                  "breakdown": {
+                                    "amount": 38.5,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "plan_id": "plan_P6464M48A1000D00",
+                            "number_of_payments": 48,
+                            "interest_rate": 13.99,
+                            "monthly_payable": {
+                              "total": 38.6,
+                              "breakdown": {
+                                "amount": 35.6,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 68.6,
+                              "breakdown": {
+                                "denefits_enrollment_fee": 30,
+                                "upfront_payment": {
+                                  "total": 38.6,
+                                  "breakdown": {
+                                    "amount": 35.6,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Token missing.": {
+                    "value": {
+                      "message": "Mandatory parameter 'token' is missing."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication Failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is wrong": {
+                    "value": {
+                      "message": "Invalid auth token provided"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-plans",
+        "description": "Returns plans for creating a contract.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number",
+              "minimum": 200,
+              "maximum": 10000,
+              "example": 1200
+            },
+            "in": "query",
+            "name": "amount",
+            "description": "Amount to be financed.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 12,
+              "maximum": 48
+            },
+            "in": "query",
+            "name": "filter_month",
+            "description": "Return plan for this specific month."
+          }
+        ],
+        "tags": [
+          "Contract"
+        ]
+      },
+      "parameters": []
+    },
+    "/contract/select": {
+      "post": {
+        "summary": "Select a Plan",
+        "operationId": "contract-create",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "finance_token": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is missing in headers": {
+                    "value": {
+                      "data": [],
+                      "message": "Mandatory parameter 'token' is missing."
+                    }
+                  },
+                  "If any of the required_field is missing": {
+                    "value": {
+                      "data": [],
+                      "message": "\"required_field\" is required"
+                    }
+                  },
+                  "If financed_amount is empty or is not a number": {
+                    "value": {
+                      "data": [],
+                      "message": "\"financed_amount\" must be a number"
+                    }
+                  },
+                  "If months are not valid": {
+                    "value": {
+                      "message": "Number of payments or financed amount are not valid"
+                    }
+                  },
+                  "If start_date is empty or not a valid date.": {
+                    "value": {
+                      "data": [],
+                      "message": "\"start_date\" must be a valid date"
+                    }
+                  },
+                  "If customer_email is empty": {
+                    "value": {
+                      "data": [],
+                      "message": "\"customer_email\" is not allowed to be empty"
+                    }
+                  },
+                  "If customer_email is not a valid email": {
+                    "value": {
+                      "data": [],
+                      "message": "\"customer_email\" must be a valid email"
+                    }
+                  },
+                  "If customer_mobile is invalid": {
+                    "value": {
+                      "data": [],
+                      "message": "Invalid \"customer_mobile\" provided "
+                    }
+                  },
+                  "Somethng went wrong": {
+                    "value": {
+                      "message": "Contract not financed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication Failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is wrong": {
+                    "value": {
+                      "data": [],
+                      "message": "Invalid auth token provided"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "description": "Select a Plan and provide customer details.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "plan_id": {
+                    "type": "string",
+                    "description": "Unique plan id of the plan selected for financing."
+                  },
+                  "customer_email": {
+                    "type": "string",
+                    "description": "Email address of the customer",
+                    "format": "email",
+                    "example": "steven.gerrard08@liverpoolfc.com"
+                  },
+                  "customer_first_name": {
+                    "type": "string",
+                    "description": "First name of the customer.",
+                    "example": "Steven"
+                  },
+                  "customer_last_name": {
+                    "type": "string",
+                    "description": "Last name of the customer.",
+                    "example": "Gerrard"
+                  },
+                  "customer_address": {
+                    "type": "string",
+                    "description": "Street address of the customer",
+                    "example": "189 Beaver Ridge Ave."
+                  },
+                  "zipcode": {
+                    "type": "string",
+                    "example": "48047",
+                    "minLength": 5,
+                    "maxLength": 5,
+                    "description": "Zipcode"
+                  },
+                  "customer_mobile": {
+                    "type": "string",
+                    "description": "US Mobile number(Without hyphens) of the customer.",
+                    "example": "2025550130",
+                    "minLength": 10,
+                    "maxLength": 10
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "description": "Date of birth of customer.",
+                    "format": "date",
+                    "example": "1980-05-30"
+                  },
+                  "customer_ssn": {
+                    "type": "string",
+                    "description": "SSN number(Without hyphens) of the customer.",
+                    "example": "227392778",
+                    "minLength": 9,
+                    "maxLength": 9
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "description": "Date from which first payment will be deducted.",
+                    "format": "date",
+                    "example": "2020-07-01"
+                  },
+                  "dl_number": {
+                    "type": "string",
+                    "description": "Driving License number of the customer."
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_address",
+                  "zipcode",
+                  "customer_mobile",
+                  "date_of_birth",
+                  "customer_ssn",
+                  "start_date"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "plan_id": "plan_P6464M12A3000D00",
+                    "customer_email": "steven.gerrard08@lfc.com",
+                    "customer_first_name": "Steven",
+                    "customer_last_name": "Gerrard",
+                    "customer_address": "189 Beaver Ridge Ave.",
+                    "zipcode": "48047",
+                    "customer_mobile": "2025550130",
+                    "date_of_birth": "1980-05-30",
+                    "customer_ssn": "227392778",
+                    "start_date": "2020-07-01",
+                    "dl_number": "DL2181281230123"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Contract"
+        ]
+      },
+      "parameters": []
+    },
+    "/upload_file": {
+      "post": {
+        "summary": "Upload file to receive file id",
+        "operationId": "post-upload_file",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "file_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success ": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "file_id": "file_1GiyMUGL***********"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If file is not provided": {
+                    "value": {
+                      "message": "file is required"
+                    }
+                  },
+                  "If purpose is not from possible values provided": {
+                    "value": {
+                      "message": "Possible values for purpose is 'bank_document,denefits_file'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is wrong": {
+                    "value": {
+                      "message": "Invalid auth token provided"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This API is used for uploading files and returns file_id which can be used in further API's",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Choose file you want to upload"
+                  },
+                  "purpose": {
+                    "type": "string",
+                    "description": "Possible values are \"bank_document\", \"denefits_file\""
+                  }
+                },
+                "required": [
+                  "file",
+                  "purpose"
+                ]
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "File"
+        ]
+      }
+    },
+    "/contract/pay": {
+      "post": {
+        "summary": "Pay for Contract",
+        "tags": [
+          "Contract"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "contract_id": {
+                          "type": "integer",
+                          "description": "Unique identifier of contract."
+                        },
+                        "contract_code": {
+                          "type": "string",
+                          "description": "Contract code for reference."
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Customer Financed Successfully",
+                      "data": {
+                        "contract_id": 12345,
+                        "contract_code": "STEGE12345"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Token already used": {
+                    "value": {
+                      "message": "Finance token already used"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-contract-pay",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "finance_token": {
+                    "type": "string",
+                    "description": "Finance Token."
+                  },
+                  "card_token": {
+                    "type": "string",
+                    "description": "Card Token receieved from iframe."
+                  }
+                },
+                "required": [
+                  "finance_token",
+                  "card_token"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "finance_token": "7b863ffe354d6894ece92f6564565561",
+                    "card_token": "tok_visa"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Pay for contract using finance token and card token."
+      }
+    },
+    "/contract/list": {
+      "get": {
+        "summary": "Get listing of all contracts of this account",
+        "tags": [
+          "Contract"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "contracts_list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "contract_id": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              },
+                              "last_updated": {
+                                "type": "string"
+                              },
+                              "zipcode": {
+                                "type": "number"
+                              },
+                              "contract_status": {
+                                "type": "string"
+                              },
+                              "next_emi_date": {
+                                "type": "string"
+                              },
+                              "remaining_emi": {
+                                "type": "number"
+                              },
+                              "total_emi": {
+                                "type": "number"
+                              },
+                              "emi_amount": {
+                                "type": "number"
+                              },
+                              "interest_rate": {
+                                "type": "number"
+                              },
+                              "financed_amount": {
+                                "type": "number"
+                              },
+                              "customer_signature": {
+                                "type": "string"
+                              },
+                              "customer_address": {
+                                "type": "string"
+                              },
+                              "customer_mobile": {
+                                "type": "string"
+                              },
+                              "customer_email": {
+                                "type": "string"
+                              },
+                              "customer_last_name": {
+                                "type": "string"
+                              },
+                              "customer_first_name": {
+                                "type": "string"
+                              },
+                              "customer_id": {
+                                "type": "number"
+                              },
+                              "provider_id": {
+                                "type": "number"
+                              },
+                              "contract_code": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "count": 1,
+                        "contracts_list": [
+                          {
+                            "contract_id": 16813,
+                            "contract_code": "RATJJJ****",
+                            "provider_id": 6494,
+                            "customer_id": 3173,
+                            "customer_first_name": "Ted",
+                            "customer_last_name": "Mosby",
+                            "customer_email": "tedmosby@gmail.com",
+                            "customer_mobile": "+1-2055306266",
+                            "customer_address": "#15 test, East Pembroke, NY, 14056",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/pat************",
+                            "financed_amount": 1000,
+                            "interest_rate": 16.49,
+                            "emi_amount": 67.29,
+                            "total_emi": 18,
+                            "remaining_emi": 18,
+                            "next_emi_date": "2020-05-15",
+                            "contract_status": "Active",
+                            "title": "",
+                            "zipcode": 12345,
+                            "last_updated": "2020-05-15T11:14:57.000Z",
+                            "date_added": "2020-05-15T07:41:09.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is wrong": {
+                    "value": {
+                      "message": "Invalid auth token provided"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-contract-list",
+        "parameters": [],
+        "description": "Get listing of all contracts of this account"
+      }
+    },
+    "/contract/detail": {
+      "get": {
+        "summary": "Get contract details with contract ID",
+        "tags": [
+          "Contract"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "contract_data": {
+                          "type": "object",
+                          "properties": {
+                            "contract_id": {
+                              "type": "number"
+                            },
+                            "contract_code": {
+                              "type": "string"
+                            },
+                            "provider_id": {
+                              "type": "number"
+                            },
+                            "customer_id": {
+                              "type": "number"
+                            },
+                            "customer_first_name": {
+                              "type": "string"
+                            },
+                            "customer_last_name": {
+                              "type": "string"
+                            },
+                            "customer_email": {
+                              "type": "string"
+                            },
+                            "customer_mobile": {
+                              "type": "string"
+                            },
+                            "customer_address": {
+                              "type": "string"
+                            },
+                            "customer_signature": {
+                              "type": "string"
+                            },
+                            "financed_amount": {
+                              "type": "number"
+                            },
+                            "interest_rate": {
+                              "type": "number"
+                            },
+                            "emi_amount": {
+                              "type": "number"
+                            },
+                            "total_emi": {
+                              "type": "number"
+                            },
+                            "remaining_emi": {
+                              "type": "number"
+                            },
+                            "next_emi_date": {
+                              "type": "string"
+                            },
+                            "contract_status": {
+                              "type": "string"
+                            },
+                            "zipcode": {
+                              "type": "number"
+                            },
+                            "last_updated": {
+                              "type": "string"
+                            },
+                            "date_added": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "contract_data": {
+                          "contract_id": 16813,
+                          "contract_code": "RATJJJ****",
+                          "provider_id": 6494,
+                          "customer_id": 3173,
+                          "customer_first_name": "Ted",
+                          "customer_last_name": "Mosby",
+                          "customer_email": "tedmosby@gmail.com",
+                          "customer_mobile": "+1-2055306266",
+                          "customer_address": "#15 test, East Pembroke, NY, 14056",
+                          "customer_signature": "https://denefits.s3.amazonaws.com/pat************",
+                          "financed_amount": 1000,
+                          "interest_rate": 16.49,
+                          "emi_amount": 67.29,
+                          "total_emi": 18,
+                          "remaining_emi": 18,
+                          "next_emi_date": "2020-05-15",
+                          "contract_status": "Active",
+                          "title": "",
+                          "zipcode": 12345,
+                          "last_updated": "2020-05-15T11:14:57.000Z",
+                          "date_added": "2020-05-15T07:41:09.000Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required field is not provided": {
+                    "value": {
+                      "message": "\"contract_id\" is required"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is wrong": {
+                    "value": {
+                      "message": "Invalid auth token provided"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-contract",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "contract_id",
+            "required": true
+          }
+        ],
+        "description": "Get contract details with ID"
+      },
+      "parameters": []
+    },
+    "/staraligners/customer/details": {
+      "post": {
+        "summary": "Provide customer details for the contract",
+        "operationId": "post-staraligners-customer-details",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Finance Token Created",
+                      "code": "SUCCESS",
+                      "flag": 4,
+                      "data": {
+                        "finance_token": "39d1aeb8a611cd8f9ec6fb2863ba8d48",
+                        "plan": [
+                          {
+                            "plan_id": "plan_P6509M12A1000D00",
+                            "number_of_payments": 12,
+                            "interest_rate": 16.99,
+                            "monthly_payable": {
+                              "total": 94.06,
+                              "breakdown": {
+                                "amount": 91.06,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 124.06,
+                              "breakdown": {
+                                "denefits_enrollment_fee": 30,
+                                "upfront_payment": {
+                                  "total": 94.06,
+                                  "breakdown": {
+                                    "amount": 91.06,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            },
+                            "recurring_amount": 91.06,
+                            "advance_interest_amount": 91.06
+                          }
+                        ],
+                        "full_amount": {
+                          "to_pay_now": {
+                            "total": 1116.63,
+                            "breakdown": {
+                              "amount": 1100,
+                              "transaction_fee": 16.63
+                            },
+                            "doctor_transaction_fee": 16.63
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This API collects all the details of the customer for the contract",
+        "tags": [
+          "Staraligners"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "financed_amount": {
+                    "type": "number"
+                  },
+                  "downpayment_amount": {
+                    "type": "number"
+                  },
+                  "number_of_payments": {
+                    "type": "number"
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "description": "Date should be in format \"YYYY-MM-DD\" and should be a future date"
+                  },
+                  "customer_email": {
+                    "type": "string"
+                  },
+                  "customer_first_name": {
+                    "type": "string"
+                  },
+                  "customer_last_name": {
+                    "type": "string"
+                  },
+                  "customer_address": {
+                    "type": "string"
+                  },
+                  "customer_mobile": {
+                    "type": "string"
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "description": "Date should be in format \"YYYY-MM-DD\""
+                  },
+                  "customer_ssn": {
+                    "type": "number"
+                  },
+                  "dl_number": {
+                    "type": "string"
+                  },
+                  "zipcode": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "financed_amount",
+                  "downpayment_amount",
+                  "number_of_payments",
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_mobile",
+                  "customer_ssn",
+                  "dl_number",
+                  "zipcode"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "financed_amount": 1000,
+                    "downpayment_amount": 100,
+                    "number_of_payments": 12,
+                    "start_date": "2020-08-19",
+                    "customer_email": "ted@gmail.com",
+                    "customer_first_name": "Ted",
+                    "customer_last_name": "Mosby",
+                    "customer_address": "#15 customer address test",
+                    "customer_mobile": "2055306266",
+                    "date_of_birth": "1999-08-19",
+                    "customer_ssn": "12345678",
+                    "dl_number": "DL-4345555",
+                    "zipcode": 14056
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "parameters": []
+      }
+    },
+    "/staraligners/finance/pay": {
+      "post": {
+        "summary": "Pay using finance token",
+        "operationId": "post-staraligners-finance-pay",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Customer Financed Successfully",
+                      "code": "SUCCESS",
+                      "flag": 4,
+                      "data": {
+                        "contract_id": 17070,
+                        "contract_code": "TEMQA8K17070"
+                      }
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Sucess": {
+                    "value": {
+                      "message": "Customer Financed Successfully",
+                      "code": "SUCCESS",
+                      "flag": 4,
+                      "data": {
+                        "contract_id": 17070,
+                        "contract_code": "TEMQA8K17070"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "finance_token": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "number",
+                    "enum": [
+                      1,
+                      2
+                    ]
+                  },
+                  "card_token": {
+                    "type": "string"
+                  },
+                  "start_date": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "finance_token",
+                  "type",
+                  "card_token"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "finance_token": "39d1aeb8a6**************",
+                    "type": 1,
+                    "card_token": "tok********",
+                    "start_date": "2020-08-19"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Make the payment using finance token",
+        "parameters": [],
+        "tags": [
+          "Staraligners"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "authorization": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Providers"
+    },
+    {
+      "name": "Contract"
+    },
+    {
+      "name": "File"
+    }
+  ],
+  "security": [
+    {
+      "authorization": []
+    }
+  ]
+}
