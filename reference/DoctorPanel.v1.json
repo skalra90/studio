@@ -33,6 +33,9 @@
                     "message": {
                       "type": "string"
                     },
+                    "code": {
+                      "type": "string"
+                    },
                     "data": {
                       "type": "object",
                       "properties": {
@@ -115,6 +118,7 @@
                   "Success": {
                     "value": {
                       "message": "Request executed successfully",
+                      "code": "success",
                       "data": {
                         "count": 1,
                         "contracts_list": [
