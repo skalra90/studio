@@ -532,7 +532,7 @@
                   "value": {
                     "service_amount": 1000,
                     "downpayment_amount": 100,
-                    "number_of_payments": 12,
+                    "number_of_payments": 24,
                     "start_date": "2020-08-19",
                     "customer_email": "ted@gmail.com",
                     "customer_first_name": "Ted",
