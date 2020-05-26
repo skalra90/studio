@@ -647,7 +647,9 @@
     "/customer/finance/status": {
       "get": {
         "summary": "Get finance token status",
-        "tags": [],
+        "tags": [
+          "Customers"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -795,13 +797,7 @@
   },
   "tags": [
     {
-      "name": "Providers"
-    },
-    {
       "name": "Contract"
-    },
-    {
-      "name": "File"
     }
   ],
   "security": [
