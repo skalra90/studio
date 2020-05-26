@@ -177,12 +177,145 @@
                         "finance_token": {
                           "type": "string"
                         },
-                        "plan": {
-                          "type": "array",
-                          "items": {}
-                        },
                         "full_amount": {
-                          "type": "object"
+                          "type": "object",
+                          "properties": {
+                            "total": {
+                              "type": "number"
+                            },
+                            "to_pay_now": {
+                              "type": "object",
+                              "description": "Amount to pay now details.",
+                              "properties": {
+                                "total": {
+                                  "type": "number",
+                                  "description": "Total amount to pay now."
+                                },
+                                "breakdown": {
+                                  "type": "object",
+                                  "description": "Breakdown of amount.",
+                                  "properties": {
+                                    "denefits_enrollment_fee": {
+                                      "type": "number",
+                                      "description": "Flat contract creation fee."
+                                    },
+                                    "upfront_payment": {
+                                      "type": "object",
+                                      "description": "Upfront payment details.",
+                                      "properties": {
+                                        "total": {
+                                          "type": "number",
+                                          "description": "Total upfront payment."
+                                        },
+                                        "breakdown": {
+                                          "type": "object",
+                                          "description": "Breakdown of upfront payment.",
+                                          "properties": {
+                                            "amount": {
+                                              "type": "number",
+                                              "description": "Upfront amount."
+                                            },
+                                            "transaction_fee": {
+                                              "type": "number",
+                                              "description": "Upfront transaction fee."
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "plans": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "plan_id": {
+                                "description": "Plan's unique identification.",
+                                "type": "string"
+                              },
+                              "interest_rate": {
+                                "type": "number",
+                                "description": "Interest rate."
+                              },
+                              "number_of_payments": {
+                                "type": "integer",
+                                "description": "Duration of the contract."
+                              },
+                              "monthly_payable": {
+                                "type": "object",
+                                "description": "Monthly Payable details.",
+                                "properties": {
+                                  "total": {
+                                    "type": "number",
+                                    "description": "Total payable amount every month (Without Late Fees)"
+                                  },
+                                  "breakdown": {
+                                    "type": "object",
+                                    "description": "Breakdown of total payable amount.",
+                                    "properties": {
+                                      "amount": {
+                                        "type": "number",
+                                        "description": "Recurring amount."
+                                      },
+                                      "transaction_fee": {
+                                        "type": "number",
+                                        "description": "Transsaction Fee."
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "to_pay_now": {
+                                "type": "object",
+                                "description": "Amount to pay now details.",
+                                "properties": {
+                                  "total": {
+                                    "type": "number",
+                                    "description": "Total amount to pay now."
+                                  },
+                                  "breakdown": {
+                                    "type": "object",
+                                    "description": "Breakdown of amount.",
+                                    "properties": {
+                                      "denefits_enrollment_fee": {
+                                        "type": "number",
+                                        "description": "Flat contract creation fee."
+                                      },
+                                      "upfront_payment": {
+                                        "type": "object",
+                                        "description": "Upfront payment details.",
+                                        "properties": {
+                                          "total": {
+                                            "type": "number",
+                                            "description": "Total upfront payment."
+                                          },
+                                          "breakdown": {
+                                            "type": "object",
+                                            "description": "Breakdown of upfront payment.",
+                                            "properties": {
+                                              "amount": {
+                                                "type": "number",
+                                                "description": "Upfront amount."
+                                              },
+                                              "transaction_fee": {
+                                                "type": "number",
+                                                "description": "Upfront transaction fee."
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
                         }
                       }
                     },
