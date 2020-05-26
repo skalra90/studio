@@ -161,7 +161,7 @@
     },
     "/payment/receiveDetails": {
       "post": {
-        "summary": "Provide customer details for the payment.",
+        "summary": "Provide customer details for the Payment/Contract",
         "operationId": "post-receive-details",
         "responses": {
           "200": {
