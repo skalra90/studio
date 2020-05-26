@@ -16,409 +16,10 @@
     }
   ],
   "paths": {
-    "/contract/list": {
-      "get": {
-        "summary": "Get listing of all contracts of this account",
-        "tags": [
-          "Contract"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "count": {
-                          "type": "number"
-                        },
-                        "contracts_list": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "contract_id": {
-                                "type": "string"
-                              },
-                              "date_added": {
-                                "type": "string"
-                              },
-                              "last_updated": {
-                                "type": "string"
-                              },
-                              "zipcode": {
-                                "type": "number"
-                              },
-                              "contract_status": {
-                                "type": "string"
-                              },
-                              "next_recurring_date": {
-                                "type": "string"
-                              },
-                              "remaining_terms": {
-                                "type": "number"
-                              },
-                              "term": {
-                                "type": "number"
-                              },
-                              "recurring_amount": {
-                                "type": "number"
-                              },
-                              "interest_rate": {
-                                "type": "number"
-                              },
-                              "financed_amount": {
-                                "type": "number"
-                              },
-                              "customer_signature": {
-                                "type": "string"
-                              },
-                              "customer_address": {
-                                "type": "string"
-                              },
-                              "customer_mobile": {
-                                "type": "string"
-                              },
-                              "customer_email": {
-                                "type": "string"
-                              },
-                              "customer_last_name": {
-                                "type": "string"
-                              },
-                              "customer_first_name": {
-                                "type": "string"
-                              },
-                              "customer_id": {
-                                "type": "number"
-                              },
-                              "provider_id": {
-                                "type": "number"
-                              },
-                              "contract_code": {
-                                "type": "string"
-                              },
-                              "city_name": {
-                                "type": "string"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Success": {
-                    "value": {
-                      "message": "Request executed successfully",
-                      "code": "success",
-                      "data": {
-                        "count": 1,
-                        "contracts_list": [
-                          {
-                            "contract_id": 16813,
-                            "contract_code": "RATJJJ****",
-                            "provider_id": 6494,
-                            "customer_id": 3173,
-                            "customer_first_name": "Ted",
-                            "customer_last_name": "Mosby",
-                            "customer_email": "tedmosby@gmail.com",
-                            "customer_mobile": "+1-2055306266",
-                            "customer_address": "#15 test, East Pembroke, NY, 14056",
-                            "customer_signature": "https://denefits.s3.amazonaws.com/pat************",
-                            "financed_amount": 1000,
-                            "interest_rate": 16.49,
-                            "recurring_amount": 67.29,
-                            "term": 18,
-                            "remaining_terms": 18,
-                            "next_recurring_date": "2020-05-15",
-                            "contract_status": "Active",
-                            "title": "",
-                            "city_name": "Schenectady",
-                            "zipcode": 12345,
-                            "last_updated": "2020-05-15T11:14:57.000Z",
-                            "date_added": "2020-05-15T07:41:09.000Z"
-                          }
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If authorization token is missing": {
-                    "value": {
-                      "message": "Authorization token is missing.",
-                      "code": "parameter_missing"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If authorization token is wrong": {
-                    "value": {
-                      "message": "Invalid auth token provided",
-                      "code": "authentication_failed"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-contract-list",
-        "parameters": [],
-        "description": "Get listing of all contracts of this account"
-      }
-    },
-    "/contract/detail": {
-      "get": {
-        "summary": "Get contract details with contract ID",
-        "tags": [
-          "Contract"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "contract_data": {
-                          "type": "object",
-                          "properties": {
-                            "contract_id": {
-                              "type": "number"
-                            },
-                            "contract_code": {
-                              "type": "string"
-                            },
-                            "provider_id": {
-                              "type": "number"
-                            },
-                            "customer_id": {
-                              "type": "number"
-                            },
-                            "customer_first_name": {
-                              "type": "string"
-                            },
-                            "customer_last_name": {
-                              "type": "string"
-                            },
-                            "customer_email": {
-                              "type": "string"
-                            },
-                            "customer_mobile": {
-                              "type": "string"
-                            },
-                            "customer_address": {
-                              "type": "string"
-                            },
-                            "customer_signature": {
-                              "type": "string"
-                            },
-                            "financed_amount": {
-                              "type": "number"
-                            },
-                            "interest_rate": {
-                              "type": "number"
-                            },
-                            "recurring_amount": {
-                              "type": "number"
-                            },
-                            "term": {
-                              "type": "number"
-                            },
-                            "remaining_terms": {
-                              "type": "number"
-                            },
-                            "next_recurring_date": {
-                              "type": "string"
-                            },
-                            "contract_status": {
-                              "type": "string"
-                            },
-                            "zipcode": {
-                              "type": "number"
-                            },
-                            "last_updated": {
-                              "type": "string"
-                            },
-                            "date_added": {
-                              "type": "string"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                "examples": {
-                  "Success": {
-                    "value": {
-                      "message": "Request executed successfully",
-                      "data": {
-                        "contract_data": {
-                          "contract_id": 16813,
-                          "contract_code": "RATJJJ****",
-                          "provider_id": 6494,
-                          "customer_id": 3173,
-                          "customer_first_name": "Ted",
-                          "customer_last_name": "Mosby",
-                          "customer_email": "tedmosby@gmail.com",
-                          "customer_mobile": "+1-2055306266",
-                          "customer_address": "#15 test, East Pembroke, NY, 14056",
-                          "customer_signature": "https://denefits.s3.amazonaws.com/pat************",
-                          "financed_amount": 1000,
-                          "interest_rate": 16.49,
-                          "recurring_amount": 67.29,
-                          "term": 18,
-                          "remaining_terms": 18,
-                          "next_recurring_date": "2020-05-15",
-                          "contract_status": "Active",
-                          "title": "",
-                          "zipcode": 12345,
-                          "last_updated": "2020-05-15T11:14:57.000Z",
-                          "date_added": "2020-05-15T07:41:09.000Z"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If required field is not provided": {
-                    "value": {
-                      "message": "\"contract_id\" is required",
-                      "code": "PARAMETER_MISSING",
-                      "flag": 1
-                    }
-                  },
-                  "If invalid contract id is provided": {
-                    "value": {
-                      "message": "No such contract found.",
-                      "code": "REQUEST_FAILED",
-                      "flag": 5
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If authorization token is wrong": {
-                    "value": {
-                      "message": "Invalid auth token provided",
-                      "code": "authentication_failed"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "operationId": "get-contract",
-        "parameters": [
-          {
-            "schema": {
-              "type": "number"
-            },
-            "in": "query",
-            "name": "contract_id",
-            "required": true
-          }
-        ],
-        "description": "Get contract details with ID"
-      },
-      "parameters": []
-    },
-    "/customer/details": {
+    "/payment/receiveDetails": {
       "post": {
-        "summary": "Provide customer details for the contract",
-        "operationId": "post-staraligners-customer-details",
+        "summary": "Provide customer details for the payment.",
+        "operationId": "post-receive-details",
         "responses": {
           "200": {
             "description": "OK",
@@ -427,12 +28,6 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "string"
-                    },
                     "data": {
                       "type": "object",
                       "properties": {
@@ -447,6 +42,12 @@
                           "type": "object"
                         }
                       }
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
                     }
                   }
                 },
@@ -492,11 +93,9 @@
                             "breakdown": {
                               "amount": 1100,
                               "transaction_fee": 16.63
-                            },
-                            "doctor_transaction_fee": 16.63
+                            }
                           }
-                        },
-                        "payment_link": "https://endpoint.denefits.com/iframe/finance_test?token=5f197528f4***********"
+                        }
                       }
                     }
                   }
@@ -563,7 +162,7 @@
             }
           }
         },
-        "description": "This API collects all the details of the customer for the contract",
+        "description": "This API collects all the details of the customer for the payment. ",
         "requestBody": {
           "content": {
             "application/json": {
@@ -571,45 +170,71 @@
                 "type": "object",
                 "properties": {
                   "financed_amount": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "Total amount to be financed. Financed amount + Downpayment amount will be used as total service amount if customer chooses to pay now."
                   },
                   "downpayment_amount": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "This amount will be taken as downpayment if customer makes a contract. Financed amount + Downpayment amount will be used as total service amount if customer chooses to pay now."
                   },
                   "number_of_payments": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "Total number of payments option to be provided to customer for a contract.",
+                    "minimum": 12,
+                    "maximum": 48
                   },
                   "start_date": {
                     "type": "string",
-                    "description": "Date should be in format \"YYYY-MM-DD\" and should be a future date"
+                    "description": "First payment will be deducted on this date if customer makes a contract. Format should be \"YYYY-MM-DD\". Should be a future date.",
+                    "format": "date",
+                    "example": "2020-07-01"
                   },
                   "customer_email": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Email address of the customer.",
+                    "format": "email",
+                    "example": "abc.xyz@denefits.com"
                   },
                   "customer_first_name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "First name of the customer."
                   },
                   "customer_last_name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Last name of the customer."
                   },
                   "customer_address": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Street address of the customer."
                   },
                   "customer_mobile": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Mobile/Phone number of the customer."
                   },
                   "date_of_birth": {
                     "type": "string",
-                    "description": "Date should be in format \"YYYY-MM-DD\""
+                    "description": "Date of birth of the customer. Format should be \"YYYY-MM-DD\".",
+                    "format": "date",
+                    "example": "1990-01-18"
                   },
                   "customer_ssn": {
-                    "type": "number"
+                    "type": "string",
+                    "description": "Social security number of the customer.",
+                    "example": "801228221",
+                    "minLength": 9,
+                    "maxLength": 9
                   },
                   "dl_number": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Driving Licence of the customer.",
+                    "maxLength": 20
                   },
                   "zipcode": {
-                    "type": "number"
+                    "type": "string",
+                    "description": "U.S. zipcode of the customer.",
+                    "example": "90210",
+                    "minLength": 5,
+                    "maxLength": 5
                   }
                 },
                 "required": [
@@ -618,7 +243,9 @@
                   "number_of_payments",
                   "customer_email",
                   "customer_first_name",
+                  "customer_address",
                   "customer_mobile",
+                  "date_of_birth",
                   "customer_ssn",
                   "dl_number",
                   "zipcode"
@@ -649,15 +276,16 @@
         },
         "parameters": [],
         "tags": [
-          "Customers"
+          "Payment"
         ]
-      }
+      },
+      "parameters": []
     },
-    "/customer/finance/status": {
+    "/payment/status": {
       "get": {
-        "summary": "Get finance token status",
+        "summary": "Get payment status",
         "tags": [
-          "Customers"
+          "Payment"
         ],
         "responses": {
           "200": {
@@ -781,7 +409,7 @@
           }
         },
         "operationId": "get-customer-finance-status",
-        "description": "This API provides the status of the finance token whether it is used or not. If used then payment was successful or failed",
+        "description": "This API provides the status of the finance token whether it used or not, success or fail.",
         "parameters": [
           {
             "schema": {
@@ -789,10 +417,12 @@
             },
             "in": "query",
             "name": "finance_token",
-            "required": true
+            "required": true,
+            "description": "Finance Token received from /payment/receiveDetails API response."
           }
         ]
-      }
+      },
+      "parameters": []
     }
   },
   "components": {
@@ -806,7 +436,7 @@
   },
   "tags": [
     {
-      "name": "Contract"
+      "name": "Payment"
     }
   ],
   "security": [
