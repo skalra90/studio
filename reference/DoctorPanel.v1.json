@@ -106,6 +106,9 @@
                               },
                               "contract_code": {
                                 "type": "string"
+                              },
+                              "city_name": {
+                                "type": "string"
                               }
                             }
                           }
@@ -141,6 +144,7 @@
                             "next_recurring_date": "2020-05-15",
                             "contract_status": "Active",
                             "title": "",
+                            "city_name": "Schenectady",
                             "zipcode": 12345,
                             "last_updated": "2020-05-15T11:14:57.000Z",
                             "date_added": "2020-05-15T07:41:09.000Z"
@@ -491,7 +495,8 @@
                             },
                             "doctor_transaction_fee": 16.63
                           }
-                        }
+                        },
+                        "payment_link": "https://endpoint.denefits.com/iframe/finance_test?token=5f197528f4***********"
                       }
                     }
                   }
