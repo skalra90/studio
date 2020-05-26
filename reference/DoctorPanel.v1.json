@@ -445,7 +445,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "financed_amount": {
+                  "service_amount": {
                     "type": "number",
                     "description": "Total amount to be financed. Financed amount + Downpayment amount will be used as total service amount if customer chooses to pay now."
                   },
@@ -514,7 +514,7 @@
                   }
                 },
                 "required": [
-                  "financed_amount",
+                  "service_amount",
                   "downpayment_amount",
                   "number_of_payments",
                   "customer_email",
@@ -530,7 +530,7 @@
               "examples": {
                 "Example": {
                   "value": {
-                    "financed_amount": 1000,
+                    "service_amount": 1000,
                     "downpayment_amount": 100,
                     "number_of_payments": 12,
                     "start_date": "2020-08-19",
