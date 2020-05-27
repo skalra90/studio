@@ -1285,7 +1285,17 @@
                     }
                   }
                 },
-                "examples": {}
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Finance Token Created",
+                      "code": "success",
+                      "data": {
+                        "finance_token": "22f7ba6ca633985**********"
+                      }
+                    }
+                  }
+                }
               }
             }
           },
@@ -1485,7 +1495,7 @@
               "examples": {
                 "Example": {
                   "value": {
-                    "plan_id": "plan_P6464M12A3000D00",
+                    "plan_id": "plan_P6509M12A1200D00F100D00",
                     "provider_id": 6464,
                     "customer_email": "steven.gerrard08@lfc.com",
                     "customer_first_name": "Steven",
