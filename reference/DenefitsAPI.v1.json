@@ -11,7 +11,7 @@
   },
   "servers": [
     {
-      "url": "https://api.denefits.com:8005/v1",
+      "url": "https://endpoint.denefits.com/v1",
       "description": "Development"
     }
   ],
