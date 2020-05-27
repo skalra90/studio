@@ -397,7 +397,7 @@
                 "examples": {
                   "If required field is not provided": {
                     "value": {
-                      "message": "\"financed_amount\" is required",
+                      "message": "\"service_amount\" is required",
                       "code": "parameter_missing"
                     }
                   },
