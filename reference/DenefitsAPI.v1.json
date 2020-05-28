@@ -556,18 +556,41 @@
                   "properties": {
                     "message": {
                       "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
                     }
                   }
                 },
                 "examples": {
                   "If required field is missing": {
                     "value": {
-                      "message": "\"provider_id\" is required"
+                      "message": "\"provider_id\" is required",
+                      "code": "parameter_missing"
                     }
                   },
                   "If invalid file ID is used": {
                     "value": {
-                      "message": "Invalid dl_front provided"
+                      "message": "Invalid dl_front provided",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If Invalid bank token is used": {
+                    "value": {
+                      "message": "Invalid bank token",
+                      "code": "invalid_bank_token"
+                    }
+                  },
+                  "If same file ID is used again": {
+                    "value": {
+                      "message": "This file upload is already attached to an account.",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If provider already added the bank account": {
+                    "value": {
+                      "message": "This provider already have a bank account linked with their account.",
+                      "code": "bank_already_linked"
                     }
                   }
                 }
@@ -589,61 +612,14 @@
                 "examples": {
                   "if invalid provider_id is provided": {
                     "value": {
-                      "message": "Provider does not belong to this partner."
+                      "message": "Provider does not belong to this partner.",
+                      "code": "request_failed"
                     }
                   },
                   "If invalid token is provided": {
                     "value": {
-                      "message": "Invalid auth token provided"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "402": {
-            "description": "Invalid Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If Invalid bank token is used": {
-                    "value": {
-                      "message": "No such token: btok_37499879"
-                    }
-                  },
-                  "If same file ID is used again": {
-                    "value": {
-                      "message": "This file upload is already attached to an account."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If provider already added the bank account": {
-                    "value": {
-                      "message": "This provider already have a bank account linked with their account."
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
                     }
                   }
                 }
@@ -652,7 +628,7 @@
           }
         },
         "operationId": "post-provider-bank",
-        "description": "Add provider's bank account which will be used to receive the payouts",
+        "description": "Add provider's bank account which will be used to receive the payouts\n\nIf bank token is created with \"individual\" account type then send ssn_number, date_of_birth, front_file, back_file\n\nIf bank token is created with \"company\" account type then send company_name, company_tax_id",
         "parameters": [],
         "requestBody": {
           "content": {
@@ -682,27 +658,38 @@
                     "type": "string"
                   },
                   "ssn_number": {
+                    "type": "string",
+                    "description": "ssn_number is required if \"individual\" type bank account is created"
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "example": "1990-01-18",
+                    "format": "date",
+                    "description": "date_of_birth is required if \"individual\" type bank account is created"
+                  },
+                  "back_file": {
                     "type": "string"
                   },
                   "front_file": {
                     "type": "string"
                   },
-                  "back_file": {
-                    "type": "string"
-                  },
-                  "date_of_birth": {
+                  "company_name": {
                     "type": "string",
-                    "format": "date",
-                    "example": "1990-01-18"
+                    "description": "company_name is required if \"company\" type bank account is created"
+                  },
+                  "company_tax_id": {
+                    "type": "string",
+                    "description": "company_tax_id is required if \"company\" type bank account is created"
                   }
                 },
                 "required": [
                   "provider_id",
+                  "business_email",
+                  "business_name",
+                  "business_phone",
                   "business_address",
                   "business_zipcode",
-                  "bank_token",
-                  "ssn_number",
-                  "date_of_birth"
+                  "bank_token"
                 ]
               },
               "examples": {
