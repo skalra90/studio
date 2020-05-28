@@ -693,7 +693,7 @@
                 ]
               },
               "examples": {
-                "Example-1": {
+                "Individual Account Example": {
                   "value": {
                     "provider_id": 6485,
                     "business_email": "john@gmail.com",
@@ -706,6 +706,19 @@
                     "dl_back": "file_1GiLd7GLNiHiuNVITn329MVK",
                     "bank_token": "btok_us_verified",
                     "date_of_birth": "1990-05-29"
+                  }
+                },
+                "Company account example": {
+                  "value": {
+                    "provider_id": 6485,
+                    "business_email": "john@gmail.com",
+                    "business_name": "John dentals",
+                    "business_phone": "1234567890",
+                    "business_address": "#4545 street",
+                    "business_zipcode": 12345,
+                    "bank_token": "btok_us******",
+                    "company_name": "Dental Clinic",
+                    "company_tax_id": "1234567"
                   }
                 }
               }
