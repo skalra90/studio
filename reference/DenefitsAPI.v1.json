@@ -1115,20 +1115,7 @@
                     }
                   }
                 },
-                "examples": {
-                  "Token missing.": {
-                    "value": {
-                      "message": "Authorization token is missing.",
-                      "code": "parameter_missing"
-                    }
-                  },
-                  "Provider ID missing": {
-                    "value": {
-                      "message": "\"provider_id\" is required",
-                      "code": "parameter_missing"
-                    }
-                  }
-                }
+                "examples": {}
               }
             }
           },
@@ -1201,11 +1188,11 @@
           },
           {
             "schema": {
-              "type": "string"
+              "type": "number"
             },
             "in": "query",
             "name": "downpayment_amount",
-            "description": "Amount to be paid at creation time"
+            "description": "Downpayment amount"
           }
         ],
         "tags": [
