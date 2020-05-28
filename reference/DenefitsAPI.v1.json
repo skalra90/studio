@@ -2577,6 +2577,174 @@
           }
         ]
       }
+    },
+    "/payment/detail": {
+      "get": {
+        "summary": "Get payment details with payment ID",
+        "tags": [
+          "Contract"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "payment_data": {
+                          "type": "object",
+                          "properties": {
+                            "payment_id": {
+                              "type": "number"
+                            },
+                            "payment_code": {
+                              "type": "string"
+                            },
+                            "provider_id": {
+                              "type": "number"
+                            },
+                            "customer_name": {
+                              "type": "string"
+                            },
+                            "payment_amount": {
+                              "type": "number"
+                            },
+                            "transaction_fee": {
+                              "type": "number"
+                            },
+                            "payment_status": {
+                              "type": "string"
+                            },
+                            "reason": {
+                              "type": "string"
+                            },
+                            "payment_receipt": {
+                              "type": "string"
+                            },
+                            "date_added": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "payment_data": {
+                          "payment_id": 4123,
+                          "payment_code": "IDNDRH4***",
+                          "provider_id": 6475,
+                          "customer_name": "Barney Stinson",
+                          "payment_amount": 9000,
+                          "transaction_fee": 0,
+                          "payment_status": "Successfull",
+                          "reason": "Liver treatment",
+                          "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/Payment_Rece***********84.pdf",
+                          "date_added": "2020-05-26T09:48:11.000Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required field is missing": {
+                    "value": {
+                      "message": "\"provider_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If auth token is invalid": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  },
+                  "If provider ID is wrong": {
+                    "value": {
+                      "message": "Provider does not belong to this partner.",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-payment-detail",
+        "description": "It returns the payment detail with payment ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "payment_id",
+            "required": true
+          }
+        ]
+      }
     }
   },
   "components": {
