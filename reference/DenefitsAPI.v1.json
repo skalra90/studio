@@ -471,7 +471,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "in": "query",
             "name": "provider_id",
@@ -1110,7 +1110,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "integer"
+              "type": "string"
             },
             "in": "query",
             "name": "provider_id",
@@ -1497,7 +1497,7 @@
                     "description": "Unique plan id of the plan selected for financing."
                   },
                   "provider_id": {
-                    "type": "integer",
+                    "type": "string",
                     "format": "date",
                     "example": 6464,
                     "description": "Contract will belong to this Provider."
@@ -1580,7 +1580,7 @@
                 "Example": {
                   "value": {
                     "plan_id": "plan_P6509M12A1200D00F100D00",
-                    "provider_id": 6464,
+                    "provider_id": "pr_084aa5f9bad7a2d72a25d7887e365e0f",
                     "customer_email": "steven.gerrard08@lfc.com",
                     "customer_first_name": "Steven",
                     "customer_last_name": "Gerrard",
