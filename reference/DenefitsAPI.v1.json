@@ -887,10 +887,10 @@
                               "breakdown": {
                                 "denefits_enrollment_fee": 30,
                                 "downpayment_amount": {
-                                  "total": 3,
+                                  "total": 0,
                                   "breakdown": {
                                     "amount": 0,
-                                    "transaction_fee": 3
+                                    "transaction_fee": 0
                                   }
                                 },
                                 "upfront_payment": {
@@ -1080,7 +1080,6 @@
                   "Success": {
                     "value": {
                       "message": "Request executed successfully",
-                      "code": "success",
                       "data": {
                         "list": [
                           {
@@ -1136,7 +1135,8 @@
                             "name": "Others"
                           }
                         ]
-                      }
+                      },
+                      "code": "success"
                     }
                   }
                 }
@@ -1213,7 +1213,6 @@
                   "Success": {
                     "value": {
                       "message": "Request executed successfully",
-                      "code": "success",
                       "data": {
                         "list": [
                           {
@@ -1241,7 +1240,8 @@
                             "industry_name": "Fitness"
                           }
                         ]
-                      }
+                      },
+                      "code": "success"
                     }
                   }
                 }
