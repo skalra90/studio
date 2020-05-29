@@ -547,7 +547,7 @@
                         "routing_number": "110000000",
                         "account_holder_name": "Jenny Rosen",
                         "account_holder_type": "individual",
-                        "provider_id": 6408
+                        "provider_id": "pr_cdd4554aad8af8d3743fb39abf6ba51b"
                       }
                     }
                   }
