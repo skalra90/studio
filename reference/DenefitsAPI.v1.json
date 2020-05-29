@@ -1895,8 +1895,7 @@
       "get": {
         "summary": "Contract details",
         "tags": [
-          "Contract",
-          "Providers"
+          "Provider Contract"
         ],
         "responses": {
           "200": {
@@ -2089,8 +2088,7 @@
       "get": {
         "summary": "List of contracts of a provider",
         "tags": [
-          "Contract",
-          "Providers"
+          "Provider Contract"
         ],
         "responses": {
           "200": {
@@ -2365,7 +2363,7 @@
           }
         ],
         "tags": [
-          "Payment"
+          "Provider Payment"
         ]
       },
       "parameters": []
@@ -2564,8 +2562,7 @@
           }
         ],
         "tags": [
-          "Payment",
-          "Providers"
+          "Provider Payment"
         ]
       },
       "parameters": []
@@ -2594,10 +2591,10 @@
       "name": "Contract Generation Process"
     },
     {
-      "name": "Contract"
+      "name": "Provider Contract"
     },
     {
-      "name": "Payment"
+      "name": "Provider Payment"
     }
   ],
   "security": [
