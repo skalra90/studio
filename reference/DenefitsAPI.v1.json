@@ -533,6 +533,9 @@
                           "type": "string"
                         }
                       }
+                    },
+                    "code": {
+                      "type": "string"
                     }
                   }
                 },
@@ -540,13 +543,14 @@
                   "Success": {
                     "value": {
                       "message": "Bank added successfully",
+                      "code": "success",
                       "data": {
                         "bank_name": "STRIPE TEST BANK",
                         "currency": "usd",
                         "country": "US",
                         "routing_number": "110000000",
-                        "account_holder_name": "Jenny Rosen",
-                        "account_holder_type": "individual",
+                        "account_holder_name": "Charlie",
+                        "account_holder_type": "company",
                         "provider_id": "pr_cdd4554aad8af8d3743fb39abf6ba51b"
                       }
                     }
@@ -656,12 +660,6 @@
                   "business_phone": {
                     "type": "string"
                   },
-                  "business_address": {
-                    "type": "string"
-                  },
-                  "business_zipcode": {
-                    "type": "string"
-                  },
                   "bank_token": {
                     "type": "string"
                   },
@@ -695,8 +693,6 @@
                   "business_email",
                   "business_name",
                   "business_phone",
-                  "business_address",
-                  "business_zipcode",
                   "bank_token"
                 ]
               },
@@ -707,8 +703,6 @@
                     "business_email": "john@gmail.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
-                    "business_address": "#4545 street",
-                    "business_zipcode": 12345,
                     "bank_token": "btok_us******",
                     "company_name": "Dental Clinic",
                     "company_tax_id": "1234567"
@@ -720,8 +714,6 @@
                     "business_email": "john@gmail.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
-                    "business_address": "#4545 street",
-                    "business_zipcode": 12345,
                     "ssn_number": 123456789,
                     "dl_front": "file_1GiLcuGLNiHiuNVIvOx4U3Fy",
                     "dl_back": "file_1GiLd7GLNiHiuNVITn329MVK",
@@ -865,6 +857,9 @@
                     "message": {
                       "type": "string",
                       "description": "Message."
+                    },
+                    "": {
+                      "type": "string"
                     }
                   }
                 },
@@ -872,235 +867,43 @@
                   "Success.": {
                     "value": {
                       "message": "Success",
+                      "code": "success",
                       "data": {
                         "plans": [
                           {
-                            "plan_id": "plan_P6509M12A2000D00F10D15",
+                            "plan_id": "plan_Ppr_cdd4554aad8af8d3743fb39abf6ba51bM12A1200D00F0D00",
                             "number_of_payments": 12,
                             "interest_rate": 16.99,
                             "monthly_payable": {
-                              "total": 186.63,
+                              "total": 112.55,
                               "breakdown": {
-                                "amount": 181.19,
-                                "transaction_fee": 5.44
-                              }
-                            },
-                            "to_pay_now": {
-                              "total": 229.78,
-                              "breakdown": {
-                                "denefits_enrollment_fee": 30,
-                                "downpayment_amount": {
-                                  "total": 13.15,
-                                  "breakdown": {
-                                    "amount": 10.15,
-                                    "transaction_fee": 3
-                                  }
-                                },
-                                "upfront_payment": {
-                                  "total": 186.63,
-                                  "breakdown": {
-                                    "amount": 181.19,
-                                    "transaction_fee": 5.44
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "plan_id": "plan_P6509M18A2000D00F10D15",
-                            "number_of_payments": 18,
-                            "interest_rate": 16.49,
-                            "monthly_payable": {
-                              "total": 137.91,
-                              "breakdown": {
-                                "amount": 133.89,
-                                "transaction_fee": 4.02
-                              }
-                            },
-                            "to_pay_now": {
-                              "total": 181.06,
-                              "breakdown": {
-                                "denefits_enrollment_fee": 30,
-                                "downpayment_amount": {
-                                  "total": 13.15,
-                                  "breakdown": {
-                                    "amount": 10.15,
-                                    "transaction_fee": 3
-                                  }
-                                },
-                                "upfront_payment": {
-                                  "total": 137.91,
-                                  "breakdown": {
-                                    "amount": 133.89,
-                                    "transaction_fee": 4.02
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "plan_id": "plan_P6509M24A2000D00F10D15",
-                            "number_of_payments": 24,
-                            "interest_rate": 15.99,
-                            "monthly_payable": {
-                              "total": 112.64,
-                              "breakdown": {
-                                "amount": 109.36,
+                                "amount": 109.27,
                                 "transaction_fee": 3.28
                               }
                             },
                             "to_pay_now": {
-                              "total": 155.79,
+                              "total": 145.55,
                               "breakdown": {
                                 "denefits_enrollment_fee": 30,
                                 "downpayment_amount": {
-                                  "total": 13.15,
+                                  "total": 3,
                                   "breakdown": {
-                                    "amount": 10.15,
+                                    "amount": 0,
                                     "transaction_fee": 3
                                   }
                                 },
                                 "upfront_payment": {
-                                  "total": 112.64,
+                                  "total": 112.55,
                                   "breakdown": {
-                                    "amount": 109.36,
+                                    "amount": 109.27,
                                     "transaction_fee": 3.28
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "plan_id": "plan_P6509M30A2000D00F10D15",
-                            "number_of_payments": 30,
-                            "interest_rate": 15.49,
-                            "monthly_payable": {
-                              "total": 97.31,
-                              "breakdown": {
-                                "amount": 94.31,
-                                "transaction_fee": 3
-                              }
-                            },
-                            "to_pay_now": {
-                              "total": 140.46,
-                              "breakdown": {
-                                "denefits_enrollment_fee": 30,
-                                "downpayment_amount": {
-                                  "total": 13.15,
-                                  "breakdown": {
-                                    "amount": 10.15,
-                                    "transaction_fee": 3
-                                  }
-                                },
-                                "upfront_payment": {
-                                  "total": 97.31,
-                                  "breakdown": {
-                                    "amount": 94.31,
-                                    "transaction_fee": 3
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "plan_id": "plan_P6509M36A2000D00F10D15",
-                            "number_of_payments": 36,
-                            "interest_rate": 14.99,
-                            "monthly_payable": {
-                              "total": 87.08,
-                              "breakdown": {
-                                "amount": 84.08,
-                                "transaction_fee": 3
-                              }
-                            },
-                            "to_pay_now": {
-                              "total": 130.23,
-                              "breakdown": {
-                                "denefits_enrollment_fee": 30,
-                                "downpayment_amount": {
-                                  "total": 13.15,
-                                  "breakdown": {
-                                    "amount": 10.15,
-                                    "transaction_fee": 3
-                                  }
-                                },
-                                "upfront_payment": {
-                                  "total": 87.08,
-                                  "breakdown": {
-                                    "amount": 84.08,
-                                    "transaction_fee": 3
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "plan_id": "plan_P6509M42A2000D00F10D15",
-                            "number_of_payments": 42,
-                            "interest_rate": 14.49,
-                            "monthly_payable": {
-                              "total": 79.61,
-                              "breakdown": {
-                                "amount": 76.61,
-                                "transaction_fee": 3
-                              }
-                            },
-                            "to_pay_now": {
-                              "total": 122.76,
-                              "breakdown": {
-                                "denefits_enrollment_fee": 30,
-                                "downpayment_amount": {
-                                  "total": 13.15,
-                                  "breakdown": {
-                                    "amount": 10.15,
-                                    "transaction_fee": 3
-                                  }
-                                },
-                                "upfront_payment": {
-                                  "total": 79.61,
-                                  "breakdown": {
-                                    "amount": 76.61,
-                                    "transaction_fee": 3
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          {
-                            "plan_id": "plan_P6509M48A2000D00F10D15",
-                            "number_of_payments": 48,
-                            "interest_rate": 13.99,
-                            "monthly_payable": {
-                              "total": 73.84,
-                              "breakdown": {
-                                "amount": 70.84,
-                                "transaction_fee": 3
-                              }
-                            },
-                            "to_pay_now": {
-                              "total": 116.99,
-                              "breakdown": {
-                                "denefits_enrollment_fee": 30,
-                                "downpayment_amount": {
-                                  "total": 13.15,
-                                  "breakdown": {
-                                    "amount": 10.15,
-                                    "transaction_fee": 3
-                                  }
-                                },
-                                "upfront_payment": {
-                                  "total": 73.84,
-                                  "breakdown": {
-                                    "amount": 70.84,
-                                    "transaction_fee": 3
                                   }
                                 }
                               }
                             }
                           }
                         ]
-                      },
-                      "code": "success"
+                      }
                     }
                   }
                 }
