@@ -858,7 +858,7 @@
                       "type": "string",
                       "description": "Message."
                     },
-                    "": {
+                    "code": {
                       "type": "string"
                     }
                   }
@@ -871,7 +871,7 @@
                       "data": {
                         "plans": [
                           {
-                            "plan_id": "plan_Ppr_cdd4554aad8af8d3743fb39abf6ba51bM12A1200D00F0D00",
+                            "plan_id": "plan_P6550M12A1200D00F0D00",
                             "number_of_payments": 12,
                             "interest_rate": 16.99,
                             "monthly_payable": {
@@ -1273,6 +1273,9 @@
                     },
                     "message": {
                       "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
                     }
                   }
                 },
@@ -1282,7 +1285,7 @@
                       "message": "Finance Token Created",
                       "code": "success",
                       "data": {
-                        "finance_token": "22f7ba6ca633985**********"
+                        "finance_token": "64de0703e3b61****************"
                       }
                     }
                   }
