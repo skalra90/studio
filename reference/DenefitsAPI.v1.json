@@ -1306,7 +1306,7 @@
       "get": {
         "summary": "List of specialities of an industry.",
         "tags": [
-          "Lists"
+          "Industry - Specialities"
         ],
         "responses": {
           "200": {
@@ -1512,7 +1512,7 @@
         "description": "Returns the list of industries.",
         "parameters": [],
         "tags": [
-          "Lists"
+          "Industry - Specialities"
         ]
       },
       "parameters": []
@@ -2579,7 +2579,7 @@
   },
   "tags": [
     {
-      "name": "Lists"
+      "name": "Industry - Specialities"
     },
     {
       "name": "File"
