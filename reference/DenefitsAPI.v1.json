@@ -326,7 +326,7 @@
     },
     "/provider/bank": {
       "get": {
-        "summary": "Retrieve bank account",
+        "summary": "Retrieve Provider's bank account",
         "tags": [
           "Providers"
         ],
@@ -608,7 +608,7 @@
           }
         },
         "operationId": "post-provider-bank",
-        "description": "Add provider's bank account which will be used to receive the payouts\n\nIf bank token is created with \"individual\" account type then send ssn_number, date_of_birth, front_file, back_file\n\nIf bank token is created with \"company\" account type then send company_name, company_tax_id",
+        "description": "Add provider's bank account which will be used to receive the payouts\n\nIf bank token is created with \"individual\" account type then send `ssn_number`, `date_of_birth`, `front_file`, `back_file`\n\nIf bank token is created with \"company\" account type then send `company_name`, `company_tax_id`",
         "parameters": [],
         "requestBody": {
           "content": {
@@ -1307,7 +1307,6 @@
       "get": {
         "summary": "List of specialities of an industry.",
         "tags": [
-          "Providers",
           "Lists"
         ],
         "responses": {
@@ -1428,9 +1427,6 @@
     "/industry": {
       "get": {
         "summary": "List of Industries",
-        "tags": [
-          "Providers"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1515,7 +1511,10 @@
         },
         "operationId": "get-provider-industry",
         "description": "Returns the list of industries.",
-        "parameters": []
+        "parameters": [],
+        "tags": [
+          "Lists"
+        ]
       },
       "parameters": []
     },
