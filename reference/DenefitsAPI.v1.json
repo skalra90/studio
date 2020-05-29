@@ -2052,6 +2052,148 @@
         ]
       },
       "parameters": []
+    },
+       "/provider/payment/pay": {
+      "post": {
+        "summary": "Process Instant Payment",
+        "operationId": "post-provider-payment-pay",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "code": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Payment processed successfuly.",
+                      "code": "success",
+                      "data": {
+                        "id": 4318,
+                        "code": "IDVYPB4318"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "If invalid provider ID is provided": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If mandatory field is missing": {
+                    "value": {
+                      "message": "\"card_token\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "If auth token is invalid": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "card_token": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "number"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "card_token",
+                  "amount",
+                  "reason",
+                  "name",
+                  "provider_id"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "provider_id": "pr_38e9136b576d16a08c1ff1*******",
+                    "card_token": "tok_visa",
+                    "amount": 100,
+                    "reason": "Dental treatment",
+                    "name": "Ted Mosby"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "This can be used to process an instant payment for the service.",
+        "tags": [
+          "Payment"
+        ]
+      }
     }
   },
   "components": {
