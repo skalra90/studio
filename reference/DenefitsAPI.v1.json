@@ -1763,20 +1763,9 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "provider_id": {
-                    "type": "string"
-                  }
-                }
+                "type": "object"
               },
-              "examples": {
-                "example": {
-                  "value": {
-                    "provider_id": "pr_084aa5f9bad7a2d72a25d7887e365e0f"
-                  }
-                }
-              }
+              "examples": {}
             }
           }
         }
