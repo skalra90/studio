@@ -1303,8 +1303,7 @@
                   },
                   "provider_id": {
                     "type": "string",
-                    "format": "date",
-                    "example": 6464,
+                    "example": "pr_i3u4093j90qr009e0q9",
                     "description": "Contract will belong to this Provider."
                   },
                   "customer_email": {
@@ -2053,14 +2052,6 @@
         ]
       },
       "parameters": []
-    },
-    "/provider/payment/pay": {
-      "get": {
-        "summary": "Process instant payment",
-        "tags": [],
-        "responses": {},
-        "operationId": "get-provider-payment-pay"
-      }
     }
   },
   "components": {
