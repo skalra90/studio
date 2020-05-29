@@ -430,7 +430,7 @@
                           "description": "Type of account."
                         },
                         "provider_id": {
-                          "type": "integer"
+                          "type": "string"
                         },
                         "currency": {
                           "type": "string"
@@ -520,7 +520,7 @@
                           "description": "Type of account."
                         },
                         "provider_id": {
-                          "type": "integer"
+                          "type": "string"
                         },
                         "currency": {
                           "type": "string"
@@ -641,7 +641,7 @@
                 "type": "object",
                 "properties": {
                   "provider_id": {
-                    "type": "integer"
+                    "type": "string"
                   },
                   "business_email": {
                     "type": "string"
