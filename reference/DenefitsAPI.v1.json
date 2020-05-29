@@ -72,6 +72,29 @@
                                 "example": "2020-05-08T11:58:25.000Z",
                                 "description": "Provider's date of registration."
                               },
+                              "speciality": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "speciality_name": {
+                                      "type": "string"
+                                    },
+                                    "speciality_id": {
+                                      "type": "number"
+                                    },
+                                    "industry_name": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "payments_disabled_reason": {
+                                "type": "string"
+                              },
+                              "payments_enabled": {
+                                "type": "boolean"
+                              },
                               "address": {
                                 "type": "array",
                                 "description": "Business' street address.",
@@ -88,29 +111,6 @@
                                       "type": "string"
                                     },
                                     "zip": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              },
-                              "payments_enabled": {
-                                "type": "boolean"
-                              },
-                              "payments_disabled_reason": {
-                                "type": "string"
-                              },
-                              "speciality": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "speciality_name": {
-                                      "type": "string"
-                                    },
-                                    "speciality_id": {
-                                      "type": "number"
-                                    },
-                                    "industry_name": {
                                       "type": "string"
                                     }
                                   }
@@ -132,8 +132,6 @@
                 "examples": {
                   "Success Response": {
                     "value": {
-                      "message": "Request executed successfully",
-                      "code": "success",
                       "data": {
                         "count": 2,
                         "list": [
@@ -180,7 +178,9 @@
                             "payments_disabled_reason": "no_bank_added"
                           }
                         ]
-                      }
+                      },
+                      "message": "Request executed successfully",
+                      "code": "success"
                     }
                   }
                 }
@@ -222,11 +222,11 @@
                 "examples": {
                   "Provider added successfully": {
                     "value": {
-                      "message": "Provider added successfully",
-                      "code": "success",
                       "data": {
                         "provider_id": "pr_cdd4554aad8af8d3743fb39abf6ba51b"
-                      }
+                      },
+                      "message": "Provider added successfully",
+                      "code": "success"
                     }
                   }
                 }
@@ -336,25 +336,32 @@
                 "type": "object",
                 "properties": {
                   "first_name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "First name of the provider."
                   },
                   "last_name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Last name of the provider."
                   },
                   "email": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Email address of the provider."
                   },
                   "phone": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Mobile number of the provider."
                   },
                   "zipcode": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "U.S. zipcode of Provider's Business Address."
                   },
                   "business_address": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Line 1/Street Address of Provider's Business."
                   },
                   "speciality_id": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "Speciality ID of the provider. Get from /speciality"
                   }
                 },
                 "required": [
@@ -447,7 +454,6 @@
                   "Success": {
                     "value": {
                       "message": "Request executed successfully",
-                      "code": "success",
                       "data": {
                         "bank_name": "STRIPE TEST BANK",
                         "routing_number": "110000000",
@@ -457,7 +463,8 @@
                         "provider_id": "pr_88adb93658353ce2ef4a2e2268ebb7ae",
                         "currency": "usd",
                         "country": "US"
-                      }
+                      },
+                      "code": "success"
                     }
                   }
                 }
@@ -538,7 +545,6 @@
                   "Success": {
                     "value": {
                       "message": "Bank added successfully",
-                      "code": "success",
                       "data": {
                         "bank_name": "STRIPE TEST BANK",
                         "currency": "usd",
@@ -547,7 +553,8 @@
                         "account_holder_name": "Charlie",
                         "account_holder_type": "company",
                         "provider_id": "pr_cdd4554aad8af8d3743fb39abf6ba51b"
-                      }
+                      },
+                      "code": "success"
                     }
                   }
                 }
@@ -862,7 +869,6 @@
                   "Success.": {
                     "value": {
                       "message": "Success",
-                      "code": "success",
                       "data": {
                         "plans": [
                           {
@@ -898,7 +904,8 @@
                             }
                           }
                         ]
-                      }
+                      },
+                      "code": "success"
                     }
                   }
                 }
@@ -1444,11 +1451,11 @@
                   "Success": {
                     "value": {
                       "message": "Customer Financed Successfully",
-                      "code": "success",
                       "data": {
                         "contract_id": 17351,
                         "contract_code": "STGMWLK17351"
-                      }
+                      },
+                      "code": "success"
                     }
                   }
                 }
