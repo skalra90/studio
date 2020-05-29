@@ -1758,17 +1758,7 @@
             "required": true
           }
         ],
-        "description": "Get listing of all contracts of this account",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object"
-              },
-              "examples": {}
-            }
-          }
-        }
+        "description": "Get listing of all contracts of this account"
       },
       "parameters": []
     },
