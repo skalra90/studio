@@ -1435,6 +1435,9 @@
                           "description": "Contract code for reference."
                         }
                       }
+                    },
+                    "code": {
+                      "type": "string"
                     }
                   }
                 },
@@ -1442,9 +1445,10 @@
                   "Success": {
                     "value": {
                       "message": "Customer Financed Successfully",
+                      "code": "success",
                       "data": {
-                        "contract_id": 12345,
-                        "contract_code": "STEGE12345"
+                        "contract_id": 17351,
+                        "contract_code": "STGMWLK17351"
                       }
                     }
                   }
@@ -1478,7 +1482,7 @@
               "examples": {
                 "Example": {
                   "value": {
-                    "finance_token": "7b863ffe354d6894ece92f6564565561",
+                    "finance_token": "7b863ffe354d689************",
                     "card_token": "tok_visa"
                   }
                 }
