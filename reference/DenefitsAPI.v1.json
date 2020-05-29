@@ -1739,10 +1739,50 @@
                           }
                         }
                       }
+                    },
+                    "code": {
+                      "type": "string"
                     }
                   }
                 },
-                "examples": {}
+                "examples": {
+                  "example": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 1,
+                        "contracts_list": [
+                          {
+                            "contract_id": 17351,
+                            "contract_code": "STGMWLK17351",
+                            "provider_id": 6550,
+                            "customer_id": 3174,
+                            "customer_first_name": "Steven",
+                            "customer_last_name": "Gerrard",
+                            "customer_email": "steven.gerrard08@lfc.com",
+                            "customer_mobile": "+1-2025550130",
+                            "customer_address": "189 Beaver Ridge Ave.",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-TwA021TTa4099.png",
+                            "downpayment_amount": 0,
+                            "financed_amount": 1200,
+                            "interest_rate": 16.99,
+                            "recurring_amount": 109.27,
+                            "number_of_payments": 12,
+                            "remaining_payments": 12,
+                            "next_recurring_date": "2020-07-01T00:00:00.000Z",
+                            "contract_status": "Active",
+                            "title": "",
+                            "city_name": "New Baltimore",
+                            "zipcode": 48047,
+                            "last_updated": "2020-05-29T14:06:26.000Z",
+                            "date_added": "2020-05-29T14:06:26.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
               }
             }
           }
@@ -1852,7 +1892,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "in": "query",
             "name": "provider_id",
@@ -1984,7 +2024,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "in": "query",
             "name": "provider_id",
