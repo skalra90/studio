@@ -45,7 +45,7 @@
                             "type": "object",
                             "properties": {
                               "provider_id": {
-                                "type": "number",
+                                "type": "string",
                                 "description": "Provider's Unique Identifier."
                               },
                               "email": {
@@ -72,9 +72,49 @@
                                 "example": "2020-05-08T11:58:25.000Z",
                                 "description": "Provider's date of registration."
                               },
-                              "business_address": {
-                                "type": "string",
-                                "description": "Business' street address."
+                              "address": {
+                                "type": "array",
+                                "description": "Business' street address.",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "line1": {
+                                      "type": "string"
+                                    },
+                                    "city": {
+                                      "type": "string"
+                                    },
+                                    "state": {
+                                      "type": "string"
+                                    },
+                                    "zip": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "payments_enabled": {
+                                "type": "boolean"
+                              },
+                              "payments_disabled_reason": {
+                                "type": "string"
+                              },
+                              "speciality": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "speciality_name": {
+                                      "type": "string"
+                                    },
+                                    "speciality_id": {
+                                      "type": "number"
+                                    },
+                                    "industry_name": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
                               }
                             }
                           }
@@ -83,34 +123,64 @@
                           "type": "number"
                         }
                       }
+                    },
+                    "code": {
+                      "type": "string"
                     }
                   }
                 },
                 "examples": {
                   "Success Response": {
                     "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
                       "data": {
                         "count": 2,
                         "list": [
                           {
-                            "date_registered": "2020-05-08T05:19:20.000Z",
-                            "email": "test.123@gmail.com",
-                            "first_name": "test name",
-                            "last_name": "test",
-                            "phone": "1212312345",
-                            "provider_id": 9101
+                            "provider_id": "pr_084aa5f9bad7a2d72a25d7887e365e0f",
+                            "first_name": "Test 1",
+                            "last_name": "Test 2",
+                            "date_registered": "2020-04-08T09:01:40.000Z",
+                            "email": "test1@gmail.com",
+                            "phone": "9675457654",
+                            "address": {
+                              "line1": "45, square root",
+                              "city": "Grand Ridge",
+                              "state": "Florida",
+                              "zip": "32442"
+                            },
+                            "speciality": {
+                              "speciality_name": "Mobile Phone Industry",
+                              "speciality_id": 396,
+                              "industry_name": "Telecommunication"
+                            },
+                            "payments_enabled": true,
+                            "payments_disabled_reason": null
                           },
                           {
-                            "date_registered": "2020-05-01T15:36:41.000Z",
-                            "email": "demo.123@yopmail.com",
-                            "first_name": "Demo",
-                            "last_name": "now",
-                            "phone": "855226644",
-                            "provider_id": 5678
+                            "provider_id": "pr_c1394a2ece54157085a4102ead09a2d0",
+                            "first_name": "Demo 1",
+                            "last_name": "Demo 2",
+                            "date_registered": "2020-04-07T07:14:23.000Z",
+                            "email": "demo1@gmail.com",
+                            "phone": "9564838477",
+                            "address": {
+                              "line1": "test Address",
+                              "city": "Quitman",
+                              "state": "Arkansas",
+                              "zip": "72131"
+                            },
+                            "speciality": {
+                              "speciality_name": "Civil Engineering",
+                              "speciality_id": 297,
+                              "industry_name": "Construction"
+                            },
+                            "payments_enabled": false,
+                            "payments_disabled_reason": "no_bank_added"
                           }
                         ]
-                      },
-                      "message": "Request executed successfully"
+                      }
                     }
                   }
                 }
@@ -136,12 +206,6 @@
                         "type": "object",
                         "properties": {
                           "provider_id": {
-                            "type": "number"
-                          },
-                          "first_name": {
-                            "type": "string"
-                          },
-                          "last_name": {
                             "type": "string"
                           }
                         }
@@ -149,16 +213,20 @@
                     },
                     "message": {
                       "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
                     }
                   }
                 },
                 "examples": {
                   "Provider added successfully": {
                     "value": {
+                      "message": "Provider added successfully",
+                      "code": "success",
                       "data": {
-                        "provider_id": 6410
-                      },
-                      "message": "Provider added successfully"
+                        "provider_id": "pr_cdd4554aad8af8d3743fb39abf6ba51b"
+                      }
                     }
                   }
                 }
