@@ -442,6 +442,9 @@
                     },
                     "message": {
                       "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
                     }
                   }
                 },
@@ -449,13 +452,14 @@
                   "Success": {
                     "value": {
                       "message": "Request executed successfully",
+                      "code": "success",
                       "data": {
                         "bank_name": "STRIPE TEST BANK",
                         "routing_number": "110000000",
                         "last4": "6789",
-                        "account_holder_name": "Jenny Rosen",
+                        "account_holder_name": "raman test",
                         "account_holder_type": "individual",
-                        "provider_id": 6464,
+                        "provider_id": "pr_88adb93658353ce2ef4a2e2268ebb7ae",
                         "currency": "usd",
                         "country": "US"
                       }
