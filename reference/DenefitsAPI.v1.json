@@ -1896,9 +1896,10 @@
     },
     "/provider/contract/detail": {
       "get": {
-        "summary": "Get contract details with contract ID",
+        "summary": "Contract details",
         "tags": [
-          "Contract"
+          "Contract",
+          "Providers"
         ],
         "responses": {
           "200": {
@@ -2091,7 +2092,8 @@
       "get": {
         "summary": "List of contracts of a provider",
         "tags": [
-          "Contract"
+          "Contract",
+          "Providers"
         ],
         "responses": {
           "200": {
@@ -2374,9 +2376,6 @@
     "/provider/payment/list": {
       "get": {
         "summary": "Get payments list",
-        "tags": [
-          "Contract"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -2566,6 +2565,10 @@
             "name": "skip",
             "description": ""
           }
+        ],
+        "tags": [
+          "Payment",
+          "Providers"
         ]
       },
       "parameters": []
@@ -2592,6 +2595,9 @@
     },
     {
       "name": "Lists"
+    },
+    {
+      "name": "Payment"
     }
   ],
   "security": [
