@@ -355,9 +355,6 @@
                   },
                   "speciality_id": {
                     "type": "number"
-                  },
-                  "industry_id": {
-                    "type": "number"
                   }
                 },
                 "required": [
@@ -367,8 +364,7 @@
                   "phone",
                   "zipcode",
                   "business_address",
-                  "speciality_id",
-                  "industry_id"
+                  "speciality_id"
                 ]
               },
               "examples": {
@@ -380,8 +376,7 @@
                     "phone": "1234567890",
                     "zipcode": "23433",
                     "business_address": "test address",
-                    "speciality_id": 2,
-                    "industry_id": 1
+                    "speciality_id": 2
                   }
                 }
               }
