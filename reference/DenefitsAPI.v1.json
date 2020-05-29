@@ -1751,14 +1751,35 @@
         "parameters": [
           {
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "in": "query",
             "name": "provider_id",
             "required": true
           }
         ],
-        "description": "Get listing of all contracts of this account"
+        "description": "Get listing of all contracts of this account",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "example": {
+                  "value": {
+                    "provider_id": "pr_084aa5f9bad7a2d72a25d7887e365e0f"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "parameters": []
     },
