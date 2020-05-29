@@ -2203,10 +2203,7 @@
     },
     "/provider/payment/detail": {
       "get": {
-        "summary": "Get payment details with payment ID",
-        "tags": [
-          "Contract"
-        ],
+        "summary": "Payment details",
         "responses": {
           "200": {
             "description": "OK",
@@ -2366,13 +2363,16 @@
             "name": "payment_id",
             "required": true
           }
+        ],
+        "tags": [
+          "Payment"
         ]
       },
       "parameters": []
     },
     "/provider/payment/list": {
       "get": {
-        "summary": "Get payments list",
+        "summary": "List of Payments of a provider",
         "responses": {
           "200": {
             "description": "OK",
