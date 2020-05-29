@@ -710,7 +710,7 @@
     },
     "/provider/contract/plans": {
       "get": {
-        "summary": "List of Plans",
+        "summary": "1. List of Plans",
         "responses": {
           "200": {
             "description": "Success",
@@ -1176,8 +1176,7 @@
           }
         ],
         "tags": [
-          "Contract",
-          "Providers"
+          "Contract Generation Process"
         ]
       },
       "parameters": []
@@ -1520,7 +1519,7 @@
     },
     "/provider/contract/select": {
       "post": {
-        "summary": "Select a Plan",
+        "summary": "2. Select a Plan",
         "operationId": "contract-create",
         "responses": {
           "200": {
@@ -1776,19 +1775,14 @@
           "description": ""
         },
         "tags": [
-          "Contract",
-          "Providers"
+          "Contract Generation Process"
         ]
       },
       "parameters": []
     },
     "/provider/contract/pay": {
       "post": {
-        "summary": "Pay for Contract",
-        "tags": [
-          "Contract",
-          "Providers"
-        ],
+        "summary": "3. Pay for Contract",
         "responses": {
           "200": {
             "description": "OK",
@@ -1890,7 +1884,10 @@
           },
           "description": ""
         },
-        "description": "Pay for contract using finance token and card token."
+        "description": "Pay for contract using finance token and card token.",
+        "tags": [
+          "Contract Generation Process"
+        ]
       },
       "parameters": []
     },
@@ -2598,6 +2595,9 @@
     },
     {
       "name": "Payment"
+    },
+    {
+      "name": "Contract Generation Process"
     }
   ],
   "security": [
