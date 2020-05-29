@@ -2582,22 +2582,22 @@
   },
   "tags": [
     {
-      "name": "Providers"
-    },
-    {
-      "name": "Contract"
-    },
-    {
       "name": "File"
     },
     {
       "name": "Lists"
     },
     {
-      "name": "Payment"
+      "name": "Providers"
     },
     {
       "name": "Contract Generation Process"
+    },
+    {
+      "name": "Contract"
+    },
+    {
+      "name": "Payment"
     }
   ],
   "security": [
