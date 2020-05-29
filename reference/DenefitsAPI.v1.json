@@ -1723,7 +1723,7 @@
                               "type": "string"
                             },
                             "provider_id": {
-                              "type": "number"
+                              "type": "string"
                             },
                             "customer_id": {
                               "type": "number"
@@ -1790,7 +1790,7 @@
                         "contract_data": {
                           "contract_id": 16813,
                           "contract_code": "RATJJJ****",
-                          "provider_id": 6494,
+                          "provider_id": "pr_084aa5f9bad7a2d72a25d7887e365e0f",
                           "customer_id": 3173,
                           "customer_first_name": "Ted",
                           "customer_last_name": "Mosby",
@@ -1822,7 +1822,7 @@
         "parameters": [
           {
             "schema": {
-              "type": "number"
+              "type": "string"
             },
             "in": "query",
             "name": "provider_id",
@@ -1987,7 +1987,7 @@
                               "type": "string"
                             },
                             "provider_id": {
-                              "type": "number"
+                              "type": "string"
                             },
                             "customer_name": {
                               "type": "string"
@@ -2025,7 +2025,7 @@
                         "payment_data": {
                           "payment_id": 4123,
                           "payment_code": "IDNDRH4***",
-                          "provider_id": 6475,
+                          "provider_id": "pr_084aa5f9bad7a2d72a25d7887e365e0f",
                           "customer_name": "Barney Stinson",
                           "payment_amount": 9000,
                           "transaction_fee": 0,
@@ -2103,7 +2103,7 @@
                                 "type": "string"
                               },
                               "provider_id": {
-                                "type": "number"
+                                "type": "string"
                               },
                               "customer_name": {
                                 "type": "string"
@@ -2144,7 +2144,7 @@
                           {
                             "payment_id": 4123,
                             "payment_code": "IDNDRH4***",
-                            "provider_id": 6475,
+                            "provider_id": "pr_084aa5f9bad7a2d72a25d7887e365e0f",
                             "customer_name": "Hannah Baker",
                             "payment_amount": 9000,
                             "transaction_fee": 0,
@@ -2156,7 +2156,7 @@
                           {
                             "payment_id": 4036,
                             "payment_code": "IDSJNV4***",
-                            "provider_id": 6475,
+                            "provider_id": "pr_084aa5f9bad7a2d72a25d7887e365e0f",
                             "customer_name": "Heart Checkup",
                             "payment_amount": 400,
                             "transaction_fee": 0,
