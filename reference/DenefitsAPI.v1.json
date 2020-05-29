@@ -1063,6 +1063,9 @@
                           }
                         }
                       }
+                    },
+                    "code": {
+                      "type": "string"
                     }
                   }
                 },
@@ -1070,6 +1073,7 @@
                   "Success": {
                     "value": {
                       "message": "Request executed successfully",
+                      "code": "success",
                       "data": {
                         "list": [
                           {
@@ -1188,6 +1192,9 @@
                           }
                         }
                       }
+                    },
+                    "code": {
+                      "type": "string"
                     }
                   },
                   "required": [
@@ -1199,6 +1206,7 @@
                   "Success": {
                     "value": {
                       "message": "Request executed successfully",
+                      "code": "success",
                       "data": {
                         "list": [
                           {
