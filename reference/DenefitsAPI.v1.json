@@ -2023,6 +2023,14 @@
         ]
       },
       "parameters": []
+    },
+    "/provider/payment/pay": {
+      "get": {
+        "summary": "Process instant payment",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-provider-payment-pay"
+      }
     }
   },
   "components": {
