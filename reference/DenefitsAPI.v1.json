@@ -72,29 +72,6 @@
                                 "example": "2020-05-08T11:58:25.000Z",
                                 "description": "Provider's date of registration."
                               },
-                              "speciality": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "speciality_name": {
-                                      "type": "string"
-                                    },
-                                    "speciality_id": {
-                                      "type": "number"
-                                    },
-                                    "industry_name": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              },
-                              "payments_disabled_reason": {
-                                "type": "string"
-                              },
-                              "payments_enabled": {
-                                "type": "boolean"
-                              },
                               "address": {
                                 "type": "array",
                                 "description": "Business' street address.",
@@ -111,6 +88,29 @@
                                       "type": "string"
                                     },
                                     "zip": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "payments_enabled": {
+                                "type": "boolean"
+                              },
+                              "payments_disabled_reason": {
+                                "type": "string"
+                              },
+                              "speciality": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "sub_industry_name": {
+                                      "type": "string"
+                                    },
+                                    "sub_industry_id": {
+                                      "type": "number"
+                                    },
+                                    "industry_name": {
                                       "type": "string"
                                     }
                                   }
@@ -149,8 +149,8 @@
                               "zip": "32442"
                             },
                             "speciality": {
-                              "speciality_name": "Mobile Phone Industry",
-                              "speciality_id": 396,
+                              "sub_industry_name": "Mobile Phone Industry",
+                              "sub_industry_id": 396,
                               "industry_name": "Telecommunication"
                             },
                             "payments_enabled": true,
@@ -170,8 +170,8 @@
                               "zip": "72131"
                             },
                             "speciality": {
-                              "speciality_name": "Civil Engineering",
-                              "speciality_id": 297,
+                              "sub_industry_name": "Civil Engineering",
+                              "sub_industry_id": 297,
                               "industry_name": "Construction"
                             },
                             "payments_enabled": false,
@@ -359,7 +359,7 @@
                     "type": "string",
                     "description": "Line 1/Street Address of Provider's Business."
                   },
-                  "speciality_id": {
+                  "sub_industry_id": {
                     "type": "number",
                     "description": "Speciality ID of the provider. Get from /speciality"
                   }
@@ -371,7 +371,7 @@
                   "phone",
                   "zipcode",
                   "business_address",
-                  "speciality_id"
+                  "sub_industry_id"
                 ]
               },
               "examples": {
@@ -383,7 +383,7 @@
                     "phone": "1234567890",
                     "zipcode": "23433",
                     "business_address": "test address",
-                    "speciality_id": 2
+                    "sub_industry_id": 2
                   }
                 }
               }
