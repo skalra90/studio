@@ -23,7 +23,24 @@
         ],
         "operationId": "get-providers",
         "description": "Returns providers registered with your account. Only providers with `payments_enabled` set to true are able to make payments plans or process a payment.",
-        "parameters": [],
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
