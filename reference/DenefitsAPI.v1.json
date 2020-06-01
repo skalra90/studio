@@ -1835,6 +1835,22 @@
             "in": "query",
             "name": "provider_id",
             "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
           }
         ],
         "description": "Get listing of all contracts of this account"
