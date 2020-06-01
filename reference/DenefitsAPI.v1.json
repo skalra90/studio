@@ -1035,9 +1035,9 @@
       },
       "parameters": []
     },
-    "/speciality": {
+    "/sub_industry": {
       "get": {
-        "summary": "List of specialities of an industry.",
+        "summary": "List of sub-industries of an industry.",
         "tags": [
           "Industry - Specialities"
         ],
@@ -1052,6 +1052,9 @@
                     "message": {
                       "type": "string"
                     },
+                    "code": {
+                      "type": "string"
+                    },
                     "data": {
                       "type": "object",
                       "properties": {
@@ -1060,19 +1063,16 @@
                           "items": {
                             "type": "object",
                             "properties": {
-                              "speciality_id": {
+                              "sub_industry_id": {
                                 "type": "integer"
                               },
-                              "speciality_name": {
+                              "sub_industry_name": {
                                 "type": "string"
                               }
                             }
                           }
                         }
                       }
-                    },
-                    "code": {
-                      "type": "string"
                     }
                   }
                 },
@@ -1080,63 +1080,71 @@
                   "Success": {
                     "value": {
                       "message": "Request executed successfully",
+                      "code": "success",
                       "data": {
                         "list": [
                           {
-                            "id": 156,
-                            "name": "Cardio special"
+                            "sub_industry_id": 156,
+                            "sub_industry_name": "Cardio special"
                           },
                           {
-                            "id": 6,
-                            "name": "Chiropractics"
+                            "sub_industry_id": 6,
+                            "sub_industry_name": "Chiropractics"
                           },
                           {
-                            "id": 12,
-                            "name": "Cosmetic Surgery"
+                            "sub_industry_id": 12,
+                            "sub_industry_name": "Cosmetic Surgery"
                           },
                           {
-                            "id": 1,
-                            "name": "Dental"
+                            "sub_industry_id": 1,
+                            "sub_industry_name": "Dental"
                           },
                           {
-                            "id": 2,
-                            "name": "Dermatology"
+                            "sub_industry_id": 2,
+                            "sub_industry_name": "Dermatology"
                           },
                           {
-                            "id": 13,
-                            "name": "Diabetes and Metabolic Specialist"
+                            "sub_industry_id": 13,
+                            "sub_industry_name": "Diabetes and Metabolic Specialist"
                           },
                           {
-                            "id": 14,
-                            "name": "Dietitians"
+                            "sub_industry_id": 14,
+                            "sub_industry_name": "Dietitians"
                           },
                           {
-                            "id": 25,
-                            "name": "Endodontist"
+                            "sub_industry_id": 25,
+                            "sub_industry_name": "Endodontist"
                           },
                           {
-                            "id": 15,
-                            "name": "ENT"
+                            "sub_industry_id": 15,
+                            "sub_industry_name": "ENT"
                           },
                           {
-                            "id": 149,
-                            "name": "ENT Specialist"
+                            "sub_industry_id": 149,
+                            "sub_industry_name": "ENT Specialist"
                           },
                           {
-                            "id": 17,
-                            "name": "Gastroenterology"
+                            "sub_industry_id": 17,
+                            "sub_industry_name": "Gastroenterology"
                           },
                           {
-                            "id": 18,
-                            "name": "Hearing Aid Specialist"
+                            "sub_industry_id": 18,
+                            "sub_industry_name": "Hearing Aid Specialist"
                           },
                           {
-                            "id": 9999,
-                            "name": "Others"
+                            "sub_industry_id": 27,
+                            "sub_industry_name": "Hospital and Ambulatory Surgery Center"
+                          },
+                          {
+                            "sub_industry_id": 3,
+                            "sub_industry_name": "Med Spas"
+                          },
+                          {
+                            "sub_industry_id": 26,
+                            "sub_industry_name": "Naturopathic Medicine"
                           }
                         ]
-                      },
-                      "code": "success"
+                      }
                     }
                   }
                 }
@@ -1156,7 +1164,7 @@
             "description": "Enter the industry id you want the speciality list of"
           }
         ],
-        "description": "Returns the list of industries with their respective specialities. `speciality_id` is used in /provider(post) API while creating a provider."
+        "description": "Returns the list of industries with their respective sub-industries. `sub_industry_id` is used in /provider(post) API while creating a provider."
       },
       "parameters": []
     },
