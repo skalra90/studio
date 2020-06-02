@@ -2360,7 +2360,14 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
                 },
                 "examples": {
                   "If required field is not provided": {
@@ -2395,7 +2402,8 @@
             },
             "in": "query",
             "name": "account_holder_name",
-            "required": true
+            "required": true,
+            "description": "Bank account holder's name"
           },
           {
             "schema": {
@@ -2407,7 +2415,8 @@
             },
             "in": "query",
             "name": "account_type",
-            "required": true
+            "required": true,
+            "description": "Possible account types are \"individual\" and \"company\""
           },
           {
             "schema": {
@@ -2415,7 +2424,8 @@
             },
             "in": "query",
             "name": "routing_number",
-            "required": true
+            "required": true,
+            "description": "Bank account's routing number"
           },
           {
             "schema": {
@@ -2423,7 +2433,8 @@
             },
             "in": "query",
             "name": "account_number",
-            "required": true
+            "required": true,
+            "description": "Bank account's number"
           }
         ]
       }
