@@ -217,33 +217,103 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "provider_id": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    },
                     "message": {
                       "type": "string"
                     },
                     "code": {
                       "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "provider_id": {
+                          "type": "string"
+                        },
+                        "first_name": {
+                          "type": "string"
+                        },
+                        "last_name": {
+                          "type": "string"
+                        },
+                        "date_registered": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "phone": {
+                          "type": "string"
+                        },
+                        "address": {
+                          "type": [
+                            "string",
+                            "object"
+                          ],
+                          "properties": {
+                            "line1": {
+                              "type": "string"
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "state": {
+                              "type": "string"
+                            },
+                            "zip": {
+                              "type": "number"
+                            }
+                          }
+                        },
+                        "speciality": {
+                          "type": "object",
+                          "properties": {
+                            "sub_industry_name": {
+                              "type": "string"
+                            },
+                            "sub_industry_id": {
+                              "type": "string"
+                            },
+                            "industry_name": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "payments_enabled": {
+                          "type": "boolean"
+                        },
+                        "payments_disabled_reason": {
+                          "type": "string"
+                        }
+                      }
                     }
                   }
                 },
                 "examples": {
                   "Provider added successfully": {
                     "value": {
-                      "data": {
-                        "provider_id": "pr_cdd4554aad8af8d3743fb39abf6ba51b"
-                      },
                       "message": "Provider added successfully",
-                      "code": "success"
+                      "code": "success",
+                      "data": {
+                        "provider_id": "pr_64a9325bb4e3190fd9059b77efa19001",
+                        "first_name": "Charles",
+                        "last_name": "One",
+                        "date_registered": "2020-06-02T05:04:55.000Z",
+                        "email": "charles12.one@denefits.com",
+                        "phone": "1235567899",
+                        "address": {
+                          "line1": "test address",
+                          "city": "Suffolk",
+                          "state": "Virginia",
+                          "zip": 23433
+                        },
+                        "speciality": {
+                          "sub_industry_name": "Chiropractics",
+                          "sub_industry_id": 6,
+                          "industry_name": "Healthcare"
+                        },
+                        "payments_enabled": false,
+                        "payments_disabled_reason": "no_bank_added"
+                      }
                     }
                   }
                 }
