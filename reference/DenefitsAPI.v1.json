@@ -53,9 +53,15 @@
                     "message": {
                       "type": "string"
                     },
+                    "code": {
+                      "type": "string"
+                    },
                     "data": {
                       "type": "object",
                       "properties": {
+                        "count": {
+                          "type": "number"
+                        },
                         "list": {
                           "type": "array",
                           "items": {
@@ -89,23 +95,37 @@
                                 "example": "2020-05-08T11:58:25.000Z",
                                 "description": "Provider's date of registration."
                               },
-                              "address": {
-                                "type": "array",
-                                "description": "Business' street address.",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "line1": {
-                                      "type": "string"
-                                    },
-                                    "city": {
-                                      "type": "string"
-                                    },
-                                    "state": {
-                                      "type": "string"
-                                    },
-                                    "zip": {
-                                      "type": "string"
+                              "business_info": {
+                                "type": "object",
+                                "properties": {
+                                  "email": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "phone": {
+                                    "type": "string"
+                                  },
+                                  "address": {
+                                    "type": "array",
+                                    "description": "Business' street address.",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "line1": {
+                                          "type": "string"
+                                        },
+                                        "city": {
+                                          "type": "string"
+                                        },
+                                        "state": {
+                                          "type": "string"
+                                        },
+                                        "zip": {
+                                          "type": "string"
+                                        }
+                                      }
                                     }
                                   }
                                 }
@@ -117,32 +137,23 @@
                                 "type": "string"
                               },
                               "speciality": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "sub_industry_name": {
-                                      "type": "string"
-                                    },
-                                    "sub_industry_id": {
-                                      "type": "number"
-                                    },
-                                    "industry_name": {
-                                      "type": "string"
-                                    }
+                                "type": "object",
+                                "properties": {
+                                  "sub_industry_name": {
+                                    "type": "string"
+                                  },
+                                  "sub_industry_id": {
+                                    "type": "number"
+                                  },
+                                  "industry_name": {
+                                    "type": "string"
                                   }
                                 }
                               }
                             }
                           }
-                        },
-                        "count": {
-                          "type": "number"
                         }
                       }
-                    },
-                    "code": {
-                      "type": "string"
                     }
                   }
                 },
@@ -159,11 +170,16 @@
                             "date_registered": "2020-04-08T09:01:40.000Z",
                             "email": "test1@gmail.com",
                             "phone": "9675457654",
-                            "address": {
-                              "line1": "45, square root",
-                              "city": "Grand Ridge",
-                              "state": "Florida",
-                              "zip": "32442"
+                            "business_info": {
+                              "email": "businessEmail@denefits.com",
+                              "name": "BB dentals",
+                              "phone": "+1-1234567890",
+                              "address": {
+                                "line1": "#29 street",
+                                "city": "Suffolk",
+                                "state": "Virginia",
+                                "zip": "23433"
+                              }
                             },
                             "speciality": {
                               "sub_industry_name": "Mobile Phone Industry",
@@ -180,12 +196,7 @@
                             "date_registered": "2020-04-07T07:14:23.000Z",
                             "email": "demo1@gmail.com",
                             "phone": "9564838477",
-                            "address": {
-                              "line1": "test Address",
-                              "city": "Quitman",
-                              "state": "Arkansas",
-                              "zip": "72131"
-                            },
+                            "business_info": null,
                             "speciality": {
                               "sub_industry_name": "Civil Engineering",
                               "sub_industry_id": 297,
