@@ -737,6 +737,12 @@
                   "business_phone": {
                     "type": "string"
                   },
+                  "business_address": {
+                    "type": "string"
+                  },
+                  "business_zipcode": {
+                    "type": "number"
+                  },
                   "bank_token": {
                     "type": "string"
                   },
@@ -770,6 +776,8 @@
                   "business_email",
                   "business_name",
                   "business_phone",
+                  "business_address",
+                  "business_zipcode",
                   "bank_token"
                 ]
               },
@@ -780,6 +788,8 @@
                     "business_email": "john@gmail.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
+                    "business_address": "#34 street",
+                    "business_zipcode": "12345",
                     "bank_token": "btok_us******",
                     "company_name": "Dental Clinic",
                     "company_tax_id": "1234567"
@@ -791,6 +801,8 @@
                     "business_email": "john@gmail.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
+                    "business_address": "#34 street",
+                    "business_zipcode": "12345",
                     "ssn_number": 123456789,
                     "dl_front": "file_1GiLcuGLNiHiuNVIvOx4U3Fy",
                     "dl_back": "file_1GiLd7GLNiHiuNVITn329MVK",
