@@ -452,14 +452,12 @@
                 ]
               },
               "examples": {
-                "example": {
+                "Example": {
                   "value": {
-                    "email": "charles.one@denefits.com",
-                    "first_name": "Charles",
-                    "last_name": "One",
-                    "phone": "1234567890",
-                    "zipcode": "23433",
-                    "business_address": "test address",
+                    "provider_email": "charles.one@denefits.com",
+                    "provider_first_name": "Charles",
+                    "provider_last_name": "One",
+                    "provider_phone": "1234567890",
                     "sub_industry_id": 2
                   }
                 }
