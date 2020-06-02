@@ -777,8 +777,7 @@
                     "business_address": "#34 street",
                     "business_zipcode": "12345",
                     "bank_token": "btok_us******",
-                    "company_name": "Dental Clinic",
-                    "company_tax_id": "1234567"
+                    "business_tax_id": "1234567"
                   }
                 },
                 "Individual Account Example": {
