@@ -828,6 +828,13 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message."
+                    },
+                    "code": {
+                      "type": "string"
+                    },
                     "data": {
                       "type": "array",
                       "items": {
@@ -942,13 +949,6 @@
                           }
                         }
                       }
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "Message."
-                    },
-                    "code": {
-                      "type": "string"
                     }
                   }
                 },
