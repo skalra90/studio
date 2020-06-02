@@ -1845,7 +1845,7 @@
                                 "type": "number"
                               },
                               "provider_id": {
-                                "type": "number"
+                                "type": "string"
                               },
                               "contract_code": {
                                 "type": "string"
@@ -1871,7 +1871,7 @@
                           {
                             "contract_id": 17351,
                             "contract_code": "STGMWLK17351",
-                            "provider_id": 6550,
+                            "provider_id": "pr_715a72e826fa08aa73c3b25809dabf95",
                             "customer_id": 3174,
                             "customer_first_name": "Steven",
                             "customer_last_name": "Gerrard",
