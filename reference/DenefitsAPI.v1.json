@@ -244,25 +244,9 @@
                         "phone": {
                           "type": "string"
                         },
-                        "address": {
-                          "type": [
-                            "string",
-                            "object"
-                          ],
-                          "properties": {
-                            "line1": {
-                              "type": "string"
-                            },
-                            "city": {
-                              "type": "string"
-                            },
-                            "state": {
-                              "type": "string"
-                            },
-                            "zip": {
-                              "type": "number"
-                            }
-                          }
+                        "business_info": {
+                          "type": "object",
+                          "description": ""
                         },
                         "speciality": {
                           "type": "object",
@@ -300,12 +284,7 @@
                         "date_registered": "2020-06-02T05:04:55.000Z",
                         "email": "charles12.one@denefits.com",
                         "phone": "1235567899",
-                        "address": {
-                          "line1": "test address",
-                          "city": "Suffolk",
-                          "state": "Virginia",
-                          "zip": 23433
-                        },
+                        "business_info": null,
                         "speciality": {
                           "sub_industry_name": "Chiropractics",
                           "sub_industry_id": 6,
