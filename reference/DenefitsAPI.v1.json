@@ -1624,6 +1624,9 @@
                     "message": {
                       "type": "string"
                     },
+                    "code": {
+                      "type": "string"
+                    },
                     "data": {
                       "type": "object",
                       "properties": {
@@ -1660,22 +1663,25 @@
                             "customer_signature": {
                               "type": "string"
                             },
+                            "downpayment_amount": {
+                              "type": "number"
+                            },
                             "financed_amount": {
                               "type": "number"
                             },
                             "interest_rate": {
                               "type": "number"
                             },
-                            "emi_amount": {
+                            "recurring_amount": {
                               "type": "number"
                             },
-                            "total_emi": {
+                            "number_of_payments": {
                               "type": "number"
                             },
-                            "remaining_emi": {
+                            "remaining_payments": {
                               "type": "number"
                             },
-                            "next_emi_date": {
+                            "next_recurring_date": {
                               "type": "string"
                             },
                             "contract_status": {
@@ -1712,14 +1718,14 @@
                           "customer_mobile": "+1-2055306266",
                           "customer_address": "#15 test, East Pembroke, NY, 14056",
                           "customer_signature": "https://denefits.s3.amazonaws.com/pat************",
+                          "downpayment_amount": 0,
                           "financed_amount": 1000,
                           "interest_rate": 16.49,
-                          "emi_amount": 67.29,
-                          "total_emi": 18,
-                          "remaining_emi": 18,
-                          "next_emi_date": "2020-05-15",
+                          "recurring_amount": 67.29,
+                          "number_of_payments": 18,
+                          "remaining_payments": 18,
+                          "next_recurring_date": "2020-05-15",
                           "contract_status": "Active",
-                          "title": "",
                           "zipcode": 12345,
                           "last_updated": "2020-05-15T11:14:57.000Z",
                           "date_added": "2020-05-15T07:41:09.000Z"
