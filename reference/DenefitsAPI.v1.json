@@ -1532,6 +1532,9 @@
                     "message": {
                       "type": "string"
                     },
+                    "code": {
+                      "type": "string"
+                    },
                     "data": {
                       "type": "object",
                       "properties": {
@@ -1544,9 +1547,6 @@
                           "description": "Contract code for reference."
                         }
                       }
-                    },
-                    "code": {
-                      "type": "string"
                     }
                   }
                 },
@@ -1554,11 +1554,11 @@
                   "Success": {
                     "value": {
                       "message": "Customer Financed Successfully",
+                      "code": "success",
                       "data": {
                         "contract_id": 17351,
                         "contract_code": "STGMWLK17351"
-                      },
-                      "code": "success"
+                      }
                     }
                   }
                 }
