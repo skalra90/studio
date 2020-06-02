@@ -707,7 +707,7 @@
           }
         },
         "operationId": "post-provider-bank",
-        "description": "Add provider's bank account which will be used to receive the payouts\n\nIf bank token is created with \"individual\" account type then send `ssn_number`, `date_of_birth`, `front_file`, `back_file`\n\nIf bank token is created with \"company\" account type then send `company_name`, `company_tax_id`",
+        "description": "Add provider's bank account which will be used to receive the payouts\n\nIf bank token is created with \"individual\" account type then send `ssn_number`, `date_of_birth`, `front_file`, `back_file`\n\nIf bank token is created with \"company\" account type then send `business_tax_id`",
         "parameters": [],
         "requestBody": {
           "content": {
@@ -754,7 +754,7 @@
                   },
                   "business_tax_id": {
                     "type": "string",
-                    "description": "company_tax_id is required if \"company\" type bank account is created"
+                    "description": "business_tax_id is required if \"company\" type bank account is created"
                   }
                 },
                 "required": [
