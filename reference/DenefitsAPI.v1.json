@@ -953,9 +953,10 @@
                   }
                 },
                 "examples": {
-                  "Success.": {
+                  "Success": {
                     "value": {
                       "message": "Success",
+                      "code": "success",
                       "data": {
                         "plans": [
                           {
@@ -991,8 +992,7 @@
                             }
                           }
                         ]
-                      },
-                      "code": "success"
+                      }
                     }
                   }
                 }
