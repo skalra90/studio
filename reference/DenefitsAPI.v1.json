@@ -71,21 +71,21 @@
                                 "type": "string",
                                 "description": "Provider's Unique Identifier."
                               },
-                              "email": {
+                              "provider_email": {
                                 "type": "string",
                                 "format": "email",
                                 "example": "charles90@denefits.com",
                                 "description": "Provider's email address. "
                               },
-                              "first_name": {
+                              "provider_first_name": {
                                 "type": "string",
                                 "description": "Provider's first name."
                               },
-                              "last_name": {
+                              "provider_last_name": {
                                 "type": "string",
                                 "description": "Provider's last name."
                               },
-                              "phone": {
+                              "provider_phone": {
                                 "type": "string",
                                 "description": "Provider's phone number."
                               },
@@ -98,16 +98,16 @@
                               "business_info": {
                                 "type": "object",
                                 "properties": {
-                                  "email": {
+                                  "business_email": {
                                     "type": "string"
                                   },
-                                  "name": {
+                                  "business_name": {
                                     "type": "string"
                                   },
-                                  "phone": {
+                                  "business_phone": {
                                     "type": "string"
                                   },
-                                  "address": {
+                                  "business_address": {
                                     "type": "array",
                                     "description": "Business' street address.",
                                     "items": {
@@ -165,16 +165,16 @@
                         "list": [
                           {
                             "provider_id": "pr_084aa5f9bad7a2d72a25d7887e365e0f",
-                            "first_name": "Test 1",
-                            "last_name": "Test 2",
+                            "provider_first_name": "Test 1",
+                            "provider_last_name": "Test 2",
                             "date_registered": "2020-04-08T09:01:40.000Z",
-                            "email": "test1@gmail.com",
-                            "phone": "9675457654",
+                            "provider_email": "test1@gmail.com",
+                            "provider_phone": "9675457654",
                             "business_info": {
-                              "email": "businessEmail@denefits.com",
-                              "name": "BB dentals",
-                              "phone": "1234567890",
-                              "address": {
+                              "business_email": "businessEmail@denefits.com",
+                              "business_name": "BB dentals",
+                              "business_phone": "1234567890",
+                              "business_address": {
                                 "line1": "#29 street",
                                 "city": "Suffolk",
                                 "state": "Virginia",
@@ -191,11 +191,11 @@
                           },
                           {
                             "provider_id": "pr_c1394a2ece54157085a4102ead09a2d0",
-                            "first_name": "Demo 1",
-                            "last_name": "Demo 2",
+                            "provider_first_name": "Demo 1",
+                            "provider_last_name": "Demo 2",
                             "date_registered": "2020-04-07T07:14:23.000Z",
-                            "email": "demo1@gmail.com",
-                            "phone": "9564838477",
+                            "provider_email": "demo1@gmail.com",
+                            "provider_phone": "9564838477",
                             "business_info": null,
                             "speciality": {
                               "sub_industry_name": "Civil Engineering",
