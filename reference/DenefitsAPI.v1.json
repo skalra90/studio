@@ -240,19 +240,19 @@
                         "provider_id": {
                           "type": "string"
                         },
-                        "first_name": {
+                        "provider_first_name": {
                           "type": "string"
                         },
-                        "last_name": {
+                        "provider_last_name": {
                           "type": "string"
                         },
                         "date_registered": {
                           "type": "string"
                         },
-                        "email": {
+                        "provider_email": {
                           "type": "string"
                         },
-                        "phone": {
+                        "provider_phone": {
                           "type": "string"
                         },
                         "business_info": {
@@ -290,11 +290,11 @@
                       "code": "success",
                       "data": {
                         "provider_id": "pr_64a9325bb4e3190fd9059b77efa19001",
-                        "first_name": "Charles",
-                        "last_name": "One",
+                        "provider_first_name": "Charles",
+                        "provider_last_name": "One",
                         "date_registered": "2020-06-02T05:04:55.000Z",
-                        "email": "charles12.one@denefits.com",
-                        "phone": "1235567899",
+                        "provider_email": "charles12.one@denefits.com",
+                        "provider_phone": "1235567899",
                         "business_info": null,
                         "speciality": {
                           "sub_industry_name": "Chiropractics",
