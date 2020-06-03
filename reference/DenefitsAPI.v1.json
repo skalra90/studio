@@ -2277,9 +2277,6 @@
     },
     {
       "name": "Provider Contract"
-    },
-    {
-      "name": "Provider Payment"
     }
   ],
   "security": [
