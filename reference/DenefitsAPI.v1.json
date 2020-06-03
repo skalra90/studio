@@ -1647,26 +1647,8 @@
                             "provider_id": {
                               "type": "string"
                             },
-                            "customer_id": {
+                            "service_amount": {
                               "type": "number"
-                            },
-                            "customer_first_name": {
-                              "type": "string"
-                            },
-                            "customer_last_name": {
-                              "type": "string"
-                            },
-                            "customer_email": {
-                              "type": "string"
-                            },
-                            "customer_mobile": {
-                              "type": "string"
-                            },
-                            "customer_address": {
-                              "type": "string"
-                            },
-                            "customer_signature": {
-                              "type": "string"
                             },
                             "downpayment_amount": {
                               "type": "number"
@@ -1695,10 +1677,126 @@
                             "zipcode": {
                               "type": "number"
                             },
-                            "last_updated": {
+                            "date_added": {
                               "type": "string"
                             },
-                            "date_added": {
+                            "monthly_payable": {
+                              "type": "object",
+                              "properties": {
+                                "total": {
+                                  "type": "number"
+                                },
+                                "breakdown": {
+                                  "type": "object",
+                                  "properties": {
+                                    "amount": {
+                                      "type": "number"
+                                    },
+                                    "transaction_fee": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "default_card_last4": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "payments": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "amount_charged": {
+                                "type": "number"
+                              },
+                              "amount_refunded": {
+                                "type": "number"
+                              },
+                              "charge_status": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              },
+                              "last4": {
+                                "type": "string"
+                              },
+                              "paid_by": {
+                                "type": "string"
+                              },
+                              "payment_source": {
+                                "type": "string"
+                              },
+                              "payment_type": {
+                                "type": "string"
+                              },
+                              "fees": {
+                                "type": "object",
+                                "properties": {
+                                  "late_fee": {
+                                    "type": "number"
+                                  },
+                                  "late_fee_refunded": {
+                                    "type": "string"
+                                  },
+                                  "recurring_date_edit_fee": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "partner_share": {
+                                "type": "object",
+                                "properties": {
+                                  "amount": {
+                                    "type": "number"
+                                  },
+                                  "net": {
+                                    "type": "number"
+                                  },
+                                  "reversed": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "provider_share": {
+                                "type": "object",
+                                "properties": {
+                                  "amount": {
+                                    "type": "number"
+                                  },
+                                  "net": {
+                                    "type": "number"
+                                  },
+                                  "reversed": {
+                                    "type": "number"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "customer": {
+                          "type": "object",
+                          "properties": {
+                            "customer_address": {
+                              "type": "string"
+                            },
+                            "customer_email": {
+                              "type": "string"
+                            },
+                            "customer_first_name": {
+                              "type": "string"
+                            },
+                            "customer_last_name": {
+                              "type": "string"
+                            },
+                            "customer_mobile": {
+                              "type": "string"
+                            },
+                            "date_of_birth": {
                               "type": "string"
                             }
                           }
@@ -1711,29 +1809,115 @@
                   "Success": {
                     "value": {
                       "message": "Request executed successfully",
+                      "code": "success",
                       "data": {
-                        "contract_data": {
-                          "contract_id": 16813,
-                          "contract_code": "RATJJJ****",
-                          "provider_id": "pr_084aa5f9bad7a2d72a25d7887e365e0f",
-                          "customer_id": 3173,
+                        "contract": {
+                          "contract_id": 17494,
+                          "contract_code": "HMSZDQY17494",
+                          "provider_id": "pr_fa616f459c0a062077c827ee003a04ca",
+                          "service_amount": 1000,
+                          "downpayment_amount": 100,
+                          "financed_amount": 900,
+                          "interest_rate": 16.99,
+                          "recurring_amount": 69.45,
+                          "default_card_last4": "1111",
+                          "monthly_payable": {
+                            "total": 72.45,
+                            "breakdown": {
+                              "amount": 69.45,
+                              "transaction_fee": 3
+                            }
+                          },
+                          "number_of_payments": 12,
+                          "remaining_payments": 12,
+                          "next_recurring_date": "2020-06-07T00:00:00.000Z",
+                          "contract_status": "Active",
+                          "date_added": "2020-06-03T12:16:16.000Z"
+                        },
+                        "payments": [
+                          {
+                            "amount_charged": 217.95,
+                            "amount_refunded": 0,
+                            "charge_status": "Paid",
+                            "paid_by": "customer",
+                            "payment_source": "card",
+                            "last4": "1111",
+                            "fees": {
+                              "late_fee": 0,
+                              "late_fee_refunded": 0,
+                              "recurring_date_edit_fee": 0
+                            },
+                            "payment_type": "Denefits Fee + Down Payment + Upfront Payment",
+                            "partner_share": {
+                              "amount": 0.82,
+                              "reversed": 0,
+                              "net": 0.82
+                            },
+                            "provider_share": {
+                              "amount": 99.5,
+                              "reversed": 0,
+                              "net": 99.5
+                            },
+                            "date_added": "2020-06-03T12:16:16.000Z"
+                          },
+                          {
+                            "amount_charged": 104,
+                            "amount_refunded": 0,
+                            "charge_status": "Paid",
+                            "paid_by": "customer",
+                            "payment_source": "card",
+                            "last4": "1111",
+                            "fees": {
+                              "late_fee": 0,
+                              "late_fee_refunded": 0,
+                              "recurring_date_edit_fee": 0
+                            },
+                            "payment_type": "Partial Payment",
+                            "partner_share": {
+                              "amount": 1,
+                              "reversed": 0,
+                              "net": 1
+                            },
+                            "provider_share": {
+                              "amount": 91.06,
+                              "reversed": 0,
+                              "net": 91.06
+                            },
+                            "date_added": "2020-06-03T13:22:21.000Z"
+                          },
+                          {
+                            "amount_charged": 4.71,
+                            "amount_refunded": 0,
+                            "charge_status": "Paid",
+                            "paid_by": "provider",
+                            "payment_source": "card",
+                            "last4": "4242",
+                            "fees": {
+                              "late_fee": 0,
+                              "late_fee_refunded": 0,
+                              "recurring_date_edit_fee": 4.71
+                            },
+                            "payment_type": "Recurring Date Edited",
+                            "partner_share": {
+                              "amount": 0,
+                              "reversed": 0,
+                              "net": 0
+                            },
+                            "provider_share": {
+                              "amount": 0,
+                              "reversed": 0,
+                              "net": 0
+                            },
+                            "date_added": "2020-06-03T13:35:45.000Z"
+                          }
+                        ],
+                        "customer": {
                           "customer_first_name": "Ted",
                           "customer_last_name": "Mosby",
-                          "customer_email": "tedmosby@gmail.com",
-                          "customer_mobile": "+1-2055306266",
-                          "customer_address": "#15 test, East Pembroke, NY, 14056",
-                          "customer_signature": "https://denefits.s3.amazonaws.com/pat************",
-                          "downpayment_amount": 0,
-                          "financed_amount": 1000,
-                          "interest_rate": 16.49,
-                          "recurring_amount": 67.29,
-                          "number_of_payments": 18,
-                          "remaining_payments": 18,
-                          "next_recurring_date": "2020-05-15",
-                          "contract_status": "Active",
-                          "zipcode": 12345,
-                          "last_updated": "2020-05-15T11:14:57.000Z",
-                          "date_added": "2020-05-15T07:41:09.000Z"
+                          "customer_email": "ted.mosby@denefits.com",
+                          "customer_mobile": "7873987478",
+                          "customer_address": "189 Beaver Ridge Ave. test address, Schenectady, NY, 12345",
+                          "date_of_birth": "1993-07-04"
                         }
                       }
                     }
