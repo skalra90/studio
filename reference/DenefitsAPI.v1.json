@@ -1004,7 +1004,7 @@
               "example": 1200
             },
             "in": "query",
-            "name": "amount",
+            "name": "service_amount",
             "description": "Total service amount",
             "required": true
           },
