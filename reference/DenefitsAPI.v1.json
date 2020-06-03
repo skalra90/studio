@@ -1142,6 +1142,9 @@
                               },
                               "sub_industry_name": {
                                 "type": "string"
+                              },
+                              "industry_name": {
+                                "type": "string"
                               }
                             }
                           }
@@ -1159,63 +1162,78 @@
                         "list": [
                           {
                             "sub_industry_id": 156,
-                            "sub_industry_name": "Cardio special"
+                            "sub_industry_name": "Cardio special",
+                            "industry_name": "Healthcare"
                           },
                           {
                             "sub_industry_id": 6,
-                            "sub_industry_name": "Chiropractics"
+                            "sub_industry_name": "Chiropractics",
+                            "industry_name": "Healthcare"
                           },
                           {
                             "sub_industry_id": 12,
-                            "sub_industry_name": "Cosmetic Surgery"
+                            "sub_industry_name": "Cosmetic Surgery",
+                            "industry_name": "Healthcare"
                           },
                           {
                             "sub_industry_id": 1,
-                            "sub_industry_name": "Dental"
+                            "sub_industry_name": "Dental",
+                            "industry_name": "Healthcare"
                           },
                           {
                             "sub_industry_id": 2,
-                            "sub_industry_name": "Dermatology"
+                            "sub_industry_name": "Dermatology",
+                            "industry_name": "Healthcare"
                           },
                           {
                             "sub_industry_id": 13,
-                            "sub_industry_name": "Diabetes and Metabolic Specialist"
+                            "sub_industry_name": "Diabetes and Metabolic Specialist",
+                            "industry_name": "Healthcare"
                           },
                           {
                             "sub_industry_id": 14,
-                            "sub_industry_name": "Dietitians"
+                            "sub_industry_name": "Dietitians",
+                            "industry_name": "Healthcare"
                           },
                           {
                             "sub_industry_id": 25,
-                            "sub_industry_name": "Endodontist"
+                            "sub_industry_name": "Endodontist",
+                            "industry_name": "Healthcare"
                           },
                           {
                             "sub_industry_id": 15,
-                            "sub_industry_name": "ENT"
+                            "sub_industry_name": "ENT",
+                            "industry_name": "Healthcare"
                           },
                           {
                             "sub_industry_id": 149,
-                            "sub_industry_name": "ENT Specialist"
+                            "sub_industry_name": "ENT Specialist",
+                            "industry_name": "Healthcare"
                           },
                           {
                             "sub_industry_id": 17,
-                            "sub_industry_name": "Gastroenterology"
+                            "sub_industry_name": "Gastroenterology",
+                            "industry_name": "Healthcare"
                           },
                           {
                             "sub_industry_id": 18,
-                            "sub_industry_name": "Hearing Aid Specialist"
+                            "sub_industry_name": "Hearing Aid Specialist",
+                            "industry_name": "Healthcare"
                           },
                           {
                             "sub_industry_id": 27,
-                            "sub_industry_name": "Hospital and Ambulatory Surgery Center"
+                            "sub_industry_name": "Hospital and Ambulatory Surgery Center",
+                            "industry_name": "Healthcare"
                           },
                           {
                             "sub_industry_id": 3,
-                            "sub_industry_name": "Med Spas"
+                            "sub_industry_name": "Med Spas",
+                            "industry_name": "Healthcare"
                           },
                           {
                             "sub_industry_id": 26,
-                            "sub_industry_name": "Naturopathic Medicine"
+                            "sub_industry_name": "Naturopathic Medicine",
+                            "industry_name": "Healthcare"
                           }
                         ]
                       }
