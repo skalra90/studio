@@ -319,33 +319,47 @@
                   "properties": {
                     "message": {
                       "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
                     }
                   }
                 },
                 "examples": {
                   "If token is missing in headers": {
                     "value": {
-                      "message": "Mandatory parameter 'token' is missing."
+                      "message": "Authorization token is missing.",
+                      "code": "no_auth"
                     }
                   },
                   "If any of the required_field is missing in the body": {
                     "value": {
-                      "message": "\"required_field\" is required"
+                      "message": "\"required_field\" is required",
+                      "code": "parameter_missing"
                     }
                   },
                   "If wrong mobile number is entered": {
                     "value": {
-                      "message": "Invalid \"phone\" provided "
+                      "message": "Invalid \"phone\" provided ",
+                      "code": "invalid_parameter"
                     }
                   },
                   "If wrong email is entered": {
                     "value": {
-                      "message": "\"email\" must be a valid email"
+                      "message": "\"provider_email\" must be a valid email",
+                      "code": "invalid_parameter"
                     }
                   },
                   "If email is empty": {
                     "value": {
-                      "message": "\"email\" is not allowed to be empty"
+                      "message": "\"provider_email\" is not allowed to be empty",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If sub_industry_id is invalid": {
+                    "value": {
+                      "message": "Invalid sub industry ID",
+                      "code": "invalid_sub_industry"
                     }
                   }
                 }
@@ -364,13 +378,7 @@
                     }
                   }
                 },
-                "examples": {
-                  "If token is wrong": {
-                    "value": {
-                      "message": "Invalid auth token provided"
-                    }
-                  }
-                }
+                "examples": {}
               }
             }
           },
@@ -381,11 +389,10 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {}
-                    },
                     "message": {
+                      "type": "string"
+                    },
+                    "code": {
                       "type": "string"
                     }
                   }
@@ -393,7 +400,14 @@
                 "examples": {
                   "If mobile number is already exist in the system.": {
                     "value": {
-                      "message": "Phone number already registered"
+                      "message": "Phone number already registered",
+                      "code": "duplicate_phone"
+                    }
+                  },
+                  "If email is already exist in the system.": {
+                    "value": {
+                      "message": "Email already registered",
+                      "code": "duplicate_email"
                     }
                   }
                 }
@@ -2122,7 +2136,6 @@
       },
       "parameters": []
     },
-
     "/payment/bank_token": {
       "get": {
         "summary": "Create bank token",
