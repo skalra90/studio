@@ -1180,7 +1180,7 @@
       "get": {
         "summary": "List of sub-industries of an industry.",
         "tags": [
-          "Industry - Specialities"
+          "Industry - Sub industry"
         ],
         "responses": {
           "200": {
@@ -1446,7 +1446,7 @@
         "description": "Returns the list of industries.",
         "parameters": [],
         "tags": [
-          "Industry - Specialities"
+          "Industry - Sub industry"
         ]
       },
       "parameters": []
