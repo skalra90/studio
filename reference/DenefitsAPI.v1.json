@@ -549,6 +549,38 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If bank not added for the provider": {
+                    "value": {
+                      "message": "No bank added.",
+                      "code": "bank_not_linked"
+                    }
+                  },
+                  "If provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "operationId": "get-provider-bank",
@@ -698,6 +730,9 @@
                   "type": "object",
                   "properties": {
                     "message": {
+                      "type": "string"
+                    },
+                    "code": {
                       "type": "string"
                     }
                   }
@@ -998,6 +1033,50 @@
               }
             },
             "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider doesn't have bank account linked": {
+                    "value": {
+                      "message": "This provider doesn't have a bank account linked with their account.",
+                      "code": "bank_not_linked"
+                    }
+                  },
+                  "If provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If service amount is not a valid number": {
+                    "value": {
+                      "message": "\"service_amount\" must be a safe number",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If service amount/downpayment amount is incorrect": {
+                    "value": {
+                      "message": "Finance amount (Service amount - downpayment) must be between $300 and $20000 ",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "operationId": "get-plans",
@@ -1256,6 +1335,32 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If industry_id is not a valid number": {
+                    "value": {
+                      "message": "\"industry_id\" must be a safe number",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "operationId": "get-provider-speciality",
@@ -1411,6 +1516,50 @@
                       "data": {
                         "finance_token": "64de0703e3b61****************"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If provider does not belong to the partner": {
+                    "value": {
+                      "message": "Provider does not belong to this partner.",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If plan_id is invalid": {
+                    "value": {
+                      "message": "Invalid plan.",
+                      "code": "invalid_finance_detail"
+                    }
+                  },
+                  "If any of the required_field is missing": {
+                    "value": {
+                      "message": "\"required_field\" is required",
+                      "code": "parameter_missing"
                     }
                   }
                 }
@@ -1578,6 +1727,38 @@
                         "contract_id": 17351,
                         "contract_code": "STGMWLK17351"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "if card_token is missing": {
+                    "value": {
+                      "message": "stripe_token is undefined",
+                      "code": "invalid_finance_detail"
+                    }
+                  },
+                  "If finance_token is missing or invalid": {
+                    "value": {
+                      "message": "Invalid finance token",
+                      "code": "invalid_finance_token"
                     }
                   }
                 }
@@ -1939,6 +2120,38 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If contract_id is wrong": {
+                    "value": {
+                      "message": "No such contract found.",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "operationId": "get-contract",
@@ -2103,6 +2316,38 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "if provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If provider does not belong to the partner": {
+                    "value": {
+                      "message": "Provider does not belong to this partner.",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "operationId": "get-contract-list",
@@ -2204,8 +2449,8 @@
                   },
                   "If invalid routing number is provided": {
                     "value": {
-                      "message": "Invalid routing number provided",
-                      "code": "invalid_routing_number"
+                      "message": "\"routing_number\" must be a safe number",
+                      "code": "invalid_parameter"
                     }
                   },
                   "If invalid account number is provided": {
