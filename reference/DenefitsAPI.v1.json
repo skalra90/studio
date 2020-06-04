@@ -688,9 +688,9 @@
                   }
                 },
                 "examples": {
-                  "If required field is missing": {
+                  "If required_field is missing": {
                     "value": {
-                      "message": "\"provider_id\" is required",
+                      "message": "\"required_field\" is required",
                       "code": "parameter_missing"
                     }
                   },
@@ -717,37 +717,11 @@
                       "message": "Invalid bank token",
                       "code": "invalid_bank_token"
                     }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "if invalid provider_id is provided": {
-                    "value": {
-                      "message": "Provider does not belong to this partner.",
-                      "code": "request_failed"
-                    }
                   },
-                  "If invalid token is provided": {
+                  "If provider_id is invalid": {
                     "value": {
-                      "message": "Invalid auth token provided",
-                      "code": "authentication_failed"
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
                     }
                   }
                 }
