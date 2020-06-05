@@ -1,0 +1,1418 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "new_api",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://endpoint.denefits.com/v1",
+      "description": "Live whitelabel"
+    }
+  ],
+  "paths": {
+    "/provider/payout/list": {
+      "get": {
+        "summary": "Provider Payout list",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "payout_id": {
+                                "type": "string"
+                              },
+                              "payout_status": {
+                                "type": "string"
+                              },
+                              "payout_amount": {
+                                "type": "number"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              },
+                              "arrival_date": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 41,
+                        "list": [
+                          {
+                            "payout_id": "po_1GqA6RE34EcXOXDeywdy1UUb",
+                            "payout_status": "paid",
+                            "payout_amount": 2942.27,
+                            "date_added": "2020-06-04T03:50:51.000Z",
+                            "arrival_date": "2020-06-06T00:00:00.000Z"
+                          },
+                          {
+                            "payout_id": "po_1GjdCJE34EcXOXDeWkinXYi8",
+                            "payout_status": "paid",
+                            "payout_amount": 496.4,
+                            "date_added": "2020-05-17T03:29:55.000Z",
+                            "arrival_date": "2020-05-19T00:00:00.000Z"
+                          },
+                          {
+                            "payout_id": "po_1GdTlwE34EcXOXDesiFS0aTA",
+                            "payout_status": "paid",
+                            "payout_amount": 1797.39,
+                            "date_added": "2020-04-30T04:13:16.000Z",
+                            "arrival_date": "2020-05-02T00:00:00.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider_id is not provided": {
+                    "value": {
+                      "message": "\"provider_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-payout-list",
+        "description": "Get listing of all payouts of this account",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "start_date",
+            "description": ""
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "end_date"
+          }
+        ]
+      }
+    },
+    "/provider/payout/detail": {
+      "get": {
+        "summary": "Provider Payout details",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "transfers": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "code": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "customer_email": {
+                                "type": "string"
+                              },
+                              "customer_name": {
+                                "type": "string"
+                              },
+                              "payment_type": {
+                                "type": "string"
+                              },
+                              "payment_amount": {
+                                "type": "number"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              },
+                              "contract_status": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 3,
+                        "transfers": [
+                          {
+                            "id": 17506,
+                            "code": "TEPMYLX17506",
+                            "type": "contract_payment",
+                            "customer_email": "tedbaker@denefits.com",
+                            "customer_name": "Ted Baker",
+                            "payment_type": "Partial Payment",
+                            "payment_amount": 91.96,
+                            "date_added": "2020-06-03T14:12:06.000Z",
+                            "contract_status": "Active"
+                          },
+                          {
+                            "id": 17506,
+                            "code": "TEPMYLX17506",
+                            "type": "contract_payment",
+                            "customer_email": "tom1122@denefits.com",
+                            "customer_name": "Tom sand",
+                            "payment_type": "Recurring Payment",
+                            "payment_amount": 91.96,
+                            "date_added": "2020-06-03T14:05:06.000Z",
+                            "contract_status": "Active"
+                          },
+                          {
+                            "id": 4392,
+                            "code": "ARB9K44392",
+                            "type": "process_payment",
+                            "customer_email": "John.sood@denefits.com",
+                            "customer_name": "Sood Him",
+                            "payment_type": "Payment Processed",
+                            "payment_amount": 979.88,
+                            "date_added": "2020-06-03T03:42:37.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider id in not provided": {
+                    "value": {
+                      "message": "\"provider_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If payout id in not provided": {
+                    "value": {
+                      "message": "\"payout_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-payout-detail",
+        "description": "Get details of the payouts by payout ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "payout_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "limit"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "skip"
+          }
+        ]
+      }
+    },
+    "/provider/reports/contract": {
+      "get": {
+        "summary": "Get provider's contract report",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "contract_code": {
+                                "type": "string"
+                              },
+                              "contract_status": {
+                                "type": "string"
+                              },
+                              "financed_amount": {
+                                "type": "number"
+                              },
+                              "downpayment_amount": {
+                                "type": "number"
+                              },
+                              "interest_rate": {
+                                "type": "number"
+                              },
+                              "next_recurring_date": {
+                                "type": "string"
+                              },
+                              "number_of_payments": {
+                                "type": "number"
+                              },
+                              "remaining_payments": {
+                                "type": "number"
+                              },
+                              "recurring_amount": {
+                                "type": "number"
+                              },
+                              "customer_address": {
+                                "type": "string"
+                              },
+                              "customer_email": {
+                                "type": "string"
+                              },
+                              "customer_name": {
+                                "type": "string"
+                              },
+                              "customer_mobile": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "list": [
+                          {
+                            "contract_code": "TEP5HTJ12743",
+                            "contract_status": "Active",
+                            "financed_amount": 850,
+                            "downpayment_amount": "0.00",
+                            "interest_rate": 20,
+                            "next_recurring_date": "2020-01-02",
+                            "number_of_payments": 6,
+                            "remaining_payments": 6,
+                            "recurring_amount": 156.44,
+                            "customer_address": "#56 street, Schenectady, New York, 12345",
+                            "customer_email": "mark.edison@denefits.com",
+                            "customer_name": "Mark Edison",
+                            "customer_mobile": "6878236279",
+                            "date_added": "2019-11-28"
+                          },
+                          {
+                            "contract_code": "TEPA3YF12812",
+                            "contract_status": "Completed",
+                            "financed_amount": 900,
+                            "downpayment_amount": "0.00",
+                            "interest_rate": 20,
+                            "next_recurring_date": "2020-01-15",
+                            "number_of_payments": 6,
+                            "remaining_payments": 0,
+                            "recurring_amount": 0,
+                            "customer_address": "#767 street, Schenectady, New York, 12345",
+                            "customer_email": "roy.fane@mailinator.com",
+                            "customer_name": "Roy Fane",
+                            "customer_mobile": "6878236279",
+                            "date_added": "2020-01-08"
+                          },
+                          {
+                            "contract_code": "TEPAMHC12832",
+                            "contract_status": "Overdue",
+                            "financed_amount": 900,
+                            "downpayment_amount": "0.00",
+                            "interest_rate": 20,
+                            "next_recurring_date": "2019-12-01",
+                            "number_of_payments": 6,
+                            "remaining_payments": 0,
+                            "recurring_amount": 0,
+                            "customer_address": "#867 Street, Schenectady, New York, 12345",
+                            "customer_email": "tom.baker@denefits.com",
+                            "customer_name": "Tom baker",
+                            "customer_mobile": "6878236279",
+                            "date_added": "2020-01-09"
+                          },
+                          {
+                            "contract_code": "TEPTS7L12833",
+                            "contract_status": "Completed",
+                            "financed_amount": 900,
+                            "downpayment_amount": "0.00",
+                            "interest_rate": 20,
+                            "next_recurring_date": "2019-12-01",
+                            "number_of_payments": 6,
+                            "remaining_payments": 2,
+                            "recurring_amount": 0,
+                            "customer_address": "#252 street, Schenectady, New York, 12345",
+                            "customer_email": "tedmosby@denefits.com",
+                            "customer_name": "Ted mosby",
+                            "customer_mobile": "6878236279",
+                            "date_added": "2020-01-09"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-reports-contract",
+        "description": "Get report of all the contracts of this account",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "start_date"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "end_date"
+          }
+        ]
+      }
+    },
+    "/provider/reports/payout": {
+      "get": {
+        "summary": "Get provider's payout report",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "start_date": {
+                          "type": "string"
+                        },
+                        "end_date": {
+                          "type": "string"
+                        },
+                        "payouts": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "payments": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "payment_type": {
+                                      "type": "string"
+                                    },
+                                    "amount": {
+                                      "type": "number"
+                                    },
+                                    "contract_status": {
+                                      "type": "string"
+                                    },
+                                    "transaction_created": {
+                                      "type": "string"
+                                    },
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "code": {
+                                      "type": "string"
+                                    },
+                                    "customer_name": {
+                                      "type": "string"
+                                    },
+                                    "customer_email": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "payout_id": {
+                                "type": "string"
+                              },
+                              "amount": {
+                                "type": "number"
+                              },
+                              "arrival_date": {
+                                "type": "string"
+                              },
+                              "status": {
+                                "type": "string"
+                              },
+                              "provider_id": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "total_payout_amount": {
+                          "type": "number"
+                        },
+                        "provider_info": {
+                          "type": "object",
+                          "properties": {
+                            "provider_name": {
+                              "type": "string"
+                            },
+                            "provider_email": {
+                              "type": "string"
+                            },
+                            "provider_id": {
+                              "type": "string"
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "state_name": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "start_date": "2020-05-01",
+                        "end_date": "2020-06-05",
+                        "payouts": [
+                          {
+                            "payments": [
+                              {
+                                "contract_code": "TEPZGGW16462",
+                                "doctor_record_id": "",
+                                "contract_id": 16462,
+                                "payment_type": "Recurring Date Edit + Late fee",
+                                "amount": -364.39,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-05-01",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPEWXN16479",
+                                "doctor_record_id": "",
+                                "contract_id": 16479,
+                                "payment_type": "Recurring Date Edit + Late fee",
+                                "amount": -73.26,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-01",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPBD2T16474",
+                                "doctor_record_id": "",
+                                "contract_id": 16474,
+                                "payment_type": "Recurring Date Edit + Late fee",
+                                "amount": -73.27,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-05-01",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEP4KUP15130",
+                                "doctor_record_id": "",
+                                "contract_id": 15130,
+                                "payment_type": "Recurring Date Edit + Late fee",
+                                "amount": -274.14,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-05-01",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEP6RPM15128",
+                                "doctor_record_id": "",
+                                "contract_id": 15128,
+                                "payment_type": "Recurring Date Edit + Late fee",
+                                "amount": -429.81,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-05-01",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPTS4T15122",
+                                "doctor_record_id": "",
+                                "contract_id": 15122,
+                                "payment_type": "Recurring Date Edit + Late fee",
+                                "amount": -329.81,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-05-01",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEP3EVQ16776",
+                                "doctor_record_id": "",
+                                "contract_id": 16776,
+                                "payment_type": "Cash adjustment (DownPayment)",
+                                "amount": -10,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPDMKJ16782",
+                                "doctor_record_id": "",
+                                "contract_id": 16782,
+                                "payment_type": "Late Fees from Business owner's ",
+                                "amount": -25,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPDMKJ16782",
+                                "doctor_record_id": "",
+                                "contract_id": 16782,
+                                "payment_type": "Payoff",
+                                "amount": 477,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPDMKJ16782",
+                                "doctor_record_id": "",
+                                "contract_id": 16782,
+                                "payment_type": "Recurring Payment",
+                                "amount": 131.68,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPDMKJ16782",
+                                "doctor_record_id": "",
+                                "contract_id": 16782,
+                                "payment_type": "Denefits Fee + Down Payment",
+                                "amount": 89.5,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEP3EVQ16776",
+                                "doctor_record_id": "",
+                                "contract_id": 16776,
+                                "payment_type": "Down Payment",
+                                "amount": 89.5,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEP3EVQ16776",
+                                "doctor_record_id": "",
+                                "contract_id": 16776,
+                                "payment_type": "Social Healthcare",
+                                "amount": 89.5,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEP3EVQ16776",
+                                "doctor_record_id": "",
+                                "contract_id": 16776,
+                                "payment_type": "Denefits Fee + Down Payment",
+                                "amount": 89.5,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPYLSG16566",
+                                "doctor_record_id": "",
+                                "contract_id": 16566,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Overdue",
+                                "transaction_created": "2020-05-05",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEP5NPP16491",
+                                "doctor_record_id": "",
+                                "contract_id": 16491,
+                                "payment_type": "Recurring Payment",
+                                "amount": 49.75,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEP5NPP16491",
+                                "doctor_record_id": "",
+                                "contract_id": 16491,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPWC7Z16488",
+                                "doctor_record_id": "",
+                                "contract_id": 16488,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPXNXB16487",
+                                "doctor_record_id": "",
+                                "contract_id": 16487,
+                                "payment_type": "Social Healthcare",
+                                "amount": 3.25,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPXNXB16487",
+                                "doctor_record_id": "",
+                                "contract_id": 16487,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 44.75,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPXNXB16487",
+                                "doctor_record_id": "",
+                                "contract_id": 16487,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 44.75,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPXNXB16487",
+                                "doctor_record_id": "",
+                                "contract_id": 16487,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPEWXN16479",
+                                "doctor_record_id": "",
+                                "contract_id": 16479,
+                                "payment_type": "Partial Payment",
+                                "amount": 3.25,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPBD2T16474",
+                                "doctor_record_id": "",
+                                "contract_id": 16474,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 41.77,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPBD2T16474",
+                                "doctor_record_id": "",
+                                "contract_id": 16474,
+                                "payment_type": "Partial Payment",
+                                "amount": 3.25,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPBD2T16474",
+                                "doctor_record_id": "",
+                                "contract_id": 16474,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 44.75,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPBD2T16474",
+                                "doctor_record_id": "",
+                                "contract_id": 16474,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 44.75,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPEWXN16479",
+                                "doctor_record_id": "",
+                                "contract_id": 16479,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 44.75,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPEWXN16479",
+                                "doctor_record_id": "",
+                                "contract_id": 16479,
+                                "payment_type": "Recurring Payment",
+                                "amount": 44.75,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPEWXN16479",
+                                "doctor_record_id": "",
+                                "contract_id": 16479,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 44.75,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPEWXN16479",
+                                "doctor_record_id": "",
+                                "contract_id": 16479,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPBD2T16474",
+                                "doctor_record_id": "",
+                                "contract_id": 16474,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "payment_type": "Accounts Receivable",
+                                "amount": 97.88,
+                                "payment_process_code": "ARRFAF3570",
+                                "ppr_id": 3575,
+                                "doctor_record_id": "",
+                                "contract_code": "ARRFAF3570",
+                                "contract_status": "",
+                                "transaction_created": "2020-05-05",
+                                "customer_name": "Himanshu Sood",
+                                "customer_email": "himanshu.sood+1may@bridgingtech.com"
+                              }
+                            ],
+                            "payout_id": "po_1GjdCJE34EcXOXDeWkinXYi8",
+                            "amount": 496.4,
+                            "arrival_date": "2020-05-19",
+                            "status": "paid",
+                            "provider_id": 5690
+                          },
+                          {
+                            "payments": [
+                              {
+                                "contract_code": "TEPHRVK16445",
+                                "doctor_record_id": "",
+                                "contract_id": 16445,
+                                "payment_type": "Recurring Date Edited",
+                                "amount": -33.18,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPHRVK16445",
+                                "doctor_record_id": "",
+                                "contract_id": 16445,
+                                "payment_type": "Recurring Payment",
+                                "amount": 223.74,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPZGGW16462",
+                                "doctor_record_id": "",
+                                "contract_id": 16462,
+                                "payment_type": "Partial Payment",
+                                "amount": 81.54,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPZGGW16462",
+                                "doctor_record_id": "",
+                                "contract_id": 16462,
+                                "payment_type": "Partial Payment",
+                                "amount": 17.29,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPZGGW16462",
+                                "doctor_record_id": "",
+                                "contract_id": 16462,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 94.3,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPZGGW16462",
+                                "doctor_record_id": "",
+                                "contract_id": 16462,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 94.48,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPZGGW16462",
+                                "doctor_record_id": "",
+                                "contract_id": 16462,
+                                "payment_type": "Recurring Payment",
+                                "amount": 94.47,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPZGGW16462",
+                                "doctor_record_id": "",
+                                "contract_id": 16462,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPHRVK16445",
+                                "doctor_record_id": "",
+                                "contract_id": 16445,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 134.25,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPHRVK16445",
+                                "doctor_record_id": "",
+                                "contract_id": 16445,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "contract_code": "TEPTK7Q16133",
+                                "doctor_record_id": "",
+                                "contract_id": 16133,
+                                "payment_type": "Denefits Fee + Down Payment",
+                                "amount": 148.25,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Patient 2july",
+                                "customer_email": "testpatient2july@mailinator.com"
+                              },
+                              {
+                                "payment_type": "Transaction Fee for Refund",
+                                "amount": -3.25,
+                                "payment_process_code": "ID54YK3204",
+                                "ppr_id": 3204,
+                                "doctor_record_id": "",
+                                "contract_code": "ID54YK3204",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test",
+                                "customer_email": "-"
+                              },
+                              {
+                                "payment_type": "Transaction Fee for Refund",
+                                "amount": -30.25,
+                                "payment_process_code": "IDL3FU3207",
+                                "ppr_id": 3207,
+                                "doctor_record_id": "",
+                                "contract_code": "IDL3FU3207",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test",
+                                "customer_email": "-"
+                              },
+                              {
+                                "payment_type": "Transaction Fee for Refund",
+                                "amount": -10.25,
+                                "payment_process_code": "IDCMFK3208",
+                                "ppr_id": 3208,
+                                "doctor_record_id": "",
+                                "contract_code": "IDCMFK3208",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Tester 1234",
+                                "customer_email": "himanshu.sood@bridgingtech.com"
+                              },
+                              {
+                                "payment_type": "Payment Processed Reversed",
+                                "amount": -192.88,
+                                "payment_process_code": "IDCMFK3208",
+                                "ppr_id": 3208,
+                                "doctor_record_id": "",
+                                "contract_code": "IDCMFK3208",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Tester 1234",
+                                "customer_email": "himanshu.sood@bridgingtech.com"
+                              },
+                              {
+                                "payment_type": "Payment Processed",
+                                "amount": 192.88,
+                                "payment_process_code": "IDCMFK3208",
+                                "ppr_id": 3208,
+                                "doctor_record_id": "",
+                                "contract_code": "IDCMFK3208",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Tester 1234",
+                                "customer_email": "himanshu.sood@bridgingtech.com"
+                              },
+                              {
+                                "payment_type": "Payment Processed Reversed",
+                                "amount": -995,
+                                "payment_process_code": "IDL3FU3207",
+                                "ppr_id": 3207,
+                                "doctor_record_id": "",
+                                "contract_code": "IDL3FU3207",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test",
+                                "customer_email": "-"
+                              },
+                              {
+                                "payment_type": "Payment Processed",
+                                "amount": 995,
+                                "payment_process_code": "IDL3FU3207",
+                                "ppr_id": 3207,
+                                "doctor_record_id": "",
+                                "contract_code": "IDL3FU3207",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test",
+                                "customer_email": "-"
+                              },
+                              {
+                                "payment_type": "Payment Processed Reversed",
+                                "amount": -97.88,
+                                "payment_process_code": "ID54YK3204",
+                                "ppr_id": 3204,
+                                "doctor_record_id": "",
+                                "contract_code": "ID54YK3204",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test",
+                                "customer_email": "-"
+                              },
+                              {
+                                "payment_type": "Payment Processed",
+                                "amount": 97.88,
+                                "payment_process_code": "ID54YK3204",
+                                "ppr_id": 3204,
+                                "doctor_record_id": "",
+                                "contract_code": "ID54YK3204",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test",
+                                "customer_email": "-"
+                              },
+                              {
+                                "payment_type": "Payment Processed",
+                                "amount": 979.88,
+                                "payment_process_code": "ARNNG73176",
+                                "ppr_id": 3176,
+                                "doctor_record_id": "",
+                                "contract_code": "ARNNG73176",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Himanshu Sood",
+                                "customer_email": "himanshu.sood+12march@bridgingtech.com"
+                              }
+                            ],
+                            "payout_id": "po_1GdTlwE34EcXOXDesiFS0aTA",
+                            "amount": 1797.39,
+                            "arrival_date": "2020-05-02",
+                            "status": "paid",
+                            "provider_id": 5690
+                          }
+                        ],
+                        "total_payout_amount": 2293.79,
+                        "provider_info": {
+                          "provider_name": " Test Doc 1 Jan",
+                          "provider_email": "testdoc1jan@mailinator.com",
+                          "provider_id": 5690,
+                          "city": "Schenectady",
+                          "state_name": "New York"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-reports-payout",
+        "description": "Get report of all the payout of this account",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "start_date"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "end_date"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "authorization": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "authorization": []
+    }
+  ]
+}
