@@ -3196,7 +3196,7 @@
                   },
                   "purpose": {
                     "type": "string",
-                    "description": "Possible values are \"bank_document\", \"denefits_file\""
+                    "description": "Possible values are \"bank_document\", \"denefits_file\", \"claim_document\""
                   }
                 },
                 "required": [
