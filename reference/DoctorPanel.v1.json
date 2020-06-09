@@ -328,6 +328,10 @@
                         "plan_disabled_reason": {
                           "type": "string",
                           "description": "Reason for which Plans are disabled."
+                        },
+                        "payment_link": {
+                          "type": "string",
+                          "description": "Link to iframe for payment."
                         }
                       }
                     },
