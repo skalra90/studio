@@ -5061,6 +5061,157 @@
           "description": ""
         }
       }
+    },
+    "/provider/contract/claim/need_more_document": {
+      "get": {
+        "summary": "Need More Documents",
+        "responses": {},
+        "operationId": "get-provider-contract-claim-need_more_document",
+        "tags": [
+          "Claim Process"
+        ],
+        "description": "Claim Need more documents",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/provider/contract/claim/document_required": {
+      "get": {
+        "summary": "Required Documents",
+        "responses": {},
+        "operationId": "get-provider-contract-claim-document_required",
+        "tags": [
+          "Claim Process"
+        ],
+        "description": "List of documents to be required to claim payment",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "contract_id",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/provider/contract/claim/submit_claim_form": {
+      "post": {
+        "summary": "Submit claim form",
+        "operationId": "post-provider-contract-claim-submit_claim_form",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Claim Process"
+        ],
+        "description": "submission of claim form with documents",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "claim_process_id": {
+                    "type": "number"
+                  },
+                  "is_service_completed": {
+                    "type": [
+                      "number",
+                      "boolean"
+                    ]
+                  },
+                  "document_array": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "document_type": {
+                          "type": "number"
+                        },
+                        "file_id": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "document_type",
+                        "file_id"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "claim_process_id",
+                  "is_service_completed",
+                  "document_array"
+                ]
+              },
+              "examples": {
+                "example": {
+                  "value": {
+                    "provider_id": "pr_38e9136b576d16a08c1ff1*******",
+                    "claim_process_id": 24266,
+                    "is_service_completed": 0,
+                    "document_array": [
+                      {
+                        "document_type": 1,
+                        "file_id": "file_34523653443***********"
+                      },
+                      {
+                        "document_type": 2,
+                        "file_id": "file_34321896943***********"
+                      },
+                      {
+                        "document_type": 3,
+                        "file_id": "file_34121344443***********"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
