@@ -5022,7 +5022,35 @@
         "operationId": "post-provider-contract-claim-payment",
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "examples": {
+                  "Request executed successfully": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": []
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -5102,7 +5130,122 @@
     "/provider/contract/claim/document_required": {
       "get": {
         "summary": "Required Documents",
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "count": {
+                            "type": "number"
+                          },
+                          "claim_process_id": {
+                            "type": "number"
+                          },
+                          "list": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "document_type": {
+                                  "type": "number"
+                                },
+                                "document_type_name": {
+                                  "type": "string"
+                                },
+                                "is_required": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 5,
+                        "claim_process_id": 2531,
+                        "list": [
+                          {
+                            "document_type": 6,
+                            "document_type_name": "A Signed service plan",
+                            "is_required": 1
+                          },
+                          {
+                            "document_type": 5,
+                            "document_type_name": "Proof of treatment completed like before & after pictures, X-rays, clinical notes, treatment charts.",
+                            "is_required": 1
+                          },
+                          {
+                            "document_type": 3,
+                            "document_type_name": "Copy of customer ID",
+                            "is_required": 1
+                          },
+                          {
+                            "document_type": 7,
+                            "document_type_name": "A complete itemized breakdown of services provided.",
+                            "is_required": 0
+                          },
+                          {
+                            "document_type": 4,
+                            "document_type_name": "Others",
+                            "is_required": 0
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If documents are already submitted": {
+                    "value": {
+                      "message": "You have already submitted claim form for this contract.",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "get-provider-contract-claim-document_required",
         "tags": [
           "Claim Process"
@@ -5134,7 +5277,35 @@
         "operationId": "post-provider-contract-claim-submit_claim_form",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "examples": {
+                  "Request executed successfully": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": []
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
