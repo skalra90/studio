@@ -4872,7 +4872,9 @@
     "/provider/contract/claim/missing_payment": {
       "get": {
         "summary": "List of missing payments of the contract",
-        "tags": [],
+        "tags": [
+          "Claim Process"
+        ],
         "responses": {},
         "operationId": "get-provider-contract-claim-missing_payment",
         "description": "Get contract missing payments",
