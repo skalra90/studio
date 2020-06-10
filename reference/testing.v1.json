@@ -3977,9 +3977,9 @@
         ]
       }
     },
-  "/provider/contract/claim/available": {
+    "/provider/contract/claim/available": {
       "get": {
-        "summary": "List of available claims of a provider",
+        "summary": "List of contracts with available claims of a provider",
         "tags": [
           "Claim Process"
         ],
@@ -4121,7 +4121,7 @@
         "description": "Get listing of all available claims"
       }
     },
-  "/provider/contract/claim/missing_payment": {
+    "/provider/contract/claim/missing_payment": {
       "get": {
         "summary": "List of missing payments of the contract",
         "tags": [
@@ -4268,9 +4268,9 @@
         ]
       }
     },
-  "/provider/contract/claim/document_required": {
+    "/provider/contract/claim/document_required": {
       "get": {
-        "summary": "Required Documents",
+        "summary": "Required documents to upload in claim form",
         "responses": {
           "200": {
             "description": "Success",
@@ -4412,9 +4412,9 @@
         ]
       }
     },
-  "/provider/contract/claim/submit_claim_form": {
+    "/provider/contract/claim/submit_claim_form": {
       "post": {
-        "summary": "Submit claim form",
+        "summary": "Upload claim required documents and submit claim form",
         "operationId": "post-provider-contract-claim-submit_claim_form",
         "responses": {
           "200": {
@@ -4525,9 +4525,9 @@
         }
       }
     },
-  "/provider/contract/claim/payment": {
+    "/provider/contract/claim/payment": {
       "post": {
-        "summary": "Claim a payment",
+        "summary": "Claim a missing payment",
         "operationId": "post-provider-contract-claim-payment",
         "responses": {
           "200": {
@@ -4599,7 +4599,7 @@
         }
       }
     },
-  "/provider/contract/claim/list": {
+    "/provider/contract/claim/list": {
       "get": {
         "summary": "List of all claims of a provider",
         "responses": {
@@ -4802,7 +4802,7 @@
         ]
       }
     },
-  "/provider/contract/claim/details": {
+    "/provider/contract/claim/details": {
       "get": {
         "summary": "Contract claim details",
         "tags": [
@@ -5060,9 +5060,9 @@
         ]
       }
     },
-  "/provider/contract/claim/need_more_document": {
+    "/provider/contract/claim/need_more_document": {
       "get": {
-        "summary": "Need More Documents",
+        "summary": "List of contracts in which claim action needs more documents",
         "responses": {},
         "operationId": "get-provider-contract-claim-need_more_document",
         "tags": [
