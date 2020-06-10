@@ -2865,7 +2865,7 @@
     },
     "/provider/contract/plans": {
       "get": {
-        "summary": "1. List of Plans",
+        "summary": "List of Plans",
         "responses": {
           "200": {
             "description": "Success",
@@ -3491,7 +3491,7 @@
     },
     "/provider/contract/select": {
       "post": {
-        "summary": "2. Select a Plan",
+        "summary": "Select a Plan",
         "operationId": "contract-create",
         "responses": {
           "200": {
@@ -3700,7 +3700,7 @@
     },
     "/provider/contract/pay": {
       "post": {
-        "summary": "3. Pay for Contract",
+        "summary": "Pay for Contract",
         "responses": {
           "200": {
             "description": "OK",
@@ -4875,7 +4875,108 @@
         "tags": [
           "Claim Process"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "count": {
+                            "type": "number"
+                          },
+                          "list": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "missing_payment_id": {
+                                  "type": "number"
+                                },
+                                "can_be_claimed": {
+                                  "type": "number"
+                                },
+                                "reason": {
+                                  "type": "string"
+                                },
+                                "recurring_date": {
+                                  "type": "string"
+                                },
+                                "note": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Request executed successfully": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 5,
+                        "list": [
+                          {
+                            "missing_payment_id": 24265,
+                            "can_be_claimed": 0,
+                            "reason": "This payment cannot be claimed as this payment will be held by Denefits and paid at the end of contract.",
+                            "recurring_date": "02-01-2020",
+                            "note": null
+                          },
+                          {
+                            "missing_payment_id": 24266,
+                            "can_be_claimed": 0,
+                            "reason": "You can only claim a payment after 03-31-2020 and before 05-30-2020",
+                            "recurring_date": "03-01-2020",
+                            "note": null
+                          },
+                          {
+                            "missing_payment_id": 24267,
+                            "can_be_claimed": 1,
+                            "reason": "",
+                            "recurring_date": "04-01-2020",
+                            "note": null
+                          },
+                          {
+                            "missing_payment_id": 24268,
+                            "can_be_claimed": 0,
+                            "reason": "Claim earlier payments first!",
+                            "recurring_date": "05-01-2020",
+                            "note": null
+                          },
+                          {
+                            "missing_payment_id": 24269,
+                            "can_be_claimed": 0,
+                            "reason": "You can only claim a payment after 07-01-2020",
+                            "recurring_date": "06-01-2020",
+                            "note": null
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "get-provider-contract-claim-missing_payment",
         "description": "Get contract missing payments",
         "parameters": [
@@ -4913,6 +5014,52 @@
             "name": "skip"
           }
         ]
+      }
+    },
+    "/provider/contract/claim/payment": {
+      "post": {
+        "summary": "Claim a payment",
+        "operationId": "post-provider-contract-claim-payment",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "tags": [
+          "Claim Process"
+        ],
+        "description": "To claim a contract payment",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "missing_payment_id": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "missing_payment_id"
+                ]
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "provider_id": "pr_38e9136b576d16a08c1ff1*******",
+                    "missing_payment_id": 24266
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
       }
     }
   },
