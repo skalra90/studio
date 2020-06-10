@@ -4731,7 +4731,113 @@
         "tags": [
           "Claim Process"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "contract_id": {
+                            "type": "number"
+                          },
+                          "contract_code": {
+                            "type": "string"
+                          },
+                          "customer_first_name": {
+                            "type": "string"
+                          },
+                          "customer_last_name": {
+                            "type": "string"
+                          },
+                          "customer_email": {
+                            "type": "string"
+                          },
+                          "customer_mobile": {
+                            "type": "string"
+                          },
+                          "customer_address": {
+                            "type": "string"
+                          },
+                          "recurring_amount": {
+                            "type": "number"
+                          },
+                          "number_of_payments_to_claim": {
+                            "type": "number"
+                          },
+                          "contract_date_added": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Request executed successfully": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 3,
+                        "list": [
+                          {
+                            "contract_id": 17742,
+                            "contract_code": "RASJMTG17742",
+                            "customer_first_name": "Ramanpreet",
+                            "customer_last_name": "Singh",
+                            "customer_email": "ramanpreet.singh+claimtest@bridgingtech.com",
+                            "customer_mobile": "3253657467",
+                            "customer_address": "404, Test House",
+                            "recurring_amount": 122.54,
+                            "number_of_payments_to_claim": 2,
+                            "contract_date_added": "2020-06-09T09:14:31.000Z"
+                          },
+                          {
+                            "contract_id": 12423,
+                            "contract_code": "FGGYBHR12423",
+                            "customer_first_name": "Fgfdgh",
+                            "customer_last_name": "Gfdgg",
+                            "customer_email": "ramanpreet.singh+111@bridgingtech.com",
+                            "customer_mobile": "2052891317",
+                            "customer_address": "54654fghkghjtj",
+                            "recurring_amount": 51.71,
+                            "number_of_payments_to_claim": 1,
+                            "contract_date_added": "2019-12-23T06:00:43.000Z"
+                          },
+                          {
+                            "contract_id": 10857,
+                            "contract_code": "RATYZMP10857",
+                            "customer_first_name": "Raman",
+                            "customer_last_name": "Test",
+                            "customer_email": "ramanpreet.singh+22113@bridgingtech.com",
+                            "customer_mobile": "6745634562",
+                            "customer_address": "44323, fergterr",
+                            "recurring_amount": 299.28,
+                            "number_of_payments_to_claim": 3,
+                            "contract_date_added": "2019-09-24T05:58:26.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "get-provider-contract-claim-available",
         "parameters": [
           {
@@ -4761,6 +4867,50 @@
           }
         ],
         "description": "Get listing of all available claims"
+      }
+    },
+    "/provider/contract/claim/missing_payment": {
+      "get": {
+        "summary": "List of missing payments of the contract",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-provider-contract-claim-missing_payment",
+        "description": "Get contract missing payments",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true,
+            "description": "Required if token is of partner"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "contract_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "required": true,
+            "name": "limit"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "required": true,
+            "name": "skip"
+          }
+        ]
       }
     }
   },
