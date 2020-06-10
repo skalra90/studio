@@ -4521,6 +4521,43 @@
           }
         ]
       }
+    },
+    "/provider/contract/claim/list": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "Claims"
+        ],
+        "responses": {},
+        "operationId": "get-provider-contract-claim-list",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "required": true,
+            "name": "skip"
+          }
+        ],
+        "description": "Get listing of all claims of this account"
+      }
     }
   },
   "components": {
