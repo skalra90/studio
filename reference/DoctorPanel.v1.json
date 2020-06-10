@@ -388,7 +388,8 @@
                             }
                           }
                         },
-                        "full_amount_disabled_reason": null
+                        "full_amount_disabled_reason": null,
+                        "livemode": false
                       }
                     }
                   }
