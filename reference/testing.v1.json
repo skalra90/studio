@@ -4524,11 +4524,173 @@
     },
     "/provider/contract/claim/list": {
       "get": {
-        "summary": "Your GET endpoint",
-        "tags": [
-          "Claims"
-        ],
-        "responses": {},
+        "summary": "List of all claims of a provider",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "count": {
+                            "type": "string"
+                          },
+                          "list": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "contract_id": {
+                                  "type": "number"
+                                },
+                                "contract_code": {
+                                  "type": "string"
+                                },
+                                "provider_id": {
+                                  "type": "string"
+                                },
+                                "customer_first_name": {
+                                  "type": "string"
+                                },
+                                "customer_last_name": {
+                                  "type": "string"
+                                },
+                                "customer_email": {
+                                  "type": "string"
+                                },
+                                "customer_mobile": {
+                                  "type": "string"
+                                },
+                                "customer_address": {
+                                  "type": "string"
+                                },
+                                "customer_signature": {
+                                  "type": "string"
+                                },
+                                "downpayment_amount": {
+                                  "type": "number"
+                                },
+                                "financed_amount": {
+                                  "type": "number"
+                                },
+                                "interest_rate": {
+                                  "type": "number"
+                                },
+                                "recurring_amount": {
+                                  "type": "number"
+                                },
+                                "number_of_payments": {
+                                  "type": "number"
+                                },
+                                "remaining_payments": {
+                                  "type": "string"
+                                },
+                                "next_recurring_date": {
+                                  "type": "string"
+                                },
+                                "contract_status": {
+                                  "type": "string"
+                                },
+                                "date_added": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Request executed successfully": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 6,
+                        "list": [
+                          {
+                            "contract_id": 12427,
+                            "contract_code": "RATDBXG12427",
+                            "provider_id": "pr_e8bb4d04bc9f50ae1f7bffeb20bb5ba7",
+                            "customer_first_name": "Raman",
+                            "customer_last_name": "Test",
+                            "customer_email": "ramanpreet.singh+76@bridgingtech.com",
+                            "customer_mobile": "2345678097",
+                            "customer_address": "165,  Irvine",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-IFth_tP2gblob",
+                            "downpayment_amount": 100,
+                            "financed_amount": 900,
+                            "interest_rate": 20,
+                            "recurring_amount": 165.64,
+                            "number_of_payments": 6,
+                            "remaining_payments": 0,
+                            "next_recurring_date": "2019-07-29T00:00:00.000Z",
+                            "contract_status": "Completed",
+                            "date_added": "2019-12-23T07:22:40.000Z"
+                          },
+                          {
+                            "contract_id": 12423,
+                            "contract_code": "FGGYBHR12423",
+                            "provider_id": "pr_e8bb4d04bc9f50ae1f7bffeb20bb5ba7",
+                            "customer_first_name": "Fgfdgh",
+                            "customer_last_name": "Gfdgg",
+                            "customer_email": "ramanpreet.singh+111@bridgingtech.com",
+                            "customer_mobile": "2052891317",
+                            "customer_address": "54654fghkghjtj",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-wlyFqe1Q_blob",
+                            "downpayment_amount": 1000,
+                            "financed_amount": 2000,
+                            "interest_rate": 12,
+                            "recurring_amount": 51.71,
+                            "number_of_payments": 36,
+                            "remaining_payments": 36,
+                            "next_recurring_date": "2019-06-01T00:00:00.000Z",
+                            "contract_status": "Overdue",
+                            "date_added": "2019-12-23T06:00:43.000Z"
+                          },
+                          {
+                            "contract_id": 10857,
+                            "contract_code": "RATYZMP10857",
+                            "provider_id": "pr_e8bb4d04bc9f50ae1f7bffeb20bb5ba7",
+                            "customer_first_name": "Raman",
+                            "customer_last_name": "Test",
+                            "customer_email": "ramanpreet.singh+22113@bridgingtech.com",
+                            "customer_mobile": "6745634562",
+                            "customer_address": "44323, fergterr",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-AHUXYH2gIblob",
+                            "downpayment_amount": 300,
+                            "financed_amount": 1700,
+                            "interest_rate": 11,
+                            "recurring_amount": 299.28,
+                            "number_of_payments": 6,
+                            "remaining_payments": 5,
+                            "next_recurring_date": "2019-04-02T00:00:00.000Z",
+                            "contract_status": "Overdue",
+                            "date_added": "2019-09-24T05:58:26.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "get-provider-contract-claim-list",
         "parameters": [
           {
@@ -4537,7 +4699,8 @@
             },
             "in": "query",
             "name": "provider_id",
-            "required": true
+            "required": true,
+            "description": "Required if token is of partner"
           },
           {
             "schema": {
@@ -4556,7 +4719,48 @@
             "name": "skip"
           }
         ],
-        "description": "Get listing of all claims of this account"
+        "description": "Get listing of all claims of this account",
+        "tags": [
+          "Claim Process"
+        ]
+      }
+    },
+    "/provider/contract/claim/available": {
+      "get": {
+        "summary": "List of available claims of a provider",
+        "tags": [
+          "Claim Process"
+        ],
+        "responses": {},
+        "operationId": "get-provider-contract-claim-available",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true,
+            "description": "Required if token is of partner"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "required": true,
+            "name": "limit"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "required": true,
+            "name": "skip"
+          }
+        ],
+        "description": "Get listing of all available claims"
       }
     }
   },
