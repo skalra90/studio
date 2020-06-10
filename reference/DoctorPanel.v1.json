@@ -378,6 +378,7 @@
                             "recurring_amount": 91.06
                           }
                         ],
+                        "plan_disabled_reason": null,
                         "full_amount": {
                           "to_pay_now": {
                             "total": 1116.63,
@@ -386,7 +387,8 @@
                               "transaction_fee": 16.63
                             }
                           }
-                        }
+                        },
+                        "full_amount_disabled_reason": null
                       }
                     }
                   }
