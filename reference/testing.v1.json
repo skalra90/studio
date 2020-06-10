@@ -5383,6 +5383,264 @@
           }
         }
       }
+    },
+    "/provider/contract/claim/details": {
+      "get": {
+        "summary": "Contract claim details",
+        "tags": [
+          "Claim Process"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "claim_uploaded_documents": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "document_type_name": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "missing_payments": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "missing_payment_id": {
+                                "type": "number"
+                              },
+                              "claim_status_id": {
+                                "type": "string"
+                              },
+                              "recurring_date": {
+                                "type": "string"
+                              },
+                              "note": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "contract_details": {
+                          "type": "object",
+                          "properties": {
+                            "contract_id": {
+                              "type": "number"
+                            },
+                            "contract_code": {
+                              "type": "string"
+                            },
+                            "provider_id": {
+                              "type": "string"
+                            },
+                            "customer_first_name": {
+                              "type": "string"
+                            },
+                            "customer_last_name": {
+                              "type": "string"
+                            },
+                            "customer_email": {
+                              "type": "string"
+                            },
+                            "customer_mobile": {
+                              "type": "string"
+                            },
+                            "customer_address": {
+                              "type": "string"
+                            },
+                            "customer_signature": {
+                              "type": "string"
+                            },
+                            "downpayment_amount": {
+                              "type": "number"
+                            },
+                            "financed_amount": {
+                              "type": "number"
+                            },
+                            "interest_rate": {
+                              "type": "number"
+                            },
+                            "recurring_amount": {
+                              "type": "number"
+                            },
+                            "number_of_payments": {
+                              "type": "number"
+                            },
+                            "remaining_payments": {
+                              "type": "number"
+                            },
+                            "next_recurring_date": {
+                              "type": "string"
+                            },
+                            "contract_status": {
+                              "type": "string"
+                            },
+                            "date_added": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "claim_uploaded_documents": [
+                          {
+                            "document_type_name": "A Signed service plan",
+                            "date_added": "2020-06-09T06:16:58.000Z"
+                          },
+                          {
+                            "document_type_name": "Proof of treatment completed like before & after pictures, X-rays, clinical notes, treatment charts.",
+                            "date_added": "2020-06-09T06:17:03.000Z"
+                          },
+                          {
+                            "document_type_name": "Copy of customer ID",
+                            "date_added": "2020-06-09T06:17:10.000Z"
+                          }
+                        ],
+                        "missing_payments": [
+                          {
+                            "missing_payment_id": 24240,
+                            "claim_status_id": "Submitted",
+                            "recurring_date": "2020-05-03T00:00:00.000Z",
+                            "note": null
+                          },
+                          {
+                            "missing_payment_id": 24239,
+                            "claim_status_id": "Submitted",
+                            "recurring_date": "2020-04-03T00:00:00.000Z",
+                            "note": null
+                          }
+                        ],
+                        "contract_details": [
+                          {
+                            "contract_id": 17650,
+                            "contract_code": "NECQC2J17650",
+                            "provider_id": "pr_af1c4a82e1c6c6147692b50821c748b2",
+                            "customer_first_name": "Ted",
+                            "customer_last_name": "Mosby",
+                            "customer_email": "ted.mosby@denefits.com",
+                            "customer_mobile": "3424356264",
+                            "customer_address": "Leeds",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts**************",
+                            "downpayment_amount": 500,
+                            "financed_amount": 4500,
+                            "interest_rate": 15.99,
+                            "recurring_amount": 247.31,
+                            "number_of_payments": 24,
+                            "remaining_payments": 24,
+                            "next_recurring_date": "2020-03-03T00:00:00.000Z",
+                            "contract_status": "Overdue",
+                            "date_added": "2020-06-08T11:13:48.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required field is not provided": {
+                    "value": {
+                      "message": "\"claim_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-claim-details",
+        "description": "It returns the claim details of the contract",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "claim_id",
+            "required": true
+          }
+        ]
+      }
     }
   },
   "components": {
