@@ -5490,6 +5490,107 @@
           }
         }
       }
+    },
+    "/provider/contract/claim/details": {
+      "get": {
+        "summary": "Contract claim details",
+        "tags": [
+          "Claim Process"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "claim_uploaded_documents": [
+                          {
+                            "document_type_name": "A Signed service plan",
+                            "date_added": "2020-06-09T06:16:58.000Z"
+                          },
+                          {
+                            "document_type_name": "Proof of treatment completed like before & after pictures, X-rays, clinical notes, treatment charts.",
+                            "date_added": "2020-06-09T06:17:03.000Z"
+                          },
+                          {
+                            "document_type_name": "Copy of customer ID",
+                            "date_added": "2020-06-09T06:17:10.000Z"
+                          }
+                        ],
+                        "missing_payments": [
+                          {
+                            "missing_payment_id": 24240,
+                            "claim_status_id": "Submitted",
+                            "recurring_date": "2020-05-03T00:00:00.000Z",
+                            "note": null
+                          },
+                          {
+                            "missing_payment_id": 24239,
+                            "claim_status_id": "Submitted",
+                            "recurring_date": "2020-04-03T00:00:00.000Z",
+                            "note": null
+                          }
+                        ],
+                        "contract_details": [
+                          {
+                            "contract_id": 17650,
+                            "contract_code": "NECQC2J17650",
+                            "provider_id": "pr_af1c4a82e1c6c6147692b50821c748b2",
+                            "customer_first_name": "Ted",
+                            "customer_last_name": "Mosby",
+                            "customer_email": "ted.m@denefits.com",
+                            "customer_mobile": "3424356264",
+                            "customer_address": "Leeds",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dn************",
+                            "downpayment_amount": 500,
+                            "financed_amount": 4500,
+                            "interest_rate": 15.99,
+                            "recurring_amount": 247.31,
+                            "number_of_payments": 24,
+                            "remaining_payments": 24,
+                            "next_recurring_date": "2020-03-03T00:00:00.000Z",
+                            "contract_status": "Overdue",
+                            "date_added": "2020-06-08T11:13:48.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-claim-details",
+        "description": "Return the contract info, claim info of payments and documents uploaded info",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "claim_id",
+            "required": true
+          }
+        ]
+      }
     }
   },
   "components": {
