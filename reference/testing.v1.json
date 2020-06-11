@@ -5597,6 +5597,149 @@
           }
         ]
       }
+    },
+    "/provider/contract/claim/upload_more_document": {
+      "get": {
+        "summary": "Upload extra documents to claim contract",
+        "tags": [
+          "Claim Process"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "examples": {
+                  "Sucess": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "When invalid File ID is provided": {
+                    "value": {
+                      "message": "File ID file_1dcf594a43602d53e4dfd25991*** is invalid",
+                      "code": "invalid_file_id"
+                    }
+                  },
+                  "When same document is uploaded again": {
+                    "value": {
+                      "message": "Cannot upload a document again",
+                      "code": "cannot_upload_document_again"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "When auth token is invalid": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-claim-upload_more_document",
+        "description": "This API will be used to submit more documents as requested to approve the claim",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "document_array": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "more_document_id": {
+                          "type": "number"
+                        },
+                        "file_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "provider_id": "pr_af1c4a82e1c6c6147692b50821c****",
+                    "document_array": [
+                      {
+                        "more_document_id": 735,
+                        "file_id": "file_1dcf594a43602d53e4dfd25991b****"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "description": "more_document_id can be obtained from claim/detail API which provide the info is more documents is required or not."
+        }
+      }
     }
   },
   "components": {
