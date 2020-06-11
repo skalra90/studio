@@ -4695,6 +4695,32 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider industry in non-guaranteed": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "operationId": "get-provider-contract-claim-list",
@@ -4837,6 +4863,32 @@
                           }
                         ]
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider industry is non-guaranteed": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
                     }
                   }
                 }
@@ -5009,6 +5061,12 @@
                       "message": "No data found",
                       "code": "request_failed"
                     }
+                  },
+                  "If provider industry is non-guaranteed": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
+                    }
                   }
                 }
               }
@@ -5096,7 +5154,14 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
                 },
                 "examples": {
                   "if missing_payment_id is not a valid number": {
@@ -5109,6 +5174,12 @@
                     "value": {
                       "message": "You cannot perform this action.",
                       "code": "request_failed"
+                    }
+                  },
+                  "If provider industry is non-guaranteed": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
                     }
                   }
                 }
@@ -5156,7 +5227,34 @@
     "/provider/contract/claim/need_more_document": {
       "get": {
         "summary": "Need More Documents",
-        "responses": {},
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider industry is non-guaranteed": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "get-provider-contract-claim-need_more_document",
         "tags": [
           "Claim Process"
@@ -5303,6 +5401,12 @@
                       "message": "You have already submitted claim form for this contract.",
                       "code": "request_failed"
                     }
+                  },
+                  "If provider industry is non-guaranteed": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
+                    }
                   }
                 }
               }
@@ -5414,6 +5518,12 @@
                     "value": {
                       "message": "You have already submitted claim form for this contract.",
                       "code": "claim_form_already_submitted"
+                    }
+                  },
+                  "If provider industry is non-guaranteed": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
                     }
                   }
                 }
@@ -5574,6 +5684,32 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider industry is non-guarantee": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "operationId": "get-provider-contract-claim-details",
@@ -5662,6 +5798,12 @@
                     "value": {
                       "message": "Cannot upload a document again",
                       "code": "cannot_upload_document_again"
+                    }
+                  },
+                  "If provider industry is non-guarantee": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
                     }
                   }
                 }
