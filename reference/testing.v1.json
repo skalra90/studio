@@ -5525,6 +5525,12 @@
                       "message": "Your industry doesn't allow insured payments",
                       "code": "insured_payments_disabled"
                     }
+                  },
+                  "If HSA/BSA for is under process": {
+                    "value": {
+                      "message": "Your BSA form is under process.",
+                      "code": "bsa_form_under_process"
+                    }
                   }
                 }
               }
