@@ -5228,6 +5228,86 @@
       "get": {
         "summary": "Need More Documents",
         "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "count": {
+                            "type": "string"
+                          },
+                          "list": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "contract_id": {
+                                  "type": "number"
+                                },
+                                "contract_code": {
+                                  "type": "string"
+                                },
+                                "customer_email": {
+                                  "type": "string"
+                                },
+                                "customer_mobile": {
+                                  "type": "string"
+                                },
+                                "recurring_amount": {
+                                  "type": "number"
+                                },
+                                "contract_date_added": {
+                                  "type": "string"
+                                },
+                                "number_of_documents_required": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Request executed successfully": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 1,
+                        "list": [
+                          {
+                            "contract_id": 17851,
+                            "contract_code": "TEAGFFN17851",
+                            "customer_email": "ramanpreet.singh+testrecurring@bridgingtech.com",
+                            "customer_mobile": "3245647457",
+                            "recurring_amount": 520.22,
+                            "contract_date_added": "2020-06-11T06:57:27.000Z",
+                            "number_of_documents_required": 1
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "400": {
             "description": "Bad Request",
             "content": {
