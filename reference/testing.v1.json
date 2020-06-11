@@ -4552,6 +4552,9 @@
                             "items": {
                               "type": "object",
                               "properties": {
+                                "claim_id": {
+                                  "type": "number"
+                                },
                                 "contract_id": {
                                   "type": "number"
                                 },
@@ -4623,6 +4626,7 @@
                         "count": 6,
                         "list": [
                           {
+                            "claim_id": 1150,
                             "contract_id": 12427,
                             "contract_code": "RATDBXG12427",
                             "provider_id": "pr_e8bb4d04bc9f50ae1f7bffeb20bb5ba7",
@@ -4643,6 +4647,7 @@
                             "date_added": "2019-12-23T07:22:40.000Z"
                           },
                           {
+                            "claim_id": 1151,
                             "contract_id": 12423,
                             "contract_code": "FGGYBHR12423",
                             "provider_id": "pr_e8bb4d04bc9f50ae1f7bffeb20bb5ba7",
@@ -4663,6 +4668,7 @@
                             "date_added": "2019-12-23T06:00:43.000Z"
                           },
                           {
+                            "claim_id": 1157,
                             "contract_id": 10857,
                             "contract_code": "RATYZMP10857",
                             "provider_id": "pr_e8bb4d04bc9f50ae1f7bffeb20bb5ba7",
