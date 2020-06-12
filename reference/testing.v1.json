@@ -6266,6 +6266,184 @@
           }
         ]
       }
+    },
+    "/partner/payout/detail": {
+      "get": {
+        "summary": "Partner Payout detail by payout ID",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "transfers": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "provider_name": {
+                                "type": "string"
+                              },
+                              "payment_type": {
+                                "type": "string"
+                              },
+                              "payment_transferred": {
+                                "type": "number"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 3,
+                        "transfers": [
+                          {
+                            "code": "TECVAKP17416",
+                            "type": "process_payment",
+                            "provider_name": "Ted",
+                            "payment_type": "Recurring Payment",
+                            "payment_transferred": 1.95,
+                            "date_added": "2020-06-02T04:02:55.000Z"
+                          },
+                          {
+                            "code": "TECVAKP17416",
+                            "type": "process_payment",
+                            "provider_name": "Tom",
+                            "payment_type": "First Recurring Payment",
+                            "payment_transferred": 1.95,
+                            "date_added": "2020-06-02T04:01:44.000Z"
+                          },
+                          {
+                            "code": "TECVAKP17416",
+                            "type": "process_payment",
+                            "provider_name": "Robin",
+                            "payment_type": "First Recurring Payment",
+                            "payment_transferred": 20,
+                            "date_added": "2020-06-02T04:01:44.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required paramter is missing": {
+                    "value": {
+                      "message": "\"payout_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-partner-payout-detail",
+        "description": "It will returns the detailed transfers of the particular payout",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "payout_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "limit"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "skip"
+          }
+        ]
+      }
     }
   },
   "components": {
