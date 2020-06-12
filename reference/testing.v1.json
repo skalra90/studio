@@ -6270,7 +6270,9 @@
     "/partner/payout/detail": {
       "get": {
         "summary": "Partner Payout detail by payout ID",
-        "tags": [],
+        "tags": [
+          "Partner"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -6728,7 +6730,10 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Providers"
+        ]
       }
     }
   },
