@@ -6079,6 +6079,185 @@
           "description": "more_document_id can be obtained from claim/detail API which provide the info is more documents is required or not."
         }
       }
+    },
+    "/partner/payout/list": {
+      "get": {
+        "summary": "Partner payout list",
+        "tags": [
+          "Partner"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "payout_id": {
+                                "type": "string"
+                              },
+                              "payout_status": {
+                                "type": "string"
+                              },
+                              "payout_amount": {
+                                "type": "number"
+                              },
+                              "": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 4,
+                        "list": [
+                          {
+                            "payout_id": "po_1GsiMUCeH72hWwgK4Dp9PO1W",
+                            "payout_status": "Paid",
+                            "payout_amount": 0.67,
+                            "arrival_date": "2020-06-11T00:00:00.000Z"
+                          },
+                          {
+                            "payout_id": "po_1GpnqqCeH72hWwgKkAT0Re8W",
+                            "payout_status": "Paid",
+                            "payout_amount": 23.9,
+                            "arrival_date": "2020-06-03T00:00:00.000Z"
+                          },
+                          {
+                            "payout_id": "po_1GDnLACeH72hWwgKajbUnwtW",
+                            "payout_status": "Paid",
+                            "payout_amount": 6.94,
+                            "arrival_date": "2020-02-19T07:51:28.000Z"
+                          },
+                          {
+                            "payout_id": "po_1GAA3cCeH72hWwgKiJDL8uFp",
+                            "payout_status": "Paid",
+                            "payout_amount": 20,
+                            "arrival_date": "2020-02-10T00:00:00.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required parameter is missing": {
+                    "value": {
+                      "message": "\"skip\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-partner-payout-list",
+        "description": "It will returns the payout list of the partner",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "start_date"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "end_date"
+          }
+        ]
+      }
     }
   },
   "components": {
