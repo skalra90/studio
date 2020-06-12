@@ -6444,6 +6444,167 @@
           }
         ]
       }
+    },
+    "/provider/settings": {
+      "get": {
+        "summary": "Provider's settings",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "contract_settings": {
+                          "type": "object",
+                          "properties": {
+                            "minimum_service_amount": {
+                              "type": "number"
+                            },
+                            "maximum_service_amount": {
+                              "type": "number"
+                            },
+                            "minimum_number_of_payment": {
+                              "type": "number"
+                            },
+                            "maximum_number_of_payment": {
+                              "type": "number"
+                            }
+                          }
+                        },
+                        "payment_process_settings": {
+                          "type": "object",
+                          "properties": {
+                            "maximum_total_payment_amount_per_day": {
+                              "type": "number"
+                            },
+                            "maximum_total_payment_number_per_day": {
+                              "type": "number"
+                            },
+                            "maximum_single_payment_amount": {
+                              "type": "number"
+                            },
+                            "minimum_single_payment_amount": {
+                              "type": "number"
+                            },
+                            "is_payment_process_enabled": {
+                              "type": "number"
+                            },
+                            "provider_transaction_fee_percentage": {
+                              "type": "number"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "contract_settings": {
+                          "minimum_service_amount": 300,
+                          "maximum_service_amount": 20000,
+                          "minimum_number_of_payment": 12,
+                          "maximum_number_of_payment": 48
+                        },
+                        "payment_process_settings": {
+                          "maximum_total_payment_amount_per_day": 30000,
+                          "maximum_total_payment_number_per_day": 100,
+                          "maximum_single_payment_amount": 10000,
+                          "minimum_single_payment_amount": 2,
+                          "is_payment_process_enabled": 1,
+                          "provider_transaction_fee_percentage": 55
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "When required parameter is not provided": {
+                    "value": {
+                      "message": "\"provider_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "When invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-settings",
+        "description": "This will return the list of provider's default settings",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          }
+        ]
+      }
     }
   },
   "components": {
