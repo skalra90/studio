@@ -6103,6 +6103,12 @@
                     "data": {
                       "type": "object",
                       "properties": {
+                        "total_expected_payout": {
+                          "type": "number"
+                        },
+                        "total_payout_received": {
+                          "type": "number"
+                        },
                         "count": {
                           "type": "number"
                         },
@@ -6136,6 +6142,8 @@
                       "message": "Request executed successfully",
                       "code": "success",
                       "data": {
+                        "total_expected_payout": 201.11,
+                        "total_payout_received": 51.51,
                         "count": 4,
                         "list": [
                           {
