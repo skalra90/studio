@@ -2871,6 +2871,375 @@
           "description": ""
         }
       }
+    },
+    "/provider/contract/detail": {
+      "get": {
+        "summary": "Contract details",
+        "tags": [
+          "Provider Contract"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "contract_data": {
+                          "type": "object",
+                          "properties": {
+                            "contract_id": {
+                              "type": "number"
+                            },
+                            "contract_code": {
+                              "type": "string"
+                            },
+                            "provider_id": {
+                              "type": "string"
+                            },
+                            "service_amount": {
+                              "type": "number"
+                            },
+                            "downpayment_amount": {
+                              "type": "number"
+                            },
+                            "financed_amount": {
+                              "type": "number"
+                            },
+                            "interest_rate": {
+                              "type": "number"
+                            },
+                            "recurring_amount": {
+                              "type": "number"
+                            },
+                            "number_of_payments": {
+                              "type": "number"
+                            },
+                            "remaining_payments": {
+                              "type": "number"
+                            },
+                            "next_recurring_date": {
+                              "type": "string"
+                            },
+                            "contract_status": {
+                              "type": "string"
+                            },
+                            "zipcode": {
+                              "type": "number"
+                            },
+                            "date_added": {
+                              "type": "string"
+                            },
+                            "monthly_payable": {
+                              "type": "object",
+                              "properties": {
+                                "total": {
+                                  "type": "number"
+                                },
+                                "breakdown": {
+                                  "type": "object",
+                                  "properties": {
+                                    "amount": {
+                                      "type": "number"
+                                    },
+                                    "transaction_fee": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "default_card_last4": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "payments": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "amount_charged": {
+                                "type": "number"
+                              },
+                              "amount_refunded": {
+                                "type": "number"
+                              },
+                              "charge_status": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              },
+                              "last4": {
+                                "type": "string"
+                              },
+                              "paid_by": {
+                                "type": "string"
+                              },
+                              "payment_source": {
+                                "type": "string"
+                              },
+                              "payment_type": {
+                                "type": "string"
+                              },
+                              "fees": {
+                                "type": "object",
+                                "properties": {
+                                  "late_fee": {
+                                    "type": "number"
+                                  },
+                                  "late_fee_refunded": {
+                                    "type": "string"
+                                  },
+                                  "recurring_date_edit_fee": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "partner_share": {
+                                "type": "object",
+                                "properties": {
+                                  "amount": {
+                                    "type": "number"
+                                  },
+                                  "net": {
+                                    "type": "number"
+                                  },
+                                  "reversed": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "provider_share": {
+                                "type": "object",
+                                "properties": {
+                                  "amount": {
+                                    "type": "number"
+                                  },
+                                  "net": {
+                                    "type": "number"
+                                  },
+                                  "reversed": {
+                                    "type": "number"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "customer": {
+                          "type": "object",
+                          "properties": {
+                            "customer_address": {
+                              "type": "string"
+                            },
+                            "customer_email": {
+                              "type": "string"
+                            },
+                            "customer_first_name": {
+                              "type": "string"
+                            },
+                            "customer_last_name": {
+                              "type": "string"
+                            },
+                            "customer_mobile": {
+                              "type": "string"
+                            },
+                            "date_of_birth": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "contract": {
+                          "contract_id": 17494,
+                          "contract_code": "HMSZDQY17494",
+                          "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                          "service_amount": 1000,
+                          "downpayment_amount": 100,
+                          "financed_amount": 900,
+                          "interest_rate": 16.99,
+                          "recurring_amount": 69.45,
+                          "default_card_last4": "1111",
+                          "monthly_payable": {
+                            "total": 72.45,
+                            "breakdown": {
+                              "amount": 69.45,
+                              "transaction_fee": 3
+                            }
+                          },
+                          "number_of_payments": 12,
+                          "remaining_payments": 12,
+                          "next_recurring_date": "2020-06-07T00:00:00.000Z",
+                          "contract_status": "Active",
+                          "date_added": "2020-06-03T12:16:16.000Z"
+                        },
+                        "payments": [
+                          {
+                            "amount_charged": 217.95,
+                            "amount_refunded": 0,
+                            "charge_status": "Paid",
+                            "paid_by": "customer",
+                            "payment_source": "card",
+                            "last4": "1111",
+                            "fees": {
+                              "late_fee": 0,
+                              "late_fee_refunded": 0,
+                              "recurring_date_edit_fee": 0
+                            },
+                            "payment_type": "Denefits Fee + Down Payment + Upfront Payment",
+                            "partner_share": {
+                              "amount": 0.82,
+                              "reversed": 0,
+                              "net": 0.82
+                            },
+                            "provider_share": {
+                              "amount": 99.5,
+                              "reversed": 0,
+                              "net": 99.5
+                            },
+                            "date_added": "2020-06-03T12:16:16.000Z"
+                          },
+                          {
+                            "amount_charged": 104,
+                            "amount_refunded": 0,
+                            "charge_status": "Paid",
+                            "paid_by": "customer",
+                            "payment_source": "card",
+                            "last4": "1111",
+                            "fees": {
+                              "late_fee": 0,
+                              "late_fee_refunded": 0,
+                              "recurring_date_edit_fee": 0
+                            },
+                            "payment_type": "Partial Payment",
+                            "partner_share": {
+                              "amount": 1,
+                              "reversed": 0,
+                              "net": 1
+                            },
+                            "provider_share": {
+                              "amount": 91.06,
+                              "reversed": 0,
+                              "net": 91.06
+                            },
+                            "date_added": "2020-06-03T13:22:21.000Z"
+                          },
+                          {
+                            "amount_charged": 4.71,
+                            "amount_refunded": 0,
+                            "charge_status": "Paid",
+                            "paid_by": "provider",
+                            "payment_source": "card",
+                            "last4": "4242",
+                            "fees": {
+                              "late_fee": 0,
+                              "late_fee_refunded": 0,
+                              "recurring_date_edit_fee": 4.71
+                            },
+                            "payment_type": "Recurring Date Edited",
+                            "partner_share": {
+                              "amount": 0,
+                              "reversed": 0,
+                              "net": 0
+                            },
+                            "provider_share": {
+                              "amount": 0,
+                              "reversed": 0,
+                              "net": 0
+                            },
+                            "date_added": "2020-06-03T13:35:45.000Z"
+                          }
+                        ],
+                        "customer": {
+                          "customer_first_name": "Ted",
+                          "customer_last_name": "Mosby",
+                          "customer_email": "example@domain.com",
+                          "customer_mobile": "7873987478",
+                          "customer_address": "189 Beaver Ridge Ave. test address, Schenectady, NY, 12345",
+                          "date_of_birth": "1993-07-04"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If contract_id is wrong": {
+                    "value": {
+                      "message": "No such contract found.",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-detail",
+        "description": "Get contract details with ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "contract_id",
+            "required": true
+          }
+        ]
+      }
     }
   },
   "components": {
