@@ -2361,6 +2361,244 @@
           }
         ]
       }
+    },
+    "/provider/bank": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_name": {
+                          "type": "string"
+                        },
+                        "routing_number": {
+                          "type": "string"
+                        },
+                        "last4": {
+                          "type": "string"
+                        },
+                        "account_holder_name": {
+                          "type": "string"
+                        },
+                        "account_holder_type": {
+                          "type": "string"
+                        },
+                        "provider_id": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "bank_name": "STRIPE TEST BANK",
+                        "routing_number": "110000000",
+                        "last4": "6789",
+                        "account_holder_name": "Example Test",
+                        "account_holder_type": "individual",
+                        "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                        "currency": "usd",
+                        "country": "US"
+                      },
+                      "code": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-bank",
+        "description": "Returns provider's bank details.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          }
+        ]
+      },
+      "post": {
+        "summary": "Add Provider's bank account",
+        "operationId": "post-provider-bank",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_name": {
+                          "type": "string"
+                        },
+                        "routing_number": {
+                          "type": "string"
+                        },
+                        "last4": {
+                          "type": "string"
+                        },
+                        "account_holder_name": {
+                          "type": "string"
+                        },
+                        "account_holder_type": {
+                          "type": "string"
+                        },
+                        "provider_id": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Bank added successfully",
+                      "data": {
+                        "bank_name": "STRIPE TEST BANK",
+                        "currency": "usd",
+                        "country": "US",
+                        "routing_number": "110000000",
+                        "account_holder_name": "Charlie",
+                        "account_holder_type": "company",
+                        "provider_id": "pr_cdd4554aad8af8d3743fb39abf6ba51b"
+                      },
+                      "code": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Providers"
+        ],
+        "description": "Add provider's bank account which will be used to receive the payouts\n\nIf bank token is created with \"individual\" account type then send `ssn_number`, `date_of_birth`, `front_file`, `back_file`\n\nIf bank token is created with \"company\" account type then send `business_tax_id`",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "business_email": {
+                    "type": "string"
+                  },
+                  "business_name": {
+                    "type": "string"
+                  },
+                  "business_phone": {
+                    "type": "string"
+                  },
+                  "business_address": {
+                    "type": "string"
+                  },
+                  "business_zipcode": {
+                    "type": "number"
+                  },
+                  "bank_token": {
+                    "type": "string"
+                  },
+                  "ssn_number": {
+                    "type": "string"
+                  },
+                  "front_file": {
+                    "type": "string"
+                  },
+                  "back_file": {
+                    "type": "string"
+                  },
+                  "date_of_birth": {
+                    "type": "string"
+                  },
+                  "business_tax_id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Company account example": {
+                  "value": {
+                    "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                    "business_email": "john@gmail.com",
+                    "business_name": "John dentals",
+                    "business_phone": "1234567890",
+                    "business_address": "#34 street",
+                    "business_zipcode": "12345",
+                    "bank_token": "btok_us*****************",
+                    "business_tax_id": "1234567"
+                  }
+                },
+                "Individual Account Example": {
+                  "value": {
+                    "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                    "business_email": "Example@domain.com",
+                    "business_name": "John dentals",
+                    "business_phone": "1234567890",
+                    "business_address": "#34 street",
+                    "business_zipcode": "12345",
+                    "ssn_number": 123456789,
+                    "dl_front": "file_1GiLcuG**************",
+                    "dl_back": "file_1GiLd7GL**************",
+                    "bank_token": "btok_Ld7GL**************",
+                    "date_of_birth": "1990-05-29"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Add Provider Bank"
+        }
+      }
     }
   },
   "components": {
