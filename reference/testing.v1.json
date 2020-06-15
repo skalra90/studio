@@ -3704,7 +3704,7 @@
         "summary": "Pay for Contract",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {

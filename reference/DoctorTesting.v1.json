@@ -2760,6 +2760,117 @@
           }
         }
       }
+    },
+    "/provider/contract/pay": {
+      "post": {
+        "summary": "Pay for Contract",
+        "operationId": "post-provider-contract-pay",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "contract_id": {
+                          "type": "number"
+                        },
+                        "contract_code": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Customer Financed Successfully",
+                      "code": "success",
+                      "data": {
+                        "contract_id": 17351,
+                        "contract_code": "STGMWLK17351"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "if card_token is missing": {
+                    "value": {
+                      "message": "stripe_token is undefined",
+                      "code": "invalid_finance_detail"
+                    }
+                  },
+                  "If finance_token is missing or invalid": {
+                    "value": {
+                      "message": "Invalid finance token",
+                      "code": "invalid_finance_token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Pay for contract using finance token and card token.",
+        "tags": [
+          "Contract Generation Process"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "finance_token": {
+                    "type": "string"
+                  },
+                  "card_token": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "finance_token": "7b863ffe354d689************",
+                    "card_token": "tok_visa"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      }
     }
   },
   "components": {
