@@ -5932,7 +5932,7 @@
       }
     },
     "/provider/contract/claim/upload_more_document": {
-      "get": {
+      "post": {
         "summary": "Upload extra documents to claim contract",
         "tags": [
           "Claim Process"
