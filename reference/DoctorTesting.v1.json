@@ -2120,6 +2120,247 @@
           }
         }
       }
+    },
+    "/provider/contract/plans": {
+      "get": {
+        "summary": "List of Plans",
+        "tags": [
+          "Contract Generation Process"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "plans": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "plan_id": {
+                                  "type": "string"
+                                },
+                                "interest_rate": {
+                                  "type": "number"
+                                },
+                                "number_of_payments": {
+                                  "type": "number"
+                                },
+                                "monthly_payable": {
+                                  "type": "object",
+                                  "properties": {
+                                    "total": {
+                                      "type": "number"
+                                    },
+                                    "breakdown": {
+                                      "type": "object",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "number"
+                                        },
+                                        "transaction_fee": {
+                                          "type": "number"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "to_pay_now": {
+                                  "type": "object",
+                                  "properties": {
+                                    "total": {
+                                      "type": "number"
+                                    },
+                                    "breakdown": {
+                                      "type": "object",
+                                      "properties": {
+                                        "denefits_enrollment_fee": {
+                                          "type": "number"
+                                        },
+                                        "upfront_payment": {
+                                          "type": "object",
+                                          "properties": {
+                                            "total": {
+                                              "type": "number"
+                                            },
+                                            "breakdown": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "number"
+                                                },
+                                                "transaction_fee": {
+                                                  "type": "number"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "downpayment_amount": {
+                                          "type": "object",
+                                          "properties": {
+                                            "total": {
+                                              "type": "number"
+                                            },
+                                            "breakdown": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "number"
+                                                },
+                                                "transaction_fee": {
+                                                  "type": "number"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Success",
+                      "code": "success",
+                      "data": {
+                        "plans": [
+                          {
+                            "plan_id": "plan_P6550M12A12*********",
+                            "number_of_payments": 12,
+                            "interest_rate": 16.99,
+                            "monthly_payable": {
+                              "total": 112.55,
+                              "breakdown": {
+                                "amount": 109.27,
+                                "transaction_fee": 3.28
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 145.55,
+                              "breakdown": {
+                                "denefits_enrollment_fee": 30,
+                                "downpayment_amount": {
+                                  "total": 0,
+                                  "breakdown": {
+                                    "amount": 0,
+                                    "transaction_fee": 0
+                                  }
+                                },
+                                "upfront_payment": {
+                                  "total": 112.55,
+                                  "breakdown": {
+                                    "amount": 109.27,
+                                    "transaction_fee": 3.28
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "If provider doesn't have bank account linked": {
+                    "value": {
+                      "message": "This provider doesn't have a bank account linked with their account.",
+                      "code": "bank_not_linked"
+                    }
+                  },
+                  "If provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If service amount is not a valid number": {
+                    "value": {
+                      "message": "\"service_amount\" must be a safe number",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If service amount/downpayment amount is incorrect": {
+                    "value": {
+                      "message": "Finance amount (Service amount - downpayment) must be between $300 and $20000 ",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-plans",
+        "description": "Returns plans for creating a contract.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "service_amount",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "filter_month"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "downpayment_amount"
+          }
+        ]
+      }
     }
   },
   "components": {
