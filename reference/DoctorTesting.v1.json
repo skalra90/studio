@@ -473,6 +473,189 @@
           }
         ]
       }
+    },
+    "/provider/reports/contract": {
+      "get": {
+        "summary": "Get provider's contract report",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "contract_code": {
+                                "type": "string"
+                              },
+                              "contract_status": {
+                                "type": "string"
+                              },
+                              "financed_amount": {
+                                "type": "number"
+                              },
+                              "downpayment_amount": {
+                                "type": "number"
+                              },
+                              "interest_rate": {
+                                "type": "number"
+                              },
+                              "next_recurring_date": {
+                                "type": "string"
+                              },
+                              "number_of_payments": {
+                                "type": "number"
+                              },
+                              "remaining_payments": {
+                                "type": "number"
+                              },
+                              "recurring_amount": {
+                                "type": "number"
+                              },
+                              "customer_address": {
+                                "type": "string"
+                              },
+                              "customer_email": {
+                                "type": "string"
+                              },
+                              "customer_name": {
+                                "type": "string"
+                              },
+                              "customer_mobile": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "list": [
+                          {
+                            "contract_code": "TEP5HTJ12743",
+                            "contract_status": "Active",
+                            "financed_amount": 850,
+                            "downpayment_amount": "0.00",
+                            "interest_rate": 20,
+                            "next_recurring_date": "2020-01-02",
+                            "number_of_payments": 6,
+                            "remaining_payments": 6,
+                            "recurring_amount": 156.44,
+                            "customer_address": "#56 street, Schenectady, New York, 12345",
+                            "customer_email": "example@domain.com",
+                            "customer_name": "Mark Edison",
+                            "customer_mobile": "6878236279",
+                            "date_added": "2019-11-28"
+                          },
+                          {
+                            "contract_code": "TEPA3YF12812",
+                            "contract_status": "Completed",
+                            "financed_amount": 900,
+                            "downpayment_amount": "0.00",
+                            "interest_rate": 20,
+                            "next_recurring_date": "2020-01-15",
+                            "number_of_payments": 6,
+                            "remaining_payments": 0,
+                            "recurring_amount": 0,
+                            "customer_address": "#767 street, Schenectady, New York, 12345",
+                            "customer_email": "example1@domain.com",
+                            "customer_name": "Roy Fane",
+                            "customer_mobile": "6878236279",
+                            "date_added": "2020-01-08"
+                          },
+                          {
+                            "contract_code": "TEPAMHC12832",
+                            "contract_status": "Overdue",
+                            "financed_amount": 900,
+                            "downpayment_amount": "0.00",
+                            "interest_rate": 20,
+                            "next_recurring_date": "2019-12-01",
+                            "number_of_payments": 6,
+                            "remaining_payments": 0,
+                            "recurring_amount": 0,
+                            "customer_address": "#867 Street, Schenectady, New York, 12345",
+                            "customer_email": "example2@domain.com",
+                            "customer_name": "Tom baker",
+                            "customer_mobile": "6878236279",
+                            "date_added": "2020-01-09"
+                          },
+                          {
+                            "contract_code": "TEPTS7L12833",
+                            "contract_status": "Completed",
+                            "financed_amount": 900,
+                            "downpayment_amount": "0.00",
+                            "interest_rate": 20,
+                            "next_recurring_date": "2019-12-01",
+                            "number_of_payments": 6,
+                            "remaining_payments": 2,
+                            "recurring_amount": 0,
+                            "customer_address": "#252 street, Schenectady, New York, 12345",
+                            "customer_email": "example3@domain.com",
+                            "customer_name": "Ted mosby",
+                            "customer_mobile": "6878236279",
+                            "date_added": "2020-01-09"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-reports-contract",
+        "description": "Get report of all the contracts of this account",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "start_date"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "end_date"
+          }
+        ]
+      }
     }
   },
   "components": {
