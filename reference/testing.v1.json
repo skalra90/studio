@@ -1775,7 +1775,7 @@
         "summary": "List of Payments of a provider",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -4122,7 +4122,7 @@
                         "customer": {
                           "customer_first_name": "Ted",
                           "customer_last_name": "Mosby",
-                          "customer_email": "ted.mosby@denefits.com",
+                          "customer_email": "example@domain.com",
                           "customer_mobile": "7873987478",
                           "customer_address": "189 Beaver Ridge Ave. test address, Schenectady, NY, 12345",
                           "date_of_birth": "1993-07-04"

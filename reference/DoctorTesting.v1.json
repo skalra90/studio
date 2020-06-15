@@ -1835,6 +1835,143 @@
           }
         ]
       }
+    },
+    "/provider/payment/list": {
+      "get": {
+        "summary": "List of Payments of a provider",
+        "tags": [
+          "Provider Payment"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "payment_list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "payment_id": {
+                                "type": "number"
+                              },
+                              "payment_code": {
+                                "type": "string"
+                              },
+                              "provider_id": {
+                                "type": "string"
+                              },
+                              "customer_name": {
+                                "type": "string"
+                              },
+                              "payment_amount": {
+                                "type": "number"
+                              },
+                              "transaction_fee": {
+                                "type": "number"
+                              },
+                              "payment_status": {
+                                "type": "string"
+                              },
+                              "reason": {
+                                "type": "string"
+                              },
+                              "payment_receipt": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 2,
+                        "payment_list": [
+                          {
+                            "payment_id": 4123,
+                            "payment_code": "IDNDRH4***",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "customer_name": "Hannah Baker",
+                            "payment_amount": 9000,
+                            "transaction_fee": 0,
+                            "payment_status": "Successfull",
+                            "reason": "Dental treatment",
+                            "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/Paymen**********4123.pdf",
+                            "date_added": "2020-05-26T09:48:11.000Z"
+                          },
+                          {
+                            "payment_id": 4036,
+                            "payment_code": "IDSJNV4***",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "customer_name": "Heart Checkup",
+                            "payment_amount": 400,
+                            "transaction_fee": 0,
+                            "payment_status": "Successfull",
+                            "reason": null,
+                            "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/Payment_Recei********6.pdf",
+                            "date_added": "2020-05-22T07:59:41.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-payment-list",
+        "description": "It returns the details of the payments processed in the provider's account",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "skip"
+          }
+        ]
+      }
     }
   },
   "components": {
