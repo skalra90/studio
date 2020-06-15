@@ -2,7 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "title": "DoctorTesting.v1",
-    "version": "1.0"
+    "version": "1.0",
+    "description": ""
   },
   "servers": [
     {
@@ -75,6 +76,193 @@
         },
         "tags": [
           "File"
+        ]
+      }
+    },
+    "/provider/payout/list": {
+      "get": {
+        "summary": "Provider Payout list",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "payout_id": {
+                                "type": "string"
+                              },
+                              "payout_status": {
+                                "type": "string"
+                              },
+                              "payout_amount": {
+                                "type": "number"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              },
+                              "arrival_date": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 41,
+                        "list": [
+                          {
+                            "payout_id": "po_1GqA6RE34EcXOXDeywdy1UUb",
+                            "payout_status": "paid",
+                            "payout_amount": 2942.27,
+                            "date_added": "2020-06-04T03:50:51.000Z",
+                            "arrival_date": "2020-06-06T00:00:00.000Z"
+                          },
+                          {
+                            "payout_id": "po_1GjdCJE34EcXOXDeWkinXYi8",
+                            "payout_status": "paid",
+                            "payout_amount": 496.4,
+                            "date_added": "2020-05-17T03:29:55.000Z",
+                            "arrival_date": "2020-05-19T00:00:00.000Z"
+                          },
+                          {
+                            "payout_id": "po_1GdTlwE34EcXOXDesiFS0aTA",
+                            "payout_status": "paid",
+                            "payout_amount": 1797.39,
+                            "date_added": "2020-04-30T04:13:16.000Z",
+                            "arrival_date": "2020-05-02T00:00:00.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider_id is not provided": {
+                    "value": {
+                      "message": "\"provider_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-payout-list",
+        "description": "Get listing of all payouts of this account",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "start_date"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "end_date"
+          }
         ]
       }
     }
