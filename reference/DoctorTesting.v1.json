@@ -2599,6 +2599,167 @@
           "description": "Add Provider Bank"
         }
       }
+    },
+    "/provider/contract/select": {
+      "post": {
+        "summary": "Select a Plan",
+        "operationId": "post-provider-contract-select",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "finance_token": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Finance Token Created",
+                      "code": "success",
+                      "data": {
+                        "finance_token": "64de0703e3b61****************"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If provider does not belong to the partner": {
+                    "value": {
+                      "message": "Provider does not belong to this partner.",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If plan_id is invalid": {
+                    "value": {
+                      "message": "Invalid plan.",
+                      "code": "invalid_finance_detail"
+                    }
+                  },
+                  "If any of the required_field is missing": {
+                    "value": {
+                      "message": "\"required_field\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Select a Plan and provide customer details.",
+        "tags": [
+          "Contract Generation Process"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "plan_id": {
+                    "type": "string"
+                  },
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "customer_email": {
+                    "type": "string"
+                  },
+                  "customer_first_name": {
+                    "type": "string"
+                  },
+                  "customer_last_name": {
+                    "type": "string"
+                  },
+                  "customer_address": {
+                    "type": "string"
+                  },
+                  "zipcode": {
+                    "type": "string"
+                  },
+                  "customer_mobile": {
+                    "type": "string"
+                  },
+                  "date_of_birth": {
+                    "type": "string"
+                  },
+                  "customer_ssn": {
+                    "type": "string"
+                  },
+                  "start_date": {
+                    "type": "string"
+                  },
+                  "dl_number": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "plan_id": "plan_P6509M12A1200*******",
+                    "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                    "customer_email": "Example@domain.com",
+                    "customer_first_name": "Steven",
+                    "customer_last_name": "Gerrard",
+                    "customer_address": "189 Beaver Ridge Ave.",
+                    "zipcode": "48047",
+                    "customer_mobile": "2025550130",
+                    "date_of_birth": "1980-05-30",
+                    "customer_ssn": "227392778",
+                    "start_date": "2020-07-01",
+                    "dl_number": "DL2181281230123"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
