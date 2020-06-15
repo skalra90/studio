@@ -5295,7 +5295,7 @@
                           {
                             "contract_id": 17851,
                             "contract_code": "TEAGFFN17851",
-                            "customer_email": "Example@domain.com",
+                            "customer_email": "example@domain.com",
                             "customer_mobile": "3245647457",
                             "recurring_amount": 520.22,
                             "contract_date_added": "2020-06-11T06:57:27.000Z",
