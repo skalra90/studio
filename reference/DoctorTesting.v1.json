@@ -3324,6 +3324,140 @@
           }
         ]
       }
+    },
+    "/payment/bank_token": {
+      "get": {
+        "summary": "Create bank token",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_token": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "bank_token": "btok_1GpaQmGLNiHi**********"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required field is not provided": {
+                    "value": {
+                      "message": "\"account_holder_name\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If invalid routing number is provided": {
+                    "value": {
+                      "message": "\"routing_number\" must be a safe number",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If invalid account number is provided": {
+                    "value": {
+                      "message": "Invalid account number provided",
+                      "code": "invalid_account_number"
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "example-1": {}
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-payment-bank_token",
+        "description": "Returns the bank_token which is used in /provider/bank(post) API while adding bank account.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "account_holder_name",
+            "required": true,
+            "description": "Bank account holder's name"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "account_type",
+            "required": true,
+            "description": "Possible account types are \"individual\" and \"company\""
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "routing_number",
+            "required": true,
+            "description": "Bank account's routing number"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "account_number",
+            "required": true,
+            "description": "Bank account's number"
+          }
+        ]
+      }
     }
   },
   "components": {
