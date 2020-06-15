@@ -4732,7 +4732,7 @@
             "in": "query",
             "name": "provider_id",
             "required": true,
-            "description": "Required if token is of partner"
+            "description": ""
           },
           {
             "schema": {
@@ -4905,7 +4905,7 @@
             "in": "query",
             "name": "provider_id",
             "required": true,
-            "description": "Required if token is of partner"
+            "description": ""
           },
           {
             "schema": {
@@ -5083,7 +5083,7 @@
             "in": "query",
             "name": "provider_id",
             "required": true,
-            "description": "Required if token is of partner"
+            "description": ""
           },
           {
             "schema": {
@@ -6126,7 +6126,7 @@
                               "payout_amount": {
                                 "type": "number"
                               },
-                              "": {
+                              "arrival_date": {
                                 "type": "string"
                               }
                             }
