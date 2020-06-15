@@ -227,14 +227,6 @@
         "parameters": [
           {
             "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "provider_id",
-            "required": true
-          },
-          {
-            "schema": {
               "type": "number"
             },
             "in": "query",
@@ -446,14 +438,6 @@
               "type": "string"
             },
             "in": "query",
-            "name": "provider_id",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
             "name": "payout_id",
             "required": true
           },
@@ -634,14 +618,6 @@
         "operationId": "get-provider-reports-contract",
         "description": "Get report of all the contracts of this account",
         "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "provider_id",
-            "required": true
-          },
           {
             "schema": {
               "type": "string"
@@ -1453,14 +1429,6 @@
               "type": "string"
             },
             "in": "query",
-            "name": "provider_id",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
             "name": "start_date",
             "required": true
           },
@@ -1704,14 +1672,6 @@
               "type": "string"
             },
             "in": "query",
-            "name": "provider_id",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
             "name": "limit",
             "required": true
           },
@@ -1817,14 +1777,6 @@
         "operationId": "get-provider-payment-detail",
         "description": "It returns the payment detail with payment ID",
         "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "provider_id",
-            "required": true
-          },
           {
             "schema": {
               "type": "number"
@@ -1948,14 +1900,6 @@
         "operationId": "get-provider-payment-list",
         "description": "It returns the details of the payments processed in the provider's account",
         "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "provider_id",
-            "required": true
-          },
           {
             "schema": {
               "type": "number"
@@ -2088,9 +2032,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "provider_id": {
-                    "type": "string"
-                  },
                   "card_token": {
                     "type": "string"
                   },
@@ -2331,14 +2272,6 @@
         "parameters": [
           {
             "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "provider_id",
-            "required": true
-          },
-          {
-            "schema": {
               "type": "number"
             },
             "in": "query",
@@ -2437,16 +2370,7 @@
         },
         "operationId": "get-provider-bank",
         "description": "Returns provider's bank details.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "provider_id",
-            "required": true
-          }
-        ]
+        "parameters": []
       },
       "post": {
         "summary": "Add Provider's bank account",
@@ -2527,9 +2451,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "provider_id": {
-                    "type": "string"
-                  },
                   "business_email": {
                     "type": "string"
                   },
@@ -2701,9 +2622,6 @@
                 "type": "object",
                 "properties": {
                   "plan_id": {
-                    "type": "string"
-                  },
-                  "provider_id": {
                     "type": "string"
                   },
                   "customer_email": {
@@ -3224,18 +3142,184 @@
         "parameters": [
           {
             "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "provider_id",
-            "required": true
-          },
-          {
-            "schema": {
               "type": "number"
             },
             "in": "query",
             "name": "contract_id",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/provider/contract/list": {
+      "get": {
+        "summary": "List of contracts of a provider",
+        "tags": [
+          "Provider Contract"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "contracts_list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "contract_id": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              },
+                              "last_updated": {
+                                "type": "string"
+                              },
+                              "zipcode": {
+                                "type": "number"
+                              },
+                              "contract_status": {
+                                "type": "string"
+                              },
+                              "next_emi_date": {
+                                "type": "string"
+                              },
+                              "remaining_emi": {
+                                "type": "number"
+                              },
+                              "total_emi": {
+                                "type": "number"
+                              },
+                              "emi_amount": {
+                                "type": "number"
+                              },
+                              "interest_rate": {
+                                "type": "number"
+                              },
+                              "financed_amount": {
+                                "type": "number"
+                              },
+                              "customer_signature": {
+                                "type": "string"
+                              },
+                              "customer_address": {
+                                "type": "string"
+                              },
+                              "customer_mobile": {
+                                "type": "string"
+                              },
+                              "customer_email": {
+                                "type": "string"
+                              },
+                              "customer_last_name": {
+                                "type": "string"
+                              },
+                              "customer_first_name": {
+                                "type": "string"
+                              },
+                              "customer_id": {
+                                "type": "number"
+                              },
+                              "provider_id": {
+                                "type": "string"
+                              },
+                              "contract_code": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 1,
+                        "contracts_list": [
+                          {
+                            "contract_id": 17351,
+                            "contract_code": "STGMWLK17351",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "customer_id": 3174,
+                            "customer_first_name": "Steven",
+                            "customer_last_name": "Gerrard",
+                            "customer_email": "Example@domain.com",
+                            "customer_mobile": "+1-2025550130",
+                            "customer_address": "189 Beaver Ridge Ave.",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-***********.png",
+                            "downpayment_amount": 0,
+                            "financed_amount": 1200,
+                            "interest_rate": 16.99,
+                            "recurring_amount": 109.27,
+                            "number_of_payments": 12,
+                            "remaining_payments": 12,
+                            "next_recurring_date": "2020-07-01T00:00:00.000Z",
+                            "contract_status": "Active",
+                            "title": "",
+                            "city_name": "New Baltimore",
+                            "zipcode": 48047,
+                            "last_updated": "2020-05-29T14:06:26.000Z",
+                            "date_added": "2020-05-29T14:06:26.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-list",
+        "description": "Get listing of all contracts of this account",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "skip",
             "required": true
           }
         ]
