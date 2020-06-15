@@ -6,11 +6,91 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "https://endpoint.denefits.com/v1",
+      "description": "Live whitelabel"
     }
   ],
-  "paths": {},
+  "paths": {
+    "/file/upload": {
+      "post": {
+        "summary": "Upload file",
+        "operationId": "post-file-upload",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "file_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success ": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "file_id": "file_1GiyMUGL***********"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns file_id which can be used in further API's",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string"
+                  },
+                  "purpose": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "File"
+        ]
+      }
+    }
+  },
   "components": {
-    "schemas": {}
-  }
+    "schemas": {},
+    "securitySchemes": {
+      "authorization": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "authorization": []
+    }
+  ]
 }

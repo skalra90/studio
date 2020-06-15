@@ -3144,7 +3144,7 @@
         "operationId": "post-upload_file",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success ",
             "content": {
               "application/json": {
                 "schema": {
@@ -3203,7 +3203,8 @@
                   "file",
                   "purpose"
                 ]
-              }
+              },
+              "examples": {}
             }
           },
           "description": ""
