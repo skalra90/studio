@@ -184,14 +184,7 @@
                     }
                   }
                 },
-                "examples": {
-                  "If provider_id is not provided": {
-                    "value": {
-                      "message": "\"provider_id\" is required",
-                      "code": "parameter_missing"
-                    }
-                  }
-                }
+                "examples": {}
               }
             }
           },
@@ -387,12 +380,6 @@
                   }
                 },
                 "examples": {
-                  "If provider id in not provided": {
-                    "value": {
-                      "message": "\"provider_id\" is required",
-                      "code": "parameter_missing"
-                    }
-                  },
                   "If payout id in not provided": {
                     "value": {
                       "message": "\"payout_id\" is required",
@@ -1979,12 +1966,6 @@
                   }
                 },
                 "examples": {
-                  "If invalid provider ID is provided": {
-                    "value": {
-                      "message": "Invalid provider ID",
-                      "code": "request_failed"
-                    }
-                  },
                   "If mandatory field is missing": {
                     "value": {
                       "message": "\"card_token\" is required",
@@ -2242,12 +2223,6 @@
                     "value": {
                       "message": "This provider doesn't have a bank account linked with their account.",
                       "code": "bank_not_linked"
-                    }
-                  },
-                  "If provider_id is invalid": {
-                    "value": {
-                      "message": "Invalid provider ID",
-                      "code": "request_failed"
                     }
                   },
                   "If service amount is not a valid number": {
@@ -2582,18 +2557,6 @@
                   }
                 },
                 "examples": {
-                  "If provider_id is invalid": {
-                    "value": {
-                      "message": "Invalid provider ID",
-                      "code": "request_failed"
-                    }
-                  },
-                  "If provider does not belong to the partner": {
-                    "value": {
-                      "message": "Provider does not belong to this partner.",
-                      "code": "request_failed"
-                    }
-                  },
                   "If plan_id is invalid": {
                     "value": {
                       "message": "Invalid plan.",
@@ -3120,12 +3083,6 @@
                   }
                 },
                 "examples": {
-                  "If provider_id is invalid": {
-                    "value": {
-                      "message": "Invalid provider ID",
-                      "code": "request_failed"
-                    }
-                  },
                   "If contract_id is wrong": {
                     "value": {
                       "message": "No such contract found.",
@@ -3287,18 +3244,6 @@
                     }
                   }
                 }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                },
-                "examples": {}
               }
             }
           }
