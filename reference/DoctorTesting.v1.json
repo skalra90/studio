@@ -265,6 +265,214 @@
           }
         ]
       }
+    },
+    "/provider/payout/detail": {
+      "get": {
+        "summary": "Provider Payout details",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "transfers": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "code": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "customer_email": {
+                                "type": "string"
+                              },
+                              "customer_name": {
+                                "type": "string"
+                              },
+                              "payment_type": {
+                                "type": "string"
+                              },
+                              "payment_amount": {
+                                "type": "number"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              },
+                              "contract_status": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 3,
+                        "transfers": [
+                          {
+                            "id": 17506,
+                            "code": "TEPMYLX17506",
+                            "type": "contract_payment",
+                            "customer_email": "example@domain.com",
+                            "customer_name": "Ted Baker",
+                            "payment_type": "Partial Payment",
+                            "payment_amount": 91.96,
+                            "date_added": "2020-06-03T14:12:06.000Z",
+                            "contract_status": "Active"
+                          },
+                          {
+                            "id": 17506,
+                            "code": "TEPMYLX17506",
+                            "type": "contract_payment",
+                            "customer_email": "example1@domain.com",
+                            "customer_name": "Tom sand",
+                            "payment_type": "Recurring Payment",
+                            "payment_amount": 91.96,
+                            "date_added": "2020-06-03T14:05:06.000Z",
+                            "contract_status": "Active"
+                          },
+                          {
+                            "id": 4392,
+                            "code": "ARB9K44392",
+                            "type": "process_payment",
+                            "customer_email": "example2@domain.com",
+                            "customer_name": "Sood Him",
+                            "payment_type": "Payment Processed",
+                            "payment_amount": 979.88,
+                            "date_added": "2020-06-03T03:42:37.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider id in not provided": {
+                    "value": {
+                      "message": "\"provider_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If payout id in not provided": {
+                    "value": {
+                      "message": "\"payout_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-payout-detail",
+        "description": "Get details of the payouts by payout ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "payout_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "limit"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "skip"
+          }
+        ]
+      }
     }
   },
   "components": {
