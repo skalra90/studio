@@ -1917,7 +1917,7 @@
         "operationId": "post-provider-payment-pay",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -2025,11 +2025,11 @@
                   }
                 },
                 "required": [
+                  "provider_id",
                   "card_token",
                   "amount",
                   "reason",
-                  "name",
-                  "provider_id"
+                  "name"
                 ]
               },
               "examples": {
