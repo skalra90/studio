@@ -1395,7 +1395,8 @@
             },
             "in": "query",
             "name": "start_date",
-            "required": true
+            "required": true,
+            "description": "YYYY-MM-DD"
           },
           {
             "schema": {
@@ -1403,7 +1404,8 @@
             },
             "in": "query",
             "name": "end_date",
-            "required": true
+            "required": true,
+            "description": "YYYY-MM-DD"
           }
         ]
       }
