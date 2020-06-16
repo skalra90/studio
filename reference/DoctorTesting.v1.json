@@ -1788,7 +1788,7 @@
                             "transaction_fee": 0,
                             "payment_status": "Successfull",
                             "reason": "Dental treatment",
-                            "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/Paymen**********4123.pdf",
+                            "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/P****.pdf",
                             "date_added": "2020-05-26T09:48:11.000Z"
                           },
                           {
@@ -1800,7 +1800,7 @@
                             "transaction_fee": 0,
                             "payment_status": "Successfull",
                             "reason": null,
-                            "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/Payment_Recei********6.pdf",
+                            "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/P****.pdf",
                             "date_added": "2020-05-22T07:59:41.000Z"
                           }
                         ]
