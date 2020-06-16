@@ -1744,6 +1744,25 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "If payment_id is wrong": {
+                    "value": {
+                      "message": "Data not found",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "operationId": "get-payment-detail",
