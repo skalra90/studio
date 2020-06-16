@@ -3414,7 +3414,8 @@
                 ]
               }
             }
-          }
+          },
+          "description": ""
         },
         "description": "Returns file_id which can be used in further API's",
         "tags": [
