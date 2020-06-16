@@ -2361,7 +2361,6 @@
               "examples": {
                 "Company account example": {
                   "value": {
-                    "provider_id": "pr_084aa5f9bad7a2d72a*************",
                     "business_email": "john@gmail.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
@@ -2373,7 +2372,6 @@
                 },
                 "Individual Account Example": {
                   "value": {
-                    "provider_id": "pr_084aa5f9bad7a2d72a*************",
                     "business_email": "Example@domain.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
@@ -2520,7 +2518,6 @@
                 "Example": {
                   "value": {
                     "plan_id": "plan_P6509M12A1200*******",
-                    "provider_id": "pr_084aa5f9bad7a2d72a*************",
                     "customer_email": "Example@domain.com",
                     "customer_first_name": "Steven",
                     "customer_last_name": "Gerrard",
