@@ -2749,7 +2749,7 @@
                 "examples": {
                   "If required_field is missing": {
                     "value": {
-                      "message": "\"required_field\" is required",
+                      "message": "\"provider_id\" is required",
                       "code": "parameter_missing"
                     }
                   },
