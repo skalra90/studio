@@ -1659,7 +1659,7 @@
                           "transaction_fee": 0,
                           "payment_status": "Successfull",
                           "reason": "Liver treatment",
-                          "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/Payment_Rece***********84.pdf",
+                          "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/P*****.pdf",
                           "date_added": "2020-05-26T09:48:11.000Z"
                         }
                       }
@@ -3326,7 +3326,11 @@
           },
           {
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "individual",
+                "company"
+              ]
             },
             "in": "query",
             "name": "account_type",
