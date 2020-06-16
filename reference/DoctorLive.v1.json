@@ -1,0 +1,3739 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "DoctorLive.v1",
+    "version": "1.0",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "https://endpoint.denefits.com/v1",
+      "description": "Live whitelabel"
+    }
+  ],
+  "paths": {
+    "/file/upload": {
+      "post": {
+        "summary": "Upload file",
+        "operationId": "post-upload_file",
+        "responses": {
+          "200": {
+            "description": "Success ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "file_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success ": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "file_id": "file_1GiyMUGL***********"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns file_id which can be used in further API's",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Choose file you want to upload"
+                  },
+                  "purpose": {
+                    "type": "string",
+                    "description": "Possible values are \"bank_document\", \"denefits_file\", \"claim_document\""
+                  }
+                },
+                "required": [
+                  "file",
+                  "purpose"
+                ]
+              },
+              "examples": {}
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "File"
+        ]
+      },
+      "parameters": []
+    },
+    "/provider/payout/list": {
+      "get": {
+        "summary": "Provider Payout list",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "payout_id": {
+                                "type": "string"
+                              },
+                              "payout_status": {
+                                "type": "string"
+                              },
+                              "payout_amount": {
+                                "type": "number"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              },
+                              "arrival_date": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 41,
+                        "list": [
+                          {
+                            "payout_id": "po_1GqA6RE34EcXOXDeywdy1UUb",
+                            "payout_status": "paid",
+                            "payout_amount": 2942.27,
+                            "date_added": "2020-06-04T03:50:51.000Z",
+                            "arrival_date": "2020-06-06T00:00:00.000Z"
+                          },
+                          {
+                            "payout_id": "po_1GjdCJE34EcXOXDeWkinXYi8",
+                            "payout_status": "paid",
+                            "payout_amount": 496.4,
+                            "date_added": "2020-05-17T03:29:55.000Z",
+                            "arrival_date": "2020-05-19T00:00:00.000Z"
+                          },
+                          {
+                            "payout_id": "po_1GdTlwE34EcXOXDesiFS0aTA",
+                            "payout_status": "paid",
+                            "payout_amount": 1797.39,
+                            "date_added": "2020-04-30T04:13:16.000Z",
+                            "arrival_date": "2020-05-02T00:00:00.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If start_date or end_date is not valid": {
+                    "value": {
+                      "message": "\"start_date\" must be in YYYY-MM-DD format",
+                      "code": "invalid_parameter"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-payout-list",
+        "description": "Get listing of all payouts of this account",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "start_date"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "end_date"
+          }
+        ]
+      }
+    },
+    "/provider/payout/detail": {
+      "get": {
+        "summary": "Provider Payout details",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "transfers": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "number"
+                              },
+                              "code": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "customer_email": {
+                                "type": "string"
+                              },
+                              "customer_name": {
+                                "type": "string"
+                              },
+                              "payment_type": {
+                                "type": "string"
+                              },
+                              "payment_amount": {
+                                "type": "number"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              },
+                              "contract_status": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 3,
+                        "transfers": [
+                          {
+                            "id": 17506,
+                            "code": "TEPMYLX17506",
+                            "type": "contract_payment",
+                            "customer_email": "example@domain.com",
+                            "customer_name": "Ted Baker",
+                            "payment_type": "Partial Payment",
+                            "payment_amount": 91.96,
+                            "date_added": "2020-06-03T14:12:06.000Z",
+                            "contract_status": "Active"
+                          },
+                          {
+                            "id": 17506,
+                            "code": "TEPMYLX17506",
+                            "type": "contract_payment",
+                            "customer_email": "example1@domain.com",
+                            "customer_name": "Tom sand",
+                            "payment_type": "Recurring Payment",
+                            "payment_amount": 91.96,
+                            "date_added": "2020-06-03T14:05:06.000Z",
+                            "contract_status": "Active"
+                          },
+                          {
+                            "id": 4392,
+                            "code": "ARB9K44392",
+                            "type": "process_payment",
+                            "customer_email": "example2@domain.com",
+                            "customer_name": "Sood Him",
+                            "payment_type": "Payment Processed",
+                            "payment_amount": 979.88,
+                            "date_added": "2020-06-03T03:42:37.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-payout-detail",
+        "description": "Get details of the payouts by payout ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "payout_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "limit"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "skip"
+          }
+        ]
+      }
+    },
+    "/provider/reports/contract": {
+      "get": {
+        "summary": "Get provider's contract report",
+        "tags": [
+          "Provider Report"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "contract_code": {
+                                "type": "string"
+                              },
+                              "contract_status": {
+                                "type": "string"
+                              },
+                              "financed_amount": {
+                                "type": "number"
+                              },
+                              "downpayment_amount": {
+                                "type": "number"
+                              },
+                              "interest_rate": {
+                                "type": "number"
+                              },
+                              "next_recurring_date": {
+                                "type": "string"
+                              },
+                              "number_of_payments": {
+                                "type": "number"
+                              },
+                              "remaining_payments": {
+                                "type": "number"
+                              },
+                              "recurring_amount": {
+                                "type": "number"
+                              },
+                              "customer_address": {
+                                "type": "string"
+                              },
+                              "customer_email": {
+                                "type": "string"
+                              },
+                              "customer_name": {
+                                "type": "string"
+                              },
+                              "customer_mobile": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "list": [
+                          {
+                            "contract_code": "TEP5HTJ12743",
+                            "contract_status": "Active",
+                            "financed_amount": 850,
+                            "downpayment_amount": "0.00",
+                            "interest_rate": 20,
+                            "next_recurring_date": "2020-01-02",
+                            "number_of_payments": 6,
+                            "remaining_payments": 6,
+                            "recurring_amount": 156.44,
+                            "customer_address": "#56 street, Schenectady, New York, 12345",
+                            "customer_email": "example@domain.com",
+                            "customer_name": "Mark Edison",
+                            "customer_mobile": "6878236279",
+                            "date_added": "2019-11-28"
+                          },
+                          {
+                            "contract_code": "TEPA3YF12812",
+                            "contract_status": "Completed",
+                            "financed_amount": 900,
+                            "downpayment_amount": "0.00",
+                            "interest_rate": 20,
+                            "next_recurring_date": "2020-01-15",
+                            "number_of_payments": 6,
+                            "remaining_payments": 0,
+                            "recurring_amount": 0,
+                            "customer_address": "#767 street, Schenectady, New York, 12345",
+                            "customer_email": "example1@domain.com",
+                            "customer_name": "Roy Fane",
+                            "customer_mobile": "6878236279",
+                            "date_added": "2020-01-08"
+                          },
+                          {
+                            "contract_code": "TEPAMHC12832",
+                            "contract_status": "Overdue",
+                            "financed_amount": 900,
+                            "downpayment_amount": "0.00",
+                            "interest_rate": 20,
+                            "next_recurring_date": "2019-12-01",
+                            "number_of_payments": 6,
+                            "remaining_payments": 0,
+                            "recurring_amount": 0,
+                            "customer_address": "#867 Street, Schenectady, New York, 12345",
+                            "customer_email": "example2@domain.com",
+                            "customer_name": "Tom baker",
+                            "customer_mobile": "6878236279",
+                            "date_added": "2020-01-09"
+                          },
+                          {
+                            "contract_code": "TEPTS7L12833",
+                            "contract_status": "Completed",
+                            "financed_amount": 900,
+                            "downpayment_amount": "0.00",
+                            "interest_rate": 20,
+                            "next_recurring_date": "2019-12-01",
+                            "number_of_payments": 6,
+                            "remaining_payments": 2,
+                            "recurring_amount": 0,
+                            "customer_address": "#252 street, Schenectady, New York, 12345",
+                            "customer_email": "example3@domain.com",
+                            "customer_name": "Ted mosby",
+                            "customer_mobile": "6878236279",
+                            "date_added": "2020-01-09"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-reports-contract",
+        "description": "Get report of all the contracts of this account",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "start_date"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "end_date"
+          }
+        ]
+      }
+    },
+    "/provider/reports/payout": {
+      "get": {
+        "summary": "Get provider's payout report",
+        "tags": [
+          "Provider Report"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "start_date": {
+                          "type": "string"
+                        },
+                        "end_date": {
+                          "type": "string"
+                        },
+                        "payouts": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "payments": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "payment_type": {
+                                      "type": "string"
+                                    },
+                                    "amount": {
+                                      "type": "number"
+                                    },
+                                    "contract_status": {
+                                      "type": "string"
+                                    },
+                                    "transaction_created": {
+                                      "type": "string"
+                                    },
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "code": {
+                                      "type": "string"
+                                    },
+                                    "customer_name": {
+                                      "type": "string"
+                                    },
+                                    "customer_email": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              },
+                              "payout_id": {
+                                "type": "string"
+                              },
+                              "amount": {
+                                "type": "number"
+                              },
+                              "arrival_date": {
+                                "type": "string"
+                              },
+                              "status": {
+                                "type": "string"
+                              },
+                              "provider_id": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "total_payout_amount": {
+                          "type": "number"
+                        },
+                        "provider_info": {
+                          "type": "object",
+                          "properties": {
+                            "provider_name": {
+                              "type": "string"
+                            },
+                            "provider_email": {
+                              "type": "string"
+                            },
+                            "provider_id": {
+                              "type": "string"
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "state_name": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "start_date": "2020-05-01",
+                        "end_date": "2020-06-05",
+                        "payouts": [
+                          {
+                            "payments": [
+                              {
+                                "contract_code": "TEPZGGW16462",
+                                "doctor_record_id": "",
+                                "contract_id": 16462,
+                                "payment_type": "Recurring Date Edit + Late fee",
+                                "amount": -364.39,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-05-01",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPEWXN16479",
+                                "doctor_record_id": "",
+                                "contract_id": 16479,
+                                "payment_type": "Recurring Date Edit + Late fee",
+                                "amount": -73.26,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-01",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example1@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPBD2T16474",
+                                "doctor_record_id": "",
+                                "contract_id": 16474,
+                                "payment_type": "Recurring Date Edit + Late fee",
+                                "amount": -73.27,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-05-01",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example2@domain.com"
+                              },
+                              {
+                                "contract_code": "TEP4KUP15130",
+                                "doctor_record_id": "",
+                                "contract_id": 15130,
+                                "payment_type": "Recurring Date Edit + Late fee",
+                                "amount": -274.14,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-05-01",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example3@domain.com"
+                              },
+                              {
+                                "contract_code": "TEP6RPM15128",
+                                "doctor_record_id": "",
+                                "contract_id": 15128,
+                                "payment_type": "Recurring Date Edit + Late fee",
+                                "amount": -429.81,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-05-01",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example4@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPTS4T15122",
+                                "doctor_record_id": "",
+                                "contract_id": 15122,
+                                "payment_type": "Recurring Date Edit + Late fee",
+                                "amount": -329.81,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-05-01",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example5@domain.com"
+                              },
+                              {
+                                "contract_code": "TEP3EVQ16776",
+                                "doctor_record_id": "",
+                                "contract_id": 16776,
+                                "payment_type": "Cash adjustment (DownPayment)",
+                                "amount": -10,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example6@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPDMKJ16782",
+                                "doctor_record_id": "",
+                                "contract_id": 16782,
+                                "payment_type": "Late Fees from Business owner's ",
+                                "amount": -25,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example6@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPDMKJ16782",
+                                "doctor_record_id": "",
+                                "contract_id": 16782,
+                                "payment_type": "Payoff",
+                                "amount": 477,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example7@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPDMKJ16782",
+                                "doctor_record_id": "",
+                                "contract_id": 16782,
+                                "payment_type": "Recurring Payment",
+                                "amount": 131.68,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example8@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPDMKJ16782",
+                                "doctor_record_id": "",
+                                "contract_id": 16782,
+                                "payment_type": "Denefits Fee + Down Payment",
+                                "amount": 89.5,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example9@domain.com"
+                              },
+                              {
+                                "contract_code": "TEP3EVQ16776",
+                                "doctor_record_id": "",
+                                "contract_id": 16776,
+                                "payment_type": "Down Payment",
+                                "amount": 89.5,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example10@domain.com"
+                              },
+                              {
+                                "contract_code": "TEP3EVQ16776",
+                                "doctor_record_id": "",
+                                "contract_id": 16776,
+                                "payment_type": "Social Healthcare",
+                                "amount": 89.5,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example11@domain.com"
+                              },
+                              {
+                                "contract_code": "TEP3EVQ16776",
+                                "doctor_record_id": "",
+                                "contract_id": 16776,
+                                "payment_type": "Denefits Fee + Down Payment",
+                                "amount": 89.5,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-05-14",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example12@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPYLSG16566",
+                                "doctor_record_id": "",
+                                "contract_id": 16566,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Overdue",
+                                "transaction_created": "2020-05-05",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example13@domain.com"
+                              },
+                              {
+                                "contract_code": "TEP5NPP16491",
+                                "doctor_record_id": "",
+                                "contract_id": 16491,
+                                "payment_type": "Recurring Payment",
+                                "amount": 49.75,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example14@domain.com"
+                              },
+                              {
+                                "contract_code": "TEP5NPP16491",
+                                "doctor_record_id": "",
+                                "contract_id": 16491,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example15@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPWC7Z16488",
+                                "doctor_record_id": "",
+                                "contract_id": 16488,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example16@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPXNXB16487",
+                                "doctor_record_id": "",
+                                "contract_id": 16487,
+                                "payment_type": "Social Healthcare",
+                                "amount": 3.25,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example17@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPXNXB16487",
+                                "doctor_record_id": "",
+                                "contract_id": 16487,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 44.75,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example18@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPXNXB16487",
+                                "doctor_record_id": "",
+                                "contract_id": 16487,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 44.75,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example19@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPXNXB16487",
+                                "doctor_record_id": "",
+                                "contract_id": 16487,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example20@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPEWXN16479",
+                                "doctor_record_id": "",
+                                "contract_id": 16479,
+                                "payment_type": "Partial Payment",
+                                "amount": 3.25,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example21@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPBD2T16474",
+                                "doctor_record_id": "",
+                                "contract_id": 16474,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 41.77,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example22@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPBD2T16474",
+                                "doctor_record_id": "",
+                                "contract_id": 16474,
+                                "payment_type": "Partial Payment",
+                                "amount": 3.25,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example23@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPBD2T16474",
+                                "doctor_record_id": "",
+                                "contract_id": 16474,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 44.75,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example24@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPBD2T16474",
+                                "doctor_record_id": "",
+                                "contract_id": 16474,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 44.75,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example25@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPEWXN16479",
+                                "doctor_record_id": "",
+                                "contract_id": 16479,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 44.75,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example26@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPEWXN16479",
+                                "doctor_record_id": "",
+                                "contract_id": 16479,
+                                "payment_type": "Recurring Payment",
+                                "amount": 44.75,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example27@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPEWXN16479",
+                                "doctor_record_id": "",
+                                "contract_id": 16479,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 44.75,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example28@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPEWXN16479",
+                                "doctor_record_id": "",
+                                "contract_id": 16479,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Completed",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example29@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPBD2T16474",
+                                "doctor_record_id": "",
+                                "contract_id": 16474,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-30",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example30@domain.com"
+                              },
+                              {
+                                "payment_type": "Accounts Receivable",
+                                "amount": 97.88,
+                                "payment_process_code": "ARRFAF3570",
+                                "ppr_id": 3575,
+                                "doctor_record_id": "",
+                                "contract_code": "ARRFAF3570",
+                                "contract_status": "",
+                                "transaction_created": "2020-05-05",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example31@domain.com"
+                              }
+                            ],
+                            "payout_id": "po_1GjdCJE34EcXOXDeWkinXYi8",
+                            "amount": 496.4,
+                            "arrival_date": "2020-05-19",
+                            "status": "paid",
+                            "provider_id": 5690
+                          },
+                          {
+                            "payments": [
+                              {
+                                "contract_code": "TEPHRVK16445",
+                                "doctor_record_id": "",
+                                "contract_id": 16445,
+                                "payment_type": "Recurring Date Edited",
+                                "amount": -33.18,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example32@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPHRVK16445",
+                                "doctor_record_id": "",
+                                "contract_id": 16445,
+                                "payment_type": "Recurring Payment",
+                                "amount": 223.74,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example33@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPZGGW16462",
+                                "doctor_record_id": "",
+                                "contract_id": 16462,
+                                "payment_type": "Partial Payment",
+                                "amount": 81.54,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example34@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPZGGW16462",
+                                "doctor_record_id": "",
+                                "contract_id": 16462,
+                                "payment_type": "Partial Payment",
+                                "amount": 17.29,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example35@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPZGGW16462",
+                                "doctor_record_id": "",
+                                "contract_id": 16462,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 94.3,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example36@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPZGGW16462",
+                                "doctor_record_id": "",
+                                "contract_id": 16462,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 94.48,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example37@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPZGGW16462",
+                                "doctor_record_id": "",
+                                "contract_id": 16462,
+                                "payment_type": "Recurring Payment",
+                                "amount": 94.47,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example38@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPZGGW16462",
+                                "doctor_record_id": "",
+                                "contract_id": 16462,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Active",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example39@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPHRVK16445",
+                                "doctor_record_id": "",
+                                "contract_id": 16445,
+                                "payment_type": "Guaranteed Payment",
+                                "amount": 134.25,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example40@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPHRVK16445",
+                                "doctor_record_id": "",
+                                "contract_id": 16445,
+                                "payment_type": "Denefits Fee + Down Payment + Up",
+                                "amount": 99.5,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example41@domain.com"
+                              },
+                              {
+                                "contract_code": "TEPTK7Q16133",
+                                "doctor_record_id": "",
+                                "contract_id": 16133,
+                                "payment_type": "Denefits Fee + Down Payment",
+                                "amount": 148.25,
+                                "contract_status": "Canceled",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example42@domain.com"
+                              },
+                              {
+                                "payment_type": "Transaction Fee for Refund",
+                                "amount": -3.25,
+                                "payment_process_code": "ID54YK3204",
+                                "ppr_id": 3204,
+                                "doctor_record_id": "",
+                                "contract_code": "ID54YK3204",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "-"
+                              },
+                              {
+                                "payment_type": "Transaction Fee for Refund",
+                                "amount": -30.25,
+                                "payment_process_code": "IDL3FU3207",
+                                "ppr_id": 3207,
+                                "doctor_record_id": "",
+                                "contract_code": "IDL3FU3207",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "-"
+                              },
+                              {
+                                "payment_type": "Transaction Fee for Refund",
+                                "amount": -10.25,
+                                "payment_process_code": "IDCMFK3208",
+                                "ppr_id": 3208,
+                                "doctor_record_id": "",
+                                "contract_code": "IDCMFK3208",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example43@domain.com"
+                              },
+                              {
+                                "payment_type": "Payment Processed Reversed",
+                                "amount": -192.88,
+                                "payment_process_code": "IDCMFK3208",
+                                "ppr_id": 3208,
+                                "doctor_record_id": "",
+                                "contract_code": "IDCMFK3208",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example44@domain.com"
+                              },
+                              {
+                                "payment_type": "Payment Processed",
+                                "amount": 192.88,
+                                "payment_process_code": "IDCMFK3208",
+                                "ppr_id": 3208,
+                                "doctor_record_id": "",
+                                "contract_code": "IDCMFK3208",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example45@domain.com"
+                              },
+                              {
+                                "payment_type": "Payment Processed Reversed",
+                                "amount": -995,
+                                "payment_process_code": "IDL3FU3207",
+                                "ppr_id": 3207,
+                                "doctor_record_id": "",
+                                "contract_code": "IDL3FU3207",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "-"
+                              },
+                              {
+                                "payment_type": "Payment Processed",
+                                "amount": 995,
+                                "payment_process_code": "IDL3FU3207",
+                                "ppr_id": 3207,
+                                "doctor_record_id": "",
+                                "contract_code": "IDL3FU3207",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "-"
+                              },
+                              {
+                                "payment_type": "Payment Processed Reversed",
+                                "amount": -97.88,
+                                "payment_process_code": "ID54YK3204",
+                                "ppr_id": 3204,
+                                "doctor_record_id": "",
+                                "contract_code": "ID54YK3204",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "-"
+                              },
+                              {
+                                "payment_type": "Payment Processed",
+                                "amount": 97.88,
+                                "payment_process_code": "ID54YK3204",
+                                "ppr_id": 3204,
+                                "doctor_record_id": "",
+                                "contract_code": "ID54YK3204",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "-"
+                              },
+                              {
+                                "payment_type": "Payment Processed",
+                                "amount": 979.88,
+                                "payment_process_code": "ARNNG73176",
+                                "ppr_id": 3176,
+                                "doctor_record_id": "",
+                                "contract_code": "ARNNG73176",
+                                "contract_status": "",
+                                "transaction_created": "2020-04-29",
+                                "customer_name": "Test Customer",
+                                "customer_email": "example46@domain.com"
+                              }
+                            ],
+                            "payout_id": "po_1GdTlwE34EcXOXDesiFS0aTA",
+                            "amount": 1797.39,
+                            "arrival_date": "2020-05-02",
+                            "status": "paid",
+                            "provider_id": 5690
+                          }
+                        ],
+                        "total_payout_amount": 2293.79,
+                        "provider_info": {
+                          "provider_name": " Test Business",
+                          "provider_email": "example47@domain.com",
+                          "provider_id": 5690,
+                          "city": "Schenectady",
+                          "state_name": "New York"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-reports-payout",
+        "description": "Get report of all the payout of this account",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "start_date",
+            "required": true,
+            "description": "YYYY-MM-DD"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "end_date",
+            "required": true,
+            "description": "YYYY-MM-DD"
+          }
+        ]
+      }
+    },
+    "/provider/upcoming_payment": {
+      "get": {
+        "summary": "Provider's upcoming payments",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "contract_id": {
+                                "type": "number"
+                              },
+                              "contract_code": {
+                                "type": "string"
+                              },
+                              "provider_id": {
+                                "type": "string"
+                              },
+                              "financed_amount": {
+                                "type": "number"
+                              },
+                              "interest_rate": {
+                                "type": "number"
+                              },
+                              "next_recurring_date": {
+                                "type": "string"
+                              },
+                              "recurring_amount": {
+                                "type": "number"
+                              },
+                              "downpayment_amount": {
+                                "type": "number"
+                              },
+                              "number_of_payments": {
+                                "type": "number"
+                              },
+                              "remaining_payments": {
+                                "type": "number"
+                              },
+                              "contract_status": {
+                                "type": "string"
+                              },
+                              "customer_email": {
+                                "type": "string"
+                              },
+                              "customer_first_name": {
+                                "type": "string"
+                              },
+                              "customer_last_name": {
+                                "type": "string"
+                              },
+                              "customer_mobile": {
+                                "type": "string"
+                              },
+                              "customer_address": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 7,
+                        "list": [
+                          {
+                            "contract_id": 17061,
+                            "contract_code": "TEPPZXY17061",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "financed_amount": 1000,
+                            "interest_rate": 20,
+                            "next_recurring_date": "2020-06-15T00:00:00.000Z",
+                            "recurring_amount": 184.04,
+                            "downpayment_amount": 0,
+                            "number_of_payments": 6,
+                            "remaining_payments": 5,
+                            "contract_status": "Active",
+                            "customer_email": "example@domain.com",
+                            "customer_first_name": "Ted",
+                            "customer_last_name": "Baker",
+                            "customer_mobile": "6878236279",
+                            "customer_address": "#654 jump street, Schenectady, NY, 12345",
+                            "date_added": "2020-05-22T12:49:43.000Z"
+                          },
+                          {
+                            "contract_id": 15644,
+                            "contract_code": "TEPXGYR15644",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "financed_amount": 900,
+                            "interest_rate": 20,
+                            "next_recurring_date": "2020-07-01T00:00:00.000Z",
+                            "recurring_amount": 66.73,
+                            "downpayment_amount": 100,
+                            "number_of_payments": 12,
+                            "remaining_payments": 8,
+                            "contract_status": "Active",
+                            "customer_email": "example1@domain.com",
+                            "customer_first_name": "Tom",
+                            "customer_last_name": "Pit",
+                            "customer_mobile": "6878236279",
+                            "customer_address": "#34, Schenectady, NY, 12345",
+                            "date_added": "2020-03-31T09:59:16.000Z"
+                          },
+                          {
+                            "contract_id": 17480,
+                            "contract_code": "TEPQBYC17480",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "financed_amount": 3000,
+                            "interest_rate": 16.99,
+                            "next_recurring_date": "2020-08-04T00:00:00.000Z",
+                            "recurring_amount": 1000,
+                            "downpayment_amount": 0,
+                            "number_of_payments": 3,
+                            "remaining_payments": 1,
+                            "contract_status": "Active",
+                            "customer_email": "example2@domain.com",
+                            "customer_first_name": "Ray",
+                            "customer_last_name": "Geller",
+                            "customer_mobile": "6878236279",
+                            "customer_address": "#767, Schenectady, NY, 12345",
+                            "date_added": "2020-06-03T09:17:40.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-upcoming_payment",
+        "description": "Returns the list of upcoming payments",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/provider/payment/detail": {
+      "get": {
+        "summary": "Payment details",
+        "tags": [
+          "Provider Payment"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "payment_data": {
+                          "type": "object",
+                          "properties": {
+                            "payment_id": {
+                              "type": "number"
+                            },
+                            "payment_code": {
+                              "type": "string"
+                            },
+                            "provider_id": {
+                              "type": "string"
+                            },
+                            "customer_name": {
+                              "type": "string"
+                            },
+                            "payment_amount": {
+                              "type": "number"
+                            },
+                            "transaction_fee": {
+                              "type": "number"
+                            },
+                            "payment_status": {
+                              "type": "string"
+                            },
+                            "reason": {
+                              "type": "string"
+                            },
+                            "payment_receipt": {
+                              "type": "string"
+                            },
+                            "date_added": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "payment_data": {
+                          "payment_id": 4123,
+                          "payment_code": "IDNDRH4***",
+                          "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                          "customer_name": "Barney Stinson",
+                          "payment_amount": 9000,
+                          "transaction_fee": 0,
+                          "payment_status": "Successfull",
+                          "reason": "Liver treatment",
+                          "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/P*****.pdf",
+                          "date_added": "2020-05-26T09:48:11.000Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "If payment_id is wrong": {
+                    "value": {
+                      "message": "Data not found",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-payment-detail",
+        "description": "It returns the payment detail with payment ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "payment_id",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/provider/payment/list": {
+      "get": {
+        "summary": "List of Payments of a provider",
+        "tags": [
+          "Provider Payment"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "payment_list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "payment_id": {
+                                "type": "number"
+                              },
+                              "payment_code": {
+                                "type": "string"
+                              },
+                              "provider_id": {
+                                "type": "string"
+                              },
+                              "customer_name": {
+                                "type": "string"
+                              },
+                              "payment_amount": {
+                                "type": "number"
+                              },
+                              "transaction_fee": {
+                                "type": "number"
+                              },
+                              "payment_status": {
+                                "type": "string"
+                              },
+                              "reason": {
+                                "type": "string"
+                              },
+                              "payment_receipt": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 2,
+                        "payment_list": [
+                          {
+                            "payment_id": 4123,
+                            "payment_code": "IDNDRH4***",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "customer_name": "Hannah Baker",
+                            "payment_amount": 9000,
+                            "transaction_fee": 0,
+                            "payment_status": "Successfull",
+                            "reason": "Dental treatment",
+                            "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/P****.pdf",
+                            "date_added": "2020-05-26T09:48:11.000Z"
+                          },
+                          {
+                            "payment_id": 4036,
+                            "payment_code": "IDSJNV4***",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "customer_name": "Heart Checkup",
+                            "payment_amount": 400,
+                            "transaction_fee": 0,
+                            "payment_status": "Successfull",
+                            "reason": null,
+                            "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/P****.pdf",
+                            "date_added": "2020-05-22T07:59:41.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-payment-list",
+        "description": "It returns the details of the payments processed in the provider's account",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "skip"
+          }
+        ]
+      }
+    },
+    "/provider/payment/pay": {
+      "post": {
+        "summary": "Process Instant Payment",
+        "operationId": "post-provider-payment-pay",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "code": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Payment processed successfully.",
+                      "code": "success",
+                      "data": {
+                        "id": 4318,
+                        "code": "IDVYPB4318"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If mandatory field is missing": {
+                    "value": {
+                      "message": "\"card_token\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This can be used to process an instant payment for the service.",
+        "tags": [
+          "Provider Payment"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "card_token": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "number"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "card_token": "tok_visa",
+                    "amount": 100,
+                    "reason": "Dental treatment",
+                    "name": "Ted Mosby"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provider/contract/plans": {
+      "get": {
+        "summary": "List of Plans",
+        "tags": [
+          "Contract Generation Process"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "plans": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "plan_id": {
+                                  "type": "string"
+                                },
+                                "interest_rate": {
+                                  "type": "number"
+                                },
+                                "number_of_payments": {
+                                  "type": "number"
+                                },
+                                "monthly_payable": {
+                                  "type": "object",
+                                  "properties": {
+                                    "total": {
+                                      "type": "number"
+                                    },
+                                    "breakdown": {
+                                      "type": "object",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "number"
+                                        },
+                                        "transaction_fee": {
+                                          "type": "number"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "to_pay_now": {
+                                  "type": "object",
+                                  "properties": {
+                                    "total": {
+                                      "type": "number"
+                                    },
+                                    "breakdown": {
+                                      "type": "object",
+                                      "properties": {
+                                        "denefits_enrollment_fee": {
+                                          "type": "number"
+                                        },
+                                        "upfront_payment": {
+                                          "type": "object",
+                                          "properties": {
+                                            "total": {
+                                              "type": "number"
+                                            },
+                                            "breakdown": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "number"
+                                                },
+                                                "transaction_fee": {
+                                                  "type": "number"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "downpayment_amount": {
+                                          "type": "object",
+                                          "properties": {
+                                            "total": {
+                                              "type": "number"
+                                            },
+                                            "breakdown": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "number"
+                                                },
+                                                "transaction_fee": {
+                                                  "type": "number"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Success",
+                      "code": "success",
+                      "data": {
+                        "plans": [
+                          {
+                            "plan_id": "plan_P6550M12A12*********",
+                            "number_of_payments": 12,
+                            "interest_rate": 16.99,
+                            "monthly_payable": {
+                              "total": 112.55,
+                              "breakdown": {
+                                "amount": 109.27,
+                                "transaction_fee": 3.28
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 145.55,
+                              "breakdown": {
+                                "denefits_enrollment_fee": 30,
+                                "downpayment_amount": {
+                                  "total": 0,
+                                  "breakdown": {
+                                    "amount": 0,
+                                    "transaction_fee": 0
+                                  }
+                                },
+                                "upfront_payment": {
+                                  "total": 112.55,
+                                  "breakdown": {
+                                    "amount": 109.27,
+                                    "transaction_fee": 3.28
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "If provider doesn't have bank account linked": {
+                    "value": {
+                      "message": "This provider doesn't have a bank account linked with their account.",
+                      "code": "bank_not_linked"
+                    }
+                  },
+                  "If service amount is not a valid number": {
+                    "value": {
+                      "message": "\"service_amount\" must be a safe number",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If service amount/downpayment amount is incorrect": {
+                    "value": {
+                      "message": "Finance amount (Service amount - downpayment) must be between $300 and $20000 ",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-plans",
+        "description": "Returns plans for creating a contract.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "service_amount",
+            "required": true,
+            "description": "Total service amount"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 12,
+              "maximum": 48
+            },
+            "in": "query",
+            "name": "filter_month",
+            "description": "Return plan for this specific month."
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "downpayment_amount",
+            "description": "Downpayment amount"
+          }
+        ]
+      }
+    },
+    "/provider/bank": {
+      "get": {
+        "summary": "Retrieve Provider's bank account",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_name": {
+                          "type": "string"
+                        },
+                        "routing_number": {
+                          "type": "string"
+                        },
+                        "last4": {
+                          "type": "string"
+                        },
+                        "account_holder_name": {
+                          "type": "string"
+                        },
+                        "account_holder_type": {
+                          "type": "string"
+                        },
+                        "provider_id": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "bank_name": "STRIPE TEST BANK",
+                        "routing_number": "110000000",
+                        "last4": "6789",
+                        "account_holder_name": "Example Test",
+                        "account_holder_type": "individual",
+                        "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                        "currency": "usd",
+                        "country": "US"
+                      },
+                      "code": "success"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-bank",
+        "description": "Returns provider's bank details.",
+        "parameters": []
+      },
+      "post": {
+        "summary": "Add Provider's bank account",
+        "operationId": "post-provider-bank",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_name": {
+                          "type": "string"
+                        },
+                        "routing_number": {
+                          "type": "string"
+                        },
+                        "last4": {
+                          "type": "string"
+                        },
+                        "account_holder_name": {
+                          "type": "string"
+                        },
+                        "account_holder_type": {
+                          "type": "string"
+                        },
+                        "provider_id": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Bank added successfully",
+                      "data": {
+                        "bank_name": "STRIPE TEST BANK",
+                        "currency": "usd",
+                        "country": "US",
+                        "routing_number": "110000000",
+                        "account_holder_name": "Charlie",
+                        "account_holder_type": "company",
+                        "provider_id": "pr_cdd4554aad8af8d3743fb39abf6ba51b"
+                      },
+                      "code": "success"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "If provider already have bank account": {
+                    "value": {
+                      "message": "This provider already have a bank account linked with their account.",
+                      "code": "bank_already_linked"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Providers"
+        ],
+        "description": "Add provider's bank account which will be used to receive the payouts\n\nIf bank token is created with \"individual\" account type then send `ssn_number`, `date_of_birth`, `front_file`, `back_file`\n\nIf bank token is created with \"company\" account type then send `business_tax_id`",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "business_email": {
+                    "type": "string"
+                  },
+                  "business_name": {
+                    "type": "string"
+                  },
+                  "business_phone": {
+                    "type": "string"
+                  },
+                  "business_address": {
+                    "type": "string"
+                  },
+                  "business_zipcode": {
+                    "type": "number"
+                  },
+                  "bank_token": {
+                    "type": "string"
+                  },
+                  "ssn_number": {
+                    "type": "string"
+                  },
+                  "front_file": {
+                    "type": "string"
+                  },
+                  "back_file": {
+                    "type": "string"
+                  },
+                  "date_of_birth": {
+                    "type": "string"
+                  },
+                  "business_tax_id": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Company account example": {
+                  "value": {
+                    "business_email": "john@gmail.com",
+                    "business_name": "John dentals",
+                    "business_phone": "1234567890",
+                    "business_address": "#34 street",
+                    "business_zipcode": "12345",
+                    "bank_token": "btok_us*****************",
+                    "business_tax_id": "1234567"
+                  }
+                },
+                "Individual Account Example": {
+                  "value": {
+                    "business_email": "Example@domain.com",
+                    "business_name": "John dentals",
+                    "business_phone": "1234567890",
+                    "business_address": "#34 street",
+                    "business_zipcode": "12345",
+                    "ssn_number": 123456789,
+                    "dl_front": "file_1GiLcuG**************",
+                    "dl_back": "file_1GiLd7GL**************",
+                    "bank_token": "btok_Ld7GL**************",
+                    "date_of_birth": "1990-05-29"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Add Provider Bank"
+        }
+      }
+    },
+    "/provider/contract/select": {
+      "post": {
+        "summary": "Select a Plan",
+        "operationId": "post-provider-contract-select",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "finance_token": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Finance Token Created",
+                      "code": "success",
+                      "data": {
+                        "finance_token": "64de0703e3b61****************"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If plan_id is invalid": {
+                    "value": {
+                      "message": "Invalid plan.",
+                      "code": "invalid_finance_detail"
+                    }
+                  },
+                  "If any of the required_field is missing": {
+                    "value": {
+                      "message": "\"required_field\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Select a Plan and provide customer details.",
+        "tags": [
+          "Contract Generation Process"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "plan_id": {
+                    "type": "string"
+                  },
+                  "customer_email": {
+                    "type": "string"
+                  },
+                  "customer_first_name": {
+                    "type": "string"
+                  },
+                  "customer_last_name": {
+                    "type": "string"
+                  },
+                  "customer_address": {
+                    "type": "string"
+                  },
+                  "zipcode": {
+                    "type": "string"
+                  },
+                  "customer_mobile": {
+                    "type": "string"
+                  },
+                  "date_of_birth": {
+                    "type": "string"
+                  },
+                  "customer_ssn": {
+                    "type": "string"
+                  },
+                  "start_date": {
+                    "type": "string"
+                  },
+                  "dl_number": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "plan_id": "plan_P6509M12A1200*******",
+                    "customer_email": "example@domain.com",
+                    "customer_first_name": "Steven",
+                    "customer_last_name": "Gerrard",
+                    "customer_address": "189 Beaver Ridge Ave.",
+                    "zipcode": "48047",
+                    "customer_mobile": "2025550130",
+                    "date_of_birth": "1980-05-30",
+                    "customer_ssn": "227392778",
+                    "start_date": "2020-07-01",
+                    "dl_number": "DL2181281230123"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      }
+    },
+    "/provider/contract/pay": {
+      "post": {
+        "summary": "Pay for Contract",
+        "operationId": "post-provider-contract-pay",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "contract_id": {
+                          "type": "number"
+                        },
+                        "contract_code": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Customer Financed Successfully",
+                      "code": "success",
+                      "data": {
+                        "contract_id": 17351,
+                        "contract_code": "STGMWLK17351"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "if card_token is missing": {
+                    "value": {
+                      "message": "stripe_token is undefined",
+                      "code": "invalid_finance_detail"
+                    }
+                  },
+                  "If finance_token is missing or invalid": {
+                    "value": {
+                      "message": "Invalid finance token",
+                      "code": "invalid_finance_token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Pay for contract using finance token and card token.",
+        "tags": [
+          "Contract Generation Process"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "finance_token": {
+                    "type": "string"
+                  },
+                  "card_token": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "finance_token": "7b863ffe354d689************",
+                    "card_token": "tok_visa"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      }
+    },
+    "/provider/contract/detail": {
+      "get": {
+        "summary": "Contract details",
+        "tags": [
+          "Provider Contract"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "contract_data": {
+                          "type": "object",
+                          "properties": {
+                            "contract_id": {
+                              "type": "number"
+                            },
+                            "contract_code": {
+                              "type": "string"
+                            },
+                            "provider_id": {
+                              "type": "string"
+                            },
+                            "service_amount": {
+                              "type": "number"
+                            },
+                            "downpayment_amount": {
+                              "type": "number"
+                            },
+                            "financed_amount": {
+                              "type": "number"
+                            },
+                            "interest_rate": {
+                              "type": "number"
+                            },
+                            "recurring_amount": {
+                              "type": "number"
+                            },
+                            "number_of_payments": {
+                              "type": "number"
+                            },
+                            "remaining_payments": {
+                              "type": "number"
+                            },
+                            "next_recurring_date": {
+                              "type": "string"
+                            },
+                            "contract_status": {
+                              "type": "string"
+                            },
+                            "zipcode": {
+                              "type": "number"
+                            },
+                            "date_added": {
+                              "type": "string"
+                            },
+                            "monthly_payable": {
+                              "type": "object",
+                              "properties": {
+                                "total": {
+                                  "type": "number"
+                                },
+                                "breakdown": {
+                                  "type": "object",
+                                  "properties": {
+                                    "amount": {
+                                      "type": "number"
+                                    },
+                                    "transaction_fee": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "default_card_last4": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "payments": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "amount_charged": {
+                                "type": "number"
+                              },
+                              "amount_refunded": {
+                                "type": "number"
+                              },
+                              "charge_status": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              },
+                              "last4": {
+                                "type": "string"
+                              },
+                              "paid_by": {
+                                "type": "string"
+                              },
+                              "payment_source": {
+                                "type": "string"
+                              },
+                              "payment_type": {
+                                "type": "string"
+                              },
+                              "fees": {
+                                "type": "object",
+                                "properties": {
+                                  "late_fee": {
+                                    "type": "number"
+                                  },
+                                  "late_fee_refunded": {
+                                    "type": "string"
+                                  },
+                                  "recurring_date_edit_fee": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "partner_share": {
+                                "type": "object",
+                                "properties": {
+                                  "amount": {
+                                    "type": "number"
+                                  },
+                                  "net": {
+                                    "type": "number"
+                                  },
+                                  "reversed": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "provider_share": {
+                                "type": "object",
+                                "properties": {
+                                  "amount": {
+                                    "type": "number"
+                                  },
+                                  "net": {
+                                    "type": "number"
+                                  },
+                                  "reversed": {
+                                    "type": "number"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "customer": {
+                          "type": "object",
+                          "properties": {
+                            "customer_address": {
+                              "type": "string"
+                            },
+                            "customer_email": {
+                              "type": "string"
+                            },
+                            "customer_first_name": {
+                              "type": "string"
+                            },
+                            "customer_last_name": {
+                              "type": "string"
+                            },
+                            "customer_mobile": {
+                              "type": "string"
+                            },
+                            "date_of_birth": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "contract": {
+                          "contract_id": 17494,
+                          "contract_code": "HMSZDQY17494",
+                          "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                          "service_amount": 1000,
+                          "downpayment_amount": 100,
+                          "financed_amount": 900,
+                          "interest_rate": 16.99,
+                          "recurring_amount": 69.45,
+                          "default_card_last4": "1111",
+                          "monthly_payable": {
+                            "total": 72.45,
+                            "breakdown": {
+                              "amount": 69.45,
+                              "transaction_fee": 3
+                            }
+                          },
+                          "number_of_payments": 12,
+                          "remaining_payments": 12,
+                          "next_recurring_date": "2020-06-07T00:00:00.000Z",
+                          "contract_status": "Active",
+                          "date_added": "2020-06-03T12:16:16.000Z"
+                        },
+                        "payments": [
+                          {
+                            "amount_charged": 217.95,
+                            "amount_refunded": 0,
+                            "charge_status": "Paid",
+                            "paid_by": "customer",
+                            "payment_source": "card",
+                            "last4": "1111",
+                            "fees": {
+                              "late_fee": 0,
+                              "late_fee_refunded": 0,
+                              "recurring_date_edit_fee": 0
+                            },
+                            "payment_type": "Denefits Fee + Down Payment + Upfront Payment",
+                            "partner_share": {
+                              "amount": 0.82,
+                              "reversed": 0,
+                              "net": 0.82
+                            },
+                            "provider_share": {
+                              "amount": 99.5,
+                              "reversed": 0,
+                              "net": 99.5
+                            },
+                            "date_added": "2020-06-03T12:16:16.000Z"
+                          },
+                          {
+                            "amount_charged": 104,
+                            "amount_refunded": 0,
+                            "charge_status": "Paid",
+                            "paid_by": "customer",
+                            "payment_source": "card",
+                            "last4": "1111",
+                            "fees": {
+                              "late_fee": 0,
+                              "late_fee_refunded": 0,
+                              "recurring_date_edit_fee": 0
+                            },
+                            "payment_type": "Partial Payment",
+                            "partner_share": {
+                              "amount": 1,
+                              "reversed": 0,
+                              "net": 1
+                            },
+                            "provider_share": {
+                              "amount": 91.06,
+                              "reversed": 0,
+                              "net": 91.06
+                            },
+                            "date_added": "2020-06-03T13:22:21.000Z"
+                          },
+                          {
+                            "amount_charged": 4.71,
+                            "amount_refunded": 0,
+                            "charge_status": "Paid",
+                            "paid_by": "provider",
+                            "payment_source": "card",
+                            "last4": "4242",
+                            "fees": {
+                              "late_fee": 0,
+                              "late_fee_refunded": 0,
+                              "recurring_date_edit_fee": 4.71
+                            },
+                            "payment_type": "Recurring Date Edited",
+                            "partner_share": {
+                              "amount": 0,
+                              "reversed": 0,
+                              "net": 0
+                            },
+                            "provider_share": {
+                              "amount": 0,
+                              "reversed": 0,
+                              "net": 0
+                            },
+                            "date_added": "2020-06-03T13:35:45.000Z"
+                          }
+                        ],
+                        "customer": {
+                          "customer_first_name": "Ted",
+                          "customer_last_name": "Mosby",
+                          "customer_email": "example@domain.com",
+                          "customer_mobile": "7873987478",
+                          "customer_address": "189 Beaver Ridge Ave. test address, Schenectady, NY, 12345",
+                          "date_of_birth": "1993-07-04"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If contract_id is wrong": {
+                    "value": {
+                      "message": "No such contract found.",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-detail",
+        "description": "Get contract details with ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "contract_id",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/provider/contract/list": {
+      "get": {
+        "summary": "List of contracts of a provider",
+        "tags": [
+          "Provider Contract"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "contracts_list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "contract_id": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              },
+                              "last_updated": {
+                                "type": "string"
+                              },
+                              "zipcode": {
+                                "type": "number"
+                              },
+                              "contract_status": {
+                                "type": "string"
+                              },
+                              "next_emi_date": {
+                                "type": "string"
+                              },
+                              "remaining_emi": {
+                                "type": "number"
+                              },
+                              "total_emi": {
+                                "type": "number"
+                              },
+                              "emi_amount": {
+                                "type": "number"
+                              },
+                              "interest_rate": {
+                                "type": "number"
+                              },
+                              "financed_amount": {
+                                "type": "number"
+                              },
+                              "customer_signature": {
+                                "type": "string"
+                              },
+                              "customer_address": {
+                                "type": "string"
+                              },
+                              "customer_mobile": {
+                                "type": "string"
+                              },
+                              "customer_email": {
+                                "type": "string"
+                              },
+                              "customer_last_name": {
+                                "type": "string"
+                              },
+                              "customer_first_name": {
+                                "type": "string"
+                              },
+                              "customer_id": {
+                                "type": "number"
+                              },
+                              "provider_id": {
+                                "type": "string"
+                              },
+                              "contract_code": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 1,
+                        "contracts_list": [
+                          {
+                            "contract_id": 17351,
+                            "contract_code": "STGMWLK17351",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "customer_id": 3174,
+                            "customer_first_name": "Steven",
+                            "customer_last_name": "Gerrard",
+                            "customer_email": "example@domain.com",
+                            "customer_mobile": "+1-2025550130",
+                            "customer_address": "189 Beaver Ridge Ave.",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-*****.png",
+                            "downpayment_amount": 0,
+                            "financed_amount": 1200,
+                            "interest_rate": 16.99,
+                            "recurring_amount": 109.27,
+                            "number_of_payments": 12,
+                            "remaining_payments": 12,
+                            "next_recurring_date": "2020-07-01T00:00:00.000Z",
+                            "contract_status": "Active",
+                            "title": "",
+                            "city_name": "New Baltimore",
+                            "zipcode": 48047,
+                            "last_updated": "2020-05-29T14:06:26.000Z",
+                            "date_added": "2020-05-29T14:06:26.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-list",
+        "description": "Get listing of all contracts of this account",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/payment/bank_token": {
+      "get": {
+        "summary": "Create bank token",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_token": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "bank_token": "btok_1GpaQmGLNiHi**********"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required field is not provided": {
+                    "value": {
+                      "message": "\"account_holder_name\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If invalid routing number is provided": {
+                    "value": {
+                      "message": "\"routing_number\" must be a safe number",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If invalid account number is provided": {
+                    "value": {
+                      "message": "Invalid account number provided",
+                      "code": "invalid_account_number"
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "example-1": {}
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-payment-bank_token",
+        "description": "Returns the bank_token which is used in /provider/bank(post) API while adding bank account.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "account_holder_name",
+            "required": true,
+            "description": "Bank account holder's name"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "individual",
+                "company"
+              ]
+            },
+            "in": "query",
+            "name": "account_type",
+            "required": true,
+            "description": "Possible account types are \"individual\" and \"company\""
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "routing_number",
+            "required": true,
+            "description": "Bank account's routing number"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "account_number",
+            "required": true,
+            "description": "Bank account's number"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "authorization": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "authorization": []
+    }
+  ]
+}
