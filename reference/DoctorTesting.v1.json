@@ -3174,7 +3174,7 @@
                             "customer_email": "example@domain.com",
                             "customer_mobile": "+1-2025550130",
                             "customer_address": "189 Beaver Ridge Ave.",
-                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-***********.png",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-*****.png",
                             "downpayment_amount": 0,
                             "financed_amount": 1200,
                             "interest_rate": 16.99,
