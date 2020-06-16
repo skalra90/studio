@@ -15,10 +15,10 @@
     "/file/upload": {
       "post": {
         "summary": "Upload file",
-        "operationId": "post-file-upload",
+        "operationId": "post-upload_file",
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Success ",
             "content": {
               "application/json": {
                 "schema": {
@@ -56,6 +56,7 @@
           }
         },
         "description": "Returns file_id which can be used in further API's",
+        "parameters": [],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -76,7 +77,8 @@
                   "file",
                   "purpose"
                 ]
-              }
+              },
+              "examples": {}
             }
           },
           "description": ""
@@ -84,7 +86,8 @@
         "tags": [
           "File"
         ]
-      }
+      },
+      "parameters": []
     },
     "/provider/payout/list": {
       "get": {
