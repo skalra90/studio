@@ -2169,7 +2169,7 @@
     },
     "/provider/bank": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Retrieve Provider's bank account",
         "tags": [
           "Providers"
         ],
