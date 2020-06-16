@@ -2520,7 +2520,7 @@
                 "Example": {
                   "value": {
                     "plan_id": "plan_P6509M12A1200*******",
-                    "customer_email": "Example@domain.com",
+                    "customer_email": "example@domain.com",
                     "customer_first_name": "Steven",
                     "customer_last_name": "Gerrard",
                     "customer_address": "189 Beaver Ridge Ave.",
@@ -2534,7 +2534,8 @@
                 }
               }
             }
-          }
+          },
+          "description": ""
         }
       }
     },
@@ -3117,7 +3118,7 @@
                             "customer_id": 3174,
                             "customer_first_name": "Steven",
                             "customer_last_name": "Gerrard",
-                            "customer_email": "Example@domain.com",
+                            "customer_email": "example@domain.com",
                             "customer_mobile": "+1-2025550130",
                             "customer_address": "189 Beaver Ridge Ave.",
                             "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-***********.png",
