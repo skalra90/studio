@@ -184,7 +184,14 @@
                     }
                   }
                 },
-                "examples": {}
+                "examples": {
+                  "If start_date or end_date is not valid": {
+                    "value": {
+                      "message": "\"start_date\" must be in YYYY-MM-DD format",
+                      "code": "invalid_parameter"
+                    }
+                  }
+                }
               }
             }
           },
