@@ -2176,21 +2176,26 @@
             },
             "in": "query",
             "name": "service_amount",
-            "required": true
+            "required": true,
+            "description": "Total service amount"
           },
           {
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "minimum": 12,
+              "maximum": 48
             },
             "in": "query",
-            "name": "filter_month"
+            "name": "filter_month",
+            "description": "Return plan for this specific month."
           },
           {
             "schema": {
               "type": "number"
             },
             "in": "query",
-            "name": "downpayment_amount"
+            "name": "downpayment_amount",
+            "description": "Downpayment amount"
           }
         ]
       }
