@@ -1866,7 +1866,7 @@
                 "examples": {
                   "Success": {
                     "value": {
-                      "message": "Payment processed successfuly.",
+                      "message": "Payment processed successfully.",
                       "code": "success",
                       "data": {
                         "id": 4318,
