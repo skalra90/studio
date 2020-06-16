@@ -2332,6 +2332,25 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "If provider already have bank account": {
+                    "value": {
+                      "message": "This provider already have a bank account linked with their account.",
+                      "code": "bank_already_linked"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
