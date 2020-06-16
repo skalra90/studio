@@ -370,58 +370,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If payout id in not provided": {
-                    "value": {
-                      "message": "\"payout_id\" is required",
-                      "code": "parameter_missing"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If invalid auth token provided": {
-                    "value": {
-                      "message": "Invalid auth token provided",
-                      "code": "authentication_failed"
-                    }
-                  }
-                }
-              }
-            }
           }
         },
         "operationId": "get-provider-payout-detail",
@@ -1593,64 +1541,6 @@
                           }
                         ]
                       }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If auth token is not provided": {
-                    "value": {
-                      "message": "Authorization token is missing.",
-                      "code": "no_auth"
-                    }
-                  },
-                  "If mandatory parameter is missing": {
-                    "value": {
-                      "message": "\"provider_id\" is required",
-                      "code": "parameter_missing"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "code": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "If invalid auth token is provided": {
-                    "value": {
-                      "message": "Invalid auth token provided",
-                      "code": "authentication_failed"
                     }
                   }
                 }
