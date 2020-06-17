@@ -3676,6 +3676,7 @@
                   },
                   "service_array": {
                     "type": "array",
+                    "description": "This is an array which requires the details of the service provided with the price. This field will be required soon.",
                     "items": {
                       "type": "object",
                       "properties": {

@@ -2825,6 +2825,21 @@
                   },
                   "dl_number": {
                     "type": "string"
+                  },
+                  "service_array": {
+                    "type": "array",
+                    "description": "This is an array which requires the details of the service provided with the price. This field will be required soon.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "service": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      }
+                    }
                   }
                 }
               },
@@ -2841,7 +2856,13 @@
                     "date_of_birth": "1980-05-30",
                     "customer_ssn": "227392778",
                     "start_date": "2020-07-01",
-                    "dl_number": "DL2181281230123"
+                    "dl_number": "DL2181281230123",
+                    "service_array": [
+                      {
+                        "service": "Dental",
+                        "price": 50
+                      }
+                    ]
                   }
                 }
               }
