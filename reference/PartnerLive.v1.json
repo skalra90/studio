@@ -164,14 +164,14 @@
                         "count": 2,
                         "list": [
                           {
-                            "provider_id": "pr_084aa5f9bad7a2d72a25d7887e365e0f",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
                             "provider_first_name": "Test 1",
                             "provider_last_name": "Test 2",
                             "date_registered": "2020-04-08T09:01:40.000Z",
-                            "provider_email": "test1@gmail.com",
+                            "provider_email": "example@domain.com",
                             "provider_phone": "9675457654",
                             "business_info": {
-                              "business_email": "businessEmail@denefits.com",
+                              "business_email": "example1@domain.com",
                               "business_name": "BB dentals",
                               "business_phone": "1234567890",
                               "business_address": {
@@ -190,11 +190,11 @@
                             "payments_disabled_reason": null
                           },
                           {
-                            "provider_id": "pr_c1394a2ece54157085a4102ead09a2d0",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
                             "provider_first_name": "Demo 1",
                             "provider_last_name": "Demo 2",
                             "date_registered": "2020-04-07T07:14:23.000Z",
-                            "provider_email": "demo1@gmail.com",
+                            "provider_email": "example2@domain.com",
                             "provider_phone": "9564838477",
                             "business_info": null,
                             "speciality": {
@@ -375,20 +375,10 @@
                   "properties": {
                     "message": {
                       "type": "string"
-                    },
-                    "code": {
-                      "type": "string"
                     }
                   }
                 },
-                "examples": {
-                  "When invalid auth token is provided": {
-                    "value": {
-                      "message": "Invalid auth token provided",
-                      "code": "authentication_failed"
-                    }
-                  }
-                }
+                "examples": {}
               }
             }
           },
@@ -468,7 +458,7 @@
               "examples": {
                 "Example": {
                   "value": {
-                    "provider_email": "charles.one@denefits.com",
+                    "provider_email": "Example@domain.com",
                     "provider_first_name": "Charles",
                     "provider_last_name": "One",
                     "provider_phone": "1234567890",
@@ -491,7 +481,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -547,9 +537,9 @@
                         "bank_name": "STRIPE TEST BANK",
                         "routing_number": "110000000",
                         "last4": "6789",
-                        "account_holder_name": "raman test",
+                        "account_holder_name": "Example Test",
                         "account_holder_type": "individual",
-                        "provider_id": "pr_88adb93658353ce2ef4a2e2268ebb7ae",
+                        "provider_id": "pr_084aa5f9bad7a2d72a*************",
                         "currency": "usd",
                         "country": "US"
                       },
@@ -614,7 +604,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -700,7 +690,7 @@
                 "examples": {
                   "If required_field is missing": {
                     "value": {
-                      "message": "\"required_field\" is required",
+                      "message": "\"provider_id\" is required",
                       "code": "parameter_missing"
                     }
                   },
@@ -803,28 +793,26 @@
               "examples": {
                 "Company account example": {
                   "value": {
-                    "provider_id": "pr_cdd4554aad8af8d3743fb39abf6ba51b",
                     "business_email": "john@gmail.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
                     "business_address": "#34 street",
                     "business_zipcode": "12345",
-                    "bank_token": "btok_us******",
+                    "bank_token": "btok_us*****************",
                     "business_tax_id": "1234567"
                   }
                 },
                 "Individual Account Example": {
                   "value": {
-                    "provider_id": "pr_cdd4554aad8af8d3743fb39abf6ba51b",
-                    "business_email": "john@gmail.com",
+                    "business_email": "Example@domain.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
                     "business_address": "#34 street",
                     "business_zipcode": "12345",
                     "ssn_number": 123456789,
-                    "dl_front": "file_1GiLcuGLNiHiuNVIvOx4U3Fy",
-                    "dl_back": "file_1GiLd7GLNiHiuNVITn329MVK",
-                    "bank_token": "btok_us_verified",
+                    "dl_front": "file_1GiLcuG**************",
+                    "dl_back": "file_1GiLd7GL**************",
+                    "bank_token": "btok_Ld7GL**************",
                     "date_of_birth": "1990-05-29"
                   }
                 }
@@ -837,7 +825,7 @@
     },
     "/provider/contract/plans": {
       "get": {
-        "summary": "1. List of Plans",
+        "summary": "List of Plans",
         "responses": {
           "200": {
             "description": "Success",
@@ -978,7 +966,7 @@
                       "data": {
                         "plans": [
                           {
-                            "plan_id": "plan_P6550M12A1200D00F0D00",
+                            "plan_id": "plan_P6550M12A12*********",
                             "number_of_payments": 12,
                             "interest_rate": 16.99,
                             "monthly_payable": {
@@ -1116,7 +1104,7 @@
         "operationId": "post-upload_file",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success ",
             "content": {
               "application/json": {
                 "schema": {
@@ -1168,14 +1156,15 @@
                   },
                   "purpose": {
                     "type": "string",
-                    "description": "Possible values are \"bank_document\", \"denefits_file\""
+                    "description": "Possible values are \"bank_document\", \"denefits_file\", \"claim_document\""
                   }
                 },
                 "required": [
                   "file",
                   "purpose"
                 ]
-              }
+              },
+              "examples": {}
             }
           },
           "description": ""
@@ -1380,10 +1369,10 @@
                     "data": {
                       "type": "object",
                       "required": [
-                        "industry_list"
+                        "list"
                       ],
                       "properties": {
-                        "industry_list": {
+                        "list": {
                           "type": "array",
                           "items": {
                             "type": "object",
@@ -1463,7 +1452,7 @@
     },
     "/provider/contract/select": {
       "post": {
-        "summary": "2. Select a Plan",
+        "summary": "Select a Plan",
         "operationId": "contract-create",
         "responses": {
           "200": {
@@ -1625,6 +1614,21 @@
                   "dl_number": {
                     "type": "string",
                     "description": "Driving License number of the customer."
+                  },
+                  "service_array": {
+                    "type": "array",
+                    "description": "This is an array which requires the details of the service provided with the price. This field will be required soon.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "service": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      }
+                    }
                   }
                 },
                 "required": [
@@ -1645,9 +1649,9 @@
               "examples": {
                 "Example": {
                   "value": {
-                    "plan_id": "plan_P6509M12A1200D00F100D00",
-                    "provider_id": "pr_084aa5f9bad7a2d72a25d7887e365e0f",
-                    "customer_email": "steven.gerrard08@lfc.com",
+                    "plan_id": "plan_P6509M12A1200*******",
+                    "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                    "customer_email": "example@domain.com",
                     "customer_first_name": "Steven",
                     "customer_last_name": "Gerrard",
                     "customer_address": "189 Beaver Ridge Ave.",
@@ -1656,7 +1660,17 @@
                     "date_of_birth": "1980-05-30",
                     "customer_ssn": "227392778",
                     "start_date": "2020-07-01",
-                    "dl_number": "DL2181281230123"
+                    "dl_number": "DL2181281230123",
+                    "service_array": [
+                      {
+                        "service": "Dental Fee",
+                        "price": 900
+                      },
+                      {
+                        "service": "General Fee",
+                        "price": 100
+                      }
+                    ]
                   }
                 }
               }
@@ -1672,10 +1686,10 @@
     },
     "/provider/contract/pay": {
       "post": {
-        "summary": "3. Pay for Contract",
+        "summary": "Pay for Contract",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -1799,7 +1813,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -1993,7 +2007,7 @@
                         "contract": {
                           "contract_id": 17494,
                           "contract_code": "HMSZDQY17494",
-                          "provider_id": "pr_fa616f459c0a062077c827ee003a04ca",
+                          "provider_id": "pr_084aa5f9bad7a2d72a*************",
                           "service_amount": 1000,
                           "downpayment_amount": 100,
                           "financed_amount": 900,
@@ -2093,7 +2107,7 @@
                         "customer": {
                           "customer_first_name": "Ted",
                           "customer_last_name": "Mosby",
-                          "customer_email": "ted.mosby@denefits.com",
+                          "customer_email": "example@domain.com",
                           "customer_mobile": "7873987478",
                           "customer_address": "189 Beaver Ridge Ave. test address, Schenectady, NY, 12345",
                           "date_of_birth": "1993-07-04"
@@ -2271,14 +2285,14 @@
                           {
                             "contract_id": 17351,
                             "contract_code": "STGMWLK17351",
-                            "provider_id": "pr_715a72e826fa08aa73c3b25809dabf95",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
                             "customer_id": 3174,
                             "customer_first_name": "Steven",
                             "customer_last_name": "Gerrard",
-                            "customer_email": "steven.gerrard08@lfc.com",
+                            "customer_email": "example@domain.com",
                             "customer_mobile": "+1-2025550130",
                             "customer_address": "189 Beaver Ridge Ave.",
-                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-TwA021TTa4099.png",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-***********.png",
                             "downpayment_amount": 0,
                             "financed_amount": 1200,
                             "interest_rate": 16.99,
@@ -2365,7 +2379,7 @@
       },
       "parameters": []
     },
-        "/provider/payment/detail": {
+    "/provider/payment/detail": {
       "get": {
         "summary": "Payment details",
         "responses": {
@@ -2786,7 +2800,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -2814,7 +2828,7 @@
                       "message": "Request executed successfully",
                       "code": "success",
                       "data": {
-                        "bank_token": "btok_1GpaQmGLNiHiuNVIrA1AOnKy"
+                        "bank_token": "btok_1GpaQmGLNiHi**********"
                       }
                     }
                   }
