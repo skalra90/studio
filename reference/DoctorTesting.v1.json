@@ -2828,7 +2828,7 @@
                   },
                   "service_array": {
                     "type": "array",
-                    "description": "This is an array which requires the details of the service provided with the price. This field will be required soon.",
+                    "description": "This is an array which requires the details of the service provided with the price. This field will be required after 1st July 2020.",
                     "items": {
                       "type": "object",
                       "properties": {
