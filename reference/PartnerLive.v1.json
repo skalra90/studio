@@ -803,6 +803,7 @@
               "examples": {
                 "Company account example": {
                   "value": {
+                    "provider_id": "pr_da7cd3b3e29017c8e5bb4705******jk",
                     "business_email": "john@gmail.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
@@ -814,6 +815,7 @@
                 },
                 "Individual Account Example": {
                   "value": {
+                    "provider_id": "pr_da7cd3b3e29017c8e5bb4705******jk",
                     "business_email": "Example@domain.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
