@@ -2825,6 +2825,21 @@
                   },
                   "dl_number": {
                     "type": "string"
+                  },
+                  "service_array": {
+                    "type": "array",
+                    "description": "This is an array which requires the details of the service provided with the price. This field will be required soon.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "service": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      }
+                    }
                   }
                 }
               },
@@ -2841,7 +2856,17 @@
                     "date_of_birth": "1980-05-30",
                     "customer_ssn": "227392778",
                     "start_date": "2020-07-01",
-                    "dl_number": "DL2181281230123"
+                    "dl_number": "DL2181281230123",
+                    "service_array": [
+                      {
+                        "service": "Dental Fee",
+                        "price": 900
+                      },
+                      {
+                        "service": "General Fee",
+                        "price": 100
+                      }
+                    ]
                   }
                 }
               }
@@ -3077,6 +3102,20 @@
                             },
                             "default_card_last4": {
                               "type": "string"
+                            },
+                            "service_array": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "service": {
+                                    "type": "string"
+                                  },
+                                  "price": {
+                                    "type": "number"
+                                  }
+                                }
+                              }
                             }
                           }
                         },
@@ -3208,7 +3247,17 @@
                           "remaining_payments": 12,
                           "next_recurring_date": "2020-06-07T00:00:00.000Z",
                           "contract_status": "Active",
-                          "date_added": "2020-06-03T12:16:16.000Z"
+                          "date_added": "2020-06-03T12:16:16.000Z",
+                          "service_array": [
+                            {
+                              "service": "Dental Fee",
+                              "price": 900
+                            },
+                            {
+                              "service": "General Fee",
+                              "price": 100
+                            }
+                          ]
                         },
                         "payments": [
                           {
