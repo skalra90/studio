@@ -3722,8 +3722,12 @@
                     "dl_number": "DL2181281230123",
                     "service_array": [
                       {
-                        "service": "Dental",
-                        "price": 50
+                        "service": "Dental Fee",
+                        "price": 900
+                      },
+                      {
+                        "service": "General Fee",
+                        "price": 100
                       }
                     ]
                   }
