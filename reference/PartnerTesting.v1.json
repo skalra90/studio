@@ -3673,6 +3673,20 @@
                   "dl_number": {
                     "type": "string",
                     "description": "Driving License number of the customer."
+                  },
+                  "service_array": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "service_name": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      }
+                    }
                   }
                 },
                 "required": [
