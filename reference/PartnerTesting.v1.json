@@ -5716,7 +5716,7 @@
                   "provider_id": {
                     "type": "string"
                   },
-                   "contract_id": {
+                  "contract_id": {
                     "type": "number"
                   },
                   "claim_process_id": {
@@ -5759,6 +5759,7 @@
                 "example": {
                   "value": {
                     "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                    "contract_id": 46345,
                     "claim_process_id": 24266,
                     "is_service_completed": 0,
                     "document_array": [
