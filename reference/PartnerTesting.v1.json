@@ -5716,6 +5716,9 @@
                   "provider_id": {
                     "type": "string"
                   },
+                   "contract_id": {
+                    "type": "number"
+                  },
                   "claim_process_id": {
                     "type": "number"
                   },
