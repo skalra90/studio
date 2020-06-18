@@ -5282,12 +5282,16 @@
                   "provider_id": {
                     "type": "string"
                   },
+                  "contract_id": {
+                    "type": "number"
+                  },
                   "missing_payment_id": {
                     "type": "number"
                   }
                 },
                 "required": [
                   "provider_id",
+                  "contract_id",
                   "missing_payment_id"
                 ]
               },
@@ -5295,6 +5299,7 @@
                 "example": {
                   "value": {
                     "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                    "contract_id": 65434,
                     "missing_payment_id": 24266
                   }
                 }
@@ -5718,7 +5723,8 @@
                     "type": [
                       "number",
                       "boolean"
-                    ]
+                    ],
+                    "description": "Accepts 0, 1 (0- if service is not completed yet, 1- if service is completed)"
                   },
                   "document_array": {
                     "type": "array",
