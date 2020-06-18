@@ -3769,6 +3769,38 @@
           }
         ]
       }
+    },
+    "/provider/contract/check_date_change_amount": {
+      "get": {
+        "summary": "Check edit payment date amount",
+        "tags": [
+          "Provider Contract"
+        ],
+        "responses": {},
+        "operationId": "get-provider-contract-check_date_change_amount",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "contract_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date",
+              "example": "YYYY-MM-DD"
+            },
+            "in": "query",
+            "name": "new_payment_date",
+            "description": "Choose date upto 3 months from now",
+            "required": true
+          }
+        ],
+        "description": "To check the change payment date amount"
+      }
     }
   },
   "components": {
