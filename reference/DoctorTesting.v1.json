@@ -3801,6 +3801,67 @@
         ],
         "description": "To check the change payment date amount"
       }
+    },
+    "/provider/contract/change_payment_date": {
+      "get": {
+        "summary": "Change Payment Date",
+        "tags": [
+          "Provider Contract"
+        ],
+        "responses": {},
+        "operationId": "get-provider-contract-change_payment_date",
+        "description": "To change the payment date",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "contract_id",
+            "description": "",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "new_payment_date",
+            "description": "Use the same payment date in \"/check_date_change_amount\" route",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "amount",
+            "description": "Use the same amount in \"/check_date_change_amount\" route",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "customer",
+                "provider"
+              ]
+            },
+            "in": "query",
+            "name": "payment_from",
+            "required": true,
+            "description": "1-Customer, 2-Provider"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "card_token",
+            "required": true
+          }
+        ]
+      }
     }
   },
   "components": {
