@@ -5693,6 +5693,18 @@
                       "message": "No contract found.",
                       "code": "request_failed"
                     }
+                  },
+                  "If file_id is empty": {
+                    "value": {
+                      "message": "\"file_id\" cannot be empty",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If document_type is not a valid number": {
+                    "value": {
+                      "message": "\"document_type\" cannot be 0",
+                      "code": "invalid_parameter"
+                    }
                   }
                 }
               }
@@ -5896,6 +5908,26 @@
                                 }
                               }
                             }
+                          },
+                          "more_document_needed": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "more_document_id": {
+                                  "type": "number"
+                                },
+                                "date_added": {
+                                  "type": "string"
+                                },
+                                "document_type_name": {
+                                  "type": "string"
+                                },
+                                "reason": {
+                                  "type": "string"
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -5914,7 +5946,7 @@
                             "date_added": "2020-06-09T06:16:58.000Z"
                           },
                           {
-                            "document_type_name": "Proof of treatment completed like before & after pictures, X-rays, clinical notes, treatment charts.",
+                            "document_type_name": "X-rays, clinical notes, treatment charts.",
                             "date_added": "2020-06-09T06:17:03.000Z"
                           },
                           {
@@ -5956,6 +5988,26 @@
                             "next_recurring_date": "2020-03-03T00:00:00.000Z",
                             "contract_status": "Overdue",
                             "date_added": "2020-06-08T11:13:48.000Z"
+                          }
+                        ],
+                        "more_document_needed": [
+                          {
+                            "more_document_id": 776,
+                            "date_added": "2020-06-18T06:52:50.000Z",
+                            "document_type_name": "A Signed service plan",
+                            "reason": "test reason"
+                          },
+                          {
+                            "more_document_id": 777,
+                            "date_added": "2020-06-18T06:52:50.000Z",
+                            "document_type_name": "X-rays, clinical notes, treatment charts.",
+                            "reason": "test reason"
+                          },
+                          {
+                            "more_document_id": 783,
+                            "date_added": "2020-06-18T11:15:33.000Z",
+                            "document_type_name": "Clinical notes, treatment charts.",
+                            "reason": "test reason"
                           }
                         ]
                       }
