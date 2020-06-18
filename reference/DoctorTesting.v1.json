@@ -3776,7 +3776,75 @@
         "tags": [
           "Provider Contract"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "type": "number"
+                        },
+                        "new_payment_date": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "amount": 595.86,
+                        "new_payment_date": "2020-06-19"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "If Date is larger than 3 months after date": {},
+                  "If Date is smaller than 3 months after date": {
+                    "value": {
+                      "message": "\"new_payment_date\" must be larger than or equal to \"tommorow_date\"",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If contract_id is wrong": {
+                    "value": {
+                      "message": "Contract not found",
+                      "code": "contract_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "get-provider-contract-check_date_change_amount",
         "parameters": [
           {
@@ -3795,11 +3863,11 @@
             },
             "in": "query",
             "name": "new_payment_date",
-            "description": "Choose date upto 3 months from now",
+            "description": "Choose date upto 3 months from tommorow",
             "required": true
           }
         ],
-        "description": "To check the change payment date amount"
+        "description": "To check the change payment date amount.\nLate fees will be added in amount if contract is in overdue state.\nChoose date upto 3 months from tommorow."
       }
     },
     "/provider/contract/change_payment_date": {
