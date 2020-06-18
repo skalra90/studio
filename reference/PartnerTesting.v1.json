@@ -5957,13 +5957,13 @@
                         "missing_payments": [
                           {
                             "missing_payment_id": 24240,
-                            "claim_status_id": "Submitted",
+                            "claim_status_id": "Documentation Needed",
                             "recurring_date": "2020-05-03T00:00:00.000Z",
                             "note": null
                           },
                           {
                             "missing_payment_id": 24239,
-                            "claim_status_id": "Submitted",
+                            "claim_status_id": "Documentation Needed",
                             "recurring_date": "2020-04-03T00:00:00.000Z",
                             "note": null
                           }
