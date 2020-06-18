@@ -3814,16 +3814,8 @@
         "parameters": [
           {
             "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "contract_id",
-            "description": "",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date"
             },
             "in": "query",
             "name": "new_payment_date",
@@ -3857,8 +3849,67 @@
               "type": "string"
             },
             "in": "query",
+            "name": "contract_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
             "name": "card_token",
             "required": true
+          }
+        ]
+      }
+    },
+    "/provider/contract/cancel": {
+      "get": {
+        "summary": "Cancel Contract",
+        "tags": [
+          "Provider Contract"
+        ],
+        "responses": {},
+        "operationId": "get-provider-contract-cancel",
+        "description": "To cancel the Contract",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "contract_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "customer",
+                "provider"
+              ]
+            },
+            "in": "query",
+            "name": "payment_from",
+            "description": "1-Customer, 2-Provider",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "required": true,
+            "name": "card_token"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "required": true,
+            "name": "cancel_reason",
+            "description": "Reason to cancel contract"
           }
         ]
       }
