@@ -5479,9 +5479,6 @@
                           "count": {
                             "type": "number"
                           },
-                          "claim_process_id": {
-                            "type": "number"
-                          },
                           "list": {
                             "type": "array",
                             "items": {
@@ -5511,7 +5508,6 @@
                       "code": "success",
                       "data": {
                         "count": 5,
-                        "claim_process_id": 2531,
                         "list": [
                           {
                             "document_type": 6,
@@ -5664,20 +5660,8 @@
                   },
                   "If any required_field is missing": {
                     "value": {
-                      "message": "\"required_field\" is required",
+                      "message": "\"contract_id\" is required",
                       "code": "parameter_missing"
-                    }
-                  },
-                  "If wrong claim_process_id entered": {
-                    "value": {
-                      "message": "No temporary Claim Form found.",
-                      "code": "claim_form_not_found"
-                    }
-                  },
-                  "If claim_process_id is invalid": {
-                    "value": {
-                      "message": "\"claim_process_id\" must be a safe number",
-                      "code": "invalid_parameter"
                     }
                   },
                   "If claim form already submitted": {
@@ -5719,9 +5703,6 @@
                   "contract_id": {
                     "type": "number"
                   },
-                  "claim_process_id": {
-                    "type": "number"
-                  },
                   "is_service_completed": {
                     "type": [
                       "number",
@@ -5750,7 +5731,7 @@
                 },
                 "required": [
                   "provider_id",
-                  "claim_process_id",
+                  "contract_id",
                   "is_service_completed",
                   "document_array"
                 ]
@@ -5760,7 +5741,6 @@
                   "value": {
                     "provider_id": "pr_084aa5f9bad7a2d72a*************",
                     "contract_id": 46345,
-                    "claim_process_id": 24266,
                     "is_service_completed": 0,
                     "document_array": [
                       {
