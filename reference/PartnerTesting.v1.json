@@ -5660,7 +5660,7 @@
                   },
                   "If any required_field is missing": {
                     "value": {
-                      "message": "\"contract_id\" is required",
+                      "message": "\"required_field\" is required",
                       "code": "parameter_missing"
                     }
                   },
@@ -5680,6 +5680,18 @@
                     "value": {
                       "message": "Your BSA form is under process.",
                       "code": "bsa_form_under_process"
+                    }
+                  },
+                  "If document_array is empty": {
+                    "value": {
+                      "message": "\"document_array\" cannot be empty",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If contract_id is wrong": {
+                    "value": {
+                      "message": "No contract found.",
+                      "code": "request_failed"
                     }
                   }
                 }
