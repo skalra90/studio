@@ -2649,7 +2649,7 @@
               "examples": {
                 "Company account example": {
                   "value": {
-                    "business_email": "john@gmail.com",
+                    "business_email": "example@domain.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
                     "business_address": "#34 street",
@@ -2660,7 +2660,7 @@
                 },
                 "Individual Account Example": {
                   "value": {
-                    "business_email": "Example@domain.com",
+                    "business_email": "example@domain.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
                     "business_address": "#34 street",
