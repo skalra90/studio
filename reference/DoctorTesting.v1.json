@@ -3927,7 +3927,7 @@
                   }
                 },
                 "examples": {
-                  "If payment_from option is customer and card_token is not added": {
+                  "If payment_from option is 2 and card_token is not added": {
                     "value": {
                       "message": "\"card_token\" is required",
                       "code": "parameter_missing"
