@@ -4890,7 +4890,7 @@
                           "number_of_payments_to_claim": {
                             "type": "number"
                           },
-                          "contract_date_added": {
+                          "date_added": {
                             "type": "string"
                           }
                         }
@@ -4916,7 +4916,7 @@
                             "customer_address": "404, Test House",
                             "recurring_amount": 122.54,
                             "number_of_payments_to_claim": 2,
-                            "contract_date_added": "2020-06-09T09:14:31.000Z"
+                            "date_added": "2020-06-09T09:14:31.000Z"
                           },
                           {
                             "contract_id": 12423,
@@ -4928,7 +4928,7 @@
                             "customer_address": "test address",
                             "recurring_amount": 51.71,
                             "number_of_payments_to_claim": 1,
-                            "contract_date_added": "2019-12-23T06:00:43.000Z"
+                            "date_added": "2019-12-23T06:00:43.000Z"
                           },
                           {
                             "contract_id": 10857,
@@ -4940,7 +4940,7 @@
                             "customer_address": "44323, test",
                             "recurring_amount": 299.28,
                             "number_of_payments_to_claim": 3,
-                            "contract_date_added": "2019-09-24T05:58:26.000Z"
+                            "date_added": "2019-09-24T05:58:26.000Z"
                           }
                         ]
                       }
