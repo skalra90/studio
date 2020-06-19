@@ -3881,7 +3881,63 @@
         "tags": [
           "Provider Contract"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If payment_from option is customer and card_token is not added": {
+                    "value": {
+                      "message": "\"card_token\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If new_payment_date is not a valid date": {
+                    "value": {
+                      "message": "\"new_payment_date\" must be a valid date",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If contract_id is wrong": {
+                    "value": {
+                      "message": "No contract found",
+                      "code": "contract_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "get-provider-contract-change_payment_date",
         "description": "To change the payment date\n\npayment_from options are 1-customer, 2-provider, 3-provider's denefits account.\n\ncard_token is required for payment from provider.\n\nIf card_token is not provided in case of customer, then payment will automatically deduct from customer's default card.",
         "parameters": [
