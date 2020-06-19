@@ -3888,7 +3888,17 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "string"
+                    }
+                  }
                 },
                 "examples": {
                   "Success": {
@@ -3909,7 +3919,10 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
                       "type": "string"
                     }
                   }
@@ -3939,58 +3952,82 @@
           }
         },
         "operationId": "get-provider-contract-change_payment_date",
-        "description": "To change the payment date\n\npayment_from options are 1-customer, 2-provider, 3-provider's denefits account.\n\ncard_token is required for payment from provider.\n\nIf card_token is not provided in case of customer, then payment will automatically deduct from customer's default card.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "format": "date"
-            },
-            "in": "query",
-            "name": "new_payment_date",
-            "description": "Use the same payment date in \"/check_date_change_amount\" response",
-            "required": true
+        "description": "To change the payment date.",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "new_payment_date": {
+                    "type": "string",
+                    "description": "Use the same payment date in \"/check_date_change_amount\" response"
+                  },
+                  "amount": {
+                    "type": "string",
+                    "description": "Use the same amount in \"/check_date_change_amount\" response"
+                  },
+                  "payment_from": {
+                    "type": "number",
+                    "description": "1-Customer, 2-Provider, 3-provider's denefits account",
+                    "example": 1
+                  },
+                  "contract_id": {
+                    "type": "number"
+                  },
+                  "card_token": {
+                    "type": "string",
+                    "description": "required if payment from new card"
+                  }
+                },
+                "required": [
+                  "new_payment_date",
+                  "amount",
+                  "payment_from",
+                  "contract_id"
+                ]
+              },
+              "examples": {
+                "If pay from customer's new account": {
+                  "value": {
+                    "contract_id": 31800,
+                    "payment_from": 1,
+                    "new_payment_date": "2020-07-23",
+                    "amount": "22",
+                    "card_token": "tok_1GvgLpGLNi********"
+                  }
+                },
+                "If pay from provider's new account": {
+                  "value": {
+                    "contract_id": 31800,
+                    "payment_from": 2,
+                    "new_payment_date": "2020-07-23",
+                    "amount": "22",
+                    "card_token": "tok_1GvgLpGLNi********"
+                  }
+                },
+                "If pay from customer's default account": {
+                  "value": {
+                    "contract_id": 31800,
+                    "payment_from": 1,
+                    "new_payment_date": "2020-07-23",
+                    "amount": "22"
+                  }
+                },
+                "If pay from provider's denefits account": {
+                  "value": {
+                    "contract_id": 31800,
+                    "payment_from": 3,
+                    "new_payment_date": "2020-07-23",
+                    "amount": "22"
+                  }
+                }
+              }
+            }
           },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "amount",
-            "description": "Use the same amount in \"/check_date_change_amount\" response",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string",
-              "enum": [
-                "customer",
-                "provider",
-                "provider's denefits account"
-              ]
-            },
-            "in": "query",
-            "name": "payment_from",
-            "required": true,
-            "description": "1-Customer, 2-Provider, 3-provider's denefits account"
-          },
-          {
-            "schema": {
-              "type": "number"
-            },
-            "in": "query",
-            "name": "contract_id",
-            "required": true
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "card_token",
-            "description": "required if payment from new card"
-          }
-        ]
+          "description": "payment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is required for payment from 2-provider.\n\nIf card_token is not provided in case of customer, then payment will automatically deduct from customer's default card."
+        }
       }
     },
     "/provider/contract/cancel": {
