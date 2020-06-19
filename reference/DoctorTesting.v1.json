@@ -3876,11 +3876,9 @@
       }
     },
     "/provider/contract/change_payment_date": {
-      "get": {
-        "summary": "Change Payment Date",
-        "tags": [
-          "Provider Contract"
-        ],
+      "post": {
+        "summary": "",
+        "operationId": "post-provider-contract-change_payment_date",
         "responses": {
           "200": {
             "description": "Success",
@@ -3896,7 +3894,8 @@
                       "type": "string"
                     },
                     "data": {
-                      "type": "string"
+                      "type": "array",
+                      "items": {}
                     }
                   }
                 },
@@ -3951,9 +3950,10 @@
             }
           }
         },
-        "operationId": "get-provider-contract-change_payment_date",
         "description": "To change the payment date.",
-        "parameters": [],
+        "tags": [
+          "Provider Contract"
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3966,19 +3966,18 @@
                   },
                   "amount": {
                     "type": "string",
-                    "description": "Use the same amount in \"/check_date_change_amount\" response"
+                    "description": "Use the same amount in \"/check_date_change_amount\" response\n"
                   },
                   "payment_from": {
                     "type": "number",
-                    "description": "1-Customer, 2-Provider, 3-provider's denefits account",
-                    "example": 1
+                    "description": "1-Customer, 2-Provider, 3-provider's denefits account\n"
                   },
                   "contract_id": {
                     "type": "number"
                   },
                   "card_token": {
                     "type": "string",
-                    "description": "required if payment from new card"
+                    "description": "required if payment from new card\n"
                   }
                 },
                 "required": [
@@ -3998,6 +3997,14 @@
                     "card_token": "tok_1GvgLpGLNi********"
                   }
                 },
+                "If pay from customer's default account": {
+                  "value": {
+                    "contract_id": 31800,
+                    "payment_from": 1,
+                    "new_payment_date": "2020-07-23",
+                    "amount": "22"
+                  }
+                },
                 "If pay from provider's new account": {
                   "value": {
                     "contract_id": 31800,
@@ -4005,14 +4012,6 @@
                     "new_payment_date": "2020-07-23",
                     "amount": "22",
                     "card_token": "tok_1GvgLpGLNi********"
-                  }
-                },
-                "If pay from customer's default account": {
-                  "value": {
-                    "contract_id": 31800,
-                    "payment_from": 1,
-                    "new_payment_date": "2020-07-23",
-                    "amount": "22"
                   }
                 },
                 "If pay from provider's denefits account": {
