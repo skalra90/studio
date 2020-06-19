@@ -3827,8 +3827,13 @@
                   "properties": {}
                 },
                 "examples": {
-                  "If Date is larger than 3 months after date": {},
-                  "If Date is smaller than 3 months after date": {
+                  "If Date is larger than 3 months after date": {
+                    "value": {
+                      "message": "\"new_payment_date\" must be less than or equal to \"3_months_after_date\"",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If Date is smaller than tommorow date": {
                     "value": {
                       "message": "\"new_payment_date\" must be larger than or equal to \"tommorow_date\"",
                       "code": "invalid_parameter"
@@ -3905,7 +3910,7 @@
               "enum": [
                 "customer",
                 "provider",
-                "provider's default account"
+                "provider's denefits account"
               ]
             },
             "in": "query",
