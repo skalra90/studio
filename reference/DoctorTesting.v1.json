@@ -3878,7 +3878,7 @@
         ],
         "responses": {},
         "operationId": "get-provider-contract-change_payment_date",
-        "description": "To change the payment date\n\npayment_from options are 1-customer, 2-provider, 3-provider's default account.\n\ncard_token is required for payment from provider.\n\nIf card_token is not provided in case of customer, then payment will automatically deduct from customer's default card.",
+        "description": "To change the payment date\n\npayment_from options are 1-customer, 2-provider, 3-provider's denefits account.\n\ncard_token is required for payment from provider.\n\nIf card_token is not provided in case of customer, then payment will automatically deduct from customer's default card.",
         "parameters": [
           {
             "schema": {
@@ -3911,7 +3911,7 @@
             "in": "query",
             "name": "payment_from",
             "required": true,
-            "description": "1-Customer, 2-Provider, 3-provider's default account"
+            "description": "1-Customer, 2-Provider, 3-provider's denefits account"
           },
           {
             "schema": {
