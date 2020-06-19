@@ -4032,7 +4032,7 @@
     "/provider/contract/cancel": {
       "post": {
         "summary": "Cancel Contract",
-        "operationId": "post-provider-contract-change_payment_date",
+        "operationId": "post-provider-contract-cancel",
         "responses": {
           "200": {
             "description": "Success",
