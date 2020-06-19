@@ -3878,7 +3878,7 @@
         ],
         "responses": {},
         "operationId": "get-provider-contract-change_payment_date",
-        "description": "To change the payment date",
+        "description": "To change the payment date\n\npayment_from options are 1-customer, 2-provider, 3-provider's default account.\n\ncard_token is required for payment from provider.\n\nIf card_token is not provided in case of customer, then payment will automatically deduct from customer's default card.",
         "parameters": [
           {
             "schema": {
@@ -3887,7 +3887,7 @@
             },
             "in": "query",
             "name": "new_payment_date",
-            "description": "Use the same payment date in \"/check_date_change_amount\" route",
+            "description": "Use the same payment date in \"/check_date_change_amount\" response",
             "required": true
           },
           {
@@ -3896,7 +3896,7 @@
             },
             "in": "query",
             "name": "amount",
-            "description": "Use the same amount in \"/check_date_change_amount\" route",
+            "description": "Use the same amount in \"/check_date_change_amount\" response",
             "required": true
           },
           {
@@ -3904,13 +3904,14 @@
               "type": "string",
               "enum": [
                 "customer",
-                "provider"
+                "provider",
+                "provider's default account"
               ]
             },
             "in": "query",
             "name": "payment_from",
             "required": true,
-            "description": "1-Customer, 2-Provider"
+            "description": "1-Customer, 2-Provider, 3-provider's default account"
           },
           {
             "schema": {
@@ -3926,7 +3927,7 @@
             },
             "in": "query",
             "name": "card_token",
-            "required": true
+            "description": "required if payment from new card"
           }
         ]
       }
