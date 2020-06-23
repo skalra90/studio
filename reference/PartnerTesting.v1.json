@@ -7182,7 +7182,9 @@
     "/provider/contract/cancel": {
       "post": {
         "summary": "Cancel contract",
-        "tags": [],
+        "tags": [
+          "Provider Contract"
+        ],
         "responses": {
           "200": {
             "description": "OK",
