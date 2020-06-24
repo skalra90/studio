@@ -3348,7 +3348,7 @@
                                 "document_type_name": {
                                   "type": "string"
                                 },
-                                "is_required": {
+                                "required": {
                                   "type": "number"
                                 }
                               }
@@ -3370,27 +3370,27 @@
                           {
                             "document_type": 6,
                             "document_type_name": "A Signed service plan",
-                            "is_required": 1
+                            "required": 1
                           },
                           {
                             "document_type": 5,
                             "document_type_name": "Proof of treatment completed like before & after pictures, X-rays, clinical notes, treatment charts.",
-                            "is_required": 1
+                            "required": 1
                           },
                           {
                             "document_type": 3,
                             "document_type_name": "Copy of customer ID",
-                            "is_required": 1
+                            "required": 1
                           },
                           {
                             "document_type": 7,
                             "document_type_name": "A complete itemized breakdown of services provided.",
-                            "is_required": 0
+                            "required": 0
                           },
                           {
                             "document_type": 4,
                             "document_type_name": "Others",
-                            "is_required": 0
+                            "required": 0
                           }
                         ]
                       }
