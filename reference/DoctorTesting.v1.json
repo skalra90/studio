@@ -5713,6 +5713,71 @@
           "description": "more_document_id can be obtained from claim/detail API which provide the info is more documents is required or not."
         }
       }
+    },
+    "/provider/payment/pay_3d": {
+      "post": {
+        "summary": "Get 3D secure payment client ID",
+        "operationId": "post-provider-payment-pay_3d",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "3D Secure Payment"
+        ],
+        "description": "Get 3D secure payment client ID to make payment",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "string"
+                  },
+                  "payment_source_type": {
+                    "type": "string"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "payout_type": {
+                    "type": "string"
+                  },
+                  "timezone": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount",
+                  "payment_source_type",
+                  "reason",
+                  "name",
+                  "payout_type",
+                  "timezone"
+                ]
+              },
+              "examples": {
+                "example": {
+                  "value": {
+                    "amount": 500,
+                    "payment_source_type": 3,
+                    "reason": "test payment",
+                    "name": "John Millers",
+                    "payout_type": 2,
+                    "timezone": -700
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      }
     }
   },
   "components": {
