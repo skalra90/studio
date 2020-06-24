@@ -5746,7 +5746,11 @@
                     "type": "string"
                   },
                   "payout_type": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                      "1",
+                      "2"
+                    ]
                   },
                   "timezone": {
                     "type": "string"
@@ -5775,7 +5779,7 @@
               }
             }
           },
-          "description": ""
+          "description": "payout_type // 1- standard , 2-instant"
         }
       }
     }
