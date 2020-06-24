@@ -7295,12 +7295,20 @@
                 }
               },
               "examples": {
-                "example-1": {}
+                "example-1": {
+                  "value": {
+                    "provider_id": "pr_192c3d5ca1161c****3f16fd8cd",
+                    "contract_id": 18132,
+                    "payment_from": 1,
+                    "card_token": "tok_****",
+                    "cancel_reason": "Customer discontinued the service"
+                  }
+                }
               }
             }
           }
         },
-        "description": "This API is used to cancel the contract. A fixed $30 will be charged to cancel a contract"
+        "description": "This API is used to cancel a contract. A fixed $30 will be charged to cancel a contract"
       }
     }
   },
