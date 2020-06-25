@@ -3875,7 +3875,7 @@
         "description": "To check the change payment date amount.\nLate fees will be added in amount if contract is in overdue state.\nChoose date upto 3 months from tommorow."
       }
     },
-    "/provider/contract/change_payment_date": {
+    "/provider/contract/change_recurring_date": {
       "post": {
         "summary": "Change Payment Date",
         "operationId": "post-provider-contract-change_payment_date",
@@ -3948,6 +3948,32 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "description": "To change the payment date.",
@@ -3970,7 +3996,7 @@
                   },
                   "payment_from": {
                     "type": "number",
-                    "description": "1-Customer, 2-Provider, 3-provider's denefits account\n"
+                    "description": "1-Customer's new card, 2-Provider's new card, 3-provider's denefits account"
                   },
                   "contract_id": {
                     "type": "number"
@@ -3982,11 +4008,12 @@
                 },
                 "required": [
                   "new_payment_date",
-                  "amount"
+                  "amount",
+                  "contract_id"
                 ]
               },
               "examples": {
-                "If pay from customer's new account": {
+                "example": {
                   "value": {
                     "contract_id": 31800,
                     "payment_from": 1,
@@ -3994,30 +4021,14 @@
                     "amount": "22",
                     "card_token": "tok_1GvgLpGLNi********"
                   }
-                },
-                "If pay from provider's new account": {
-                  "value": {
-                    "contract_id": 31800,
-                    "payment_from": 2,
-                    "new_payment_date": "2020-07-23",
-                    "amount": "22",
-                    "card_token": "tok_1GvgLpGLNi********"
-                  }
-                },
-                "If pay from provider's denefits account": {
-                  "value": {
-                    "contract_id": 31800,
-                    "payment_from": 3,
-                    "new_payment_date": "2020-07-23",
-                    "amount": "22"
-                  }
                 }
               }
             }
           },
           "description": "payment_from is required only if amount is greater than 0.\n\npayment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
         }
-      }
+      },
+      "parameters": []
     },
     "/provider/contract/cancel": {
       "post": {
