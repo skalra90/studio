@@ -3177,9 +3177,7 @@
           },
           {
             "schema": {
-              "type": "integer",
-              "minimum": "",
-              "maximum": ""
+              "type": "integer"
             },
             "in": "query",
             "name": "filter_month",
@@ -5759,10 +5757,7 @@
                     "type": "number"
                   },
                   "is_service_completed": {
-                    "type": [
-                      "number",
-                      "boolean"
-                    ],
+                    "type": "number",
                     "description": "Accepts 0, 1 (0- if service is not completed yet, 1- if service is completed)"
                   },
                   "document_array": {
@@ -7368,7 +7363,8 @@
                 }
               }
             }
-          }
+          },
+          "description": "payment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
         },
         "description": "This API is used to cancel a contract. A fixed $30 will be charged to cancel a contract"
       }
