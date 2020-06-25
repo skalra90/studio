@@ -2098,6 +2098,37 @@
             "in": "query",
             "name": "skip",
             "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "search_string"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "in": "query",
+            "name": "sort_order"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "provider_first_name",
+                "provider_last_name",
+                "provider_email",
+                "date_registered"
+              ]
+            },
+            "in": "query",
+            "name": "sort_by"
           }
         ],
         "responses": {
