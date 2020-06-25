@@ -7348,7 +7348,53 @@
         "operationId": "post-provider-payment-pay_3d",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "payment_id": {
+                          "type": "number"
+                        },
+                        "payment_code": {
+                          "type": "string"
+                        },
+                        "payment_token": {
+                          "type": "string"
+                        },
+                        "payment_link": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "payment_id": 6188,
+                        "payment_code": "IDWEO*****",
+                        "payment_token": "6d75db255f60c7724******",
+                        "payment_link": "https://endpoint.denefits.com/iframe/3d_secure?payment_token=6d75****"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
