@@ -7336,6 +7336,47 @@
         },
         "description": "This API is used to cancel a contract. A fixed $30 will be charged to cancel a contract"
       }
+    },
+    "/provider/payment/pay_3d": {
+      "get": {
+        "summary": "Get 3D secure payment client ID",
+        "tags": [
+          "3D Secure Payment"
+        ],
+        "responses": {},
+        "operationId": "get-provider-payment-pay_3d",
+        "description": "Get 3D secure payment client ID to make payment",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "number"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "example": {
+                  "value": {
+                    "amount": 500,
+                    "reason": "test payment",
+                    "name": "John Millers"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      }
     }
   },
   "components": {

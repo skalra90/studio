@@ -5736,7 +5736,7 @@
                 "type": "object",
                 "properties": {
                   "amount": {
-                    "type": "string"
+                    "type": "number"
                   },
                   "reason": {
                     "type": "string"
