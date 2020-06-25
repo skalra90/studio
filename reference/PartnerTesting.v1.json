@@ -4507,11 +4507,17 @@
           },
           {
             "schema": {
-              "type": "array",
-              "uniqueItems": false
+              "type": "string",
+              "uniqueItems": false,
+              "enum": [
+                "active",
+                "overdue",
+                "completed",
+                "cancelled"
+              ]
             },
             "in": "query",
-            "name": "contract_status_array",
+            "name": "contract_status",
             "description": "Valid contract_status are \"active\",\"overdue\", \"completed\", \"cancelled\""
           }
         ],
