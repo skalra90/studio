@@ -7381,9 +7381,9 @@
                       "code": "success",
                       "data": {
                         "payment_id": 6188,
-                        "payment_code": "IDWEOR6188",
-                        "payment_token": "6d75db255f60c7724ffe3adb1a998004",
-                        "payment_link": "https://endpoint.denefits.com/iframe/3d_secure?payment_token=6d75db255f60c7724ffe3adb1a998004"
+                        "payment_code": "IDWEO****(",
+                        "payment_token": "6d75db255f60c7724******",
+                        "payment_link": "https://endpoint.denefits.com/iframe/3d_secure?payment_token=6d75*********"
                       }
                     }
                   }
