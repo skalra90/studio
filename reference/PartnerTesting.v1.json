@@ -6199,7 +6199,7 @@
               "examples": {
                 "Example": {
                   "value": {
-                    "provider_id": "pr_af1c4a82e1c6c6147692b50821c****",
+                    "provider_id": "pr_af1c4a82e1c6c61476*********",
                     "document_array": [
                       {
                         "more_document_id": 735,
@@ -7356,7 +7356,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "amout": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "amount": {
                     "type": "number"
                   },
                   "reason": {
@@ -7367,7 +7370,8 @@
                   }
                 },
                 "required": [
-                  "amout",
+                  "provider_id",
+                  "amount",
                   "reason",
                   "name"
                 ]
@@ -7375,6 +7379,7 @@
               "examples": {
                 "example": {
                   "value": {
+                    "provider_id": "pr_af1c4a82e1c6c61476************",
                     "amount": 500,
                     "reason": "test payment",
                     "name": "John Millers"
