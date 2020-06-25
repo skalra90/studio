@@ -3875,7 +3875,7 @@
         "description": "To check the change payment date amount.\nLate fees will be added in amount if contract is in overdue state.\nChoose date upto 3 months from tommorow."
       }
     },
-    "/provider/contract/change_payment_date": {
+    "/provider/contract/change_recurring_date": {
       "post": {
         "summary": "Change Payment Date",
         "operationId": "post-provider-contract-change_payment_date",
@@ -3927,7 +3927,7 @@
                   }
                 },
                 "examples": {
-                  "If payment_from option is 2 and card_token is not added": {
+                  "If payment_from option is 1 or 2 and card_token is not added": {
                     "value": {
                       "message": "\"card_token\" is required",
                       "code": "parameter_missing"
@@ -3943,6 +3943,38 @@
                     "value": {
                       "message": "No contract found",
                       "code": "contract_not_found"
+                    }
+                  },
+                  "If change_date_token is invalid": {
+                    "value": {
+                      "message": "Invalid \"change_date_token\" provided",
+                      "code": "invalid_parameter"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
                     }
                   }
                 }
@@ -3960,74 +3992,44 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "new_payment_date": {
-                    "type": "string",
-                    "description": "Use the same payment date in \"/check_date_change_amount\" response"
+                  "contract_id": {
+                    "type": "number",
+                    "description": ""
                   },
-                  "amount": {
+                  "change_date_token": {
                     "type": "string",
-                    "description": "Use the same amount in \"/check_date_change_amount\" response\n"
+                    "description": ""
                   },
                   "payment_from": {
                     "type": "number",
-                    "description": "1-Customer, 2-Provider, 3-provider's denefits account\n"
-                  },
-                  "contract_id": {
-                    "type": "number"
+                    "description": "1-Customer's new card, 2-Provider's new card, 3-provider's denefits account"
                   },
                   "card_token": {
                     "type": "string",
-                    "description": "required if payment from new card\n"
+                    "description": "required if payment_from is 1 or 2\n"
                   }
                 },
                 "required": [
-                  "new_payment_date",
-                  "amount",
-                  "payment_from",
-                  "contract_id"
+                  "contract_id",
+                  "change_date_token"
                 ]
               },
               "examples": {
-                "If pay from customer's new account": {
+                "example": {
                   "value": {
-                    "contract_id": 31800,
+                    "contract_id": 18132,
+                    "change_date_token": "rec_A376F99Y*******",
                     "payment_from": 1,
-                    "new_payment_date": "2020-07-23",
-                    "amount": "22",
-                    "card_token": "tok_1GvgLpGLNi********"
-                  }
-                },
-                "If pay from customer's default account": {
-                  "value": {
-                    "contract_id": 31800,
-                    "payment_from": 1,
-                    "new_payment_date": "2020-07-23",
-                    "amount": "22"
-                  }
-                },
-                "If pay from provider's new account": {
-                  "value": {
-                    "contract_id": 31800,
-                    "payment_from": 2,
-                    "new_payment_date": "2020-07-23",
-                    "amount": "22",
-                    "card_token": "tok_1GvgLpGLNi********"
-                  }
-                },
-                "If pay from provider's denefits account": {
-                  "value": {
-                    "contract_id": 31800,
-                    "payment_from": 3,
-                    "new_payment_date": "2020-07-23",
-                    "amount": "22"
+                    "card_token": "tok_******"
                   }
                 }
               }
             }
           },
-          "description": "payment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is required for payment from 2-provider.\n\nIf card_token is not provided in case of customer, then payment will automatically deduct from customer's default card."
+          "description": "payment_from is required only if payable amount is greater than 0.\n\npayment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
         }
-      }
+      },
+      "parameters": []
     },
     "/provider/contract/cancel": {
       "post": {
@@ -5734,52 +5736,33 @@
                 "type": "object",
                 "properties": {
                   "amount": {
-                    "type": "string"
-                  },
-                  "payment_source_type": {
-                    "type": "string"
+                    "type": "number"
                   },
                   "reason": {
                     "type": "string"
                   },
                   "name": {
                     "type": "string"
-                  },
-                  "payout_type": {
-                    "type": "string",
-                    "enum": [
-                      "1",
-                      "2"
-                    ]
-                  },
-                  "timezone": {
-                    "type": "string"
                   }
                 },
                 "required": [
                   "amount",
-                  "payment_source_type",
                   "reason",
-                  "name",
-                  "payout_type",
-                  "timezone"
+                  "name"
                 ]
               },
               "examples": {
                 "example": {
                   "value": {
                     "amount": 500,
-                    "payment_source_type": 3,
                     "reason": "test payment",
-                    "name": "John Millers",
-                    "payout_type": 2,
-                    "timezone": -700
+                    "name": "John Millers"
                   }
                 }
               }
             }
           },
-          "description": "payout_type // 1- standard , 2-instant"
+          "description": ""
         }
       }
     }

@@ -6199,7 +6199,7 @@
               "examples": {
                 "Example": {
                   "value": {
-                    "provider_id": "pr_af1c4a82e1c6c6147692b50821c****",
+                    "provider_id": "pr_af1c4a82e1c6c61476*********",
                     "document_array": [
                       {
                         "more_document_id": 735,
@@ -7097,6 +7097,30 @@
                       "message": "\"contract_id\" is required",
                       "code": "parameter_missing"
                     }
+                  },
+                  "If payment_from option is 1 or 2 and card_token is not added": {
+                    "value": {
+                      "message": "\"card_token\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If contract_id is wrong": {
+                    "value": {
+                      "message": "No contract found",
+                      "code": "contract_not_found"
+                    }
+                  },
+                  "If new_payment_date is not a valid date": {
+                    "value": {
+                      "message": "\"new_payment_date\" must be a valid date",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If change_date_token is invalid": {
+                    "value": {
+                      "message": "Invalid \"change_date_token\" provided",
+                      "code": "invalid_parameter"
+                    }
                   }
                 }
               }
@@ -7147,22 +7171,23 @@
                   },
                   "payment_from": {
                     "type": "number",
-                    "description": "1-Customer's new card, 2-Provider's new Card",
+                    "description": "1-Customer's new card, 2-Provider's new card, 3-provider's denefits account",
                     "enum": [
                       1,
-                      2
+                      2,
+                      3
                     ]
                   },
                   "card_token": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "required if payment_from is 1 or 2"
                   }
                 },
                 "required": [
                   "provider_id",
                   "contract_id",
                   "change_date_token",
-                  "payment_from",
-                  "card_token"
+                  "payment_from"
                 ]
               },
               "examples": {
@@ -7170,14 +7195,15 @@
                   "value": {
                     "provider_id": "pr_192c3d5ca1161c03**********6fd8cd",
                     "contract_id": 18132,
-                    "change_date_token": "rec_A376F99Y2020M06D29",
+                    "change_date_token": "rec_A376F99********",
                     "payment_from": 1,
                     "card_token": "tok_******"
                   }
                 }
               }
             }
-          }
+          },
+          "description": "payment_from is required only if payable amount is greater than 0.\n\npayment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
         },
         "tags": [
           "Provider Contract"
@@ -7314,6 +7340,61 @@
           }
         },
         "description": "This API is used to cancel a contract. A fixed $30 will be charged to cancel a contract"
+      }
+    },
+    "/provider/payment/pay_3d": {
+      "post": {
+        "summary": "Get 3D secure payment client ID",
+        "operationId": "post-provider-payment-pay_3d",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "3D Secure Payment"
+        ],
+        "description": "Get 3D secure payment client ID to make payment",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "number"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "amount",
+                  "reason",
+                  "name"
+                ]
+              },
+              "examples": {
+                "example": {
+                  "value": {
+                    "provider_id": "pr_af1c4a82e1c6c61476************",
+                    "amount": 500,
+                    "reason": "test payment",
+                    "name": "John Millers"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
       }
     }
   },
