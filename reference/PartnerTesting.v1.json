@@ -7110,6 +7110,12 @@
                       "message": "\"new_payment_date\" must be a valid date",
                       "code": "invalid_parameter"
                     }
+                  },
+                  "If change_date_token is invalid": {
+                    "value": {
+                      "message": "Invalid \"change_date_token\" provided",
+                      "code": "invalid_parameter"
+                    }
                   }
                 }
               }
@@ -7184,7 +7190,7 @@
                   "value": {
                     "provider_id": "pr_192c3d5ca1161c03**********6fd8cd",
                     "contract_id": 18132,
-                    "change_date_token": "rec_A376F99Y2020M06D29",
+                    "change_date_token": "rec_A376F99********",
                     "payment_from": 1,
                     "card_token": "tok_******"
                   }
@@ -7192,7 +7198,7 @@
               }
             }
           },
-          "description": "payment_from is required only if amount is greater than 0.\n\npayment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
+          "description": "payment_from is required only if payable amount is greater than 0.\n\npayment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
         },
         "tags": [
           "Provider Contract"
