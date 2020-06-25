@@ -7338,13 +7338,17 @@
       }
     },
     "/provider/payment/pay_3d": {
-      "get": {
+      "post": {
         "summary": "Get 3D secure payment client ID",
+        "operationId": "post-provider-payment-pay_3d",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
         "tags": [
           "3D Secure Payment"
         ],
-        "responses": {},
-        "operationId": "get-provider-payment-pay_3d",
         "description": "Get 3D secure payment client ID to make payment",
         "requestBody": {
           "content": {
@@ -7352,7 +7356,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "amount": {
+                  "amout": {
                     "type": "number"
                   },
                   "reason": {
@@ -7361,7 +7365,12 @@
                   "name": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "amout",
+                  "reason",
+                  "name"
+                ]
               },
               "examples": {
                 "example": {
