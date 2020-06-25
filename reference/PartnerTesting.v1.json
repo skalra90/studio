@@ -1924,6 +1924,27 @@
             "in": "query",
             "name": "skip",
             "description": ""
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "search_string"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "successful",
+                "failed",
+                "reversed"
+              ]
+            },
+            "in": "query",
+            "name": "payment_status",
+            "description": "Valid payment_status are \"pending\",\"successful\", \"failed\", \"reversed\""
           }
         ],
         "tags": [
