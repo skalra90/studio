@@ -4550,12 +4550,12 @@
                 "active",
                 "overdue",
                 "completed",
-                "cancelled"
+                "canceled"
               ]
             },
             "in": "query",
             "name": "contract_status",
-            "description": "Valid contract_status are \"active\",\"overdue\", \"completed\", \"cancelled\""
+            "description": "Valid contract_status are \"active\",\"overdue\", \"completed\", \"canceled\""
           }
         ],
         "description": "Get listing of all contracts of this account"
