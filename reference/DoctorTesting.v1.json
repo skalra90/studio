@@ -3,7 +3,11 @@
   "info": {
     "title": "DoctorTesting.v1",
     "version": "1.0",
-    "description": ""
+    "description": "The Denefits API is organized around REST. Our API has predictable resource-oriented URLs which returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs. You can use the Denefits API in test mode, which does not affect your live data or interact with the banking networks. The token you use to authenticate the request determines whether the request is live mode or test mode.",
+    "contact": {
+      "email": "apisupport@denefits.com",
+      "name": "Denefits API Support"
+    }
   },
   "servers": [
     {
@@ -3685,15 +3689,6 @@
                     }
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                },
-                "examples": {
-                  "example-1": {}
-                }
               }
             }
           },
@@ -3863,7 +3858,7 @@
           {
             "schema": {
               "type": "string",
-              "format": "date",
+              "format": "",
               "example": "YYYY-MM-DD"
             },
             "in": "query",
@@ -4773,10 +4768,7 @@
                     "type": "number"
                   },
                   "is_service_completed": {
-                    "type": [
-                      "number",
-                      "boolean"
-                    ],
+                    "type": "number",
                     "description": "Accepts 0, 1 (0- if service is not completed yet, 1- if service is completed)"
                   },
                   "document_array": {
@@ -5826,6 +5818,32 @@
       }
     }
   },
+  "tags": [
+    {
+      "name": "File"
+    },
+    {
+      "name": "Providers"
+    },
+    {
+      "name": "Contract Generation Process"
+    },
+    {
+      "name": "Provider Contract"
+    },
+    {
+      "name": "Provider Report"
+    },
+    {
+      "name": "Provider Payment"
+    },
+    {
+      "name": "Claim Process"
+    },
+    {
+      "name": "3D Secure Payment"
+    }
+  ],
   "security": [
     {
       "authorization": []
