@@ -2573,6 +2573,9 @@
                   "sub_industry_id": {
                     "type": "number",
                     "description": "Speciality ID of the provider. Get from /speciality"
+                  },
+                  "partner_share": {
+                    "type": "number"
                   }
                 },
                 "required": [
@@ -2590,7 +2593,8 @@
                     "provider_first_name": "Charles",
                     "provider_last_name": "One",
                     "provider_phone": "1234567890",
-                    "sub_industry_id": 2
+                    "sub_industry_id": 2,
+                    "partner_share": 2
                   }
                 }
               }
