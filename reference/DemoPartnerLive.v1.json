@@ -1685,17 +1685,7 @@
                     "date_of_birth": "1980-05-30",
                     "customer_ssn": "227392778",
                     "start_date": "2020-07-01",
-                    "dl_number": "DL2181281230123",
-                    "service_array": [
-                      {
-                        "service": "Dental Fee",
-                        "price": 900
-                      },
-                      {
-                        "service": "General Fee",
-                        "price": 100
-                      }
-                    ]
+                    "dl_number": "DL2181281230123"
                   }
                 }
               }
