@@ -1,0 +1,4607 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Reference",
+    "version": "1.0.0",
+    "description": "The Denefits API is organized around REST. Our API has predictable resource-oriented URLs which returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs. You can use the Denefits API in test mode, which does not affect your live data or interact with the banking networks. The token you use to authenticate the request determines whether the request is live mode or test mode.",
+    "contact": {
+      "email": "apisupport@denefits.com",
+      "name": "Denefits API Support"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://endpoint.denefits.com/v1"
+    }
+  ],
+  "paths": {
+    "/provider": {
+      "get": {
+        "summary": "List of Providers",
+        "tags": [
+          "Providers"
+        ],
+        "operationId": "get-providers",
+        "description": "Returns providers registered with your account. Only providers with `payments_enabled` set to true are able to make payments plans or process a payment.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "provider_id": {
+                                "type": "string",
+                                "description": "Provider's Unique Identifier."
+                              },
+                              "provider_email": {
+                                "type": "string",
+                                "format": "email",
+                                "example": "charles90@denefits.com",
+                                "description": "Provider's email address. "
+                              },
+                              "provider_first_name": {
+                                "type": "string",
+                                "description": "Provider's first name."
+                              },
+                              "provider_last_name": {
+                                "type": "string",
+                                "description": "Provider's last name."
+                              },
+                              "provider_phone": {
+                                "type": "string",
+                                "description": "Provider's phone number."
+                              },
+                              "date_registered": {
+                                "type": "string",
+                                "format": "date-time",
+                                "example": "2020-05-08T11:58:25.000Z",
+                                "description": "Provider's date of registration."
+                              },
+                              "business_info": {
+                                "type": "object",
+                                "properties": {
+                                  "business_email": {
+                                    "type": "string"
+                                  },
+                                  "business_name": {
+                                    "type": "string"
+                                  },
+                                  "business_phone": {
+                                    "type": "string"
+                                  },
+                                  "business_address": {
+                                    "type": "array",
+                                    "description": "Business' street address.",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "line1": {
+                                          "type": "string"
+                                        },
+                                        "city": {
+                                          "type": "string"
+                                        },
+                                        "state": {
+                                          "type": "string"
+                                        },
+                                        "zip": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "payments_enabled": {
+                                "type": "boolean"
+                              },
+                              "payments_disabled_reason": {
+                                "type": "string"
+                              },
+                              "speciality": {
+                                "type": "object",
+                                "properties": {
+                                  "sub_industry_name": {
+                                    "type": "string"
+                                  },
+                                  "sub_industry_id": {
+                                    "type": "number"
+                                  },
+                                  "industry_name": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success Response": {
+                    "value": {
+                      "data": {
+                        "count": 2,
+                        "list": [
+                          {
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "provider_first_name": "Test 1",
+                            "provider_last_name": "Test 2",
+                            "date_registered": "2020-04-08T09:01:40.000Z",
+                            "provider_email": "example@domain.com",
+                            "provider_phone": "9675457654",
+                            "business_info": {
+                              "business_email": "example1@domain.com",
+                              "business_name": "BB dentals",
+                              "business_phone": "1234567890",
+                              "business_address": {
+                                "line1": "#29 street",
+                                "city": "Suffolk",
+                                "state": "Virginia",
+                                "zip": "23433"
+                              }
+                            },
+                            "speciality": {
+                              "sub_industry_name": "Mobile Phone Industry",
+                              "sub_industry_id": 396,
+                              "industry_name": "Telecommunication"
+                            },
+                            "payments_enabled": true,
+                            "payments_disabled_reason": null
+                          },
+                          {
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "provider_first_name": "Demo 1",
+                            "provider_last_name": "Demo 2",
+                            "date_registered": "2020-04-07T07:14:23.000Z",
+                            "provider_email": "example2@domain.com",
+                            "provider_phone": "9564838477",
+                            "business_info": null,
+                            "speciality": {
+                              "sub_industry_name": "Civil Engineering",
+                              "sub_industry_id": 297,
+                              "industry_name": "Construction"
+                            },
+                            "payments_enabled": false,
+                            "payments_disabled_reason": "no_bank_added"
+                          }
+                        ]
+                      },
+                      "message": "Request executed successfully",
+                      "code": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a Provider",
+        "operationId": "post-provider",
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "provider_id": {
+                          "type": "string"
+                        },
+                        "provider_first_name": {
+                          "type": "string"
+                        },
+                        "provider_last_name": {
+                          "type": "string"
+                        },
+                        "date_registered": {
+                          "type": "string"
+                        },
+                        "provider_email": {
+                          "type": "string"
+                        },
+                        "provider_phone": {
+                          "type": "string"
+                        },
+                        "business_info": {
+                          "type": "object",
+                          "description": ""
+                        },
+                        "speciality": {
+                          "type": "object",
+                          "properties": {
+                            "sub_industry_name": {
+                              "type": "string"
+                            },
+                            "sub_industry_id": {
+                              "type": "string"
+                            },
+                            "industry_name": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "payments_enabled": {
+                          "type": "boolean"
+                        },
+                        "payments_disabled_reason": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Provider added successfully": {
+                    "value": {
+                      "message": "Provider added successfully",
+                      "code": "success",
+                      "data": {
+                        "provider_id": "pr_64a9325bb4e3190fd9059b77efa19001",
+                        "provider_first_name": "Charles",
+                        "provider_last_name": "One",
+                        "date_registered": "2020-06-02T05:04:55.000Z",
+                        "provider_email": "charles12.one@denefits.com",
+                        "provider_phone": "1235567899",
+                        "business_info": null,
+                        "speciality": {
+                          "sub_industry_name": "Chiropractics",
+                          "sub_industry_id": 6,
+                          "industry_name": "Healthcare"
+                        },
+                        "payments_enabled": false,
+                        "payments_disabled_reason": "no_bank_added"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If token is missing in headers": {
+                    "value": {
+                      "message": "Authorization token is missing.",
+                      "code": "no_auth"
+                    }
+                  },
+                  "If any of the required_field is missing in the body": {
+                    "value": {
+                      "message": "\"required_field\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If wrong mobile number is entered": {
+                    "value": {
+                      "message": "Invalid \"phone\" provided ",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If wrong email is entered": {
+                    "value": {
+                      "message": "\"provider_email\" must be a valid email",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If email is empty": {
+                    "value": {
+                      "message": "\"provider_email\" is not allowed to be empty",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If sub_industry_id is invalid": {
+                    "value": {
+                      "message": "Invalid sub industry ID",
+                      "code": "invalid_sub_industry"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication Failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "When invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Request Failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If mobile number is already exist in the system.": {
+                    "value": {
+                      "message": "Phone number already registered",
+                      "code": "duplicate_phone"
+                    }
+                  },
+                  "If email is already exist in the system.": {
+                    "value": {
+                      "message": "Email already registered",
+                      "code": "duplicate_email"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Creates a new provider under your account.",
+        "parameters": [],
+        "tags": [
+          "Providers"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_first_name": {
+                    "type": "string",
+                    "description": "First name of the provider."
+                  },
+                  "provider_last_name": {
+                    "type": "string",
+                    "description": "Last name of the provider."
+                  },
+                  "provider_email": {
+                    "type": "string",
+                    "description": "Email address of the provider."
+                  },
+                  "provider_phone": {
+                    "type": "string",
+                    "description": "Mobile number of the provider."
+                  },
+                  "sub_industry_id": {
+                    "type": "number",
+                    "description": "Speciality ID of the provider. Get from /speciality"
+                  }
+                },
+                "required": [
+                  "provider_first_name",
+                  "provider_last_name",
+                  "provider_email",
+                  "provider_phone",
+                  "sub_industry_id"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "provider_email": "Example@domain.com",
+                    "provider_first_name": "Charles",
+                    "provider_last_name": "One",
+                    "provider_phone": "1234567890",
+                    "sub_industry_id": 2
+                  }
+                }
+              }
+            }
+          },
+          "description": "Provider Object"
+        }
+      },
+      "parameters": []
+    },
+    "/provider/bank": {
+      "get": {
+        "summary": "Retrieve Provider's bank account",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_name": {
+                          "type": "string",
+                          "description": "Name of the bank"
+                        },
+                        "routing_number": {
+                          "type": "string",
+                          "description": "Routing number."
+                        },
+                        "last4": {
+                          "type": "string",
+                          "description": "Last 4 digits of account number."
+                        },
+                        "account_holder_name": {
+                          "type": "string",
+                          "description": "Account holder name"
+                        },
+                        "account_holder_type": {
+                          "type": "string",
+                          "description": "Type of account."
+                        },
+                        "provider_id": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "bank_name": "STRIPE TEST BANK",
+                        "routing_number": "110000000",
+                        "last4": "6789",
+                        "account_holder_name": "Example Test",
+                        "account_holder_type": "individual",
+                        "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                        "currency": "usd",
+                        "country": "US"
+                      },
+                      "code": "success"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If bank not added for the provider": {
+                    "value": {
+                      "message": "No bank added.",
+                      "code": "bank_not_linked"
+                    }
+                  },
+                  "If provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-bank",
+        "description": "Returns provider's bank details.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "description": "Provider ID ",
+            "required": true
+          }
+        ]
+      },
+      "post": {
+        "summary": "Add Provider's bank account",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_name": {
+                          "type": "string",
+                          "description": "Name of the bank"
+                        },
+                        "routing_number": {
+                          "type": "string",
+                          "description": "Routing number."
+                        },
+                        "last4": {
+                          "type": "string",
+                          "description": "Last 4 digits of account number."
+                        },
+                        "account_holder_name": {
+                          "type": "string",
+                          "description": "Account holder name"
+                        },
+                        "account_holder_type": {
+                          "type": "string",
+                          "description": "Type of account."
+                        },
+                        "provider_id": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Bank added successfully",
+                      "data": {
+                        "bank_name": "STRIPE TEST BANK",
+                        "currency": "usd",
+                        "country": "US",
+                        "routing_number": "110000000",
+                        "account_holder_name": "Charlie",
+                        "account_holder_type": "company",
+                        "provider_id": "pr_cdd4554aad8af8d3743fb39abf6ba51b"
+                      },
+                      "code": "success"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required_field is missing": {
+                    "value": {
+                      "message": "\"provider_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If invalid file ID is used": {
+                    "value": {
+                      "message": "Invalid dl_front provided",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If provider already added the bank account": {
+                    "value": {
+                      "message": "This provider already have a bank account linked with their account.",
+                      "code": "bank_already_linked"
+                    }
+                  },
+                  "If same file ID is used again": {
+                    "value": {
+                      "message": "This file upload is already attached to an account.",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If Invalid bank token is used": {
+                    "value": {
+                      "message": "Invalid bank token",
+                      "code": "invalid_bank_token"
+                    }
+                  },
+                  "If provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-provider-bank",
+        "description": "Add provider's bank account which will be used to receive the payouts\n\nIf bank token is created with \"individual\" account type then send `ssn_number`, `date_of_birth`, `front_file`, `back_file`\n\nIf bank token is created with \"company\" account type then send `business_tax_id`",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "business_email": {
+                    "type": "string"
+                  },
+                  "business_name": {
+                    "type": "string"
+                  },
+                  "business_phone": {
+                    "type": "string"
+                  },
+                  "business_address": {
+                    "type": "string"
+                  },
+                  "business_zipcode": {
+                    "type": "number"
+                  },
+                  "bank_token": {
+                    "type": "string"
+                  },
+                  "ssn_number": {
+                    "type": "string",
+                    "description": "ssn_number is required if \"individual\" type bank account is created"
+                  },
+                  "front_file": {
+                    "type": "string"
+                  },
+                  "back_file": {
+                    "type": "string"
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "1990-01-18",
+                    "description": "date_of_birth is required if \"individual\" type bank account is created"
+                  },
+                  "business_tax_id": {
+                    "type": "string",
+                    "description": "business_tax_id is required if \"company\" type bank account is created"
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "business_email",
+                  "business_name",
+                  "business_phone",
+                  "business_address",
+                  "business_zipcode",
+                  "bank_token"
+                ]
+              },
+              "examples": {
+                "Company account example": {
+                  "value": {
+                    "provider_id": "pr_da7cd3b3e29017c8e5bb4705******jk",
+                    "business_email": "john@gmail.com",
+                    "business_name": "John dentals",
+                    "business_phone": "1234567890",
+                    "business_address": "#34 street",
+                    "business_zipcode": "12345",
+                    "bank_token": "btok_us*****************",
+                    "business_tax_id": "1234567"
+                  }
+                },
+                "Individual Account Example": {
+                  "value": {
+                    "provider_id": "pr_da7cd3b3e29017c8e5bb4705******jk",
+                    "business_email": "Example@domain.com",
+                    "business_name": "John dentals",
+                    "business_phone": "1234567890",
+                    "business_address": "#34 street",
+                    "business_zipcode": "12345",
+                    "ssn_number": 123456789,
+                    "dl_front": "file_1GiLcuG**************",
+                    "dl_back": "file_1GiLd7GL**************",
+                    "bank_token": "btok_Ld7GL**************",
+                    "date_of_birth": "1990-05-29"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Add Provider Bank"
+        }
+      }
+    },
+    "/provider/contract/plans": {
+      "get": {
+        "summary": "List of Plans",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Message."
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "plans": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "plan_id": {
+                                  "description": "Plan's unique identification.",
+                                  "type": "string"
+                                },
+                                "interest_rate": {
+                                  "type": "number",
+                                  "description": "Interest rate."
+                                },
+                                "number_of_payments": {
+                                  "type": "integer",
+                                  "description": "Duration of the contract."
+                                },
+                                "monthly_payable": {
+                                  "type": "object",
+                                  "description": "Monthly Payable details.",
+                                  "properties": {
+                                    "total": {
+                                      "type": "number",
+                                      "description": "Total payable amount every month (Without Late Fees)"
+                                    },
+                                    "breakdown": {
+                                      "type": "object",
+                                      "description": "Breakdown of total payable amount.",
+                                      "properties": {
+                                        "amount": {
+                                          "type": "number",
+                                          "description": "Recurring amount."
+                                        },
+                                        "transaction_fee": {
+                                          "type": "number",
+                                          "description": "Transsaction Fee."
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "to_pay_now": {
+                                  "type": "object",
+                                  "description": "Amount to pay now details.",
+                                  "properties": {
+                                    "total": {
+                                      "type": "number",
+                                      "description": "Total amount to pay now."
+                                    },
+                                    "breakdown": {
+                                      "type": "object",
+                                      "description": "Breakdown of amount.",
+                                      "properties": {
+                                        "denefits_enrollment_fee": {
+                                          "type": "number",
+                                          "description": "Flat contract creation fee."
+                                        },
+                                        "upfront_payment": {
+                                          "type": "object",
+                                          "description": "Upfront payment details.",
+                                          "properties": {
+                                            "total": {
+                                              "type": "number",
+                                              "description": "Total upfront payment."
+                                            },
+                                            "breakdown": {
+                                              "type": "object",
+                                              "description": "Breakdown of upfront payment.",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "number",
+                                                  "description": "Upfront amount."
+                                                },
+                                                "transaction_fee": {
+                                                  "type": "number",
+                                                  "description": "Upfront transaction fee."
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "downpayment_amount": {
+                                          "type": "object",
+                                          "properties": {
+                                            "total": {
+                                              "type": "number"
+                                            },
+                                            "breakdown": {
+                                              "type": "object",
+                                              "properties": {
+                                                "amount": {
+                                                  "type": "number"
+                                                },
+                                                "transaction_fee": {
+                                                  "type": "number"
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Success",
+                      "code": "success",
+                      "data": {
+                        "plans": [
+                          {
+                            "plan_id": "plan_P6550M12A12*********",
+                            "number_of_payments": 12,
+                            "interest_rate": 16.99,
+                            "monthly_payable": {
+                              "total": 112.55,
+                              "breakdown": {
+                                "amount": 109.27,
+                                "transaction_fee": 3.28
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 145.55,
+                              "breakdown": {
+                                "denefits_enrollment_fee": 30,
+                                "downpayment_amount": {
+                                  "total": 0,
+                                  "breakdown": {
+                                    "amount": 0,
+                                    "transaction_fee": 0
+                                  }
+                                },
+                                "upfront_payment": {
+                                  "total": 112.55,
+                                  "breakdown": {
+                                    "amount": 109.27,
+                                    "transaction_fee": 3.28
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider doesn't have bank account linked": {
+                    "value": {
+                      "message": "This provider doesn't have a bank account linked with their account.",
+                      "code": "bank_not_linked"
+                    }
+                  },
+                  "If provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If service amount is not a valid number": {
+                    "value": {
+                      "message": "\"service_amount\" must be a safe number",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If service amount/downpayment amount is incorrect": {
+                    "value": {
+                      "message": "Finance amount (Service amount - downpayment) must be between $300 and $20000 ",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-plans",
+        "description": "Returns plans for creating a contract.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "description": "Contract will belong to this provider.",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number",
+              "example": 1200
+            },
+            "in": "query",
+            "name": "service_amount",
+            "description": "Total service amount",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 12,
+              "maximum": 48
+            },
+            "in": "query",
+            "name": "filter_month",
+            "description": "Return plan for this specific month."
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "downpayment_amount",
+            "description": "Downpayment amount"
+          }
+        ],
+        "tags": [
+          "Contract Generation Process"
+        ]
+      },
+      "parameters": []
+    },
+    "/file/upload": {
+      "post": {
+        "summary": "Upload file",
+        "operationId": "post-upload_file",
+        "responses": {
+          "200": {
+            "description": "Success ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "file_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success ": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "file_id": "file_1GiyMUGL***********"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns file_id which can be used in further API's",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Choose file you want to upload"
+                  },
+                  "purpose": {
+                    "type": "string",
+                    "description": "Possible values are \"bank_document\", \"denefits_file\", \"claim_document\""
+                  }
+                },
+                "required": [
+                  "file",
+                  "purpose"
+                ]
+              },
+              "examples": {}
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "File"
+        ]
+      },
+      "parameters": []
+    },
+    "/sub_industry": {
+      "get": {
+        "summary": "List of sub-industries of an industry.",
+        "tags": [
+          "Industry - Sub industry"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "sub_industry_id": {
+                                "type": "integer"
+                              },
+                              "sub_industry_name": {
+                                "type": "string"
+                              },
+                              "industry_name": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "list": [
+                          {
+                            "sub_industry_id": 156,
+                            "sub_industry_name": "Cardio special",
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "sub_industry_id": 6,
+                            "sub_industry_name": "Chiropractics",
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "sub_industry_id": 12,
+                            "sub_industry_name": "Cosmetic Surgery",
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "sub_industry_id": 1,
+                            "sub_industry_name": "Dental",
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "sub_industry_id": 2,
+                            "sub_industry_name": "Dermatology",
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "sub_industry_id": 13,
+                            "sub_industry_name": "Diabetes and Metabolic Specialist",
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "sub_industry_id": 14,
+                            "sub_industry_name": "Dietitians",
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "sub_industry_id": 25,
+                            "sub_industry_name": "Endodontist",
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "sub_industry_id": 15,
+                            "sub_industry_name": "ENT",
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "sub_industry_id": 149,
+                            "sub_industry_name": "ENT Specialist",
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "sub_industry_id": 17,
+                            "sub_industry_name": "Gastroenterology",
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "sub_industry_id": 18,
+                            "sub_industry_name": "Hearing Aid Specialist",
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "sub_industry_id": 27,
+                            "sub_industry_name": "Hospital and Ambulatory Surgery Center",
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "sub_industry_id": 3,
+                            "sub_industry_name": "Med Spas",
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "sub_industry_id": 26,
+                            "sub_industry_name": "Naturopathic Medicine",
+                            "industry_name": "Healthcare"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If industry_id is not a valid number": {
+                    "value": {
+                      "message": "\"industry_id\" must be a safe number",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-speciality",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "industry_id",
+            "required": true,
+            "description": "Enter the industry id you want the speciality list of"
+          }
+        ],
+        "description": "Returns the list of industries with their respective sub-industries. `sub_industry_id` is used in /provider(post) API while creating a provider."
+      },
+      "parameters": []
+    },
+    "/industry": {
+      "get": {
+        "summary": "List of Industries",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "list"
+                      ],
+                      "properties": {
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "industry_id": {
+                                "type": "integer"
+                              },
+                              "industry_name": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "industry_id",
+                              "industry_name"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "data": {
+                        "list": [
+                          {
+                            "industry_id": 1,
+                            "industry_name": "Healthcare"
+                          },
+                          {
+                            "industry_id": 56,
+                            "industry_name": "Auto Communication"
+                          },
+                          {
+                            "industry_id": 99,
+                            "industry_name": "Automobile"
+                          },
+                          {
+                            "industry_id": 58,
+                            "industry_name": "Construction"
+                          },
+                          {
+                            "industry_id": 45,
+                            "industry_name": "Education"
+                          },
+                          {
+                            "industry_id": 57,
+                            "industry_name": "Fitness"
+                          }
+                        ]
+                      },
+                      "code": "success"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-industry",
+        "description": "Returns the list of industries.",
+        "parameters": [],
+        "tags": [
+          "Industry - Sub industry"
+        ]
+      },
+      "parameters": []
+    },
+    "/provider/contract/select": {
+      "post": {
+        "summary": "Select a Plan",
+        "operationId": "contract-create",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "finance_token": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Finance Token Created",
+                      "code": "success",
+                      "data": {
+                        "finance_token": "64de0703e3b61****************"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If provider does not belong to the partner": {
+                    "value": {
+                      "message": "Provider does not belong to this partner.",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If plan_id is invalid": {
+                    "value": {
+                      "message": "Invalid plan.",
+                      "code": "invalid_finance_detail"
+                    }
+                  },
+                  "If any of the required_field is missing": {
+                    "value": {
+                      "message": "\"required_field\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "description": "Select a Plan and provide customer details.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "plan_id": {
+                    "type": "string",
+                    "description": "Unique plan id of the plan selected for financing."
+                  },
+                  "provider_id": {
+                    "type": "string",
+                    "example": "pr_i3u4093j90qr009e0q9",
+                    "description": "Contract will belong to this Provider."
+                  },
+                  "customer_email": {
+                    "type": "string",
+                    "description": "Email address of the customer",
+                    "format": "email",
+                    "example": "steven.gerrard08@liverpoolfc.com"
+                  },
+                  "customer_first_name": {
+                    "type": "string",
+                    "description": "First name of the customer.",
+                    "example": "Steven"
+                  },
+                  "customer_last_name": {
+                    "type": "string",
+                    "description": "Last name of the customer.",
+                    "example": "Gerrard"
+                  },
+                  "customer_address": {
+                    "type": "string",
+                    "description": "Street address of the customer",
+                    "example": "189 Beaver Ridge Ave."
+                  },
+                  "zipcode": {
+                    "type": "string",
+                    "example": "48047",
+                    "minLength": 5,
+                    "maxLength": 5,
+                    "description": "Zipcode"
+                  },
+                  "customer_mobile": {
+                    "type": "string",
+                    "description": "US Mobile number(Without hyphens) of the customer.",
+                    "example": "2025550130",
+                    "minLength": 10,
+                    "maxLength": 10
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "description": "Date of birth of customer.",
+                    "format": "date",
+                    "example": "1980-05-30"
+                  },
+                  "customer_ssn": {
+                    "type": "string",
+                    "description": "SSN number(Without hyphens) of the customer.",
+                    "example": "227392778",
+                    "minLength": 9,
+                    "maxLength": 9
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "description": "Date from which first payment will be deducted.",
+                    "format": "date",
+                    "example": "2020-07-01"
+                  },
+                  "dl_number": {
+                    "type": "string",
+                    "description": "Driving License number of the customer."
+                  },
+                  "service_array": {
+                    "type": "array",
+                    "description": "This is an array which requires the details of the service provided with the price. This field will be required after 1st July 2020.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "service": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "provider_id",
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_last_name",
+                  "customer_address",
+                  "zipcode",
+                  "customer_mobile",
+                  "date_of_birth",
+                  "customer_ssn",
+                  "start_date",
+                  "dl_number"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "plan_id": "plan_P6509M12A1200*******",
+                    "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                    "customer_email": "example@domain.com",
+                    "customer_first_name": "Steven",
+                    "customer_last_name": "Gerrard",
+                    "customer_address": "189 Beaver Ridge Ave.",
+                    "zipcode": "48047",
+                    "customer_mobile": "2025550130",
+                    "date_of_birth": "1980-05-30",
+                    "customer_ssn": "227392778",
+                    "start_date": "2020-07-01",
+                    "dl_number": "DL2181281230123",
+                    "service_array": [
+                      {
+                        "service": "Dental Fee",
+                        "price": 900
+                      },
+                      {
+                        "service": "General Fee",
+                        "price": 100
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Contract Generation Process"
+        ]
+      },
+      "parameters": []
+    },
+    "/provider/contract/pay": {
+      "post": {
+        "summary": "Pay for Contract",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "contract_id": {
+                          "type": "integer",
+                          "description": "Unique identifier of contract."
+                        },
+                        "contract_code": {
+                          "type": "string",
+                          "description": "Contract code for reference."
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Customer Financed Successfully",
+                      "code": "success",
+                      "data": {
+                        "contract_id": 17351,
+                        "contract_code": "STGMWLK17351"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "if card_token is missing": {
+                    "value": {
+                      "message": "stripe_token is undefined",
+                      "code": "invalid_finance_detail"
+                    }
+                  },
+                  "If finance_token is missing or invalid": {
+                    "value": {
+                      "message": "Invalid finance token",
+                      "code": "invalid_finance_token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-contract-pay",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "finance_token": {
+                    "type": "string",
+                    "description": "Finance Token."
+                  },
+                  "card_token": {
+                    "type": "string",
+                    "description": "Card Token receieved from iframe."
+                  }
+                },
+                "required": [
+                  "finance_token",
+                  "card_token"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "finance_token": "7b863ffe354d689************",
+                    "card_token": "tok_visa"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "Pay for contract using finance token and card token.",
+        "tags": [
+          "Contract Generation Process"
+        ]
+      },
+      "parameters": []
+    },
+    "/provider/contract/detail": {
+      "get": {
+        "summary": "Contract details",
+        "tags": [
+          "Provider Contract"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "contract_data": {
+                          "type": "object",
+                          "properties": {
+                            "contract_id": {
+                              "type": "number"
+                            },
+                            "contract_code": {
+                              "type": "string"
+                            },
+                            "provider_id": {
+                              "type": "string"
+                            },
+                            "service_amount": {
+                              "type": "number"
+                            },
+                            "downpayment_amount": {
+                              "type": "number"
+                            },
+                            "financed_amount": {
+                              "type": "number"
+                            },
+                            "interest_rate": {
+                              "type": "number"
+                            },
+                            "recurring_amount": {
+                              "type": "number"
+                            },
+                            "number_of_payments": {
+                              "type": "number"
+                            },
+                            "remaining_payments": {
+                              "type": "number"
+                            },
+                            "next_recurring_date": {
+                              "type": "string"
+                            },
+                            "contract_status": {
+                              "type": "string"
+                            },
+                            "zipcode": {
+                              "type": "number"
+                            },
+                            "date_added": {
+                              "type": "string"
+                            },
+                            "monthly_payable": {
+                              "type": "object",
+                              "properties": {
+                                "total": {
+                                  "type": "number"
+                                },
+                                "breakdown": {
+                                  "type": "object",
+                                  "properties": {
+                                    "amount": {
+                                      "type": "number"
+                                    },
+                                    "transaction_fee": {
+                                      "type": "number"
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "default_card_last4": {
+                              "type": "string"
+                            },
+                            "service_array": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "service": {
+                                    "type": "string"
+                                  },
+                                  "price": {
+                                    "type": "number"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "payments": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "amount_charged": {
+                                "type": "number"
+                              },
+                              "amount_refunded": {
+                                "type": "number"
+                              },
+                              "charge_status": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              },
+                              "last4": {
+                                "type": "string"
+                              },
+                              "paid_by": {
+                                "type": "string"
+                              },
+                              "payment_source": {
+                                "type": "string"
+                              },
+                              "payment_type": {
+                                "type": "string"
+                              },
+                              "fees": {
+                                "type": "object",
+                                "properties": {
+                                  "late_fee": {
+                                    "type": "number"
+                                  },
+                                  "late_fee_refunded": {
+                                    "type": "string"
+                                  },
+                                  "recurring_date_edit_fee": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "partner_share": {
+                                "type": "object",
+                                "properties": {
+                                  "amount": {
+                                    "type": "number"
+                                  },
+                                  "net": {
+                                    "type": "number"
+                                  },
+                                  "reversed": {
+                                    "type": "number"
+                                  }
+                                }
+                              },
+                              "provider_share": {
+                                "type": "object",
+                                "properties": {
+                                  "amount": {
+                                    "type": "number"
+                                  },
+                                  "net": {
+                                    "type": "number"
+                                  },
+                                  "reversed": {
+                                    "type": "number"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "customer": {
+                          "type": "object",
+                          "properties": {
+                            "customer_address": {
+                              "type": "string"
+                            },
+                            "customer_email": {
+                              "type": "string"
+                            },
+                            "customer_first_name": {
+                              "type": "string"
+                            },
+                            "customer_last_name": {
+                              "type": "string"
+                            },
+                            "customer_mobile": {
+                              "type": "string"
+                            },
+                            "date_of_birth": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "contract": {
+                          "contract_id": 17494,
+                          "contract_code": "HMSZDQY17494",
+                          "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                          "service_amount": 1000,
+                          "downpayment_amount": 100,
+                          "financed_amount": 900,
+                          "interest_rate": 16.99,
+                          "recurring_amount": 69.45,
+                          "default_card_last4": "1111",
+                          "monthly_payable": {
+                            "total": 72.45,
+                            "breakdown": {
+                              "amount": 69.45,
+                              "transaction_fee": 3
+                            }
+                          },
+                          "number_of_payments": 12,
+                          "remaining_payments": 12,
+                          "next_recurring_date": "2020-06-07T00:00:00.000Z",
+                          "contract_status": "Active",
+                          "date_added": "2020-06-03T12:16:16.000Z",
+                          "service_array": [
+                            {
+                              "service": "Dental Fee",
+                              "price": 900
+                            },
+                            {
+                              "service": "General Fee",
+                              "price": 100
+                            }
+                          ]
+                        },
+                        "payments": [
+                          {
+                            "amount_charged": 217.95,
+                            "amount_refunded": 0,
+                            "charge_status": "Paid",
+                            "paid_by": "customer",
+                            "payment_source": "card",
+                            "last4": "1111",
+                            "fees": {
+                              "late_fee": 0,
+                              "late_fee_refunded": 0,
+                              "recurring_date_edit_fee": 0
+                            },
+                            "payment_type": "Denefits Fee + Down Payment + Upfront Payment",
+                            "partner_share": {
+                              "amount": 0.82,
+                              "reversed": 0,
+                              "net": 0.82
+                            },
+                            "provider_share": {
+                              "amount": 99.5,
+                              "reversed": 0,
+                              "net": 99.5
+                            },
+                            "date_added": "2020-06-03T12:16:16.000Z"
+                          },
+                          {
+                            "amount_charged": 104,
+                            "amount_refunded": 0,
+                            "charge_status": "Paid",
+                            "paid_by": "customer",
+                            "payment_source": "card",
+                            "last4": "1111",
+                            "fees": {
+                              "late_fee": 0,
+                              "late_fee_refunded": 0,
+                              "recurring_date_edit_fee": 0
+                            },
+                            "payment_type": "Partial Payment",
+                            "partner_share": {
+                              "amount": 1,
+                              "reversed": 0,
+                              "net": 1
+                            },
+                            "provider_share": {
+                              "amount": 91.06,
+                              "reversed": 0,
+                              "net": 91.06
+                            },
+                            "date_added": "2020-06-03T13:22:21.000Z"
+                          },
+                          {
+                            "amount_charged": 4.71,
+                            "amount_refunded": 0,
+                            "charge_status": "Paid",
+                            "paid_by": "provider",
+                            "payment_source": "card",
+                            "last4": "4242",
+                            "fees": {
+                              "late_fee": 0,
+                              "late_fee_refunded": 0,
+                              "recurring_date_edit_fee": 4.71
+                            },
+                            "payment_type": "Recurring Date Edited",
+                            "partner_share": {
+                              "amount": 0,
+                              "reversed": 0,
+                              "net": 0
+                            },
+                            "provider_share": {
+                              "amount": 0,
+                              "reversed": 0,
+                              "net": 0
+                            },
+                            "date_added": "2020-06-03T13:35:45.000Z"
+                          }
+                        ],
+                        "customer": {
+                          "customer_first_name": "Ted",
+                          "customer_last_name": "Mosby",
+                          "customer_email": "example@domain.com",
+                          "customer_mobile": "7873987478",
+                          "customer_address": "189 Beaver Ridge Ave. test address, Schenectady, NY, 12345",
+                          "date_of_birth": "1993-07-04"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If contract_id is wrong": {
+                    "value": {
+                      "message": "No such contract found.",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-contract",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true,
+            "description": ""
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "contract_id",
+            "required": true
+          }
+        ],
+        "description": "Get contract details with ID"
+      },
+      "parameters": []
+    },
+    "/provider/contract/list": {
+      "get": {
+        "summary": "List of contracts of a provider",
+        "tags": [
+          "Provider Contract"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "contracts_list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "contract_id": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              },
+                              "last_updated": {
+                                "type": "string"
+                              },
+                              "zipcode": {
+                                "type": "number"
+                              },
+                              "contract_status": {
+                                "type": "string"
+                              },
+                              "next_emi_date": {
+                                "type": "string"
+                              },
+                              "remaining_emi": {
+                                "type": "number"
+                              },
+                              "total_emi": {
+                                "type": "number"
+                              },
+                              "emi_amount": {
+                                "type": "number"
+                              },
+                              "interest_rate": {
+                                "type": "number"
+                              },
+                              "financed_amount": {
+                                "type": "number"
+                              },
+                              "customer_signature": {
+                                "type": "string"
+                              },
+                              "customer_address": {
+                                "type": "string"
+                              },
+                              "customer_mobile": {
+                                "type": "string"
+                              },
+                              "customer_email": {
+                                "type": "string"
+                              },
+                              "customer_last_name": {
+                                "type": "string"
+                              },
+                              "customer_first_name": {
+                                "type": "string"
+                              },
+                              "customer_id": {
+                                "type": "number"
+                              },
+                              "provider_id": {
+                                "type": "string"
+                              },
+                              "contract_code": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "example": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 1,
+                        "contracts_list": [
+                          {
+                            "contract_id": 17351,
+                            "contract_code": "STGMWLK17351",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "customer_id": 3174,
+                            "customer_first_name": "Steven",
+                            "customer_last_name": "Gerrard",
+                            "customer_email": "example@domain.com",
+                            "customer_mobile": "+1-2025550130",
+                            "customer_address": "189 Beaver Ridge Ave.",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-***********.png",
+                            "downpayment_amount": 0,
+                            "financed_amount": 1200,
+                            "interest_rate": 16.99,
+                            "recurring_amount": 109.27,
+                            "number_of_payments": 12,
+                            "remaining_payments": 12,
+                            "next_recurring_date": "2020-07-01T00:00:00.000Z",
+                            "contract_status": "Active",
+                            "title": "",
+                            "city_name": "New Baltimore",
+                            "zipcode": 48047,
+                            "last_updated": "2020-05-29T14:06:26.000Z",
+                            "date_added": "2020-05-29T14:06:26.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "if provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If provider does not belong to the partner": {
+                    "value": {
+                      "message": "Provider does not belong to this partner.",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-contract-list",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          }
+        ],
+        "description": "Get listing of all contracts of this account"
+      },
+      "parameters": []
+    },
+    "/provider/payment/detail": {
+      "get": {
+        "summary": "Payment details",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "payment_data": {
+                          "type": "object",
+                          "properties": {
+                            "payment_id": {
+                              "type": "number"
+                            },
+                            "payment_code": {
+                              "type": "string"
+                            },
+                            "provider_id": {
+                              "type": "string"
+                            },
+                            "customer_name": {
+                              "type": "string"
+                            },
+                            "payment_amount": {
+                              "type": "number"
+                            },
+                            "transaction_fee": {
+                              "type": "number"
+                            },
+                            "payment_status": {
+                              "type": "string"
+                            },
+                            "reason": {
+                              "type": "string"
+                            },
+                            "payment_receipt": {
+                              "type": "string"
+                            },
+                            "date_added": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "payment_data": {
+                          "payment_id": 4123,
+                          "payment_code": "IDNDRH4***",
+                          "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                          "customer_name": "Barney Stinson",
+                          "payment_amount": 9000,
+                          "transaction_fee": 0,
+                          "payment_status": "Successfull",
+                          "reason": "Liver treatment",
+                          "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/Payment_Rece***********84.pdf",
+                          "date_added": "2020-05-26T09:48:11.000Z"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "If payment_id is wrong": {
+                    "value": {
+                      "message": "Data not found",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-payment-detail",
+        "description": "It returns the payment detail with payment ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "payment_id",
+            "required": true
+          }
+        ],
+        "tags": [
+          "Provider Payment"
+        ]
+      },
+      "parameters": []
+    },
+    "/provider/payment/list": {
+      "get": {
+        "summary": "List of Payments of a provider",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "payment_list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "payment_id": {
+                                "type": "number"
+                              },
+                              "payment_code": {
+                                "type": "string"
+                              },
+                              "provider_id": {
+                                "type": "string"
+                              },
+                              "customer_name": {
+                                "type": "string"
+                              },
+                              "payment_amount": {
+                                "type": "number"
+                              },
+                              "transaction_fee": {
+                                "type": "number"
+                              },
+                              "payment_status": {
+                                "type": "string"
+                              },
+                              "reason": {
+                                "type": "string"
+                              },
+                              "payment_receipt": {
+                                "type": "string"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 2,
+                        "payment_list": [
+                          {
+                            "payment_id": 4123,
+                            "payment_code": "IDNDRH4***",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "customer_name": "Hannah Baker",
+                            "payment_amount": 9000,
+                            "transaction_fee": 0,
+                            "payment_status": "Successfull",
+                            "reason": "Dental treatment",
+                            "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/Paymen**********4123.pdf",
+                            "date_added": "2020-05-26T09:48:11.000Z"
+                          },
+                          {
+                            "payment_id": 4036,
+                            "payment_code": "IDSJNV4***",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "customer_name": "Heart Checkup",
+                            "payment_amount": 400,
+                            "transaction_fee": 0,
+                            "payment_status": "Successfull",
+                            "reason": null,
+                            "payment_receipt": "https://denefits.s3.amazonaws.com/payment_receipt/Payment_Recei********6.pdf",
+                            "date_added": "2020-05-22T07:59:41.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-payment-list",
+        "description": "It returns the details of the payments processed in the provider's account",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true,
+            "description": "ID of the provider you need payment details for"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "description": ""
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "skip",
+            "description": ""
+          }
+        ],
+        "tags": [
+          "Provider Payment"
+        ]
+      },
+      "parameters": []
+    },
+    "/provider/payment/pay": {
+      "post": {
+        "summary": "Process Instant Payment",
+        "operationId": "post-provider-payment-pay",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "code": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Payment processed successfully.",
+                      "code": "success",
+                      "data": {
+                        "id": 4318,
+                        "code": "IDVYPB4318"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "If invalid provider ID is provided": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If mandatory field is missing": {
+                    "value": {
+                      "message": "\"card_token\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "If auth token is invalid": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "card_token": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "number"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "card_token",
+                  "amount",
+                  "reason",
+                  "name"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                    "card_token": "tok_visa",
+                    "amount": 100,
+                    "reason": "Dental treatment",
+                    "name": "Ted Mosby"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "This can be used to process an instant payment for the service.",
+        "tags": [
+          "Provider Payment"
+        ]
+      }
+    },
+    "/payment/bank_token": {
+      "get": {
+        "summary": "Create bank token",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_token": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "bank_token": "btok_1GpaQmGLNiHi**********"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required field is not provided": {
+                    "value": {
+                      "message": "\"account_holder_name\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If invalid routing number is provided": {
+                    "value": {
+                      "message": "\"routing_number\" must be a safe number",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If invalid account number is provided": {
+                    "value": {
+                      "message": "Invalid account number provided",
+                      "code": "invalid_account_number"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-payment-bank_token",
+        "description": "Returns the bank_token which is used in /provider/bank(post) API while adding bank account.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "account_holder_name",
+            "required": true,
+            "description": "Bank account holder's name"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "individual",
+                "company"
+              ]
+            },
+            "in": "query",
+            "name": "account_type",
+            "required": true,
+            "description": "Possible account types are \"individual\" and \"company\""
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "routing_number",
+            "required": true,
+            "description": "Bank account's routing number"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "account_number",
+            "required": true,
+            "description": "Bank account's number"
+          }
+        ]
+      }
+    },
+    "/provider/contract/claim/available": {
+      "get": {
+        "summary": "List of available claims of a provider",
+        "tags": [
+          "Claim Process"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "contract_id": {
+                            "type": "number"
+                          },
+                          "contract_code": {
+                            "type": "string"
+                          },
+                          "customer_first_name": {
+                            "type": "string"
+                          },
+                          "customer_last_name": {
+                            "type": "string"
+                          },
+                          "customer_email": {
+                            "type": "string"
+                          },
+                          "customer_mobile": {
+                            "type": "string"
+                          },
+                          "customer_address": {
+                            "type": "string"
+                          },
+                          "recurring_amount": {
+                            "type": "number"
+                          },
+                          "number_of_payments_to_claim": {
+                            "type": "number"
+                          },
+                          "date_added": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Request executed successfully": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 3,
+                        "list": [
+                          {
+                            "contract_id": 17742,
+                            "contract_code": "RASJMTG17742",
+                            "customer_first_name": "John",
+                            "customer_last_name": "Miller",
+                            "customer_email": "example@domain.com",
+                            "customer_mobile": "3253657467",
+                            "customer_address": "404, Test House",
+                            "recurring_amount": 122.54,
+                            "number_of_payments_to_claim": 2,
+                            "date_added": "2020-06-09T09:14:31.000Z"
+                          },
+                          {
+                            "contract_id": 12423,
+                            "contract_code": "FGGYBHR12423",
+                            "customer_first_name": "Danijela",
+                            "customer_last_name": "jones",
+                            "customer_email": "example1@domain.com",
+                            "customer_mobile": "2052891317",
+                            "customer_address": "test address",
+                            "recurring_amount": 51.71,
+                            "number_of_payments_to_claim": 1,
+                            "date_added": "2019-12-23T06:00:43.000Z"
+                          },
+                          {
+                            "contract_id": 10857,
+                            "contract_code": "RATYZMP10857",
+                            "customer_first_name": "Mark",
+                            "customer_last_name": "Jones",
+                            "customer_email": "example2@domain.com",
+                            "customer_mobile": "6745634562",
+                            "customer_address": "44323, test",
+                            "recurring_amount": 299.28,
+                            "number_of_payments_to_claim": 3,
+                            "date_added": "2019-09-24T05:58:26.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider industry is non-guaranteed": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-claim-available",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true,
+            "description": ""
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "required": true,
+            "name": "limit"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "required": true,
+            "name": "skip"
+          }
+        ],
+        "description": "Get listing of all available claims"
+      }
+    },
+    "/provider/contract/claim/missing_payment": {
+      "get": {
+        "summary": "List of missing payments of the contract",
+        "tags": [
+          "Claim Process"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "count": {
+                            "type": "number"
+                          },
+                          "list": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "missing_payment_id": {
+                                  "type": "number"
+                                },
+                                "can_be_claimed": {
+                                  "type": "number"
+                                },
+                                "reason": {
+                                  "type": "string"
+                                },
+                                "recurring_date": {
+                                  "type": "string"
+                                },
+                                "note": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Request executed successfully": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 5,
+                        "list": [
+                          {
+                            "missing_payment_id": 24265,
+                            "can_be_claimed": 0,
+                            "reason": "This payment cannot be claimed as this payment will be held by Denefits and paid at the end of contract.",
+                            "recurring_date": "02-01-2020",
+                            "note": null
+                          },
+                          {
+                            "missing_payment_id": 24266,
+                            "can_be_claimed": 0,
+                            "reason": "You can only claim a payment after 03-31-2020 and before 05-30-2020",
+                            "recurring_date": "03-01-2020",
+                            "note": null
+                          },
+                          {
+                            "missing_payment_id": 24267,
+                            "can_be_claimed": 1,
+                            "reason": "",
+                            "recurring_date": "04-01-2020",
+                            "note": null
+                          },
+                          {
+                            "missing_payment_id": 24268,
+                            "can_be_claimed": 0,
+                            "reason": "Claim earlier payments first!",
+                            "recurring_date": "05-01-2020",
+                            "note": null
+                          },
+                          {
+                            "missing_payment_id": 24269,
+                            "can_be_claimed": 0,
+                            "reason": "You can only claim a payment after 07-01-2020",
+                            "recurring_date": "06-01-2020",
+                            "note": null
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If contract_id is not a valid number": {
+                    "value": {
+                      "message": "\"contract_id\" must be a safe number",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If contract_id is wrong": {
+                    "value": {
+                      "message": "No data found",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If provider industry is non-guaranteed": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-claim-missing_payment",
+        "description": "Get contract missing payments",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true,
+            "description": ""
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "contract_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "required": true,
+            "name": "limit"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "required": true,
+            "name": "skip"
+          }
+        ]
+      }
+    },
+    "/provider/contract/claim/document_required": {
+      "get": {
+        "summary": "Required Documents",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "count": {
+                            "type": "number"
+                          },
+                          "list": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "document_type": {
+                                  "type": "number"
+                                },
+                                "document_type_name": {
+                                  "type": "string"
+                                },
+                                "required": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 5,
+                        "list": [
+                          {
+                            "document_type": 6,
+                            "document_type_name": "A Signed service plan",
+                            "required": 1
+                          },
+                          {
+                            "document_type": 5,
+                            "document_type_name": "Proof of treatment completed like before & after pictures, X-rays, clinical notes, treatment charts.",
+                            "required": 1
+                          },
+                          {
+                            "document_type": 3,
+                            "document_type_name": "Copy of customer ID",
+                            "required": 1
+                          },
+                          {
+                            "document_type": 7,
+                            "document_type_name": "A complete itemized breakdown of services provided.",
+                            "required": 0
+                          },
+                          {
+                            "document_type": 4,
+                            "document_type_name": "Others",
+                            "required": 0
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If documents are already submitted": {
+                    "value": {
+                      "message": "You have already submitted claim form for this contract.",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If provider industry is non-guaranteed": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-claim-document_required",
+        "tags": [
+          "Claim Process"
+        ],
+        "description": "List of documents to be required to claim payment",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "contract_id",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/provider/contract/claim/submit_claim_form": {
+      "post": {
+        "summary": "Submit claim form",
+        "operationId": "post-provider-contract-claim-submit_claim_form",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "examples": {
+                  "Request executed successfully": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If wrong file_id entered": {
+                    "value": {
+                      "message": "File ID file_34523653443*********** is not present at the server",
+                      "code": "file_does_not_recognised"
+                    }
+                  },
+                  "If any required_field is missing": {
+                    "value": {
+                      "message": "\"required_field\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If claim form already submitted": {
+                    "value": {
+                      "message": "You have already submitted claim form for this contract.",
+                      "code": "claim_form_already_submitted"
+                    }
+                  },
+                  "If provider industry is non-guaranteed": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
+                    }
+                  },
+                  "If HSA/BSA for is under process": {
+                    "value": {
+                      "message": "Your BSA form is under process.",
+                      "code": "bsa_form_under_process"
+                    }
+                  },
+                  "If document_array is empty": {
+                    "value": {
+                      "message": "\"document_array\" cannot be empty",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If contract_id is wrong": {
+                    "value": {
+                      "message": "No contract found.",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If file_id is empty": {
+                    "value": {
+                      "message": "\"file_id\" cannot be empty",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If document_type is not a valid number": {
+                    "value": {
+                      "message": "\"document_type\" cannot be 0",
+                      "code": "invalid_parameter"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Claim Process"
+        ],
+        "description": "submission of claim form with documents",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "contract_id": {
+                    "type": "number"
+                  },
+                  "is_service_completed": {
+                    "type": "number",
+                    "description": "Accepts 0, 1 (0- if service is not completed yet, 1- if service is completed)"
+                  },
+                  "document_array": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "document_type": {
+                          "type": "number"
+                        },
+                        "file_id": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "document_type",
+                        "file_id"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "contract_id",
+                  "is_service_completed",
+                  "document_array"
+                ]
+              },
+              "examples": {
+                "example": {
+                  "value": {
+                    "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                    "contract_id": 46345,
+                    "is_service_completed": 0,
+                    "document_array": [
+                      {
+                        "document_type": 1,
+                        "file_id": "file_34523653443***********"
+                      },
+                      {
+                        "document_type": 2,
+                        "file_id": "file_34321896943***********"
+                      },
+                      {
+                        "document_type": 3,
+                        "file_id": "file_34121344443***********"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/provider/contract/claim/payment": {
+      "post": {
+        "summary": "Claim a payment",
+        "operationId": "post-provider-contract-claim-payment",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "examples": {
+                  "Request executed successfully": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "if missing_payment_id is not a valid number": {
+                    "value": {
+                      "message": "\"missing_payment_id\" must be a safe number",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If missing_payment_id is wrong": {
+                    "value": {
+                      "message": "You cannot perform this action.",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If provider industry is non-guaranteed": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Claim Process"
+        ],
+        "description": "To claim a contract payment",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "contract_id": {
+                    "type": "number"
+                  },
+                  "missing_payment_id": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "contract_id",
+                  "missing_payment_id"
+                ]
+              },
+              "examples": {
+                "example": {
+                  "value": {
+                    "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                    "contract_id": 65434,
+                    "missing_payment_id": 24266
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      }
+    },
+    "/provider/contract/claim/list": {
+      "get": {
+        "summary": "List of all claims of a provider",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "count": {
+                            "type": "string"
+                          },
+                          "list": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "claim_id": {
+                                  "type": "number"
+                                },
+                                "contract_id": {
+                                  "type": "number"
+                                },
+                                "contract_code": {
+                                  "type": "string"
+                                },
+                                "provider_id": {
+                                  "type": "string"
+                                },
+                                "customer_first_name": {
+                                  "type": "string"
+                                },
+                                "customer_last_name": {
+                                  "type": "string"
+                                },
+                                "customer_email": {
+                                  "type": "string"
+                                },
+                                "customer_mobile": {
+                                  "type": "string"
+                                },
+                                "customer_address": {
+                                  "type": "string"
+                                },
+                                "customer_signature": {
+                                  "type": "string"
+                                },
+                                "downpayment_amount": {
+                                  "type": "number"
+                                },
+                                "financed_amount": {
+                                  "type": "number"
+                                },
+                                "interest_rate": {
+                                  "type": "number"
+                                },
+                                "recurring_amount": {
+                                  "type": "number"
+                                },
+                                "number_of_payments": {
+                                  "type": "number"
+                                },
+                                "remaining_payments": {
+                                  "type": "string"
+                                },
+                                "next_recurring_date": {
+                                  "type": "string"
+                                },
+                                "contract_status": {
+                                  "type": "string"
+                                },
+                                "date_added": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Request executed successfully": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 6,
+                        "list": [
+                          {
+                            "claim_id": 1150,
+                            "contract_id": 12427,
+                            "contract_code": "RATDBXG12427",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "customer_first_name": "Harvey",
+                            "customer_last_name": "Soe",
+                            "customer_email": "example@domain.com",
+                            "customer_mobile": "2345678097",
+                            "customer_address": "165, Irvine",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-**********",
+                            "downpayment_amount": 100,
+                            "financed_amount": 900,
+                            "interest_rate": 20,
+                            "recurring_amount": 165.64,
+                            "number_of_payments": 6,
+                            "remaining_payments": 0,
+                            "next_recurring_date": "2019-07-29T00:00:00.000Z",
+                            "contract_status": "Completed",
+                            "date_added": "2019-12-23T07:22:40.000Z"
+                          },
+                          {
+                            "claim_id": 1151,
+                            "contract_id": 12423,
+                            "contract_code": "FGGYBHR12423",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "customer_first_name": "Rick",
+                            "customer_last_name": "Jones",
+                            "customer_email": "example1@domain.com",
+                            "customer_mobile": "2052891317",
+                            "customer_address": "54654, test street",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-*********",
+                            "downpayment_amount": 1000,
+                            "financed_amount": 2000,
+                            "interest_rate": 12,
+                            "recurring_amount": 51.71,
+                            "number_of_payments": 36,
+                            "remaining_payments": 36,
+                            "next_recurring_date": "2019-06-01T00:00:00.000Z",
+                            "contract_status": "Overdue",
+                            "date_added": "2019-12-23T06:00:43.000Z"
+                          },
+                          {
+                            "claim_id": 1157,
+                            "contract_id": 10857,
+                            "contract_code": "RATYZMP10857",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "customer_first_name": "Danniel",
+                            "customer_last_name": "ford",
+                            "customer_email": "example2@domain.com",
+                            "customer_mobile": "6745634562",
+                            "customer_address": "44323, test address",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dnfts-**********",
+                            "downpayment_amount": 300,
+                            "financed_amount": 1700,
+                            "interest_rate": 11,
+                            "recurring_amount": 299.28,
+                            "number_of_payments": 6,
+                            "remaining_payments": 5,
+                            "next_recurring_date": "2019-04-02T00:00:00.000Z",
+                            "contract_status": "Overdue",
+                            "date_added": "2019-09-24T05:58:26.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider industry in non-guaranteed": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-claim-list",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true,
+            "description": ""
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "required": true,
+            "name": "skip"
+          }
+        ],
+        "description": "Get listing of all claims of this account",
+        "tags": [
+          "Claim Process"
+        ]
+      }
+    },
+    "/provider/contract/claim/details": {
+      "get": {
+        "summary": "Contract claim details",
+        "tags": [
+          "Claim Process"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "claim_uploaded_documents": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "document_type_name": {
+                                  "type": "string"
+                                },
+                                "date_added": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "missing_payments": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "missing_payment_id": {
+                                  "type": "number"
+                                },
+                                "claim_status_id": {
+                                  "type": "string"
+                                },
+                                "recurring_date": {
+                                  "type": "string"
+                                },
+                                "note": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "contract_details": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "contract_id": {
+                                  "type": "number"
+                                },
+                                "contract_code": {
+                                  "type": "string"
+                                },
+                                "provider_id": {
+                                  "type": "string"
+                                },
+                                "customer_first_name": {
+                                  "type": "string"
+                                },
+                                "customer_last_name": {
+                                  "type": "string"
+                                },
+                                "customer_mobile": {
+                                  "type": "string"
+                                },
+                                "customer_email": {
+                                  "type": "string"
+                                },
+                                "customer_address": {
+                                  "type": "string"
+                                },
+                                "customer_signature": {
+                                  "type": "string"
+                                },
+                                "downpayment_amount": {
+                                  "type": "number"
+                                },
+                                "financed_amount": {
+                                  "type": "number"
+                                },
+                                "interest_rate": {
+                                  "type": "number"
+                                },
+                                "recurring_amount": {
+                                  "type": "number"
+                                },
+                                "number_of_payments": {
+                                  "type": "number"
+                                },
+                                "remaining_payments": {
+                                  "type": "number"
+                                },
+                                "next_recurring_date": {
+                                  "type": "string"
+                                },
+                                "contract_status": {
+                                  "type": "string"
+                                },
+                                "date_added": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "more_document_needed": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "more_document_id": {
+                                  "type": "number"
+                                },
+                                "date_added": {
+                                  "type": "string"
+                                },
+                                "document_type_name": {
+                                  "type": "string"
+                                },
+                                "reason": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "claim_uploaded_documents": [
+                          {
+                            "document_type_name": "A Signed service plan",
+                            "date_added": "2020-06-09T06:16:58.000Z"
+                          },
+                          {
+                            "document_type_name": "X-rays, clinical notes, treatment charts.",
+                            "date_added": "2020-06-09T06:17:03.000Z"
+                          },
+                          {
+                            "document_type_name": "Copy of customer ID",
+                            "date_added": "2020-06-09T06:17:10.000Z"
+                          }
+                        ],
+                        "missing_payments": [
+                          {
+                            "missing_payment_id": 24240,
+                            "claim_status_id": "Documentation Needed",
+                            "recurring_date": "2020-05-03T00:00:00.000Z",
+                            "note": null
+                          },
+                          {
+                            "missing_payment_id": 24239,
+                            "claim_status_id": "Documentation Needed",
+                            "recurring_date": "2020-04-03T00:00:00.000Z",
+                            "note": null
+                          }
+                        ],
+                        "contract_details": [
+                          {
+                            "contract_id": 17650,
+                            "contract_code": "NECQC2J17650",
+                            "provider_id": "pr_084aa5f9bad7a2d72a*************",
+                            "customer_first_name": "Ted",
+                            "customer_last_name": "Mosby",
+                            "customer_email": "example@domain.com",
+                            "customer_mobile": "3424356264",
+                            "customer_address": "Test Address",
+                            "customer_signature": "https://denefits.s3.amazonaws.com/patient_profile/dn************",
+                            "downpayment_amount": 500,
+                            "financed_amount": 4500,
+                            "interest_rate": 15.99,
+                            "recurring_amount": 247.31,
+                            "number_of_payments": 24,
+                            "remaining_payments": 24,
+                            "next_recurring_date": "2020-03-03T00:00:00.000Z",
+                            "contract_status": "Overdue",
+                            "date_added": "2020-06-08T11:13:48.000Z"
+                          }
+                        ],
+                        "more_document_needed": [
+                          {
+                            "more_document_id": 776,
+                            "date_added": "2020-06-18T06:52:50.000Z",
+                            "document_type_name": "A Signed service plan",
+                            "reason": "test reason"
+                          },
+                          {
+                            "more_document_id": 777,
+                            "date_added": "2020-06-18T06:52:50.000Z",
+                            "document_type_name": "X-rays, clinical notes, treatment charts.",
+                            "reason": "test reason"
+                          },
+                          {
+                            "more_document_id": 783,
+                            "date_added": "2020-06-18T11:15:33.000Z",
+                            "document_type_name": "Clinical notes, treatment charts.",
+                            "reason": "test reason"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider industry is non-guarantee": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-claim-details",
+        "description": "Return the contract info, claim info of payments and documents uploaded info",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "claim_id",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/provider/contract/claim/need_more_document": {
+      "get": {
+        "summary": "Need More Documents",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "count": {
+                            "type": "string"
+                          },
+                          "list": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "contract_id": {
+                                  "type": "number"
+                                },
+                                "contract_code": {
+                                  "type": "string"
+                                },
+                                "customer_email": {
+                                  "type": "string"
+                                },
+                                "customer_mobile": {
+                                  "type": "string"
+                                },
+                                "recurring_amount": {
+                                  "type": "number"
+                                },
+                                "contract_date_added": {
+                                  "type": "string"
+                                },
+                                "number_of_documents_required": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Request executed successfully": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 1,
+                        "list": [
+                          {
+                            "contract_id": 17851,
+                            "contract_code": "TEAGFFN17851",
+                            "customer_email": "example@domain.com",
+                            "customer_mobile": "3245647457",
+                            "recurring_amount": 520.22,
+                            "contract_date_added": "2020-06-11T06:57:27.000Z",
+                            "number_of_documents_required": 1
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If provider industry is non-guaranteed": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-claim-need_more_document",
+        "tags": [
+          "Claim Process"
+        ],
+        "description": "Claim Need more documents",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/provider/contract/claim/upload_more_document": {
+      "post": {
+        "summary": "Upload extra documents to claim contract",
+        "tags": [
+          "Claim Process"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "examples": {
+                  "Sucess": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "When invalid File ID is provided": {
+                    "value": {
+                      "message": "File ID file_1dcf594a43602d53e4dfd25991*** is invalid",
+                      "code": "invalid_file_id"
+                    }
+                  },
+                  "When same document is uploaded again": {
+                    "value": {
+                      "message": "Cannot upload a document again",
+                      "code": "cannot_upload_document_again"
+                    }
+                  },
+                  "If provider industry is non-guarantee": {
+                    "value": {
+                      "message": "Your industry doesn't allow insured payments",
+                      "code": "insured_payments_disabled"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "When auth token is invalid": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-claim-upload_more_document",
+        "description": "This API will be used to submit more documents as requested to approve the claim",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "document_array": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "more_document_id": {
+                          "type": "number"
+                        },
+                        "file_id": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "provider_id": "pr_af1c4a82e1c6c6147692b50821c****",
+                    "document_array": [
+                      {
+                        "more_document_id": 735,
+                        "file_id": "file_1dcf594a43602d53e4dfd25991b****"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "description": "more_document_id can be obtained from claim/detail API which provide the info is more documents is required or not."
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "authorization": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Industry - Sub industry"
+    },
+    {
+      "name": "File"
+    },
+    {
+      "name": "Providers"
+    },
+    {
+      "name": "Contract Generation Process"
+    },
+    {
+      "name": "Provider Contract"
+    },
+    {
+      "name": "Claim Process"
+    },
+    {
+      "name": "Provider Payment"
+    }
+  ],
+  "security": [
+    {
+      "authorization": []
+    }
+  ]
+}
