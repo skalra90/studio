@@ -7356,6 +7356,18 @@
                       "message": "\"contract_id\" is required",
                       "code": "parameter_missing"
                     }
+                  },
+                  "If payment_from option is 1 or 2 and card_token is not added": {
+                    "value": {
+                      "message": "\"card_token\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If contract_id is wrong": {
+                    "value": {
+                      "message": "No contract found",
+                      "code": "contract_not_found"
+                    }
                   }
                 }
               }
@@ -7413,9 +7425,9 @@
                 }
               },
               "examples": {
-                "example-1": {
+                "example": {
                   "value": {
-                    "provider_id": "pr_192c3d5ca1161c****3f16fd8cd",
+                    "provider_id": "pr_192c3d5ca1161c**********",
                     "contract_id": 18132,
                     "payment_from": 1,
                     "card_token": "tok_****",
