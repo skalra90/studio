@@ -149,6 +149,9 @@
                                     "type": "string"
                                   }
                                 }
+                              },
+                              "partner_share": {
+                                "type": "number"
                               }
                             }
                           }
@@ -187,7 +190,8 @@
                               "industry_name": "Telecommunication"
                             },
                             "payments_enabled": true,
-                            "payments_disabled_reason": null
+                            "payments_disabled_reason": null,
+                            "partner_share": 3
                           },
                           {
                             "provider_id": "pr_084aa5f9bad7a2d72a*************",
@@ -203,7 +207,8 @@
                               "industry_name": "Construction"
                             },
                             "payments_enabled": false,
-                            "payments_disabled_reason": "no_bank_added"
+                            "payments_disabled_reason": "no_bank_added",
+                            "partner_share": 3
                           }
                         ]
                       },
@@ -278,6 +283,9 @@
                         },
                         "payments_disabled_reason": {
                           "type": "string"
+                        },
+                        "partner_share": {
+                          "type": "number"
                         }
                       }
                     }
@@ -302,7 +310,8 @@
                           "industry_name": "Healthcare"
                         },
                         "payments_enabled": false,
-                        "payments_disabled_reason": "no_bank_added"
+                        "payments_disabled_reason": "no_bank_added",
+                        "partner_share": 3
                       }
                     }
                   }
@@ -455,6 +464,9 @@
                   "sub_industry_id": {
                     "type": "number",
                     "description": "Speciality ID of the provider. Get from /speciality"
+                  },
+                  "partner_share": {
+                    "type": "number"
                   }
                 },
                 "required": [
@@ -472,7 +484,8 @@
                     "provider_first_name": "Charles",
                     "provider_last_name": "One",
                     "provider_phone": "1234567890",
-                    "sub_industry_id": 2
+                    "sub_industry_id": 2,
+                    "partner_share": 3
                   }
                 }
               }
