@@ -3586,10 +3586,7 @@
                     "type": "number"
                   },
                   "is_service_completed": {
-                    "type": [
-                      "number",
-                      "boolean"
-                    ],
+                    "type": "number",
                     "description": "Accepts 0, 1 (0- if service is not completed yet, 1- if service is completed)"
                   },
                   "document_array": {
