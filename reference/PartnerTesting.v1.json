@@ -3095,7 +3095,7 @@
             }
           }
         },
-        "operationId": "post-provider-bank",
+        "operationId": "post-provider-individual-bank",
         "description": "Add provider's bank account which will be used to receive the payouts",
         "parameters": [],
         "requestBody": {
@@ -3310,7 +3310,7 @@
             }
           }
         },
-        "operationId": "post-provider-bank",
+        "operationId": "post-provider-company-bank",
         "description": "Add provider's bank account which will be used to receive the payouts",
         "parameters": [],
         "requestBody": {
