@@ -7709,7 +7709,7 @@
               }
             }
           },
-          "description": "payment_from is required only if payable amount is greater than 0.\n\npayment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
+          "description": "payment_from is required only if payable amount is greater than 0.\n\npayment_from = 1 for customer, 2 for provider, 3 for provider's Denefits account. \n\ncard_token is not required for payment from 3-provider else required"
         },
         "tags": [
           "Provider Contract"
@@ -7856,7 +7856,7 @@
               }
             }
           },
-          "description": "payment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
+          "description": "payment_from = 1 for customer, 2 for provider, 3 for provider's Denefits account. \n\ncard_token is not required for payment from 3-provider else required"
         },
         "description": "This API is used to cancel a contract. A fixed $30 will be charged to cancel a contract"
       }
