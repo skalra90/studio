@@ -2962,6 +2962,420 @@
         }
       }
     },
+    "/provider/individual_bank": {
+      "post": {
+        "summary": "Add Provider's individual bank account",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_name": {
+                          "type": "string",
+                          "description": "Name of the bank"
+                        },
+                        "routing_number": {
+                          "type": "string",
+                          "description": "Routing number."
+                        },
+                        "last4": {
+                          "type": "string",
+                          "description": "Last 4 digits of account number."
+                        },
+                        "account_holder_name": {
+                          "type": "string",
+                          "description": "Account holder name"
+                        },
+                        "account_holder_type": {
+                          "type": "string",
+                          "description": "Type of account."
+                        },
+                        "provider_id": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Bank added successfully",
+                      "data": {
+                        "bank_name": "STRIPE TEST BANK",
+                        "currency": "usd",
+                        "country": "US",
+                        "routing_number": "110000000",
+                        "account_holder_name": "Charlie",
+                        "account_holder_type": "company",
+                        "provider_id": "pr_cdd4554aad8af8d3743fb39abf6ba51b"
+                      },
+                      "code": "success"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required_field is missing": {
+                    "value": {
+                      "message": "\"provider_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If invalid file ID is used": {
+                    "value": {
+                      "message": "Invalid dl_front provided",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If provider already added the bank account": {
+                    "value": {
+                      "message": "This provider already have a bank account linked with their account.",
+                      "code": "bank_already_linked"
+                    }
+                  },
+                  "If same file ID is used again": {
+                    "value": {
+                      "message": "This file upload is already attached to an account.",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If Invalid bank token is used": {
+                    "value": {
+                      "message": "Invalid bank token",
+                      "code": "invalid_bank_token"
+                    }
+                  },
+                  "If provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-provider-bank",
+        "description": "Add provider's bank account which will be used to receive the payouts",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "business_email": {
+                    "type": "string"
+                  },
+                  "business_name": {
+                    "type": "string"
+                  },
+                  "business_phone": {
+                    "type": "string"
+                  },
+                  "business_address": {
+                    "type": "string"
+                  },
+                  "business_zipcode": {
+                    "type": "number"
+                  },
+                  "bank_token": {
+                    "type": "string"
+                  },
+                  "ssn_number": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "front_file": {
+                    "type": "string"
+                  },
+                  "back_file": {
+                    "type": "string"
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "1990-01-18",
+                    "description": ""
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "business_email",
+                  "business_name",
+                  "business_phone",
+                  "business_address",
+                  "business_zipcode",
+                  "bank_token",
+                  "ssn_number",
+                  "date_of_birth"
+                ]
+              },
+              "examples": {
+                "Individual Account Example": {
+                  "value": {
+                    "provider_id": "pr_da7cd3b3e29017c8e5bb4705******jk",
+                    "business_email": "example@domain.com",
+                    "business_name": "John dentals",
+                    "business_phone": "1234567890",
+                    "business_address": "#34 street",
+                    "business_zipcode": "12345",
+                    "ssn_number": 123456789,
+                    "dl_front": "file_1GiLcuG**************",
+                    "dl_back": "file_1GiLd7GL**************",
+                    "bank_token": "btok_Ld7GL**************",
+                    "date_of_birth": "1990-05-29"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Add Provider Bank"
+        }
+      }
+    },
+    "/provider/company_bank": {
+      "post": {
+        "summary": "Add Provider's bank account",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_name": {
+                          "type": "string",
+                          "description": "Name of the bank"
+                        },
+                        "routing_number": {
+                          "type": "string",
+                          "description": "Routing number."
+                        },
+                        "last4": {
+                          "type": "string",
+                          "description": "Last 4 digits of account number."
+                        },
+                        "account_holder_name": {
+                          "type": "string",
+                          "description": "Account holder name"
+                        },
+                        "account_holder_type": {
+                          "type": "string",
+                          "description": "Type of account."
+                        },
+                        "provider_id": {
+                          "type": "string"
+                        },
+                        "currency": {
+                          "type": "string"
+                        },
+                        "country": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Bank added successfully",
+                      "data": {
+                        "bank_name": "STRIPE TEST BANK",
+                        "currency": "usd",
+                        "country": "US",
+                        "routing_number": "110000000",
+                        "account_holder_name": "Charlie",
+                        "account_holder_type": "company",
+                        "provider_id": "pr_cdd4554aad8af8d3743fb39abf6ba51b"
+                      },
+                      "code": "success"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required_field is missing": {
+                    "value": {
+                      "message": "\"provider_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If invalid file ID is used": {
+                    "value": {
+                      "message": "Invalid dl_front provided",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If provider already added the bank account": {
+                    "value": {
+                      "message": "This provider already have a bank account linked with their account.",
+                      "code": "bank_already_linked"
+                    }
+                  },
+                  "If same file ID is used again": {
+                    "value": {
+                      "message": "This file upload is already attached to an account.",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If Invalid bank token is used": {
+                    "value": {
+                      "message": "Invalid bank token",
+                      "code": "invalid_bank_token"
+                    }
+                  },
+                  "If provider_id is invalid": {
+                    "value": {
+                      "message": "Invalid provider ID",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-provider-bank",
+        "description": "Add provider's bank account which will be used to receive the payouts",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "business_email": {
+                    "type": "string"
+                  },
+                  "business_name": {
+                    "type": "string"
+                  },
+                  "business_phone": {
+                    "type": "string"
+                  },
+                  "business_address": {
+                    "type": "string"
+                  },
+                  "business_zipcode": {
+                    "type": "number"
+                  },
+                  "bank_token": {
+                    "type": "string"
+                  },
+                  "business_tax_id": {
+                    "type": "string",
+                    "description": ""
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "business_email",
+                  "business_name",
+                  "business_phone",
+                  "business_address",
+                  "business_zipcode",
+                  "bank_token",
+                  "business_tax_id"
+                ]
+              },
+              "examples": {
+                "Company account example": {
+                  "value": {
+                    "provider_id": "pr_da7cd3b3e29017c8e5bb4705******jk",
+                    "business_email": "example@domain.com",
+                    "business_name": "John dentals",
+                    "business_phone": "1234567890",
+                    "business_address": "#34 street",
+                    "business_zipcode": "12345",
+                    "bank_token": "btok_us*****************",
+                    "business_tax_id": "1234567"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Add Provider Bank"
+        }
+      }
+    },
     "/provider/contract/plans": {
       "get": {
         "summary": "List of Plans",
