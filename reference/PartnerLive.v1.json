@@ -4565,6 +4565,485 @@
           "description": "more_document_id can be obtained from claim/detail API which provide the info is more documents is required or not."
         }
       }
+    },
+        "/provider/contract/check_date_change_amount": {
+      "get": {
+        "summary": "Get recurring date change amount",
+        "tags": [
+          "Provider Contract"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "type": "object",
+                          "properties": {
+                            "total": {
+                              "type": "number"
+                            },
+                            "breakdown": {
+                              "type": "object",
+                              "properties": {
+                                "late_fee": {
+                                  "type": "number"
+                                },
+                                "change_recurring_date_fee": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "change_date_token": {
+                          "type": "string"
+                        },
+                        "new_recurring_date": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "amount": {
+                          "total": 376.99,
+                          "breakdown": {
+                            "late_fee": 125,
+                            "change_recurring_date_fee": 251.99
+                          }
+                        },
+                        "change_date_token": "rec_A376F99Y2020M06D29",
+                        "new_recurring_date": "2020-06-29"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required field is not provided": {
+                    "value": {
+                      "message": "\"contract_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If invalid contract ID is provided": {
+                    "value": {
+                      "message": "No such contract found",
+                      "code": "contract_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-check_date_change_amount",
+        "description": "It will return the total amount which has to be paid for changing recurring date and also provide the change date token which will be used in change recurring date API.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "contract_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "in": "query",
+            "name": "new_recurring_date",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/provider/contract/change_recurring_date": {
+      "post": {
+        "summary": "Change recurring date of contract",
+        "operationId": "post-provider-contract-change_recurring_date",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required field is not provided": {
+                    "value": {
+                      "message": "\"contract_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If payment_from option is 1 or 2 and card_token is not added": {
+                    "value": {
+                      "message": "\"card_token\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If contract_id is wrong": {
+                    "value": {
+                      "message": "No contract found",
+                      "code": "contract_not_found"
+                    }
+                  },
+                  "If new_payment_date is not a valid date": {
+                    "value": {
+                      "message": "\"new_payment_date\" must be a valid date",
+                      "code": "invalid_parameter"
+                    }
+                  },
+                  "If change_date_token is invalid": {
+                    "value": {
+                      "message": "Invalid \"change_date_token\" provided",
+                      "code": "invalid_parameter"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This API is used to change the recurring date of contract.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "contract_id": {
+                    "type": "number"
+                  },
+                  "change_date_token": {
+                    "type": "string"
+                  },
+                  "payment_from": {
+                    "type": "number",
+                    "description": "1-Customer's new card, 2-Provider's new card, 3-provider's denefits account",
+                    "enum": [
+                      1,
+                      2,
+                      3
+                    ]
+                  },
+                  "card_token": {
+                    "type": "string",
+                    "description": "required if payment_from is 1 or 2"
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "contract_id",
+                  "change_date_token",
+                  "payment_from"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "provider_id": "pr_192c3d5ca1161c03**********6fd8cd",
+                    "contract_id": 18132,
+                    "change_date_token": "rec_A376F99********",
+                    "payment_from": 1,
+                    "card_token": "tok_******"
+                  }
+                }
+              }
+            }
+          },
+          "description": "payment_from is required only if payable amount is greater than 0.\n\npayment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
+        },
+        "tags": [
+          "Provider Contract"
+        ]
+      }
+    },
+    "/provider/contract/cancel": {
+      "post": {
+        "summary": "Cancel contract",
+        "tags": [
+          "Provider Contract"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required field is not provided": {
+                    "value": {
+                      "message": "\"contract_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If payment_from option is 1 or 2 and card_token is not added": {
+                    "value": {
+                      "message": "\"card_token\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If contract_id is wrong": {
+                    "value": {
+                      "message": "No contract found",
+                      "code": "contract_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-contract-cancel",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "contract_id": {
+                    "type": "number"
+                  },
+                  "payment_from": {
+                    "type": "number"
+                  },
+                  "card_token": {
+                    "type": "string"
+                  },
+                  "cancel_reason": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "example": {
+                  "value": {
+                    "provider_id": "pr_192c3d5ca1161c**********",
+                    "contract_id": 18132,
+                    "payment_from": 1,
+                    "card_token": "tok_****",
+                    "cancel_reason": "Customer discontinued the service"
+                  }
+                }
+              }
+            }
+          },
+          "description": "payment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
+        },
+        "description": "This API is used to cancel a contract. A fixed $30 will be charged to cancel a contract"
+      }
     }
   },
   "components": {
