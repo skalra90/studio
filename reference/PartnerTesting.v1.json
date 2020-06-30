@@ -207,7 +207,7 @@
             },
             "in": "query",
             "name": "search_string",
-            "description": "Seach by amount value"
+            "description": "Search by amount value"
           }
         ]
       }
