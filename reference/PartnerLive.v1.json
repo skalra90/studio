@@ -5235,7 +5235,8 @@
               "type": "string"
             },
             "in": "query",
-            "name": "search_string"
+            "name": "search_string",
+            "description": "Seach by amount value"
           }
         ]
       }
