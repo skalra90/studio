@@ -5865,6 +5865,135 @@
         "parameters": [],
         "description": "Return the profile data of the provider."
       }
+    },
+        "/provider/search_global": {
+      "get": {
+        "summary": "Provider Global Search",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "For contract search": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "list": [
+                          {
+                            "contract_id": 17487,
+                            "contract_code": "RATQPDR17***",
+                            "contract_status": "Completed",
+                            "provider_id": "pr_fddd6f5dc2b8b9*****e02dd80cf76",
+                            "provider_email": "raj.one@denefits.com",
+                            "provider_first_name": "Raj",
+                            "provider_last_name": "One",
+                            "provider_phone": "1231167890",
+                            "customer_first_name": "Jack",
+                            "customer_last_name": "Sork",
+                            "customer_email": "Jack.sork@denefits.com",
+                            "customer_mobile": "2055306266"
+                          },
+                          {
+                            "contract_id": 17488,
+                            "contract_code": "TECWQNT***88",
+                            "contract_status": "Overdue",
+                            "provider_id": "pr_fddd6f5dc2b8b989****e02dd80cf76",
+                            "provider_email": "raj.one@denefits.com",
+                            "provider_first_name": "Raj",
+                            "provider_last_name": "One",
+                            "provider_phone": "1231167890",
+                            "customer_first_name": "Jack",
+                            "customer_last_name": "Sork",
+                            "customer_email": "Jack.sork@denefits.com",
+                            "customer_mobile": "2055306266"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "For payment search": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "list": [
+                          {
+                            "payment_id": 4412,
+                            "customer_name": "Ted",
+                            "provider_id": "pr_fddd6f5dc2b8b****2dd80cf76",
+                            "provider_name": "Raj One",
+                            "provider_email": "raj.one@denefits.com",
+                            "payment_status": "Successful"
+                          },
+                          {
+                            "payment_id": 4447,
+                            "customer_name": "John",
+                            "provider_id": "pr_fddd6f5dc2b8b9890c054e02dd80cf76",
+                            "provider_name": "Raj One",
+                            "provider_email": "raj.one@denefits.com",
+                            "payment_status": "Failed"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-partner-search_global",
+        "description": "This API is used to seach in contract, or payment",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "search_string",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1",
+                "2"
+              ]
+            },
+            "in": "query",
+            "name": "search_type",
+            "required": true,
+            "description": "1-Contract, 2-Payment (Search is in contract or payment)"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          }
+        ]
+      },
+      "parameters": []
     }
   },
   "components": {

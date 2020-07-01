@@ -8011,6 +8011,154 @@
         "operationId": "get-partner-profile",
         "description": "This will return the profile data of the partner"
       }
+    },
+        "/partner/search_global": {
+      "get": {
+        "summary": "Partner global search",
+        "tags": [
+          "Partner"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Search in contracts": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "list": [
+                          {
+                            "contract_id": 16838,
+                            "contract_code": "STGVSKY16838",
+                            "contract_status": "Active",
+                            "provider_id": "pr_bb87a747ec98bd8fb43550cb5b092f64",
+                            "provider_email": "Charles@denefits.com",
+                            "provider_first_name": "Charles",
+                            "provider_last_name": "One",
+                            "provider_phone": "1237894560",
+                            "customer_first_name": "Steven",
+                            "customer_last_name": "Gerrard",
+                            "customer_email": "steven.gerrard08@lfc.com",
+                            "customer_mobile": "2025550130"
+                          },
+                          {
+                            "contract_id": 17443,
+                            "contract_code": "RATB4PX17443",
+                            "contract_status": "Active",
+                            "provider_id": "pr_42fe04e5a8ec500ec6ece7ddda0a6a0d",
+                            "provider_email": "charles@denefits.com",
+                            "provider_first_name": "Charles",
+                            "provider_last_name": "one",
+                            "provider_phone": "1233338901",
+                            "customer_first_name": "John",
+                            "customer_last_name": "stack",
+                            "customer_email": "johnstak@denefits.com",
+                            "customer_mobile": "2025550130"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Search in providers": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "list": [
+                          {
+                            "provider_id": "pr_bb87a747ec98bd8fb43550cb5b092f64",
+                            "provider_first_name": "Charles",
+                            "provider_last_name": "One",
+                            "provider_email": "Charles@denefits.com",
+                            "provider_phone": "1237894560"
+                          },
+                          {
+                            "provider_id": "pr_3616aeb1cb311a0d2df4a62916cf88b3",
+                            "provider_first_name": "Raj",
+                            "provider_last_name": "Wake",
+                            "provider_email": "raj.wake@denefits.com",
+                            "provider_phone": "1230338901"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "Search in payments": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "list": [
+                          {
+                            "payment_id": 4378,
+                            "customer_name": "Ted Mosby",
+                            "provider_id": "pr_42fe04e5a8ec500ec6ece7ddda0a6a0d",
+                            "provider_name": "Raj Wake",
+                            "provider_email": "raj.wake@denefits.com",
+                            "payment_status": "Successful"
+                          },
+                          {
+                            "payment_id": 4380,
+                            "customer_name": "Ted Mosby",
+                            "provider_id": "pr_0d3d1f7c2ca0f3f20f76ccfa117bf5e4",
+                            "provider_name": "Charles One",
+                            "provider_email": "Charles.one@mailinator.com",
+                            "payment_status": "Successful"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-partner-search_global",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "search_string",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "search_type",
+            "required": true,
+            "description": "1-Contract, 2-Provider, 3-Payment (Search in contract, provider or payment of all the providers)"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          }
+        ],
+        "description": "This API is used to search globally amoung all the provider of the partner in contract, payments or providers."
+      }
     }
   },
   "components": {
