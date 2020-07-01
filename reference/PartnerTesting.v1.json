@@ -2549,7 +2549,7 @@
             }
           }
         },
-        "description": "Creates a new provider under your account.",
+        "description": "This API creates a new provider under your account. We need a sub_industry_id which we will get from List of sub-industries of an industry API. In response we will get the provider_id which will be used in most of the APIs.",
         "parameters": [],
         "tags": [
           "Providers"
