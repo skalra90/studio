@@ -3994,7 +3994,7 @@
           }
         },
         "operationId": "get-provider-industry",
-        "description": "Returns the list of industries.",
+        "description": "This API will give a list of all the industries. The industry_id will be used in the List of sub-industries of an industry API to fetch the sub industries linked with the industry.\n",
         "parameters": [],
         "tags": [
           "Industry - Sub industry"
