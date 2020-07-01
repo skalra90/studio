@@ -160,7 +160,7 @@
           }
         },
         "operationId": "get-provider-payout-list",
-        "description": "Get a list of the payouts already paid to the provider. We will get the payout_id in response that will be required in the Provider Payout details API.",
+        "description": "Get a list of the payouts already paid to the provider. We require a provider_id which we will get from the List of providers API. This API returns payout_id also that would be required in the Provider Payout details API.\n\n",
         "parameters": [
           {
             "schema": {
