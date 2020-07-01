@@ -385,7 +385,7 @@
           }
         },
         "operationId": "get-provider-payout-detail",
-        "description": "Get details of the payouts by payout ID",
+        "description": "In Provider Payout list API we got the list of payouts but if we want to see the details of a particular payout then we will use this API. The response of this API will give us the details on whether the payout is from the contract or Payment Process or Accounts Receivable. \n\nWe will get the provider_id from the List of providers API and payout_id from the Provider payout list API to see the details of that particular payout paid to the provider.",
         "parameters": [
           {
             "schema": {
@@ -8012,7 +8012,7 @@
         "description": "This will return the profile data of the partner"
       }
     },
-        "/partner/search_global": {
+    "/partner/search_global": {
       "get": {
         "summary": "Partner global search",
         "tags": [
