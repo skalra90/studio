@@ -7962,6 +7962,55 @@
           "description": ""
         }
       }
+    },
+    "/partner/profile": {
+      "get": {
+        "summary": "Partner Profile",
+        "tags": [
+          "Partner"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "profile_data": {
+                          "partner_name": "Jack shane",
+                          "date_registered": "2020-05-15T10:45:43.000Z",
+                          "partner_email": "Jack.shake@denefits.com",
+                          "partner_phone": "1479632580",
+                          "referral_code": "RPAR757",
+                          "partner_profile_picture": null,
+                          "partner_address": {
+                            "line1": "New street",
+                            "city": "Schenectady",
+                            "state": "New York",
+                            "zip": 12345
+                          },
+                          "payouts_enabled": true,
+                          "payouts_disabled_reason": null
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-partner-profile",
+        "description": "This will return the profile data of the partner"
+      }
     }
   },
   "components": {

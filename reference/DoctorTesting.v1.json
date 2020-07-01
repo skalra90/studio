@@ -5807,6 +5807,64 @@
           "description": ""
         }
       }
+    },
+    "/provider/profile": {
+      "get": {
+        "summary": "Provider Profile",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "provider_id": "pr_192c3d5ca1*****f73f16fd8cd",
+                        "provider_first_name": "John",
+                        "provider_last_name": "Blake",
+                        "date_registered": "2020-06-18T05:50:04.000Z",
+                        "provider_email": "John.Blake@denefits.com",
+                        "provider_phone": "7984327893",
+                        "business_info": {
+                          "business_email": "johnbusiness@denefits.com",
+                          "business_name": "John dentals",
+                          "business_phone": "9743872387",
+                          "business_address": {
+                            "line1": "#34 street",
+                            "city": "Schenectady",
+                            "state": "New York",
+                            "zip": 12345
+                          }
+                        },
+                        "speciality": {
+                          "sub_industry_name": "Dermatology",
+                          "sub_industry_id": 2,
+                          "industry_name": "Healthcare"
+                        },
+                        "payments_enabled": true,
+                        "payments_disabled_reason": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-profile",
+        "parameters": [],
+        "description": "Return the profile data of the provider."
+      }
     }
   },
   "components": {
