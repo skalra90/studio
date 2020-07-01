@@ -3606,7 +3606,7 @@
           }
         },
         "operationId": "get-plans",
-        "description": "Returns plans for creating a contract.",
+        "description": "To create a contract we need to start with this API. It will list all the possible plans and we can select the one from it. but if month was defined then we will get the plan for that particular month. We can get the provider_id from the the List of providers API. \n\nWe will get plan_id(s) in response which will be required in Select a plan API.\n",
         "parameters": [
           {
             "schema": {
