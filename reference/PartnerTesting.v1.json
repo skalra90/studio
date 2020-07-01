@@ -3900,7 +3900,7 @@
             "description": "Enter the industry id you want the speciality list of"
           }
         ],
-        "description": "Returns the list of industries with their respective sub-industries. `sub_industry_id` is used in /provider(post) API while creating a provider."
+        "description": "This API will return the list of sub-industries linked with an industry. sub_industry_id will be used while creating a provider in Create a Provider API."
       },
       "parameters": []
     },
