@@ -1645,7 +1645,7 @@
           }
         },
         "operationId": "get-provider-upcoming_payment",
-        "description": "Returns the list of upcoming payments",
+        "description": "This API gives us the list of payments which will be done in near future. \nWe require provider_id which we will get from the List of providers API",
         "parameters": [
           {
             "schema": {
