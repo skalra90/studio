@@ -8080,14 +8080,20 @@
                             "provider_first_name": "Charles",
                             "provider_last_name": "One",
                             "provider_email": "Charles@denefits.com",
-                            "provider_phone": "1237894560"
+                            "provider_phone": "1237894560",
+                            "business_email": "business@denefits.com",
+                            "business_phone": "6784566874",
+                            "business_name": "BB Dentals"
                           },
                           {
                             "provider_id": "pr_3616aeb1cb311a0d2df4a62916cf88b3",
                             "provider_first_name": "Raj",
                             "provider_last_name": "Wake",
                             "provider_email": "raj.wake@denefits.com",
-                            "provider_phone": "1230338901"
+                            "provider_phone": "1230338901",
+                            "business_email": "busjun@denefits.com",
+                            "business_phone": "1456567890",
+                            "business_name": "BQ Dentals"
                           }
                         ]
                       }
