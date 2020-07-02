@@ -3165,8 +3165,8 @@
                     "business_address": "#34 street",
                     "business_zipcode": "12345",
                     "ssn_number": 123456789,
-                    "dl_front": "file_1GiLcuG**************",
-                    "dl_back": "file_1GiLd7GL**************",
+                    "front_file": "file_1GiLcuG**************",
+                    "back_file": "file_1GiLd7GL**************",
                     "bank_token": "btok_Ld7GL**************",
                     "date_of_birth": "1990-05-29"
                   }
