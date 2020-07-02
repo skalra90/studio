@@ -1943,7 +1943,8 @@
               "type": "string"
             },
             "in": "query",
-            "name": "search_string"
+            "name": "search_string",
+            "description": "Search by payment ID, name, email or phone"
           },
           {
             "schema": {
@@ -2138,7 +2139,8 @@
               "type": "string"
             },
             "in": "query",
-            "name": "search_string"
+            "name": "search_string",
+            "description": "Search by business first name, business last name, provider name, provider email"
           },
           {
             "schema": {
@@ -6904,7 +6906,8 @@
               "type": "string"
             },
             "in": "query",
-            "name": "search_string"
+            "name": "search_string",
+            "description": "Search by amount"
           }
         ]
       }
