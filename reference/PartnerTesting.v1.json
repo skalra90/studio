@@ -192,14 +192,15 @@
             },
             "in": "query",
             "name": "start_date",
-            "description": ""
+            "description": "Date format should be \"YYYY-MM-DD\""
           },
           {
             "schema": {
               "type": "string"
             },
             "in": "query",
-            "name": "end_date"
+            "name": "end_date",
+            "description": "Date format should be \"YYYY-MM-DD\""
           },
           {
             "schema": {
@@ -593,14 +594,16 @@
               "type": "string"
             },
             "in": "query",
-            "name": "start_date"
+            "name": "start_date",
+            "description": "Date format should be \"YYYY-MM-DD\""
           },
           {
             "schema": {
               "type": "string"
             },
             "in": "query",
-            "name": "end_date"
+            "name": "end_date",
+            "description": "Date format should be \"YYYY-MM-DD\""
           }
         ]
       }
@@ -1409,7 +1412,7 @@
             "in": "query",
             "name": "start_date",
             "required": true,
-            "description": "YYYY-MM-DD"
+            "description": "Date format should be \"YYYY-MM-DD\""
           },
           {
             "schema": {
@@ -1418,7 +1421,7 @@
             "in": "query",
             "name": "end_date",
             "required": true,
-            "description": "YYYY-MM-DD"
+            "description": "Date format should be \"YYYY-MM-DD\""
           }
         ]
       }
@@ -6892,14 +6895,16 @@
               "type": "string"
             },
             "in": "query",
-            "name": "start_date"
+            "name": "start_date",
+            "description": "Date format should be \"YYYY-MM-DD\""
           },
           {
             "schema": {
               "type": "string"
             },
             "in": "query",
-            "name": "end_date"
+            "name": "end_date",
+            "description": "Date format should be \"YYYY-MM-DD\""
           },
           {
             "schema": {
