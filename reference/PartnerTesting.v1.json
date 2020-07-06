@@ -4098,7 +4098,7 @@
           }
         },
         "parameters": [],
-        "description": "In this API we will be selecting the plan and providing the customer’s details.\n\nWe will use the same provider_id which we used in the List of plan API and plan_id we got from that response.\nstart_date will be the date from when we want the contract to start (first recurring amount payment date).\nservice_array is the breakdown of the services taken by the customer and it is optional.\nThe response we will get the finance_token which will be used in Pay for Contract API.\n",
+        "description": "In this API we will be selecting the plan and providing the customer’s details.\n\nWe will use the same provider_id which we used in the List of plan API and plan_id we got from that response.\nstart_date will be the date from when we want the contract to start (first recurring amount payment date).\nservice_array is the breakdown of the services taken by the customer and it is optional.\n\nIn the response we will get the finance_token which will be used in Pay for Contract API.\n",
         "requestBody": {
           "content": {
             "application/json": {
