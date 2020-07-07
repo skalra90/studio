@@ -7250,7 +7250,7 @@
           }
         },
         "operationId": "get-provider-settings",
-        "description": "This will return the list of provider's default settings",
+        "description": "This API will return the list of provider's default settings which includes contract and payment processor settings",
         "parameters": [
           {
             "schema": {
@@ -7350,7 +7350,7 @@
             }
           }
         },
-        "description": "This API updates the setting of the provider. All the parameters are optional so only given paramters will be updated and rest remains unchanged",
+        "description": "This API updates the setting of the provider. All the parameters are optional so only given parameters will be updated and rest remains unchanged",
         "requestBody": {
           "content": {
             "application/json": {
