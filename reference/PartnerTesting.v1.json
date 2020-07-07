@@ -7525,7 +7525,7 @@
           }
         },
         "operationId": "get-provider-contract-check_date_change_amount",
-        "description": "It will return the total amount which has to be paid for changing recurring date and also provide the change date token which will be used in change recurring date API.",
+        "description": "When a provider financed a customer and a contract is created then we have an option to change the recurring date. We will get the amount for changing the date using this API. In case the contract was in overdue state then late fees would also be included in the total amount. \n\nWe need a provider_id which we can get from List of providers API.\n\nWe will get change_date_token in response which we will require in the Change recurring date of contract API.\n",
         "parameters": [
           {
             "schema": {
