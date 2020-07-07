@@ -48,7 +48,7 @@
             "name": "search_string",
             "description": "Search by business first name, business last name, provider name, provider email"
           },
-                    {
+          {
             "schema": {
               "type": "string",
               "enum": [
@@ -7358,7 +7358,7 @@
             "required": true
           }
         ],
-        "description": "This API is used to search globally amoung all the provider of the partner in contract, payments or providers."
+        "description": "This API is used to search globally among all the provider of the partner in contract, payments or providers."
       }
     }
   },
