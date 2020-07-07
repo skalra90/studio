@@ -3962,6 +3962,383 @@
         ]
       }
     },
+    "/partner/payout/list": {
+      "get": {
+        "summary": "Partner payout list",
+        "tags": [
+          "Partner"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "total_expected_payout": {
+                          "type": "number"
+                        },
+                        "total_payout_received": {
+                          "type": "number"
+                        },
+                        "count": {
+                          "type": "number"
+                        },
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "payout_id": {
+                                "type": "string"
+                              },
+                              "payout_status": {
+                                "type": "string"
+                              },
+                              "payout_amount": {
+                                "type": "number"
+                              },
+                              "arrival_date": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "total_expected_payout": 201.11,
+                        "total_payout_received": 51.51,
+                        "count": 4,
+                        "list": [
+                          {
+                            "payout_id": "po_1GsiMUCeH72hWwgK4Dp9PO1W",
+                            "payout_status": "Paid",
+                            "payout_amount": 0.67,
+                            "arrival_date": "2020-06-11T00:00:00.000Z"
+                          },
+                          {
+                            "payout_id": "po_1GpnqqCeH72hWwgKkAT0Re8W",
+                            "payout_status": "Paid",
+                            "payout_amount": 23.9,
+                            "arrival_date": "2020-06-03T00:00:00.000Z"
+                          },
+                          {
+                            "payout_id": "po_1GDnLACeH72hWwgKajbUnwtW",
+                            "payout_status": "Paid",
+                            "payout_amount": 6.94,
+                            "arrival_date": "2020-02-19T07:51:28.000Z"
+                          },
+                          {
+                            "payout_id": "po_1GAA3cCeH72hWwgKiJDL8uFp",
+                            "payout_status": "Paid",
+                            "payout_amount": 20,
+                            "arrival_date": "2020-02-10T00:00:00.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required parameter is missing": {
+                    "value": {
+                      "message": "\"skip\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-partner-payout-list",
+        "description": "It will returns the payout list of the partner",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "start_date",
+            "description": "Date format should be \"YYYY-MM-DD\""
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "end_date",
+            "description": "Date format should be \"YYYY-MM-DD\""
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "search_string",
+            "description": "Search by amount"
+          }
+        ]
+      }
+    },
+    "/partner/payout/detail": {
+      "get": {
+        "summary": "Partner Payout detail by payout ID",
+        "tags": [
+          "Partner"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "transfers": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "code": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "number"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "provider_name": {
+                                "type": "string"
+                              },
+                              "payment_type": {
+                                "type": "string"
+                              },
+                              "payment_transferred": {
+                                "type": "number"
+                              },
+                              "date_added": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 3,
+                        "transfers": [
+                          {
+                            "code": "TECVAKP17416",
+                            "type": "process_payment",
+                            "provider_name": "Ted",
+                            "payment_type": "Recurring Payment",
+                            "payment_transferred": 1.95,
+                            "date_added": "2020-06-02T04:02:55.000Z"
+                          },
+                          {
+                            "code": "TECVAKP17416",
+                            "type": "process_payment",
+                            "provider_name": "Tom",
+                            "payment_type": "First Recurring Payment",
+                            "payment_transferred": 1.95,
+                            "date_added": "2020-06-02T04:01:44.000Z"
+                          },
+                          {
+                            "code": "TECVAKP17416",
+                            "type": "process_payment",
+                            "provider_name": "Robin",
+                            "payment_type": "First Recurring Payment",
+                            "payment_transferred": 20,
+                            "date_added": "2020-06-02T04:01:44.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required paramter is missing": {
+                    "value": {
+                      "message": "\"payout_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-partner-payout-detail",
+        "description": "It will returns the detailed transfers of the particular payout",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "payout_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "limit"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "skip"
+          }
+        ]
+      }
+    },
     "/provider/contract/claim/available": {
       "get": {
         "summary": "List of available claims of a provider",
