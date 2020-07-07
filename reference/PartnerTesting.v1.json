@@ -1782,7 +1782,7 @@
           }
         },
         "operationId": "get-payment-detail",
-        "description": "It returns the payment detail with payment ID",
+        "description": "In this API we gets the details of the payment already done. \n\nWe need to provide the provider_id and payment_id which we can get from the List of providers and List of payments of a provider API respectively.\n\nIn the response we will get payment_receipt link to download the receipt.\n\n",
         "parameters": [
           {
             "schema": {
