@@ -5933,7 +5933,7 @@
         "tags": [
           "Claim Process"
         ],
-        "description": "If documents uploaded by the provider for claim are incomplete or require more documents then it could be seen in this API. It will list the contract whose more documentation is required.\n\nprovider_id which we can get from List of providers API or use the same which we used in above APIs.\n\nIn response we will get the list of contracts and number_of_documents_required will give us the number of documents required to be uploaded against a contract claim.",
+        "description": "If documents uploaded by the provider for claim are incomplete or require more documents then it could be seen in this API. It will list the contract whose more documentation is required.\n\nprovider_id which we can get from List of providers API.\n\nIn response we will get the list of contracts and number_of_documents_required will give us the number of documents required to be uploaded against a contract claim.",
         "parameters": [
           {
             "schema": {
