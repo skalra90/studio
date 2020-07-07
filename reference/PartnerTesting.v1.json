@@ -7032,7 +7032,7 @@
                   }
                 },
                 "examples": {
-                  "If required paramter is missing": {
+                  "If required parameter is missing": {
                     "value": {
                       "message": "\"payout_id\" is required",
                       "code": "parameter_missing"
