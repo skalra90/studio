@@ -2149,17 +2149,6 @@
             "schema": {
               "type": "string",
               "enum": [
-                "asc",
-                "desc"
-              ]
-            },
-            "in": "query",
-            "name": "sort_order"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "enum": [
                 "provider_first_name",
                 "provider_last_name",
                 "provider_email",
@@ -2168,6 +2157,17 @@
             },
             "in": "query",
             "name": "sort_by"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            },
+            "in": "query",
+            "name": "sort_order"
           }
         ],
         "responses": {
