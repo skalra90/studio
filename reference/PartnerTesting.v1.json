@@ -6675,7 +6675,7 @@
           }
         },
         "operationId": "get-provider-contract-claim-upload_more_document",
-        "description": "This API will be used to submit more documents as requested to approve the claim",
+        "description": "This API will be used to Upload more documents as requested to approve the claim.\n\nUnder document_array define the more_document_id which we got from the response of Contract claim details API. \nfile_id we can get from the Upload file API (while uploading keeping the purpose “claim_document”). We can upload more than one document at a time.\n\nVerify the status of of the claim from Contract claim details API and check the claim_status_id under missing_payments in the response.",
         "requestBody": {
           "content": {
             "application/json": {
