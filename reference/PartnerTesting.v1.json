@@ -5340,7 +5340,7 @@
             "name": "skip"
           }
         ],
-        "description": "Get listing of all claims of this account",
+        "description": "This API will show the list of contract claims that are already submitted or are paid.\n\nWe need the provider_id which we can get from the List of providers API.\n\nIn the response we will get the claim_id which we will be used in Contract claim details API.",
         "tags": [
           "Claim Process"
         ]
