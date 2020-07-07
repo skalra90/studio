@@ -5513,7 +5513,7 @@
             "name": "skip"
           }
         ],
-        "description": "Get listing of all available claims"
+        "description": "This API will show the list of contracts which could be claimed.\n\nprovider_id we can get from the List of providers API.\n\nIn response we will get a list of available contract(s) which could be claimed by the provider. And number_of_payments_to_claim shows how many payments could be claimed under a particular contract_id.\n"
       }
     },
     "/provider/contract/claim/missing_payment": {
