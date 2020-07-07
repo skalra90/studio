@@ -5663,7 +5663,7 @@
           }
         },
         "operationId": "get-provider-contract-claim-missing_payment",
-        "description": "Get contract missing payments",
+        "description": "In this API we will get the list of missing payments of the contract by using the provider_id and contract_id which we can get from the List of available claims of the provider API response.\n\nIn response we will get –\n\n    missing_payment_id – it is the id of the missing payment.\n    can_be_claimed – it will tell us whether we can claim this payment or not. If its value is 1   then we can claim this payment now.\n    reason – it is a reason when or why we cannot claim this payment.\n    recurring_date – date on which payment was to be made but customer didn’t do it.\n    note – notes added by the Admin.\n    \nmissing_payment_id will be used in the Claim a payment API.\n",
         "parameters": [
           {
             "schema": {
