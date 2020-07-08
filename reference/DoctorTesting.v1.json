@@ -3767,7 +3767,7 @@
     },
     "/provider/contract/check_date_change_amount": {
       "get": {
-        "summary": "Check edit payment date amount",
+        "summary": "Get recurring date change amount",
         "tags": [
           "Provider Contract"
         ],
@@ -3862,12 +3862,12 @@
               "example": "YYYY-MM-DD"
             },
             "in": "query",
-            "name": "new_payment_date",
+            "name": "new_recurring_date",
             "description": "Choose date upto 3 months from tommorow",
             "required": true
           }
         ],
-        "description": "To check the change payment date amount.\nLate fees will be added in amount if contract is in overdue state.\nChoose date upto 3 months from tommorow."
+        "description": "To check the change payment date amount.\nLate fees will be added in amount if contract is in overdue state.\nChoose date upto 3 months from tomorrow."
       }
     },
     "/provider/contract/change_recurring_date": {
@@ -5866,7 +5866,7 @@
         "description": "Return the profile data of the provider."
       }
     },
-        "/provider/search_global": {
+    "/provider/search_global": {
       "get": {
         "summary": "Provider Global Search",
         "tags": [
