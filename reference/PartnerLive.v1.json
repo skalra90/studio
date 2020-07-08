@@ -3207,7 +3207,8 @@
             },
             "in": "query",
             "name": "start_date",
-            "description": "Date format should be \"YYYY-MM-DD\""
+            "description": "Date format should be \"YYYY-MM-DD\"",
+            "required": true
           },
           {
             "schema": {
@@ -3215,7 +3216,8 @@
             },
             "in": "query",
             "name": "end_date",
-            "description": "Date format should be \"YYYY-MM-DD\""
+            "description": "Date format should be \"YYYY-MM-DD\"",
+            "required": true
           }
         ]
       }
