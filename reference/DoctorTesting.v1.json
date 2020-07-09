@@ -1998,6 +1998,22 @@
             },
             "in": "query",
             "name": "skip"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "search_string",
+            "description": "Search by payment ID, name, email or phone number"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "payment_status",
+            "description": "Valid payment_status are \"pending\",\"successful\", \"failed\", \"reversed\""
           }
         ]
       }
