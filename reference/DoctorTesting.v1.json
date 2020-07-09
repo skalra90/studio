@@ -2009,7 +2009,13 @@
           },
           {
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "pending",
+                "successful",
+                "failed",
+                "reversed"
+              ]
             },
             "in": "query",
             "name": "payment_status",
@@ -3643,7 +3649,14 @@
           },
           {
             "schema": {
-              "type": "string"
+              "type": "string",
+              "uniqueItems": false,
+              "enum": [
+                "active",
+                "overdue",
+                "completed",
+                "canceled"
+              ]
             },
             "in": "query",
             "name": "contract_status",
