@@ -294,6 +294,14 @@
             },
             "in": "query",
             "name": "end_date"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "search_string",
+            "description": "Search by amount value"
           }
         ]
       }
