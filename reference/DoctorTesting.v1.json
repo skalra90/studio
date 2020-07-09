@@ -3901,11 +3901,11 @@
             "schema": {
               "type": "string",
               "format": "",
-              "example": "YYYY-MM-DD"
+              "example": ""
             },
             "in": "query",
             "name": "new_recurring_date",
-            "description": "Choose date upto 3 months from tommorow",
+            "description": "Choose date upto 3 months from tomorrow, format - YYYY-MM-DD",
             "required": true
           }
         ],
