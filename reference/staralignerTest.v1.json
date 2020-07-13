@@ -2479,7 +2479,7 @@
             }
           }
         },
-        "description": "This can be used to process an instant payment for the service.",
+        "description": "This can be used to process a payment for the service.",
         "tags": [
           "Provider Payment"
         ],
