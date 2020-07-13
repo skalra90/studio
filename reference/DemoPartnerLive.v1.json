@@ -2691,7 +2691,7 @@
     },
     "/provider/payment/pay": {
       "post": {
-        "summary": "Process Instant Payment",
+        "summary": "Payment Processing",
         "operationId": "post-provider-payment-pay",
         "responses": {
           "200": {
