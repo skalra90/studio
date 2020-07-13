@@ -2108,7 +2108,7 @@
           },
           "description": ""
         },
-        "description": "This can be used to process an instant payment for the service taken by the customer.\n\nWe can get the provider_id and card_token from the List of providers and Card Integration API respectively.\n\nIn response we will get the payment_id for the payment done.",
+        "description": "This can be used to process a payment for the service taken by the customer.\n\nWe can get the provider_id and card_token from the List of providers and Card Integration API respectively.\n\nIn response we will get the payment_id for the payment done.",
         "tags": [
           "Provider Payment"
         ]
