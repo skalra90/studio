@@ -1795,7 +1795,7 @@
     },
     "/provider/payment/pay": {
       "post": {
-        "summary": "Process Instant Payment",
+        "summary": "Payment Processing",
         "operationId": "post-provider-payment-pay",
         "responses": {
           "200": {
@@ -3598,7 +3598,7 @@
         ]
       }
     },
-        "/provider/contract/claim/available": {
+    "/provider/contract/claim/available": {
       "get": {
         "summary": "List of available claims of a provider",
         "tags": [
@@ -5145,7 +5145,7 @@
         }
       }
     },
-        "/provider/profile": {
+    "/provider/profile": {
       "get": {
         "summary": "Provider Profile",
         "tags": [
@@ -5332,7 +5332,7 @@
       },
       "parameters": []
     },
-        "/provider/contract/check_date_change_amount": {
+    "/provider/contract/check_date_change_amount": {
       "get": {
         "summary": "Get recurring date change amount",
         "tags": [
