@@ -1397,7 +1397,7 @@
           }
         },
         "operationId": "get-provider-reports-payout",
-        "description": "Get report of all the payout of this account",
+        "description": "In this API we will get the report of all the payouts which are already paid to the provider whether it is from the Contract or Payment Processor or Accounts Receivable.",
         "parameters": [
           {
             "schema": {
