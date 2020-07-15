@@ -2123,7 +2123,7 @@
             }
           }
         },
-        "description": "This can be used to process a payment for the service.",
+        "description": "This API is used to process a payment for the service taken by the customer.\n\nWe can get the card_token from the Card Integration API respectively.\n\nIn response we will get a payment_id for the payment done.",
         "tags": [
           "Provider Payment"
         ],
