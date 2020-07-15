@@ -2729,7 +2729,7 @@
           }
         },
         "operationId": "get-provider-bank",
-        "description": "Returns provider's bank details. If provider's bank is already added then this API will show the details of the bank otherwise it will show a message that no bank is added for this provider. And we will get the provider_id from the List of providers API.",
+        "description": "Returns provider's bank details. If provider's bank is already added then this API will show the details of the bank otherwise it will show a message that no bank is added for this provider. \n\nAnd we will get the provider_id from the List of providers API.",
         "parameters": [
           {
             "schema": {

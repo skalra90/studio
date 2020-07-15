@@ -263,7 +263,7 @@
           }
         },
         "operationId": "get-provider-payout-list",
-        "description": "Get a list of the payouts already paid to the provider using this API. This API returns payout_id also that would be required in the Provider Payout details API.",
+        "description": "Get a list of the payouts already paid to the provider using this API. \n\nThis API returns payout_id also that would be required in the Provider Payout details API.",
         "parameters": [
           {
             "schema": {
@@ -2520,7 +2520,7 @@
           }
         },
         "operationId": "get-provider-bank",
-        "description": "Returns provider's bank details.",
+        "description": "Returns provider's bank details. If provider's bank is already added then this API will show the details of the bank otherwise it will show a message that no bank is added for this provider. ",
         "parameters": []
       },
       "post": {
