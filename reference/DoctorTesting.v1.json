@@ -658,7 +658,7 @@
           }
         },
         "operationId": "get-provider-reports-contract",
-        "description": "Get report of all the contracts of this account",
+        "description": "In this API we will get the report of all the contracts which are made so far.",
         "parameters": [
           {
             "schema": {
