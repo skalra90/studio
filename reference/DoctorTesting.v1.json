@@ -1983,7 +1983,7 @@
           }
         },
         "operationId": "get-provider-payment-list",
-        "description": "It returns the details of the payments processed in the provider's account",
+        "description": "In this API we could get the details of the payment already done. \n\nThere are 2 filters - search and payment_status\n\npayment_status could be one of the following values-\n\n    pending - payment is requested from the customer but it is still in pending state.\n    successful - payment is done from the customer end.\n    failed - attempt was made to pay but due to some reason payment failed.\n    reversed - payment was done by the customer but due to some reason payment was reversed/returned.\n\nIn the response we have payment_receipt, it is the link to download the receipt.",
         "parameters": [
           {
             "schema": {
