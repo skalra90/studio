@@ -2640,7 +2640,7 @@
         "tags": [
           "Providers"
         ],
-        "description": "Add provider's bank account which will be used to receive the payouts\n\nIf bank token is created with \"individual\" account type then send `ssn_number`, `date_of_birth`, `front_file`, `back_file`\n\nIf bank token is created with \"company\" account type then send `business_tax_id`",
+        "description": "For a newly created provider we need to add a bank account details to get access to other payment related APIs.\n We require a bank_token which we will get from Create bank token API. \n\nBased on the account type we selected in Create bank token API, we have to define the parameters in this API.\n\n  In case provider's account type is \"individual\" then we have to define following additional parameters- \n\n    ●  ssn_number - mandatory.          \n    ●  date_of_birth – mandatory.          \n    ●  front_file – optional.\n    ●  back_file – optional but mandatory if front_file is defined.    \n    \n  In case provider's account type is \"company\" then we have to define following parameter- \n\n    ●  business_tax_id - mandatory.",
         "requestBody": {
           "content": {
             "application/json": {

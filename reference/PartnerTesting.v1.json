@@ -3319,7 +3319,7 @@
           }
         },
         "operationId": "post-provider-company-bank",
-        "description": "For a newly created provider we need to add a bank account details to get access to other payment related APIs. We require a provider_id which we will get from List of providers API and bank_token from Create bank token API. ",
+        "description": "For a newly created provider we need to add bank account details to get access to other payment related APIs. \n\nWe require a provider_id which we will get from List of providers API and bank_token from Create bank token API. ",
         "parameters": [],
         "requestBody": {
           "content": {
