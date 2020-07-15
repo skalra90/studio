@@ -579,7 +579,7 @@
           }
         },
         "operationId": "get-provider-reports-contract",
-        "description": "In this API we will get the report of all the contracts which are/were made by the provider.\n",
+        "description": "In this API we will get the report of all the contracts which are made by the provider so far.\n\nWe will get the provider_id from the List of providers API.\n",
         "parameters": [
           {
             "schema": {
@@ -1397,7 +1397,7 @@
           }
         },
         "operationId": "get-provider-reports-payout",
-        "description": "In this API we will get the report of all the payouts which are already paid to the provider whether it is from the Contract or Payment Processor or Accounts Receivable.",
+        "description": "In this API we will get the report of all the payouts which are already paid to the provider whether it is from the Contract or Payment Processor or Accounts Receivable.\n\nWe will get the provider_id from the List of providers API.",
         "parameters": [
           {
             "schema": {
