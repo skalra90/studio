@@ -263,7 +263,7 @@
           }
         },
         "operationId": "get-provider-payout-list",
-        "description": "Get listing of all payouts of this account",
+        "description": "Get a list of the payouts already paid to the provider using this API. This API returns payout_id also that would be required in the Provider Payout details API.",
         "parameters": [
           {
             "schema": {
