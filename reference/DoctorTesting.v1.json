@@ -1834,7 +1834,7 @@
           }
         },
         "operationId": "get-provider-payment-detail",
-        "description": "It returns the payment detail with payment ID",
+        "description": "In this API we gets the details of the payment already done. \n\nWe need to provide the payment_id which we can get from the List of payments of a provider API.\n\nIn the response we will get payment_receipt link to download the receipt.",
         "parameters": [
           {
             "schema": {
