@@ -5918,7 +5918,7 @@
         },
         "operationId": "get-provider-profile",
         "parameters": [],
-        "description": "Return the profile data of the provider."
+        "description": "Provider can get the profile details by using this API. We will get the provider's and its business information and whether payment is enabled or not and based on it provider can move forward to payment related APIs."
       }
     },
     "/provider/search_global": {
