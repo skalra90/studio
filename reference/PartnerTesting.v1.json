@@ -7072,7 +7072,7 @@
           }
         },
         "operationId": "get-partner-payout-detail",
-        "description": "It will returns the detailed transfers of the particular payout",
+        "description": "In Partner Payout list API we got the list of payouts received and in response we got the payout_id which will be required in this API to get more details of the payout. \n\nIn the response there will details on the payment whether it was made from the Contract or Payment Processing or Accounts Receivable, when the payment received, amount and we get the information on total expected payout and total payout received.\n",
         "parameters": [
           {
             "schema": {
