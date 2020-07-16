@@ -3441,7 +3441,7 @@
           }
         },
         "operationId": "get-provider-contract-detail",
-        "description": "Get contract details with ID",
+        "description": "We can get the details of the contract along with the payments with share to the partner and provider from this API.\n\nWe need to provide the contract_id if we have the contract id for that provider then we will use that otherwise we can get the contracts list from the List of contracts of a provider API.",
         "parameters": [
           {
             "schema": {
