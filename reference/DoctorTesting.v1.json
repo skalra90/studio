@@ -4685,7 +4685,7 @@
         "tags": [
           "Claim Process"
         ],
-        "description": "List of documents to be required to claim payment",
+        "description": "If a provider hasn't claimed any contract then we need to first submit the claim form before claiming the payment. To submit a claim we need to know what all documents are required to upload. This API will give us the list of documents required.\n\nProvide the contract_id for which missing payments are available in List of missing payment of the contract API.\n\nIn response we will get the list of documents which are required to be uploaded in the Submit claim form API. We will get the following values in response -\n\n    document_type – it is the number/id of the document.\n    \n    document_type_name – it is the name of the file which is to be uploaded.\n    \n    required – it will tell us whether this document is necessary to be uploaded or not. 1 means it’s mandatory and 0 means it’s not mandatory.\n\ndocument_type is required in the Submit claim form API.",
         "parameters": [
           {
             "schema": {
