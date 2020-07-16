@@ -4980,7 +4980,7 @@
             "description": "Valid contract_status are \"active\",\"overdue\", \"completed\", \"canceled\""
           }
         ],
-        "description": "We will get the list of all the contracts which were created by the provider.\nWe can get the provider_id from the List of providers API.\n"
+        "description": "We will get the list of all the contracts which were created by the provider.\n\nWe can get the provider_id from the List of providers API.\n"
       },
       "parameters": []
     },
