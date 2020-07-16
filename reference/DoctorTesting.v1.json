@@ -4812,7 +4812,7 @@
         "tags": [
           "Claim Process"
         ],
-        "description": "submission of claim form with documents",
+        "description": "To claim a payments of a contract we need to submit this form. It is to be filled once for a contract. If the provider is linked with the healthcare industry then he has to first fill the HSA form under HSA/BSA form API. And if the provider is linked with the non-healthcare industry then the provider cannot claim a payment as it is not insured payment but he has to fill BSA form. So only providers linked with the healthcare industry could claim the payments.\n\nFrom the response of List of missing payment of the contract API we gets the contract_id.\nis_service_completed is either 0(means complete service was not given to the customer) or \n1(means complete service was given to the customer).\n\ndocument_array values-\n\n    document_type - we can get from the response of Required Documents API.\n    \n    file_id – we can get the file id from Upload file API. In that API we have to define the purpose as “claim_document”.",
         "requestBody": {
           "content": {
             "application/json": {
