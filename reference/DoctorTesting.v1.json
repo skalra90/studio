@@ -3922,7 +3922,7 @@
             "required": true
           }
         ],
-        "description": "To check the change payment date amount.\nLate fees will be added in amount if contract is in overdue state.\nChoose date upto 3 months from tomorrow."
+        "description": "When a provider financed a customer and a contract is created then we have an option to change the recurring date. We will get the amount for changing the date using this API. In case the contract was in overdue state then late fees would also be included in the total amount. \n\nWe need a contract_id which we can get from List of contracts API. We can select the new_recurring_date upto 90 from tomorrow.\n\nWe will get change_date_token in response which we will require in the Change recurring date of contract API.\n"
       }
     },
     "/provider/contract/change_recurring_date": {
