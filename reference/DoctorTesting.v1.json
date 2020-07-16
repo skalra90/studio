@@ -3017,7 +3017,7 @@
             }
           }
         },
-        "description": "Pay for contract using finance token and card token.",
+        "description": "We will be making the payment for the contract using this API. For this we need finance_token and card_token. finance_token we got from Select a Plan API and for card_token we have to go to Card Integration API and in that API’s response we will get card_token.\n\nIn response we will get the contract_id and contract_code. contract_id will be used in Contract details API.",
         "tags": [
           "Contract Generation Process"
         ],
