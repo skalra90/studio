@@ -3922,7 +3922,7 @@
             "required": true
           }
         ],
-        "description": "To check the change payment date amount.\nLate fees will be added in amount if contract is in overdue state.\nChoose date upto 3 months from tomorrow."
+        "description": "When a provider financed a customer and a contract is created then we have an option to change the recurring date. We will get the amount for changing the date using this API. In case the contract was in overdue state then late fees would also be included in the total amount. \n\nWe need a contract_id which we can get from List of contracts API. We can select the new_recurring_date upto 90 from tomorrow.\n\nWe will get change_date_token in response which we will require in the Change recurring date of contract API.\n"
       }
     },
     "/provider/contract/change_recurring_date": {
@@ -4032,7 +4032,7 @@
             }
           }
         },
-        "description": "To change the payment date.",
+        "description": "As we are working on changing the recurring date this is the next API which will actually change the recurring date. In the previous API we got the amount for changing the recurring date.\n\nWe will use the same contract_id which we used in Get recurring date change amount API and from the response of this API we will get the change_date_token.\n\nIf there is some amount which we have to pay for the change in contract’s recurring date then define the payment_from. payment_from could be from one of the below mentioned values-\n\n    1 - means that the customer is going to pay it using his/her card.\n    2 - means that provider is going to pay using his/her card for the change in recurring date.\n    3 - means that provider is going to pay using his/her provider’s Denefits account. In this case we need not to define the card_token.\n\ncard_token we can get from the Card Integration API.\n    \nIn case there is no amount to pay for changing the recurring date then we need not to define the payment_from and card_token.\n\nWe can verify that the recuring date is changed for the contract in Contract details API response next_recurring_date for this contract.",
         "tags": [
           "Provider Contract"
         ],
@@ -4076,7 +4076,7 @@
               }
             }
           },
-          "description": "payment_from is required only if payable amount is greater than 0.\n\npayment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
+          "description": ""
         }
       },
       "parameters": []
@@ -4176,7 +4176,7 @@
             }
           }
         },
-        "description": "This API is used to cancel a contract. A fixed $30 will be charged to cancel a contract",
+        "description": "Due to many reasons we need to cancel the contract which could be done using this API. A fixed $30 will be charged to cancel a contract.\n\nWe need to provide the contract_id we will get from the List of contracts of a provider API.\n\npayment_from could be from one of the below mentioned values-\n\n    1 - means that the customer is going to pay it using his/her card.\n    2 - means that provider is going to pay using his/her card for the change in recurring date.\n    3 - means that provider is going to pay using his/her provider’s Denefits account. Also in this case we need not to mention the card_token.\n    \ncard_token we can get from the the Card Integration API.\n\nIn case there is no amount to pay for changing the recurring date then we need not to define the payment_from and card_token.\n\nWe can verify this in Contract details API response contract_status for the contract.\n",
         "tags": [
           "Provider Contract"
         ],
@@ -4219,7 +4219,7 @@
               }
             }
           },
-          "description": "payment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
+          "description": ""
         }
       }
     },
@@ -4531,7 +4531,7 @@
           }
         },
         "operationId": "get-provider-contract-claim-missing_payment",
-        "description": "Get contract missing payments",
+        "description": "In this API we will get the list of missing payments of the contract by using contract_id which we can get from the List of available claims of the provider API response.\n\nIn response we will get –\n\n    missing_payment_id – it is the id of the missing payment.\n    can_be_claimed – it will tell us whether we can claim this payment or not. If its value is 1   then we can claim this payment now.\n    reason – it is a reason when or why we cannot claim this payment.\n    recurring_date – date on which payment was to be made but customer didn’t do it.\n    note – notes added by the Admin.\n    \nmissing_payment_id will be used in the Claim a payment API.\n",
         "parameters": [
           {
             "schema": {
@@ -4685,7 +4685,7 @@
         "tags": [
           "Claim Process"
         ],
-        "description": "List of documents to be required to claim payment",
+        "description": "If a provider hasn't claimed any contract then we need to first submit the claim form before claiming the payment. To submit a claim we need to know what all documents are required to upload. This API will give us the list of documents required.\n\nProvide the contract_id for which missing payments are available in List of missing payment of the contract API.\n\nIn response we will get the list of documents which are required to be uploaded in the Submit claim form API. We will get the following values in response -\n\n    document_type – it is the number/id of the document.\n    \n    document_type_name – it is the name of the file which is to be uploaded.\n    \n    required – it will tell us whether this document is necessary to be uploaded or not. 1 means it’s mandatory and 0 means it’s not mandatory.\n\ndocument_type is required in the Submit claim form API.",
         "parameters": [
           {
             "schema": {
@@ -4812,7 +4812,7 @@
         "tags": [
           "Claim Process"
         ],
-        "description": "submission of claim form with documents",
+        "description": "To claim a payments of a contract we need to submit this form. It is to be filled once for a contract. If the provider is linked with the healthcare industry then he has to first fill the HSA form under HSA/BSA form API. And if the provider is linked with the non-healthcare industry then the provider cannot claim a payment as it is not insured payment but he has to fill BSA form. So only providers linked with the healthcare industry could claim the payments.\n\nFrom the response of List of missing payment of the contract API we gets the contract_id.\nis_service_completed is either 0(means complete service was not given to the customer) or \n1(means complete service was given to the customer).\n\ndocument_array values-\n\n    document_type - we can get from the response of Required Documents API.\n    \n    file_id – we can get the file id from Upload file API. In that API we have to define the purpose as “claim_document”.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -4956,7 +4956,7 @@
         "tags": [
           "Claim Process"
         ],
-        "description": "To claim a contract payment",
+        "description": "Once the claim form is submitted then only we can claim the payment. We can only claim the missing payments for which can_be_claimed is 1 in List of missing payment of the contract API. After a claim request is submitted then we need to wait for the Admin to approve it or if some document(s) is required for the same.\n\ncontract_id which we used in the List of missing payment of the contract API and in the response of this API we will get the missing_payment_id whose can_be_claimed=1 we can use.\n\nOnce the payment is claimed we need to wait until it gets approved. We can get the current status of the payment claimed from the Contract claim details API. ",
         "parameters": [],
         "requestBody": {
           "content": {
@@ -5473,7 +5473,7 @@
           }
         },
         "operationId": "get-provider-contract-claim-details",
-        "description": "Return the contract info, claim info of payments and documents uploaded info",
+        "description": "Once the available missing payment's claim has been submitted then we can check the status of the claim in this API. It will give us the information on the contract, payment claims and documents uploaded.\n\nclaim_id which we can get from the List of all claims of a provider API response.\n\nIn response we will get the following –\n\n    claim_uploaded_documents - list of documents we uploaded in Submit claim form API.\n    \n    missing_payments -  missing payments which were shown in the List of missing payments of the contract API. We can check the claim_status_id which will give us the information that whether the documentation needed, documents uploaded, denied, expired, processing or paid.\n    \n    contract_details – it gives us information about the contract.\n    \n    more_document_needed - we will get the list of documents which are further required to approve the claim. It contains more_dcument_id(id), date_added(when it was requested), document_type_name(name of the document required) and reason(why this document is required). \n\nmore_document_id will be required in Need More Documents and Upload extra documents to claim contract APIs.",
         "parameters": [
           {
             "schema": {
@@ -5601,7 +5601,7 @@
         "tags": [
           "Claim Process"
         ],
-        "description": "Claim Need more documents",
+        "description": "If documents uploaded by the provider for claim are incomplete or require more documents then it could be seen in this API. It will list the contract whose more documentation is required.\n\nIn response we will get the list of contracts and number_of_documents_required will give us the number of documents required to be uploaded against a contract claim.",
         "parameters": [
           {
             "schema": {
@@ -5726,7 +5726,7 @@
           }
         },
         "operationId": "get-provider-contract-claim-upload_more_document",
-        "description": "This API will be used to submit more documents as requested to approve the claim",
+        "description": "This API will be used to Upload more documents which are required to approve the claim.\n\nUnder document_array define the more_document_id which we got from the response of Contract claim details API. \nfile_id we can get from the Upload file API (while uploading keeping the purpose “claim_document”). We can upload more than one document at a time.\n\nVerify the status of of the claim from Contract claim details API and check the claim_status_id under missing_payments in the response.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -5918,7 +5918,7 @@
         },
         "operationId": "get-provider-profile",
         "parameters": [],
-        "description": "Return the profile data of the provider."
+        "description": "Provider can get the profile details by using this API. We will get the provider's and its business information and whether payment is enabled or not and based on it provider can move forward to payment related APIs."
       }
     },
     "/provider/search_global": {
@@ -6007,7 +6007,7 @@
           }
         },
         "operationId": "get-partner-search_global",
-        "description": "This API is used to seach in contract, or payment",
+        "description": "This API is used to search globally among all Contracts and Payments.\n\nBased on the search_string and search_type response will be displayed. In case search_type is 1 then search will be on Contracts otherwise on Payments.",
         "parameters": [
           {
             "schema": {

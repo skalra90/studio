@@ -6552,7 +6552,7 @@
           }
         },
         "operationId": "get-provider-contract-claim-details",
-        "description": "Once the available missing payment claim has been submitted then we can check the status of the claim in this API. It will give us the information on the contract, payment claims and documents uploaded.\n\nclaim_id which we can get from the List of all claims of a provider API response.\n\nIn response we will get the following –\n\n    claim_uploaded_documents - list of documents we uploaded in Submit claim form API.\n    \n    missing_payments -  missing payments which were shown in the List of missing payments of the contract API. We can check the claim_status_id which will give us the information that whether the documentation needed, documents uploaded, denied, expired, processing or paid.\n    \n    contract_details – it gives us information about the contract.\n    \n    more_document_needed - we will get the list of documents which are further required to approve the claim. It contains more_dcument_id(id), date_added(when it was requested), document_type_name(name of the document required) and reason(why this document is required). \n\nmore_document_id will be required in Need More Documents and Upload extra documents to claim contract APIs.\n",
+        "description": "Once the available missing payment's claim has been submitted then we can check the status of the claim in this API. It will give us the information on the contract, payment claims and documents uploaded.\n\nclaim_id which we can get from the List of all claims of a provider API response.\n\nIn response we will get the following –\n\n    claim_uploaded_documents - list of documents we uploaded in Submit claim form API.\n    \n    missing_payments -  missing payments which were shown in the List of missing payments of the contract API. We can check the claim_status_id which will give us the information that whether the documentation needed, documents uploaded, denied, expired, processing or paid.\n    \n    contract_details – it gives us information about the contract.\n    \n    more_document_needed - we will get the list of documents which are further required to approve the claim. It contains more_dcument_id(id), date_added(when it was requested), document_type_name(name of the document required) and reason(why this document is required). \n\nmore_document_id will be required in Need More Documents and Upload extra documents to claim contract APIs.\n",
         "parameters": [
           {
             "schema": {
@@ -6677,7 +6677,7 @@
           }
         },
         "operationId": "get-provider-contract-claim-upload_more_document",
-        "description": "This API will be used to Upload more documents as requested to approve the claim.\n\nUnder document_array define the more_document_id which we got from the response of Contract claim details API. \nfile_id we can get from the Upload file API (while uploading keeping the purpose “claim_document”). We can upload more than one document at a time.\n\nVerify the status of of the claim from Contract claim details API and check the claim_status_id under missing_payments in the response.",
+        "description": "This API will be used to Upload more documents which are required to approve the claim.\n\nUnder document_array define the more_document_id which we got from the response of Contract claim details API. \nfile_id we can get from the Upload file API (while uploading keeping the purpose “claim_document”). We can upload more than one document at a time.\n\nVerify the status of of the claim from Contract claim details API and check the claim_status_id under missing_payments in the response.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -6874,7 +6874,7 @@
           }
         },
         "operationId": "get-partner-payout-list",
-        "description": "It will returns the payout list of the partner",
+        "description": "This API will show the list of payouts which are paid to the partner from payment done from Contracts, Payment Processing or Accounts Receivable.\n\nIn response we will get payout_id which will be required in the Partner Payout detail by Payout ID API.",
         "parameters": [
           {
             "schema": {
@@ -7072,7 +7072,7 @@
           }
         },
         "operationId": "get-partner-payout-detail",
-        "description": "It will returns the detailed transfers of the particular payout",
+        "description": "In Partner Payout list API we got the list of payouts received and in response we got the payout_id which will be required in this API to get more details of the payout. \n\nIn the response there will details on the payment whether it was made from the Contract or Payment Processing or Accounts Receivable, when the payment received, amount and we get the information on total expected payout and total payout received.\n",
         "parameters": [
           {
             "schema": {
@@ -7527,7 +7527,7 @@
           }
         },
         "operationId": "get-provider-contract-check_date_change_amount",
-        "description": "When a provider financed a customer and a contract is created then we have an option to change the recurring date. We will get the amount for changing the date using this API. In case the contract was in overdue state then late fees would also be included in the total amount. \n\nWe need a provider_id which we can get from List of providers API, contract_id from List of contracts API.\n\nWe will get change_date_token in response which we will require in the Change recurring date of contract API.\n",
+        "description": "When a provider financed a customer and a contract is created then we have an option to change the recurring date. We will get the amount for changing the date using this API. In case the contract was in overdue state then late fees would also be included in the total amount. \n\nWe need a provider_id which we can get from List of providers API, contract_id from List of contracts API. We can select the new_recurring_date upto 90 from tomorrow.\n\nWe will get change_date_token in response which we will require in the Change recurring date of contract API.\n",
         "parameters": [
           {
             "schema": {
