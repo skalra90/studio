@@ -6007,7 +6007,7 @@
           }
         },
         "operationId": "get-partner-search_global",
-        "description": "This API is used to seach in contract, or payment",
+        "description": "This API is used to search globally among all Contracts and Payments.\n\nBased on the search_string and search_type response will be displayed. In case search_type is 1 then search will be on Contracts otherwise on Payments.",
         "parameters": [
           {
             "schema": {
