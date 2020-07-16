@@ -4076,7 +4076,7 @@
               }
             }
           },
-          "description": "payment_from is required only if payable amount is greater than 0.\n\npayment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
+          "description": ""
         }
       },
       "parameters": []
@@ -4176,7 +4176,7 @@
             }
           }
         },
-        "description": "This API is used to cancel a contract. A fixed $30 will be charged to cancel a contract",
+        "description": "Due to many reasons we need to cancel the contract which could be done using this API. A fixed $30 will be charged to cancel a contract.\n\nWe need to provide the contract_id we will get from the List of contracts of a provider API.\n\npayment_from could be from one of the below mentioned values-\n\n    1 - means that the customer is going to pay it using his/her card.\n    2 - means that provider is going to pay using his/her card for the change in recurring date.\n    3 - means that provider is going to pay using his/her provider’s Denefits account. Also in this case we need not to mention the card_token.\n    \ncard_token we can get from the the Card Integration API.\n\nIn case there is no amount to pay for changing the recurring date then we need not to define the payment_from and card_token.\n\nWe can verify this in Contract details API response contract_status for the contract.\n",
         "tags": [
           "Provider Contract"
         ],
@@ -4219,7 +4219,7 @@
               }
             }
           },
-          "description": "payment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
+          "description": ""
         }
       }
     },
