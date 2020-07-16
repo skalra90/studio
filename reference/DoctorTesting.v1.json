@@ -6049,6 +6049,1054 @@
         ]
       },
       "parameters": []
+    },
+    "/payment/receiveDetailsV2": {
+      "post": {
+        "summary": "Provide customer details for the Payment/Contract",
+        "operationId": "post-receive-details",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "finance_token": {
+                          "type": "string"
+                        },
+                        "full_amount": {
+                          "type": "object",
+                          "properties": {
+                            "total": {
+                              "type": "number"
+                            },
+                            "to_pay_now": {
+                              "type": "object",
+                              "description": "Amount to pay now details.",
+                              "properties": {
+                                "total": {
+                                  "type": "number",
+                                  "description": "Total amount to pay now."
+                                },
+                                "breakdown": {
+                                  "type": "object",
+                                  "description": "Breakdown of amount.",
+                                  "properties": {
+                                    "denefits_enrollment_fee": {
+                                      "type": "number",
+                                      "description": "Flat contract creation fee."
+                                    },
+                                    "upfront_payment": {
+                                      "type": "object",
+                                      "description": "Upfront payment details.",
+                                      "properties": {
+                                        "total": {
+                                          "type": "number",
+                                          "description": "Total upfront payment."
+                                        },
+                                        "breakdown": {
+                                          "type": "object",
+                                          "description": "Breakdown of upfront payment.",
+                                          "properties": {
+                                            "amount": {
+                                              "type": "number",
+                                              "description": "Upfront amount."
+                                            },
+                                            "transaction_fee": {
+                                              "type": "number",
+                                              "description": "Upfront transaction fee."
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "plans": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "plan_id": {
+                                "description": "Plan's unique identification.",
+                                "type": "string"
+                              },
+                              "interest_rate": {
+                                "type": "number",
+                                "description": "Interest rate."
+                              },
+                              "number_of_payments": {
+                                "type": "integer",
+                                "description": "Duration of the contract."
+                              },
+                              "monthly_payable": {
+                                "type": "object",
+                                "description": "Monthly Payable details.",
+                                "properties": {
+                                  "total": {
+                                    "type": "number",
+                                    "description": "Total payable amount every month (Without Late Fees)"
+                                  },
+                                  "breakdown": {
+                                    "type": "object",
+                                    "description": "Breakdown of total payable amount.",
+                                    "properties": {
+                                      "amount": {
+                                        "type": "number",
+                                        "description": "Recurring amount."
+                                      },
+                                      "transaction_fee": {
+                                        "type": "number",
+                                        "description": "Transsaction Fee."
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "to_pay_now": {
+                                "type": "object",
+                                "description": "Amount to pay now details.",
+                                "properties": {
+                                  "total": {
+                                    "type": "number",
+                                    "description": "Total amount to pay now."
+                                  },
+                                  "breakdown": {
+                                    "type": "object",
+                                    "description": "Breakdown of amount.",
+                                    "properties": {
+                                      "denefits_enrollment_fee": {
+                                        "type": "number",
+                                        "description": "Flat contract creation fee."
+                                      },
+                                      "upfront_payment": {
+                                        "type": "object",
+                                        "description": "Upfront payment details.",
+                                        "properties": {
+                                          "total": {
+                                            "type": "number",
+                                            "description": "Total upfront payment."
+                                          },
+                                          "breakdown": {
+                                            "type": "object",
+                                            "description": "Breakdown of upfront payment.",
+                                            "properties": {
+                                              "amount": {
+                                                "type": "number",
+                                                "description": "Upfront amount."
+                                              },
+                                              "transaction_fee": {
+                                                "type": "number",
+                                                "description": "Upfront transaction fee."
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "livemode": {
+                          "type": "boolean",
+                          "description": ""
+                        },
+                        "full_amount_disabled_reason": {
+                          "type": "string",
+                          "description": "Reason for which Payment Processor has been disabled."
+                        },
+                        "plan_disabled_reason": {
+                          "type": "string",
+                          "description": "Reason for which Plans are disabled."
+                        },
+                        "payment_link": {
+                          "type": "string",
+                          "description": "Link to iframe for payment."
+                        }
+                      }
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Finance Token Created",
+                      "code": "success",
+                      "data": {
+                        "finance_token": "39d1aeb8a611cd8f9ec6fb2863ba8d48",
+                        "plan": [
+                          {
+                            "plan_id": "plan_P6509M12A1000D00",
+                            "number_of_payments": 12,
+                            "interest_rate": 16.99,
+                            "monthly_payable": {
+                              "total": 94.06,
+                              "breakdown": {
+                                "amount": 91.06,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 124.06,
+                              "breakdown": {
+                                "denefits_enrollment_fee": 30,
+                                "upfront_payment": {
+                                  "total": 94.06,
+                                  "breakdown": {
+                                    "amount": 91.06,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            },
+                            "recurring_amount": 91.06
+                          }
+                        ],
+                        "plan_disabled_reason": null,
+                        "full_amount": {
+                          "to_pay_now": {
+                            "total": 1116.63,
+                            "breakdown": {
+                              "amount": 1100,
+                              "transaction_fee": 16.63
+                            }
+                          }
+                        },
+                        "full_amount_disabled_reason": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required field is not provided": {
+                    "value": {
+                      "message": "\"service_amount\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "Invalid zipcode provided": {
+                    "value": {
+                      "message": "Please enter a valid zipcode",
+                      "code": "invalid_zip"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If authorization token is wrong": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This API collects all the details of the customer for the payment. ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "service_amount": {
+                    "type": "number",
+                    "description": "Total amount to be financed. Financed amount + Downpayment amount will be used as total service amount if customer chooses to pay now."
+                  },
+                  "downpayment_amount": {
+                    "type": "number",
+                    "description": "This amount will be taken as downpayment if customer makes a contract. Financed amount + Downpayment amount will be used as total service amount if customer chooses to pay now."
+                  },
+                  "number_of_payments": {
+                    "type": "number",
+                    "description": "Total number of payments option to be provided to customer for a contract.",
+                    "minimum": 12,
+                    "maximum": 48
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "description": "First payment will be deducted on this date if customer makes a contract. Format should be \"YYYY-MM-DD\". Should be a future date.",
+                    "format": "date",
+                    "example": "2020-07-01"
+                  },
+                  "customer_email": {
+                    "type": "string",
+                    "description": "Email address of the customer.",
+                    "format": "email",
+                    "example": "abc.xyz@denefits.com"
+                  },
+                  "customer_first_name": {
+                    "type": "string",
+                    "description": "First name of the customer."
+                  },
+                  "customer_last_name": {
+                    "type": "string",
+                    "description": "Last name of the customer."
+                  },
+                  "customer_address": {
+                    "type": "string",
+                    "description": "Street address of the customer."
+                  },
+                  "customer_mobile": {
+                    "type": "string",
+                    "description": "Mobile/Phone number of the customer."
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "description": "Date of birth of the customer. Format should be \"YYYY-MM-DD\".",
+                    "format": "date",
+                    "example": "1990-01-18"
+                  },
+                  "zipcode": {
+                    "type": "string",
+                    "description": "U.S. zipcode of the customer.",
+                    "example": "90210",
+                    "minLength": 5,
+                    "maxLength": 5
+                  },
+                  "service_array": {
+                    "type": "array",
+                    "description": "This is an array which requires the details of the service provided with the price. This field will be required soon.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "service": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "service_amount",
+                  "downpayment_amount",
+                  "number_of_payments",
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_address",
+                  "customer_mobile",
+                  "date_of_birth",
+                  "zipcode"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "service_amount": 1000,
+                    "downpayment_amount": 100,
+                    "number_of_payments": 24,
+                    "start_date": "2020-08-19",
+                    "customer_email": "ted@gmail.com",
+                    "customer_first_name": "Ted",
+                    "customer_last_name": "Mosby",
+                    "customer_address": "#15 customer address test",
+                    "customer_mobile": "2055306266",
+                    "date_of_birth": "1999-08-19",
+                    "customer_ssn": "123456789",
+                    "dl_number": "DL-4345555",
+                    "zipcode": "14056",
+                    "service_array": [
+                      {
+                        "service": "Dental Fee",
+                        "price": 900
+                      },
+                      {
+                        "service": "General Fee",
+                        "price": 100
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "parameters": [],
+        "tags": [
+          "Payment"
+        ]
+      },
+      "parameters": []
+    },
+    "/payment/receiveDetailsPaymentProcess": {
+      "post": {
+        "summary": "Provide customer details for the Payment",
+        "operationId": "post-receive-details",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "finance_token": {
+                          "type": "string"
+                        },
+                        "full_amount": {
+                          "type": "object",
+                          "properties": {
+                            "total": {
+                              "type": "number"
+                            },
+                            "to_pay_now": {
+                              "type": "object",
+                              "description": "Amount to pay now details.",
+                              "properties": {
+                                "total": {
+                                  "type": "number",
+                                  "description": "Total amount to pay now."
+                                },
+                                "breakdown": {
+                                  "type": "object",
+                                  "description": "Breakdown of amount.",
+                                  "properties": {
+                                    "denefits_enrollment_fee": {
+                                      "type": "number",
+                                      "description": "Flat contract creation fee."
+                                    },
+                                    "upfront_payment": {
+                                      "type": "object",
+                                      "description": "Upfront payment details.",
+                                      "properties": {
+                                        "total": {
+                                          "type": "number",
+                                          "description": "Total upfront payment."
+                                        },
+                                        "breakdown": {
+                                          "type": "object",
+                                          "description": "Breakdown of upfront payment.",
+                                          "properties": {
+                                            "amount": {
+                                              "type": "number",
+                                              "description": "Upfront amount."
+                                            },
+                                            "transaction_fee": {
+                                              "type": "number",
+                                              "description": "Upfront transaction fee."
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "livemode": {
+                          "type": "boolean",
+                          "description": ""
+                        },
+                        "full_amount_disabled_reason": {
+                          "type": "string",
+                          "description": "Reason for which Payment Processor has been disabled."
+                        },
+                        "payment_link": {
+                          "type": "string",
+                          "description": "Link to iframe for payment."
+                        }
+                      }
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Finance Token Created",
+                      "code": "success",
+                      "data": {
+                        "finance_token": "39d1aeb8a611cd8f9ec6fb2863ba8d48",
+                        "full_amount": {
+                          "to_pay_now": {
+                            "total": 1116.63,
+                            "breakdown": {
+                              "amount": 1100,
+                              "transaction_fee": 16.63
+                            }
+                          }
+                        },
+                        "full_amount_disabled_reason": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required field is not provided": {
+                    "value": {
+                      "message": "\"service_amount\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If authorization token is wrong": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This API collects all the details of the customer for the payment. ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "service_amount": {
+                    "type": "number",
+                    "description": "Total amount to be financed. Financed amount + Downpayment amount will be used as total service amount if customer chooses to pay now."
+                  },
+                  "customer_email": {
+                    "type": "string",
+                    "description": "Email address of the customer.",
+                    "format": "email",
+                    "example": "abc.xyz@denefits.com"
+                  },
+                  "customer_first_name": {
+                    "type": "string",
+                    "description": "First name of the customer."
+                  },
+                  "customer_last_name": {
+                    "type": "string",
+                    "description": "Last name of the customer."
+                  },
+                  "customer_mobile": {
+                    "type": "string",
+                    "description": "Mobile/Phone number of the customer."
+                  },
+                  "service_array": {
+                    "type": "array",
+                    "description": "This is an array which requires the details of the service provided with the price. This field will be required soon.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "service": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "service_amount",
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_mobile"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "service_amount": 1000,
+                    "downpayment_amount": 100,
+                    "number_of_payments": 24,
+                    "start_date": "2020-08-19",
+                    "customer_email": "ted@gmail.com",
+                    "customer_first_name": "Ted",
+                    "customer_last_name": "Mosby",
+                    "customer_address": "#15 customer address test",
+                    "customer_mobile": "2055306266",
+                    "date_of_birth": "1999-08-19",
+                    "customer_ssn": "123456789",
+                    "dl_number": "DL-4345555",
+                    "zipcode": "14056",
+                    "service_array": [
+                      {
+                        "service": "Dental Fee",
+                        "price": 900
+                      },
+                      {
+                        "service": "General Fee",
+                        "price": 100
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "parameters": [],
+        "tags": [
+          "Payment"
+        ]
+      },
+      "parameters": []
+    },
+    "/payment/receiveDetailsContract": {
+      "post": {
+        "summary": "Provide customer details for the Contract",
+        "operationId": "post-receive-details",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "finance_token": {
+                          "type": "string"
+                        },
+                        "plans": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "plan_id": {
+                                "description": "Plan's unique identification.",
+                                "type": "string"
+                              },
+                              "interest_rate": {
+                                "type": "number",
+                                "description": "Interest rate."
+                              },
+                              "number_of_payments": {
+                                "type": "integer",
+                                "description": "Duration of the contract."
+                              },
+                              "monthly_payable": {
+                                "type": "object",
+                                "description": "Monthly Payable details.",
+                                "properties": {
+                                  "total": {
+                                    "type": "number",
+                                    "description": "Total payable amount every month (Without Late Fees)"
+                                  },
+                                  "breakdown": {
+                                    "type": "object",
+                                    "description": "Breakdown of total payable amount.",
+                                    "properties": {
+                                      "amount": {
+                                        "type": "number",
+                                        "description": "Recurring amount."
+                                      },
+                                      "transaction_fee": {
+                                        "type": "number",
+                                        "description": "Transsaction Fee."
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "to_pay_now": {
+                                "type": "object",
+                                "description": "Amount to pay now details.",
+                                "properties": {
+                                  "total": {
+                                    "type": "number",
+                                    "description": "Total amount to pay now."
+                                  },
+                                  "breakdown": {
+                                    "type": "object",
+                                    "description": "Breakdown of amount.",
+                                    "properties": {
+                                      "denefits_enrollment_fee": {
+                                        "type": "number",
+                                        "description": "Flat contract creation fee."
+                                      },
+                                      "upfront_payment": {
+                                        "type": "object",
+                                        "description": "Upfront payment details.",
+                                        "properties": {
+                                          "total": {
+                                            "type": "number",
+                                            "description": "Total upfront payment."
+                                          },
+                                          "breakdown": {
+                                            "type": "object",
+                                            "description": "Breakdown of upfront payment.",
+                                            "properties": {
+                                              "amount": {
+                                                "type": "number",
+                                                "description": "Upfront amount."
+                                              },
+                                              "transaction_fee": {
+                                                "type": "number",
+                                                "description": "Upfront transaction fee."
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "livemode": {
+                          "type": "boolean",
+                          "description": ""
+                        },
+                        "plan_disabled_reason": {
+                          "type": "string",
+                          "description": "Reason for which Plans are disabled."
+                        },
+                        "payment_link": {
+                          "type": "string",
+                          "description": "Link to iframe for payment."
+                        }
+                      }
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Finance Token Created",
+                      "code": "success",
+                      "data": {
+                        "finance_token": "39d1aeb8a611cd8f9ec6fb2863ba8d48",
+                        "plan": [
+                          {
+                            "plan_id": "plan_P6509M12A1000D00",
+                            "number_of_payments": 12,
+                            "interest_rate": 16.99,
+                            "monthly_payable": {
+                              "total": 94.06,
+                              "breakdown": {
+                                "amount": 91.06,
+                                "transaction_fee": 3
+                              }
+                            },
+                            "to_pay_now": {
+                              "total": 124.06,
+                              "breakdown": {
+                                "denefits_enrollment_fee": 30,
+                                "upfront_payment": {
+                                  "total": 94.06,
+                                  "breakdown": {
+                                    "amount": 91.06,
+                                    "transaction_fee": 3
+                                  }
+                                }
+                              }
+                            },
+                            "recurring_amount": 91.06
+                          }
+                        ],
+                        "plan_disabled_reason": null,
+                        "livemode": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If required field is not provided": {
+                    "value": {
+                      "message": "\"service_amount\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "Invalid zipcode provided": {
+                    "value": {
+                      "message": "Please enter a valid zipcode",
+                      "code": "invalid_zip"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If authorization token is wrong": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This API collects all the details of the customer for the contract. ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "service_amount": {
+                    "type": "number",
+                    "description": "Total amount to be financed. Financed amount + Downpayment amount will be used as total service amount if customer chooses to pay now."
+                  },
+                  "downpayment_amount": {
+                    "type": "number",
+                    "description": "This amount will be taken as downpayment if customer makes a contract. Financed amount + Downpayment amount will be used as total service amount if customer chooses to pay now."
+                  },
+                  "number_of_payments": {
+                    "type": "number",
+                    "description": "Total number of payments option to be provided to customer for a contract.",
+                    "minimum": 12,
+                    "maximum": 48
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "description": "First payment will be deducted on this date if customer makes a contract. Format should be \"YYYY-MM-DD\". Should be a future date.",
+                    "format": "date",
+                    "example": "2020-07-01"
+                  },
+                  "customer_email": {
+                    "type": "string",
+                    "description": "Email address of the customer.",
+                    "format": "email",
+                    "example": "abc.xyz@denefits.com"
+                  },
+                  "customer_first_name": {
+                    "type": "string",
+                    "description": "First name of the customer."
+                  },
+                  "customer_last_name": {
+                    "type": "string",
+                    "description": "Last name of the customer."
+                  },
+                  "customer_address": {
+                    "type": "string",
+                    "description": "Street address of the customer."
+                  },
+                  "customer_mobile": {
+                    "type": "string",
+                    "description": "Mobile/Phone number of the customer."
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "description": "Date of birth of the customer. Format should be \"YYYY-MM-DD\".",
+                    "format": "date",
+                    "example": "1990-01-18"
+                  },
+                  "zipcode": {
+                    "type": "string",
+                    "description": "U.S. zipcode of the customer.",
+                    "example": "90210",
+                    "minLength": 5,
+                    "maxLength": 5
+                  },
+                  "service_array": {
+                    "type": "array",
+                    "description": "This is an array which requires the details of the service provided with the price. This field will be required soon.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "service": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "service_amount",
+                  "downpayment_amount",
+                  "number_of_payments",
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_address",
+                  "customer_mobile",
+                  "date_of_birth",
+                  "zipcode"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "service_amount": 1000,
+                    "downpayment_amount": 100,
+                    "number_of_payments": 24,
+                    "start_date": "2020-08-19",
+                    "customer_email": "ted@gmail.com",
+                    "customer_first_name": "Ted",
+                    "customer_last_name": "Mosby",
+                    "customer_address": "#15 customer address test",
+                    "customer_mobile": "2055306266",
+                    "date_of_birth": "1999-08-19",
+                    "customer_ssn": "123456789",
+                    "dl_number": "DL-4345555",
+                    "zipcode": "14056",
+                    "service_array": [
+                      {
+                        "service": "Dental Fee",
+                        "price": 900
+                      },
+                      {
+                        "service": "General Fee",
+                        "price": 100
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "parameters": [],
+        "tags": [
+          "Payment"
+        ]
+      },
+      "parameters": []
     }
   },
   "components": {
@@ -6084,6 +7132,9 @@
     },
     {
       "name": "3D Secure Payment"
+    },
+    {
+      "name": "Payment"
     }
   ],
   "security": [
