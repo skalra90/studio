@@ -4956,7 +4956,7 @@
         "tags": [
           "Claim Process"
         ],
-        "description": "To claim a contract payment",
+        "description": "Once the claim form is submitted then only we can claim the payment. We can only claim the missing payments for which can_be_claimed is 1 in List of missing payment of the contract API. After a claim request is submitted then we need to wait for the Admin to approve it or if some document(s) is required for the same.\n\ncontract_id which we used in the List of missing payment of the contract API and in the response of this API we will get the missing_payment_id whose can_be_claimed=1 we can use.\n\nOnce the payment is claimed we need to wait until it gets approved. We can get the current status of the payment claimed from the Contract claim details API. ",
         "parameters": [],
         "requestBody": {
           "content": {
