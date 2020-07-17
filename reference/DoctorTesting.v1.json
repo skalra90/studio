@@ -6053,7 +6053,7 @@
     "/payment/receiveDetailsV2": {
       "post": {
         "summary": "Provide customer details for the Payment/Contract",
-        "operationId": "post-receive-details",
+        "operationId": "post-receive-details_v2",
         "responses": {
           "200": {
             "description": "OK",
@@ -6479,7 +6479,7 @@
     "/payment/receiveDetailsPaymentProcess": {
       "post": {
         "summary": "Provide customer details for the Payment",
-        "operationId": "post-receive-details",
+        "operationId": "post-receive-details_pp",
         "responses": {
           "200": {
             "description": "OK",
@@ -6740,7 +6740,7 @@
     "/payment/receiveDetailsContract": {
       "post": {
         "summary": "Provide customer details for the Contract",
-        "operationId": "post-receive-details",
+        "operationId": "post-receive-details_con",
         "responses": {
           "200": {
             "description": "OK",
