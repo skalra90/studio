@@ -6050,7 +6050,7 @@
       },
       "parameters": []
     },
-    "/payment/receiveDetailsV2": {
+    "/payment/receiveDetailsV3": {
       "post": {
         "summary": "Provide customer details for the Payment/Contract",
         "operationId": "post-receive-details_v2",
