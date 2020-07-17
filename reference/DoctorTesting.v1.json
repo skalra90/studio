@@ -6449,8 +6449,6 @@
                     "customer_address": "#15 customer address test",
                     "customer_mobile": "2055306266",
                     "date_of_birth": "1999-08-19",
-                    "customer_ssn": "123456789",
-                    "dl_number": "DL-4345555",
                     "zipcode": "14056",
                     "service_array": [
                       {
@@ -6701,18 +6699,10 @@
                 "Example": {
                   "value": {
                     "service_amount": 1000,
-                    "downpayment_amount": 100,
-                    "number_of_payments": 24,
-                    "start_date": "2020-08-19",
                     "customer_email": "ted@gmail.com",
                     "customer_first_name": "Ted",
                     "customer_last_name": "Mosby",
-                    "customer_address": "#15 customer address test",
                     "customer_mobile": "2055306266",
-                    "date_of_birth": "1999-08-19",
-                    "customer_ssn": "123456789",
-                    "dl_number": "DL-4345555",
-                    "zipcode": "14056",
                     "service_array": [
                       {
                         "service": "Dental Fee",
@@ -7071,8 +7061,6 @@
                     "customer_address": "#15 customer address test",
                     "customer_mobile": "2055306266",
                     "date_of_birth": "1999-08-19",
-                    "customer_ssn": "123456789",
-                    "dl_number": "DL-4345555",
                     "zipcode": "14056",
                     "service_array": [
                       {
