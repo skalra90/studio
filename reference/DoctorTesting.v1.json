@@ -6580,7 +6580,9 @@
                       "message": "Finance Token Created",
                       "code": "success",
                       "data": {
-                        "finance_token": "39d1aeb8a611cd8f9ec6fb2863ba8d48",
+                        "payment_link": "https://endpoint.denefits.com/iframe/finance_test_v2?token=ddc5de057b6ecc0bf7b6805da0f****",
+                        "finance_token": "ddc5de057b6ecc0bf7b6805da*****",
+                        "livemode": false,
                         "full_amount": {
                           "to_pay_now": {
                             "total": 1116.63,
@@ -6869,7 +6871,9 @@
                       "message": "Finance Token Created",
                       "code": "success",
                       "data": {
-                        "finance_token": "39d1aeb8a611cd8f9ec6fb2863ba8d48",
+                        "payment_link": "https://endpoint.denefits.com/iframe/finance_test?token=3438c223eabd1c1c75a866*******",
+                        "finance_token": "3438c223eabd1c1c75a8665******",
+                        "livemode": false,
                         "plan": [
                           {
                             "plan_id": "plan_P5588M24A900D00F100D00",
@@ -6904,8 +6908,7 @@
                             }
                           }
                         ],
-                        "plan_disabled_reason": null,
-                        "livemode": false
+                        "plan_disabled_reason": null
                       }
                     }
                   }
