@@ -6482,7 +6482,7 @@
       },
       "parameters": []
     },
-    "/payment/receiveDetailsPaymentProcess": {
+    "/payment_process/receiveDetails": {
       "post": {
         "summary": "Provide customer details for the Payment",
         "operationId": "post-receive-details_pp",
@@ -6737,7 +6737,7 @@
       },
       "parameters": []
     },
-    "/payment/receiveDetailsContract": {
+    "/payment_plan/receiveDetails": {
       "post": {
         "summary": "Provide customer details for the Contract",
         "operationId": "post-receive-details_con",
