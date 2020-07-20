@@ -6240,46 +6240,54 @@
                       "message": "Finance Token Created",
                       "code": "success",
                       "data": {
-                        "finance_token": "39d1aeb8a611cd8f9ec6fb2863ba8d48",
+                        "payment_link": "https://endpoint.denefits.com/iframe/finance_test?token=3438c223eabd1c1c75a866*******",
+                        "finance_token": "3438c223eabd1c1c75a8665******",
+                        "livemode": false,
                         "plan": [
                           {
-                            "plan_id": "plan_P6509M12A1000D00",
-                            "number_of_payments": 12,
-                            "interest_rate": 16.99,
+                            "plan_id": "plan_P5588M24A900D00F100D00",
+                            "number_of_payments": 24,
+                            "interest_rate": 15.99,
                             "monthly_payable": {
-                              "total": 94.06,
+                              "total": 52.46,
                               "breakdown": {
-                                "amount": 91.06,
+                                "amount": 49.46,
                                 "transaction_fee": 3
                               }
                             },
                             "to_pay_now": {
-                              "total": 124.06,
+                              "total": 185.46,
                               "breakdown": {
                                 "denefits_enrollment_fee": 30,
-                                "upfront_payment": {
-                                  "total": 94.06,
+                                "downpayment_amount": {
+                                  "total": 103,
                                   "breakdown": {
-                                    "amount": 91.06,
+                                    "amount": 100,
+                                    "transaction_fee": 3
+                                  }
+                                },
+                                "upfront_payment": {
+                                  "total": 52.46,
+                                  "breakdown": {
+                                    "amount": 49.46,
                                     "transaction_fee": 3
                                   }
                                 }
                               }
-                            },
-                            "recurring_amount": 91.06
+                            }
                           }
                         ],
                         "plan_disabled_reason": null,
+                        "full_amount_disabled_reason": null,
                         "full_amount": {
                           "to_pay_now": {
-                            "total": 1116.63,
+                            "total": 1015.13,
                             "breakdown": {
-                              "amount": 1100,
-                              "transaction_fee": 16.63
+                              "amount": 1000,
+                              "transaction_fee": 15.13
                             }
                           }
-                        },
-                        "full_amount_disabled_reason": null
+                        }
                       }
                     }
                   }
@@ -6864,30 +6872,36 @@
                         "finance_token": "39d1aeb8a611cd8f9ec6fb2863ba8d48",
                         "plan": [
                           {
-                            "plan_id": "plan_P6509M12A1000D00",
-                            "number_of_payments": 12,
-                            "interest_rate": 16.99,
+                            "plan_id": "plan_P5588M24A900D00F100D00",
+                            "number_of_payments": 24,
+                            "interest_rate": 15.99,
                             "monthly_payable": {
-                              "total": 94.06,
+                              "total": 52.46,
                               "breakdown": {
-                                "amount": 91.06,
+                                "amount": 49.46,
                                 "transaction_fee": 3
                               }
                             },
                             "to_pay_now": {
-                              "total": 124.06,
+                              "total": 185.46,
                               "breakdown": {
                                 "denefits_enrollment_fee": 30,
-                                "upfront_payment": {
-                                  "total": 94.06,
+                                "downpayment_amount": {
+                                  "total": 103,
                                   "breakdown": {
-                                    "amount": 91.06,
+                                    "amount": 100,
+                                    "transaction_fee": 3
+                                  }
+                                },
+                                "upfront_payment": {
+                                  "total": 52.46,
+                                  "breakdown": {
+                                    "amount": 49.46,
                                     "transaction_fee": 3
                                   }
                                 }
                               }
-                            },
-                            "recurring_amount": 91.06
+                            }
                           }
                         ],
                         "plan_disabled_reason": null,
