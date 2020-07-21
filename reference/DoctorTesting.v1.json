@@ -6975,7 +6975,7 @@
             }
           }
         },
-        "description": "This API collects all the details of the customer for the contract. ",
+        "description": "We have created our account and now we want to finance a customer. To finance a customer we need to create a contract. This API will be used for providing the details to be used in creating a contract. \n\nIn response we will get a payment_link which will be used for the payment. We need to open the payment_link in a browser where we will get the option to pay.\n\n    For payment we can use the Testing cards:\n    4242424242424242\tValid Thru: 12/25      Any 3 digits(CVV) - Successful payment\n    4000000000000341    Valid Thru: 12/25     Any 3 digits(CVV) - Attempt to charge will fail\n\nWe can verify that a contract is created or not from the List of contracts of a provider API.\n",
         "requestBody": {
           "content": {
             "application/json": {
