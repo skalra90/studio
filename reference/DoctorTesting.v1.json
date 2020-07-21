@@ -6451,7 +6451,7 @@
                     "downpayment_amount": 100,
                     "number_of_payments": 24,
                     "start_date": "2020-08-19",
-                    "customer_email": "ted@gmail.com",
+                    "customer_email": "example@domain.com",
                     "customer_first_name": "Ted",
                     "customer_last_name": "Mosby",
                     "customer_address": "#15 customer address test",
@@ -6709,7 +6709,7 @@
                 "Example": {
                   "value": {
                     "service_amount": 1000,
-                    "customer_email": "ted@gmail.com",
+                    "customer_email": "example@domain.com",
                     "customer_first_name": "Ted",
                     "customer_last_name": "Mosby",
                     "customer_mobile": "2055306266",
@@ -7072,7 +7072,7 @@
                     "downpayment_amount": 100,
                     "number_of_payments": 24,
                     "start_date": "2020-08-19",
-                    "customer_email": "ted@gmail.com",
+                    "customer_email": "example@domain.com",
                     "customer_first_name": "Ted",
                     "customer_last_name": "Mosby",
                     "customer_address": "#15 customer address test",
