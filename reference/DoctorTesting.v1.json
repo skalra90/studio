@@ -6241,7 +6241,7 @@
                       "code": "success",
                       "data": {
                         "payment_link": "https://endpoint.denefits.com/iframe/finance_test?token=3438c223eabd1c1c75a866*******",
-                        "finance_token": "3438c223eabd1c1c75a8665******",
+                        "finance_token": "3438c223eabd1c1c75a866*******",
                         "livemode": false,
                         "plan": [
                           {
