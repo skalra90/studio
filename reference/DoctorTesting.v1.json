@@ -6354,7 +6354,7 @@
             }
           }
         },
-        "description": "In this API, we are clubbing Payment Processing and Contract generation APIs this means we can use this single API to either Pay full Amount (Payment Processing) or Pay Per Month (Finance a customer). We will provider the customer details along with the details required to finance a customer like service amount, down payment, number of payments, etc.\n\nIn response we will get the payment_link which will be used for the payment. We need to open the payment_link in a browser where we will get the option to pay. If a customer wants to pay now then we have the option to Pay Full Now and if he wants to finance then we can select another option Pay Per Month. \n\n    For payment we can use the Testing cards:\n    4000002500003155\tValid Thru: 12/25     Any 3 digits(CVV) - 3D secure card\n    4000000000000341\tValid Thru: 12/25     Any 3 digits(CVV) - Attempt to charge will fail",
+        "description": "In this API, we are clubbing Payment Processing and Contract generation APIs this means we can use this single API to either Pay full Amount (Payment Processing) or Pay Per Month (Finance a customer). We will provider the customer details along with the details required to finance a customer like service amount, down payment, number of payments, etc.\n\nIn response we will get the payment_link which will be used for the payment. We need to open the payment_link in a browser where we will get the option to pay. If a customer wants to pay now then we have the option to Pay Full Now and if he wants to finance then we can select another option Pay Per Month.\n\n    For payment we can use the Testing cards:\n    4000002500003155    Valid Thru: 12/25     Any 3 digits(CVV) - 3D secure card\n    4242424242424242\tValid Thru: 12/25      Any 3 digits(CVV) - Successful payment\n    4000000000000341    Valid Thru: 12/25     Any 3 digits(CVV) - Attempt to charge will fail",
         "requestBody": {
           "content": {
             "application/json": {
@@ -6653,7 +6653,7 @@
             }
           }
         },
-        "description": "This API collects all the details of the customer for the payment. ",
+        "description": "We have a customer who wants to pay full amount now then we will use this API. Just enter the customer details and amount. \n\nIn response we will get a payment_link which will be used for the payment. We need to open the payment_link in a browser where we will get the option to pay.\n\n    For payment we can use the Testing cards:\n    4000002500003155    Valid Thru: 12/25     Any 3 digits(CVV) - 3D secure card\n    4000000000000341    Valid Thru: 12/25     Any 3 digits(CVV) - Attempt to charge will fail \n\nOnce the payment has been done and we can verify in the List of Payments of a provider API.",
         "requestBody": {
           "content": {
             "application/json": {
