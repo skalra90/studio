@@ -2352,7 +2352,7 @@
                   },
                   "If service amount/downpayment amount is incorrect": {
                     "value": {
-                      "message": "Finance amount (Service amount - downpayment) must be between $300 and $20000 ",
+                      "message": "Finance amount (Service amount - down payment) must be between $300 and $20000 ",
                       "code": "request_failed"
                     }
                   }
@@ -2415,7 +2415,7 @@
             },
             "in": "query",
             "name": "downpayment_amount",
-            "description": "Downpayment amount"
+            "description": "Down payment amount"
           }
         ]
       }
@@ -6363,11 +6363,11 @@
                 "properties": {
                   "service_amount": {
                     "type": "number",
-                    "description": "Total amount to be financed. Financed amount + Downpayment amount will be used as total service amount if customer chooses to pay now."
+                    "description": "Total amount to be financed. Financed amount + Down payment amount will be used as total service amount if customer chooses to pay now."
                   },
                   "downpayment_amount": {
                     "type": "number",
-                    "description": "This amount will be taken as downpayment if customer makes a contract. Financed amount + Downpayment amount will be used as total service amount if customer chooses to pay now."
+                    "description": "This amount will be taken as down payment if customer makes a contract. Financed amount + Down payment amount will be used as total service amount if customer chooses to pay now."
                   },
                   "number_of_payments": {
                     "type": "number",
@@ -6662,7 +6662,7 @@
                 "properties": {
                   "service_amount": {
                     "type": "number",
-                    "description": "Total amount to be financed. Financed amount + Downpayment amount will be used as total service amount if customer chooses to pay now."
+                    "description": "Total amount to be financed. Financed amount + Down payment amount will be used as total service amount if customer chooses to pay now."
                   },
                   "customer_email": {
                     "type": "string",
@@ -6984,11 +6984,11 @@
                 "properties": {
                   "service_amount": {
                     "type": "number",
-                    "description": "Total amount to be financed. Financed amount + Downpayment amount will be used as total service amount if customer chooses to pay now."
+                    "description": "Total amount to be financed. Financed amount + Down payment amount will be used as total service amount if customer chooses to pay now."
                   },
                   "downpayment_amount": {
                     "type": "number",
-                    "description": "This amount will be taken as downpayment if customer makes a contract. Financed amount + Downpayment amount will be used as total service amount if customer chooses to pay now."
+                    "description": "This amount will be taken as down payment if customer makes a contract. Financed amount + Down payment amount will be used as total service amount if customer chooses to pay now."
                   },
                   "number_of_payments": {
                     "type": "number",
