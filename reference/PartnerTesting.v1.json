@@ -7893,17 +7893,41 @@
                     "data": {
                       "type": "object",
                       "properties": {
-                        "payment_id": {
+                        "payment_link": {
                           "type": "number"
                         },
-                        "payment_code": {
+                        "finance_token": {
                           "type": "string"
                         },
-                        "payment_token": {
+                        "livemode": {
                           "type": "string"
                         },
-                        "payment_link": {
+                        "full_amount_disabled_reason": {
                           "type": "string"
+                        },
+                        "full_amount": {
+                          "type": "object",
+                          "properties": {
+                            "to_pay_now": {
+                              "type": "object",
+                              "properties": {
+                                "total": {
+                                  "type": "string"
+                                },
+                                "breakdown": {
+                                  "type": "object",
+                                  "properties": {
+                                    "amount": {
+                                      "type": "string"
+                                    },
+                                    "transaction_fee": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -7912,13 +7936,22 @@
                 "examples": {
                   "Success": {
                     "value": {
-                      "message": "Request executed successfully",
+                      "message": "Finance Token Created",
                       "code": "success",
                       "data": {
-                        "payment_id": 6188,
-                        "payment_code": "IDWEO*****",
-                        "payment_token": "6d75db255f60c7724******",
-                        "payment_link": "https://endpoint.denefits.com/iframe/3d_secure?payment_token=6d75****"
+                        "payment_link": "https://endpoint.denefits.com/iframe/finance_test?token=ab7c2c713067df7925b0236553a1a4d2",
+                        "finance_token": "ab7c2c713067df7925b0236553a1a4d2",
+                        "livemode": false,
+                        "full_amount_disabled_reason": null,
+                        "full_amount": {
+                          "to_pay_now": {
+                            "total": 1015.13,
+                            "breakdown": {
+                              "amount": 1000,
+                              "transaction_fee": 15.13
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -7940,30 +7973,60 @@
                   "provider_id": {
                     "type": "string"
                   },
-                  "amount": {
+                  "service_amount": {
                     "type": "number"
                   },
-                  "reason": {
+                  "customer_email": {
                     "type": "string"
                   },
-                  "name": {
+                  "customer_first_name": {
                     "type": "string"
+                  },
+                  "customer_last_name": {
+                    "type": "string"
+                  },
+                  "customer_mobile": {
+                    "type": "string"
+                  },
+                  "service_array": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "service": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      }
+                    }
                   }
                 },
                 "required": [
-                  "provider_id",
-                  "amount",
-                  "reason",
-                  "name"
+                  "service_amount",
+                  "customer_email",
+                  "customer_first_name"
                 ]
               },
               "examples": {
                 "example": {
                   "value": {
-                    "provider_id": "pr_af1c4a82e1c6c61476************",
-                    "amount": 500,
-                    "reason": "test payment",
-                    "name": "John Millers"
+                    "service_amount": 1000,
+                    "customer_email": "example@domain.com",
+                    "customer_first_name": "Ted",
+                    "customer_last_name": "Mosby",
+                    "customer_mobile": "2055306266",
+                    "service_array": [
+                      {
+                        "service": "Dental Fee",
+                        "price": 900
+                      },
+                      {
+                        "service": "General Fee",
+                        "price": 100
+                      }
+                    ]
                   }
                 }
               }
