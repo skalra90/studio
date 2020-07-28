@@ -6992,6 +6992,167 @@
         ]
       },
       "parameters": []
+    },
+    "/provider/payment/pay_3d": {
+      "post": {
+        "summary": "Get 3D secure payment client ID",
+        "operationId": "post-provider-payment-pay_3d",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "payment_link": {
+                          "type": "number"
+                        },
+                        "finance_token": {
+                          "type": "string"
+                        },
+                        "livemode": {
+                          "type": "string"
+                        },
+                        "full_amount_disabled_reason": {
+                          "type": "string"
+                        },
+                        "full_amount": {
+                          "type": "object",
+                          "properties": {
+                            "to_pay_now": {
+                              "type": "object",
+                              "properties": {
+                                "total": {
+                                  "type": "string"
+                                },
+                                "breakdown": {
+                                  "type": "object",
+                                  "properties": {
+                                    "amount": {
+                                      "type": "string"
+                                    },
+                                    "transaction_fee": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Finance Token Created",
+                      "code": "success",
+                      "data": {
+                        "payment_link": "https://endpoint.denefits.com/iframe/finance_test?token=ab7c2c713067df7925b0236553a1a4d2",
+                        "finance_token": "ab7c2c713067df7925b0236553a1a4d2",
+                        "livemode": false,
+                        "full_amount_disabled_reason": null,
+                        "full_amount": {
+                          "to_pay_now": {
+                            "total": 1015.13,
+                            "breakdown": {
+                              "amount": 1000,
+                              "transaction_fee": 15.13
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "3D Secure Payment"
+        ],
+        "description": "Get 3D secure payment client ID to make payment",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "service_amount": {
+                    "type": "number"
+                  },
+                  "customer_email": {
+                    "type": "string"
+                  },
+                  "customer_first_name": {
+                    "type": "string"
+                  },
+                  "customer_last_name": {
+                    "type": "string"
+                  },
+                  "customer_mobile": {
+                    "type": "string"
+                  },
+                  "service_array": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "service": {
+                          "type": "string"
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "service_amount",
+                  "customer_email",
+                  "customer_first_name"
+                ]
+              },
+              "examples": {
+                "example": {
+                  "value": {
+                    "service_amount": 1000,
+                    "customer_email": "example@domain.com",
+                    "customer_first_name": "Ted",
+                    "customer_last_name": "Mosby",
+                    "customer_mobile": "2055306266",
+                    "service_array": [
+                      {
+                        "service": "Dental Fee",
+                        "price": 900
+                      },
+                      {
+                        "service": "General Fee",
+                        "price": 100
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      }
     }
   },
   "components": {
