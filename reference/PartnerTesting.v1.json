@@ -8012,6 +8012,7 @@
               "examples": {
                 "example": {
                   "value": {
+                    "provider_id": "pr_1deb6bdf9510603b2c9****faeea18",
                     "service_amount": 1000,
                     "customer_email": "example@domain.com",
                     "customer_first_name": "Ted",
