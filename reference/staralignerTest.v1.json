@@ -1281,7 +1281,7 @@
             }
           }
         },
-        "description": "Returns file_id which can be used in further API's",
+        "description": "We need this API to upload a file which results in a file_id. This file_id is required while adding the bank account of a provider in Add Provider’s bank account API keys - “front_file” and “back_file”. For each different file_id would be required. Similary we require file_id in claims APIs - Submit claim form and Upload extra documents to claim contract.\n\n    Choose the file to upload and enter the purpose. The possible values for purpose are –   \n  \n    ●  bank_document – Upload file related to the bank.          \n    ●  denefits_file – Upload file related to Denefits.          \n    ●  claim_document – Upload the file related to claims.\n\n",
         "parameters": [],
         "requestBody": {
           "content": {
@@ -1459,7 +1459,7 @@
           }
         },
         "operationId": "get-provider-payout-list",
-        "description": "Get listing of all payouts of this account",
+        "description": "Get a list of the payouts already paid to the provider using this API. \n\nThis API returns payout_id also that would be required in the Provider Payout details API.",
         "parameters": [
           {
             "schema": {
@@ -1643,7 +1643,7 @@
           }
         },
         "operationId": "get-provider-payout-detail",
-        "description": "Get details of the payouts by payout ID",
+        "description": "In Provider Payout list API we got the list of payouts but if we want to see the details of a particular payout then we will use this API. The response of this API will give us the details on whether the payout is from the contract or Payment Process or Accounts Receivable. \n\nWe will get the payout_id from the Provider payout list API to see the details of that particular payout paid to the provider.",
         "parameters": [
           {
             "schema": {
@@ -2457,7 +2457,7 @@
           }
         },
         "operationId": "get-provider-reports-payout",
-        "description": "Get report of all the payout of this account",
+        "description": "In this API we will get the report of all the payouts which are already paid to the provider whether it is from the Contract or Payment Processor or Accounts Receivable.",
         "parameters": [
           {
             "schema": {
@@ -2670,7 +2670,7 @@
           }
         },
         "operationId": "get-provider-upcoming_payment",
-        "description": "Returns the list of upcoming payments",
+        "description": "This API gives us the list of payments which will be done in near future.",
         "parameters": [
           {
             "schema": {
@@ -2825,7 +2825,7 @@
           }
         },
         "operationId": "get-provider-payment-detail",
-        "description": "It returns the payment detail with payment ID",
+        "description": "In this API we gets the details of the payment already done. \n\nWe need to provide the payment_id which we can get from the List of payments of a provider API.\n\nIn the response we will get payment_receipt link to download the receipt.",
         "parameters": [
           {
             "schema": {
@@ -2838,7 +2838,7 @@
         ]
       }
     },
-    "/provider/payment/list": {
+   "/provider/payment/list": {
       "get": {
         "summary": "List of Payments of a provider",
         "tags": [
@@ -2974,7 +2974,7 @@
           }
         },
         "operationId": "get-provider-payment-list",
-        "description": "It returns the details of the payments processed in the provider's account",
+        "description": "In this API we could get the details of the payment already done. \n\nThere are 2 filters - search and payment_status\n\npayment_status could be one of the following values-\n\n    pending - payment is requested from the customer but it is still in pending state.\n    successful - payment is done from the customer end.\n    failed - attempt was made to pay but due to some reason payment failed.\n    reversed - payment was done by the customer but due to some reason payment was reversed/returned.\n\nIn the response we have payment_receipt, it is the link to download the receipt.",
         "parameters": [
           {
             "schema": {
@@ -2989,11 +2989,33 @@
             },
             "in": "query",
             "name": "skip"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "search_string",
+            "description": "Search by payment ID, name, email or phone number"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "successful",
+                "failed",
+                "reversed"
+              ]
+            },
+            "in": "query",
+            "name": "payment_status",
+            "description": "Valid payment_status are \"pending\",\"successful\", \"failed\", \"reversed\""
           }
         ]
       }
     },
-    "/provider/payment/pay": {
+   "/provider/payment/pay": {
       "post": {
         "summary": "Payment Processing",
         "operationId": "post-provider-payment-pay",
@@ -3092,7 +3114,7 @@
             }
           }
         },
-        "description": "This can be used to process a payment for the service.",
+        "description": "This API is used to process a payment for the service taken by the customer.\n\nWe can get the card_token from the Card Integration API respectively.\n\nIn response we will get a payment_id for the payment done.",
         "tags": [
           "Provider Payment"
         ],
@@ -3321,7 +3343,7 @@
                   },
                   "If service amount/downpayment amount is incorrect": {
                     "value": {
-                      "message": "Finance amount (Service amount - downpayment) must be between $300 and $20000 ",
+                      "message": "Finance amount (Service amount - down payment) must be between $300 and $20000 ",
                       "code": "request_failed"
                     }
                   }
@@ -3357,7 +3379,7 @@
           }
         },
         "operationId": "get-provider-contract-plans",
-        "description": "Returns plans for creating a contract.",
+        "description": "To create a contract we need to start with this API. It will list all the possible plans and we can select the one from it. but if month was defined then we will get the plan for that particular month. \n\nWe will get plan_id(s) in response which will be required in Select a plan API.",
         "parameters": [
           {
             "schema": {
@@ -3384,7 +3406,7 @@
             },
             "in": "query",
             "name": "downpayment_amount",
-            "description": "Downpayment amount"
+            "description": "Down payment amount"
           }
         ]
       }
@@ -3489,7 +3511,7 @@
           }
         },
         "operationId": "get-provider-bank",
-        "description": "Returns provider's bank details.",
+        "description": "Returns provider's bank details. If provider's bank is already added then this API will show the details of the bank otherwise it will show a message that no bank is added for this provider. ",
         "parameters": []
       },
       "post": {
@@ -3609,7 +3631,7 @@
         "tags": [
           "Providers"
         ],
-        "description": "Add provider's bank account which will be used to receive the payouts\n\nIf bank token is created with \"individual\" account type then send `ssn_number`, `date_of_birth`, `front_file`, `back_file`\n\nIf bank token is created with \"company\" account type then send `business_tax_id`",
+        "description": "For a newly created provider we need to add a bank account details to get access to other payment related APIs.\n We require a bank_token which we will get from Create bank token API. \n\nBased on the account type we selected in Create bank token API, we have to define the parameters in this API.\n\n  In case provider's account type is \"individual\" then we have to define following additional parameters- \n\n    ●  ssn_number - mandatory.          \n    ●  date_of_birth – mandatory.          \n    ●  front_file – optional.\n    ●  back_file – optional but mandatory if front_file is defined.    \n    \n  In case provider's account type is \"company\" then we have to define following parameter- \n\n    ●  business_tax_id - mandatory.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3654,7 +3676,7 @@
               "examples": {
                 "Company account example": {
                   "value": {
-                    "business_email": "john@gmail.com",
+                    "business_email": "example@domain.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
                     "business_address": "#34 street",
@@ -3665,7 +3687,7 @@
                 },
                 "Individual Account Example": {
                   "value": {
-                    "business_email": "Example@domain.com",
+                    "business_email": "example@domain.com",
                     "business_name": "John dentals",
                     "business_phone": "1234567890",
                     "business_address": "#34 street",
@@ -3788,7 +3810,7 @@
             }
           }
         },
-        "description": "Select a Plan and provide customer details.",
+        "description": "In this API we will be selecting the plan and providing the customer’s details.\n\nWe will use the plan_id which we got from the response of the List of plan API.\nstart_date will be the date from when we want the contract to start (first recurring amount payment date).\nservice_array is the breakdown of the services taken by the customer and it is optional.\n\nIn the response we will get the finance_token which will be used in Pay for Contract API.",
         "tags": [
           "Contract Generation Process"
         ],
@@ -3833,7 +3855,7 @@
                   },
                   "service_array": {
                     "type": "array",
-                    "description": "This is an array which requires the details of the service provided with the price. This field will be required after 1st July 2020",
+                    "description": "This is an array which requires the details of the service provided with the price. This field will be required after 1st July 2020.",
                     "items": {
                       "type": "object",
                       "properties": {
@@ -3986,7 +4008,7 @@
             }
           }
         },
-        "description": "Pay for contract using finance token and card token.",
+        "description": "We will be making the payment for the contract using this API. For this we need finance_token and card_token. finance_token we got from Select a Plan API and for card_token we have to go to Card Integration API and in that API’s response we will get card_token.\n\nIn response we will get the contract_id and contract_code. contract_id will be used in Contract details API.",
         "tags": [
           "Contract Generation Process"
         ],
@@ -4410,7 +4432,7 @@
           }
         },
         "operationId": "get-provider-contract-detail",
-        "description": "Get contract details with ID",
+        "description": "We can get the details of the contract along with the payments with share to the partner and provider from this API.\n\nWe need to provide the contract_id if we have the contract id for that provider then we will use that otherwise we can get the contracts list from the List of contracts of a provider API.",
         "parameters": [
           {
             "schema": {
@@ -4590,7 +4612,7 @@
           }
         },
         "operationId": "get-provider-contract-list",
-        "description": "Get listing of all contracts of this account",
+        "description": "We will get the list of all the contracts which were created by the provider.",
         "parameters": [
           {
             "schema": {
@@ -4713,15 +4735,6 @@
                     }
                   }
                 }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                },
-                "examples": {
-                  "example-1": {}
-                }
               }
             }
           },
@@ -4753,7 +4766,7 @@
           }
         },
         "operationId": "get-payment-bank_token",
-        "description": "Returns the bank_token which is used in /provider/bank(post) API while adding bank account.",
+        "description": "To add a bank account for a provider we have to create a bank token which in return will give us a bank_token which will be required in the Add Provider's bank account API\n\nNow there would be 2 types of accounts – Individual and Company. If we are adding bank details for Individual then we have to select individual from dropdown list next to account_type and in case we are adding bank details for Company then we have to select company.\n\n    For testing purpose we can use following details-\n\n    account_number: 000123456789\n    rounting_number: 110000000\n",
         "parameters": [
           {
             "schema": {
@@ -4853,7 +4866,7 @@
         },
         "operationId": "get-provider-profile",
         "parameters": [],
-        "description": "Return the profile data of the provider."
+        "description": "Provider can get the profile details by using this API. We will get the provider's and its business information and whether payment is enabled or not and based on it provider can move forward to payment related APIs."
       }
     },
     "/provider/search_global": {
@@ -4942,7 +4955,7 @@
           }
         },
         "operationId": "get-partner-search_global",
-        "description": "This API is used to seach in contract, or payment",
+        "description": "This API is used to search globally among all Contracts and Payments.\n\nBased on the search_string and search_type response will be displayed. In case search_type is 1 then search will be on Contracts otherwise on Payments.",
         "parameters": [
           {
             "schema": {
@@ -5087,7 +5100,7 @@
             "required": true
           }
         ],
-        "description": "To check the change payment date amount.\nLate fees will be added in amount if contract is in overdue state.\nChoose date upto 3 months from tomorrow."
+        "description": "When a provider financed a customer and a contract is created then we have an option to change the recurring date. We will get the amount for changing the date using this API. In case the contract was in overdue state then late fees would also be included in the total amount. \n\nWe need a contract_id which we can get from List of contracts API. We can select the new_recurring_date upto 90 from tomorrow.\n\nWe will get change_date_token in response which we will require in the Change recurring date of contract API.\n"
       }
     },
     "/provider/contract/change_recurring_date": {
@@ -5197,7 +5210,7 @@
             }
           }
         },
-        "description": "To change the payment date.",
+        "description": "As we are working on changing the recurring date this is the next API which will actually change the recurring date. In the previous API we got the amount for changing the recurring date.\n\nWe will use the same contract_id which we used in Get recurring date change amount API and from the response of this API we will get the change_date_token.\n\nIf there is some amount which we have to pay for the change in contract’s recurring date then define the payment_from. payment_from could be from one of the below mentioned values-\n\n    1 - means that the customer is going to pay it using his/her card.\n    2 - means that provider is going to pay using his/her card for the change in recurring date.\n    3 - means that provider is going to pay using his/her provider’s Denefits account. In this case we need not to define the card_token.\n\ncard_token we can get from the Card Integration API.\n    \nIn case there is no amount to pay for changing the recurring date then we need not to define the payment_from and card_token.\n\nWe can verify that the recuring date is changed for the contract in Contract details API response next_recurring_date for this contract.",
         "tags": [
           "Provider Contract"
         ],
@@ -5241,7 +5254,7 @@
               }
             }
           },
-          "description": "payment_from is required only if payable amount is greater than 0.\n\npayment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
+          "description": ""
         }
       },
       "parameters": []
@@ -5341,7 +5354,7 @@
             }
           }
         },
-        "description": "This API is used to cancel a contract. A fixed $30 will be charged to cancel a contract",
+        "description": "Due to many reasons we need to cancel the contract which could be done using this API. A fixed $30 will be charged to cancel a contract.\n\nWe need to provide the contract_id we will get from the List of contracts of a provider API.\n\npayment_from could be from one of the below mentioned values-\n\n    1 - means that the customer is going to pay it using his/her card.\n    2 - means that provider is going to pay using his/her card for the change in recurring date.\n    3 - means that provider is going to pay using his/her provider’s Denefits account. Also in this case we need not to mention the card_token.\n    \ncard_token we can get from the the Card Integration API.\n\nIn case there is no amount to pay for changing the recurring date then we need not to define the payment_from and card_token.\n\nWe can verify this in Contract details API response contract_status for the contract.\n",
         "tags": [
           "Provider Contract"
         ],
@@ -5384,7 +5397,7 @@
               }
             }
           },
-          "description": "payment_from = 1 for customer, 2 for provider, 3 for provider's denefits account. \n\ncard_token is not required for payment from 3-provider else required"
+          "description": ""
         }
       }
     },
@@ -5572,7 +5585,7 @@
           }
         },
         "operationId": "get-provider-reports-contract",
-        "description": "Get report of all the contracts of this account",
+        "description": "In this API we will get the report of all the contracts which are made so far.",
         "parameters": [
           {
             "schema": {
