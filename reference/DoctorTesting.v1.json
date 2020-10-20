@@ -7379,6 +7379,252 @@
           "Contract Proposal"
         ]
       }
+    },
+    "/provider/proposal/list": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "list"
+                      ],
+                      "properties": {
+                        "list": {
+                          "type": "array",
+                          "uniqueItems": true,
+                          "minItems": 1,
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "proposal_id": {
+                                "type": "number"
+                              },
+                              "provider_id": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "service_amount": {
+                                "type": "number"
+                              },
+                              "downpayment_amount": {
+                                "type": "number"
+                              },
+                              "end_date": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "customer_first_name": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "customer_last_name": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "customer_email": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "customer_mobile": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "proposal_status": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "contract_id": {},
+                              "contract_code": {},
+                              "months_array": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object"
+                                }
+                              },
+                              "date_added": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "proposal_id",
+                              "provider_id",
+                              "service_amount",
+                              "downpayment_amount",
+                              "end_date",
+                              "customer_first_name",
+                              "customer_last_name",
+                              "customer_email",
+                              "customer_mobile",
+                              "proposal_status",
+                              "date_added"
+                            ]
+                          }
+                        },
+                        "count": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "list": [
+                          {
+                            "proposal_id": 14763,
+                            "provider_id": "pr_1a9e405670be558804ceb9b5a6352830",
+                            "service_amount": 5000,
+                            "downpayment_amount": 1,
+                            "end_date": "2020-11-30",
+                            "customer_first_name": "John",
+                            "customer_last_name": "Doe",
+                            "customer_email": "example@email.com",
+                            "customer_mobile": "7009119095",
+                            "proposal_status": "Request Sent",
+                            "contract_id": null,
+                            "contract_code": null,
+                            "months_array": [
+                              13
+                            ],
+                            "date_added": "2020-10-20T07:21:19.000Z"
+                          },
+                          {
+                            "proposal_id": 14579,
+                            "provider_id": "pr_1a9e405670be558804ceb9b5a6352830",
+                            "service_amount": 1000,
+                            "downpayment_amount": 0,
+                            "end_date": "2020-10-16",
+                            "customer_first_name": "John",
+                            "customer_last_name": "Doe",
+                            "customer_email": "example@email.com",
+                            "customer_mobile": "9782222222",
+                            "proposal_status": "Financed",
+                            "contract_id": 21773,
+                            "contract_code": "TETULNM21773",
+                            "months_array": [
+                              12,
+                              18,
+                              24,
+                              30,
+                              36
+                            ],
+                            "date_added": "2020-09-16T14:03:25.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "If required field is not supplied": {
+                    "value": {
+                      "message": "\"limit\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If invalid proposal_status is supplied": {
+                    "value": {
+                      "message": "Valid proposal_status are \"all\",\"sent\", \"financed\", \"received\"",
+                      "code": "invalid_parameter"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-proposal-list",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "sent",
+                "financed",
+                "received"
+              ]
+            },
+            "in": "query",
+            "name": "proposal_status"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "search_string"
+          }
+        ],
+        "description": "Get list of proposals sent to customer"
+      }
     }
   },
   "components": {
