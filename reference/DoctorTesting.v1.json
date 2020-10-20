@@ -7226,8 +7226,48 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "description": "",
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "If amount exceeds business limits": {
+                    "value": {
+                      "message": "Finance amount (Service amount - down payment) must be between $300 and $20000 ",
+                      "code": "invalid_finance_detail"
+                    }
+                  },
+                  "If service array total doesn't matches the total price": {
+                    "value": {
+                      "message": "Total price of service_array must be equal to $1000 as service amount provided",
+                      "code": "invalid_service_array"
+                    }
+                  },
+                  "If month array value doesn't matches the limit": {
+                    "value": {
+                      "message": "\"months_array\" values should be between 12 and 48, invalid months are 88,99 ",
+                      "code": "invalid_finance_detail"
+                    }
+                  },
+                  "If required field is not suppplied": {
+                    "value": {
+                      "message": "\"service_amount\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
                 }
               }
             }
