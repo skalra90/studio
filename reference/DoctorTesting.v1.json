@@ -7167,6 +7167,178 @@
         ]
       },
       "parameters": []
+    },
+    "/provider/proposal/send": {
+      "post": {
+        "summary": "Send contract proposal",
+        "operationId": "post-provider-proposal-send",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "proposal_id": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "proposal_id"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Success",
+                      "code": "success",
+                      "data": {
+                        "proposal_id": 14763
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "service_amount": {
+                    "type": "number"
+                  },
+                  "downpayment_amount": {
+                    "type": "number"
+                  },
+                  "end_date": {
+                    "type": "string"
+                  },
+                  "months_array": {
+                    "type": "array",
+                    "items": {
+                      "type": "integer"
+                    }
+                  },
+                  "customer_email": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "customer_first_name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "customer_last_name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "customer_mobile": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "service_array": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "minItems": 1,
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "service": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "service",
+                        "price"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "service_amount",
+                  "downpayment_amount",
+                  "end_date",
+                  "months_array",
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_last_name",
+                  "customer_mobile",
+                  "service_array"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "service_amount": 5000,
+                    "downpayment_amount": 100,
+                    "end_date": "2021-11-30",
+                    "months_array": [
+                      12,
+                      14
+                    ],
+                    "customer_email": "john@email.com",
+                    "customer_first_name": "John",
+                    "customer_last_name": "Doe",
+                    "customer_mobile": "2343242343",
+                    "service_array": [
+                      {
+                        "service": "Dental 1",
+                        "price": 3000
+                      },
+                      {
+                        "service": "Dental 2",
+                        "price": 2000
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Contract Proposal"
+        ]
+      }
     }
   },
   "components": {
@@ -7205,6 +7377,9 @@
     },
     {
       "name": "Payment"
+    },
+    {
+      "name": "Contract Proposal"
     }
   ],
   "security": [
