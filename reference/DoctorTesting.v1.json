@@ -7656,9 +7656,27 @@
                     },
                     "data": {
                       "type": "object",
+                      "required": [
+                        "proposal_details"
+                      ],
                       "properties": {
                         "proposal_details": {
                           "type": "object",
+                          "required": [
+                            "proposal_id",
+                            "provider_id",
+                            "service_amount",
+                            "downpayment_amount",
+                            "financed_amount",
+                            "end_date",
+                            "customer_first_name",
+                            "customer_last_name",
+                            "customer_email",
+                            "customer_mobile",
+                            "months_array",
+                            "date_added",
+                            "month_plans"
+                          ],
                           "properties": {
                             "proposal_id": {
                               "type": "number"
@@ -7700,8 +7718,7 @@
                             "months_array": {
                               "type": "array",
                               "items": {
-                                "required": [],
-                                "properties": {}
+                                "type": "object"
                               }
                             },
                             "date_added": {
@@ -7713,14 +7730,7 @@
                               "uniqueItems": true,
                               "minItems": 1,
                               "items": {
-                                "required": [
-                                  "month",
-                                  "interest_rate",
-                                  "recurring_amount",
-                                  "upfront_fee",
-                                  "transaction_fee",
-                                  "total_payable_today"
-                                ],
+                                "type": "object",
                                 "properties": {
                                   "month": {
                                     "type": "number"
@@ -7740,30 +7750,34 @@
                                   "total_payable_today": {
                                     "type": "number"
                                   }
+                                },
+                                "required": [
+                                  "month",
+                                  "interest_rate",
+                                  "recurring_amount",
+                                  "upfront_fee",
+                                  "transaction_fee",
+                                  "total_payable_today"
+                                ]
+                              }
+                            },
+                            "service_array": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "service": {
+                                    "type": "string"
+                                  },
+                                  "price": {
+                                    "type": "number"
+                                  }
                                 }
                               }
                             }
-                          },
-                          "required": [
-                            "proposal_id",
-                            "provider_id",
-                            "service_amount",
-                            "downpayment_amount",
-                            "financed_amount",
-                            "end_date",
-                            "customer_first_name",
-                            "customer_last_name",
-                            "customer_email",
-                            "customer_mobile",
-                            "months_array",
-                            "date_added",
-                            "month_plans"
-                          ]
+                          }
                         }
-                      },
-                      "required": [
-                        "proposal_details"
-                      ]
+                      }
                     }
                   },
                   "required": [
@@ -7802,6 +7816,16 @@
                               "upfront_fee": 428.68,
                               "transaction_fee": 12.86,
                               "total_payable_today": 471.54
+                            }
+                          ],
+                          "service_array": [
+                            {
+                              "service": "Dental 1",
+                              "price": "3000"
+                            },
+                            {
+                              "service": "Dental 2",
+                              "price": "2000"
                             }
                           ]
                         }
