@@ -7383,7 +7383,9 @@
     "/provider/proposal/list": {
       "get": {
         "summary": "Your GET endpoint",
-        "tags": [],
+        "tags": [
+          "Contract Proposal"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -7632,7 +7634,9 @@
     "/provider/proposal/details": {
       "get": {
         "summary": "Your GET endpoint",
-        "tags": [],
+        "tags": [
+          "Contract Proposal"
+        ],
         "responses": {
           "200": {
             "description": "OK",
