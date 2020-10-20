@@ -5940,7 +5940,7 @@
         ]
       }
     },
-        "/payment/receiveDetails": {
+    "/payment/receiveDetails": {
       "post": {
         "summary": "Provide customer details for the Payment/Contract",
         "operationId": "post-receive-details_v2",
@@ -7363,12 +7363,13 @@
         },
         "tags": [
           "Contract Proposal"
-        ]
+        ],
+        "description": "This API is used to send contract proposal to the customer"
       }
     },
     "/provider/proposal/list": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Get proposal list",
         "tags": [
           "Contract Proposal"
         ],
@@ -7619,7 +7620,7 @@
     },
     "/provider/proposal/details": {
       "get": {
-        "summary": "Your GET endpoint",
+        "summary": "Get proposal details",
         "tags": [
           "Contract Proposal"
         ],

@@ -7528,7 +7528,7 @@
         }
       }
     },
-        "/payment/receiveDetails": {
+    "/payment/receiveDetails": {
       "post": {
         "summary": "Provide customer details for the Payment/Contract",
         "operationId": "post-receive-details_v2",
@@ -8595,6 +8595,752 @@
         ]
       },
       "parameters": []
+    },
+    "/provider/proposal/send": {
+      "post": {
+        "summary": "Send contract proposal",
+        "operationId": "post-provider-proposal-send",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "proposal_id": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "proposal_id"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Success",
+                      "code": "success",
+                      "data": {
+                        "proposal_id": 14763
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "If amount exceeds business limits": {
+                    "value": {
+                      "message": "Finance amount (Service amount - down payment) must be between $300 and $20000 ",
+                      "code": "invalid_finance_detail"
+                    }
+                  },
+                  "If service array total doesn't matches the total price": {
+                    "value": {
+                      "message": "Total price of service_array must be equal to $1000 as service amount provided",
+                      "code": "invalid_service_array"
+                    }
+                  },
+                  "If month array value doesn't matches the limit": {
+                    "value": {
+                      "message": "\"months_array\" values should be between 12 and 48, invalid months are 88,99 ",
+                      "code": "invalid_finance_detail"
+                    }
+                  },
+                  "If required field is not suppplied": {
+                    "value": {
+                      "message": "\"service_amount\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "service_amount": {
+                    "type": "number"
+                  },
+                  "downpayment_amount": {
+                    "type": "number"
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "months_array": {
+                    "type": "array",
+                    "items": {
+                      "required": [],
+                      "properties": {}
+                    }
+                  },
+                  "customer_email": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "customer_first_name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "customer_last_name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "customer_mobile": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "service_array": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "minItems": 1,
+                    "items": {
+                      "required": [
+                        "service",
+                        "price"
+                      ],
+                      "properties": {
+                        "service": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "service_amount",
+                  "downpayment_amount",
+                  "end_date",
+                  "months_array",
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_last_name",
+                  "customer_mobile",
+                  "service_array"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "provider_id": "pr_1a9e405670be558804ceb9b5a6352830",
+                    "service_amount": 5000,
+                    "downpayment_amount": 100,
+                    "end_date": "2021-11-30",
+                    "months_array": [
+                      12,
+                      14
+                    ],
+                    "customer_email": "john@email.com",
+                    "customer_first_name": "John",
+                    "customer_last_name": "Doe",
+                    "customer_mobile": "2343242343",
+                    "service_array": [
+                      {
+                        "service": "Dental 1",
+                        "price": 3000
+                      },
+                      {
+                        "service": "Dental 2",
+                        "price": 2000
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Contract Proposal"
+        ],
+        "description": "This API is used to send contract proposal to the customer"
+      }
+    },
+    "/provider/proposal/list": {
+      "get": {
+        "summary": "Get proposal list",
+        "tags": [
+          "Contract Proposal"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "list"
+                      ],
+                      "properties": {
+                        "list": {
+                          "type": "array",
+                          "uniqueItems": true,
+                          "minItems": 1,
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "proposal_id": {
+                                "type": "number"
+                              },
+                              "provider_id": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "service_amount": {
+                                "type": "number"
+                              },
+                              "downpayment_amount": {
+                                "type": "number"
+                              },
+                              "end_date": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "customer_first_name": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "customer_last_name": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "customer_email": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "customer_mobile": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "proposal_status": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "contract_id": {},
+                              "contract_code": {},
+                              "months_array": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object"
+                                }
+                              },
+                              "date_added": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "proposal_id",
+                              "provider_id",
+                              "service_amount",
+                              "downpayment_amount",
+                              "end_date",
+                              "customer_first_name",
+                              "customer_last_name",
+                              "customer_email",
+                              "customer_mobile",
+                              "proposal_status",
+                              "date_added"
+                            ]
+                          }
+                        },
+                        "count": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "list": [
+                          {
+                            "proposal_id": 14763,
+                            "provider_id": "pr_1a9e405670be558804ceb9b5a6352830",
+                            "service_amount": 5000,
+                            "downpayment_amount": 1,
+                            "end_date": "2020-11-30",
+                            "customer_first_name": "John",
+                            "customer_last_name": "Doe",
+                            "customer_email": "example@email.com",
+                            "customer_mobile": "7009119095",
+                            "proposal_status": "Request Sent",
+                            "contract_id": null,
+                            "contract_code": null,
+                            "months_array": [
+                              13
+                            ],
+                            "date_added": "2020-10-20T07:21:19.000Z"
+                          },
+                          {
+                            "proposal_id": 14579,
+                            "provider_id": "pr_1a9e405670be558804ceb9b5a6352830",
+                            "service_amount": 1000,
+                            "downpayment_amount": 0,
+                            "end_date": "2020-10-16",
+                            "customer_first_name": "John",
+                            "customer_last_name": "Doe",
+                            "customer_email": "example@email.com",
+                            "customer_mobile": "9782222222",
+                            "proposal_status": "Financed",
+                            "contract_id": 21773,
+                            "contract_code": "TETULNM21773",
+                            "months_array": [
+                              12,
+                              18,
+                              24,
+                              30,
+                              36
+                            ],
+                            "date_added": "2020-09-16T14:03:25.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "If required field is not supplied": {
+                    "value": {
+                      "message": "\"limit\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If invalid proposal_status is supplied": {
+                    "value": {
+                      "message": "Valid proposal_status are \"all\",\"sent\", \"financed\", \"received\"",
+                      "code": "invalid_parameter"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-proposal-list",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "all",
+                "sent",
+                "financed",
+                "received"
+              ]
+            },
+            "in": "query",
+            "name": "proposal_status",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "search_string"
+          }
+        ],
+        "description": "Get list of proposals sent to customer"
+      }
+    },
+    "/provider/proposal/details": {
+      "get": {
+        "summary": "Get proposal details",
+        "tags": [
+          "Contract Proposal"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "proposal_details"
+                      ],
+                      "properties": {
+                        "proposal_details": {
+                          "type": "object",
+                          "required": [
+                            "proposal_id",
+                            "provider_id",
+                            "service_amount",
+                            "downpayment_amount",
+                            "financed_amount",
+                            "end_date",
+                            "customer_first_name",
+                            "customer_last_name",
+                            "customer_email",
+                            "customer_mobile",
+                            "months_array",
+                            "date_added",
+                            "month_plans"
+                          ],
+                          "properties": {
+                            "proposal_id": {
+                              "type": "number"
+                            },
+                            "provider_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "service_amount": {
+                              "type": "number"
+                            },
+                            "downpayment_amount": {
+                              "type": "number"
+                            },
+                            "financed_amount": {
+                              "type": "number"
+                            },
+                            "end_date": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "customer_first_name": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "customer_last_name": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "customer_email": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "customer_mobile": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "contract_id": {},
+                            "months_array": {
+                              "type": "array",
+                              "items": {
+                                "type": "object"
+                              }
+                            },
+                            "date_added": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "month_plans": {
+                              "type": "array",
+                              "uniqueItems": true,
+                              "minItems": 1,
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "month": {
+                                    "type": "number"
+                                  },
+                                  "interest_rate": {
+                                    "type": "number"
+                                  },
+                                  "recurring_amount": {
+                                    "type": "number"
+                                  },
+                                  "upfront_fee": {
+                                    "type": "number"
+                                  },
+                                  "transaction_fee": {
+                                    "type": "number"
+                                  },
+                                  "total_payable_today": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "month",
+                                  "interest_rate",
+                                  "recurring_amount",
+                                  "upfront_fee",
+                                  "transaction_fee",
+                                  "total_payable_today"
+                                ]
+                              }
+                            },
+                            "service_array": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "service": {
+                                    "type": "string"
+                                  },
+                                  "price": {
+                                    "type": "number"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "proposal_details": {
+                          "proposal_id": 14763,
+                          "provider_id": "pr_1a9e405670be558804ceb9b5a6352830",
+                          "service_amount": 5000,
+                          "downpayment_amount": 1,
+                          "financed_amount": 4999,
+                          "end_date": "2020-11-30",
+                          "customer_first_name": "John",
+                          "customer_last_name": "Doe",
+                          "customer_email": "example@epmail.com",
+                          "customer_mobile": "7009119095",
+                          "contract_id": null,
+                          "months_array": [
+                            13
+                          ],
+                          "date_added": "2020-10-20T07:21:19.000Z",
+                          "month_plans": [
+                            {
+                              "month": 13,
+                              "interest_rate": 16.99,
+                              "recurring_amount": 428.68,
+                              "upfront_fee": 428.68,
+                              "transaction_fee": 12.86,
+                              "total_payable_today": 471.54
+                            }
+                          ],
+                          "service_array": [
+                            {
+                              "service": "Dental 1",
+                              "price": "3000"
+                            },
+                            {
+                              "service": "Dental 2",
+                              "price": "2000"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "If invalid proposal_id is provided": {
+                    "value": {
+                      "message": "Invalid \"proposal_id\" provided",
+                      "code": "request_failed"
+                    }
+                  },
+                  "If required parameters are not supplied": {
+                    "value": {
+                      "message": "\"proposal_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-proposal-details",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "required": true,
+            "name": "provider_id"
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "proposal_id",
+            "required": true
+          }
+        ],
+        "description": "Get the details of the proposal sent to the customer"
+      }
     }
   },
   "components": {
