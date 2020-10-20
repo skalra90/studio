@@ -7599,21 +7599,24 @@
               ]
             },
             "in": "query",
-            "name": "proposal_status"
+            "name": "proposal_status",
+            "required": true
           },
           {
             "schema": {
               "type": "number"
             },
             "in": "query",
-            "name": "limit"
+            "name": "limit",
+            "required": true
           },
           {
             "schema": {
               "type": "number"
             },
             "in": "query",
-            "name": "skip"
+            "name": "skip",
+            "required": true
           },
           {
             "schema": {
