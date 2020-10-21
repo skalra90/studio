@@ -9341,6 +9341,281 @@
         ],
         "description": "Get the details of the proposal sent to the customer"
       }
+    },
+        "/provider/proposal/resend": {
+      "post": {
+        "summary": "Resend proposal to customer",
+        "operationId": "post-provider-proposal-resend",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "proposal_id": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "proposal_id"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Success",
+                      "code": "success",
+                      "data": {
+                        "proposal_id": 14777
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "If invalid proposal_id is supplied": {
+                    "value": {
+                      "message": "Invalid \"proposal_id\" provided",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This API can be used to resend the proposal by making some changes in its details. This will make the previous sent proposal link invalid.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "proposal_id": {
+                    "type": "number"
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "customer_email": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "customer_first_name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "customer_last_name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "customer_mobile": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "provider_id",
+                  "proposal_id",
+                  "end_date",
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_last_name",
+                  "customer_mobile"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "provider_id": "pr_1a9e405670be558804ceb9b5a6352830",
+                    "proposal_id": 14777,
+                    "end_date": "2021-11-30",
+                    "customer_email": "example@email.com",
+                    "customer_first_name": "John",
+                    "customer_last_name": "Doe",
+                    "customer_mobile": "9879742383"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Except \"proposal_id\", all the other fields are optional"
+        },
+        "tags": [
+          "Contract Proposal"
+        ]
+      }
+    },
+    "/provider/proposal/delete": {
+      "post": {
+        "summary": "Delete sent proposal",
+        "operationId": "post-provider-proposal-delete",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {},
+                      "required": []
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "If manadatory paramter is missing": {
+                    "value": {
+                      "message": "\"proposal_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If invalid proposal_id is supplied": {
+                    "value": {
+                      "message": "Invalid \"proposal_id\" provided",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This API can be used to delete the proposal, this will make the proposal link invalid",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "provider_id": {
+                    "type": "string"
+                  },
+                  "proposal_id": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "proposal_id"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "provider_id": "pr_1a9e405670be558804ceb9b5a6352830",
+                    "proposal_id": 147737
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Contract Proposal"
+        ]
+      }
     }
   },
   "components": {
