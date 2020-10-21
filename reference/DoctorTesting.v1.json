@@ -8036,6 +8036,125 @@
           "description": "Except \"proposal_id\", all the other fields are optional"
         }
       }
+    },
+    "/provider/proposal/delete": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-provider-proposal-delete"
+      },
+      "post": {
+        "summary": "",
+        "operationId": "post-provider-proposal-delete",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {},
+                      "required": []
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "If manadatory paramter is missing": {
+                    "value": {
+                      "message": "\"proposal_id\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If invalid proposal_id is supplied": {
+                    "value": {
+                      "message": "Invalid \"proposal_id\" provided",
+                      "code": "request_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This API can be used to delete the proposal, this will make the proposal link invalid",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "proposal_id": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "proposal_id"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "proposal_id": 147737
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
