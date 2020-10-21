@@ -8034,18 +8034,15 @@
             }
           },
           "description": "Except \"proposal_id\", all the other fields are optional"
-        }
+        },
+        "tags": [
+          "Contract Proposal"
+        ]
       }
     },
     "/provider/proposal/delete": {
-      "get": {
-        "summary": "Your GET endpoint",
-        "tags": [],
-        "responses": {},
-        "operationId": "get-provider-proposal-delete"
-      },
       "post": {
-        "summary": "",
+        "summary": "Delete sent proposal",
         "operationId": "post-provider-proposal-delete",
         "responses": {
           "200": {
@@ -8153,7 +8150,10 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Contract Proposal"
+        ]
       }
     }
   },
