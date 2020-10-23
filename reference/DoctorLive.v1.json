@@ -7588,8 +7588,7 @@
               "enum": [
                 "all",
                 "sent",
-                "financed",
-                "received"
+                "financed"
               ]
             },
             "in": "query",
