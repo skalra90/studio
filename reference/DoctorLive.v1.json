@@ -7451,6 +7451,9 @@
                               "date_added": {
                                 "type": "string",
                                 "minLength": 1
+                              },
+                              "last_link_opened_date": {
+                                "type": "string"
                               }
                             },
                             "required": [
@@ -7503,6 +7506,7 @@
                             "months_array": [
                               13
                             ],
+                            "last_link_opened_date": "2020-11-20T07:21:19.000Z",
                             "date_added": "2020-10-20T07:21:19.000Z"
                           },
                           {
@@ -7525,6 +7529,7 @@
                               30,
                               36
                             ],
+                            "last_link_opened_date": "2020-11-20T07:21:19.000Z",
                             "date_added": "2020-09-16T14:03:25.000Z"
                           }
                         ]
@@ -7613,6 +7618,14 @@
             },
             "in": "query",
             "name": "search_string"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "last_link_opened_date",
+            "description": "YYYY-MM-DD"
           }
         ],
         "description": "Get list of proposals sent to customer"
@@ -7761,6 +7774,9 @@
                                   }
                                 }
                               }
+                            },
+                            "": {
+                              "type": "string"
                             }
                           }
                         }
@@ -7794,6 +7810,7 @@
                           "months_array": [
                             13
                           ],
+                          "last_link_opened_date": "2020-11-20T07:21:19.000Z",
                           "date_added": "2020-10-20T07:21:19.000Z",
                           "month_plans": [
                             {
@@ -7877,7 +7894,7 @@
         "description": "Get the details of the proposal sent to the customer"
       }
     },
-        "/provider/proposal/resend": {
+    "/provider/proposal/resend": {
       "post": {
         "summary": "Resend proposal to customer",
         "operationId": "post-provider-proposal-resend",
