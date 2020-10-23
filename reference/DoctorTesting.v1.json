@@ -7465,6 +7465,9 @@
                               "date_added": {
                                 "type": "string",
                                 "minLength": 1
+                              },
+                              "last_link_opened_date": {
+                                "type": "string"
                               }
                             },
                             "required": [
@@ -7627,6 +7630,13 @@
             },
             "in": "query",
             "name": "search_string"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "last_link_opened_date"
           }
         ],
         "description": "Get list of proposals sent to customer"
@@ -7775,6 +7785,9 @@
                                   }
                                 }
                               }
+                            },
+                            "last_link_opened_date": {
+                              "type": "string"
                             }
                           }
                         }
