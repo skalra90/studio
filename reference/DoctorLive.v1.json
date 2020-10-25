@@ -7774,7 +7774,7 @@
                                 }
                               }
                             },
-                            "": {
+                            "last_link_opened_date": {
                               "type": "string"
                             }
                           }
