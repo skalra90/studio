@@ -2877,6 +2877,9 @@
                         }
                       }
                     }
+                  },
+                  "customer_id": {
+                    "type": "string"
                   }
                 }
               },
@@ -8171,6 +8174,280 @@
         "tags": [
           "Contract Proposal"
         ]
+      }
+    },
+    "/customer/check": {
+      "get": {
+        "summary": "Get customer info using email",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "is_exist": {
+                          "type": "number"
+                        },
+                        "customer_details": {
+                          "type": "object",
+                          "properties": {
+                            "customer_id": {
+                              "type": "string"
+                            },
+                            "customer_email": {
+                              "type": "string"
+                            },
+                            "customer_first_name": {
+                              "type": "string"
+                            },
+                            "customer_last_name": {
+                              "type": "string"
+                            },
+                            "customer_mobile": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "customer_id",
+                            "customer_email",
+                            "customer_first_name",
+                            "customer_last_name",
+                            "customer_mobile"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "is_exist",
+                        "customer_details"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "string",
+                      "code": "string",
+                      "data": {
+                        "is_exist": 1,
+                        "customer_details": {
+                          "customer_id": "cr_***********",
+                          "customer_email": "example@email.com",
+                          "customer_first_name": "john",
+                          "customer_last_name": "Doe",
+                          "customer_mobile": "+1-342325235"
+                        }
+                      }
+                    }
+                  },
+                  "Not found": {
+                    "value": {
+                      "message": "string",
+                      "code": "string",
+                      "data": {
+                        "is_exist": 0,
+                        "customer_details": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-customer-check",
+        "description": "This API can be used to retrieve customer basic information and customer_id which can be used in futher APIs to finance a customer",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "customer_email",
+            "description": "Customer email"
+          }
+        ]
+      }
+    },
+    "/customer/create": {
+      "post": {
+        "summary": "Create a customer",
+        "operationId": "post-customer-create",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "customer_id": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "customer_id"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "string",
+                      "code": "string",
+                      "data": {
+                        "customer_id": "cr_**********"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "If any of the required_field is missing": {
+                    "value": {
+                      "message": "\"required_field\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If invalid zipcode will be provided": {
+                    "value": {
+                      "message": "Please enter a valid zipcode",
+                      "code": "invalid_zip"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This API can be used to create a customer, this will return a customer ID which can be used in futher APIs to finance a customer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customer_email": {
+                    "type": "string"
+                  },
+                  "customer_first_name": {
+                    "type": "string"
+                  },
+                  "customer_last_name": {
+                    "type": "string"
+                  },
+                  "customer_address": {
+                    "type": "string"
+                  },
+                  "zipcode": {
+                    "type": "string"
+                  },
+                  "customer_mobile": {
+                    "type": "string"
+                  },
+                  "date_of_birth": {
+                    "type": "string"
+                  },
+                  "customer_ssn": {
+                    "type": "string"
+                  },
+                  "dl_number": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_last_name",
+                  "customer_address",
+                  "zipcode",
+                  "customer_mobile",
+                  "date_of_birth",
+                  "customer_ssn",
+                  "dl_number"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "customer_email": "example@domain.com",
+                    "customer_first_name": "Steven",
+                    "customer_last_name": "Gerrard",
+                    "customer_address": "189 Beaver Ridge Ave.",
+                    "zipcode": "48047",
+                    "customer_mobile": "2025550130",
+                    "date_of_birth": "1980-05-30",
+                    "customer_ssn": "227392778",
+                    "dl_number": "DL2181281230123"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
       }
     }
   },
