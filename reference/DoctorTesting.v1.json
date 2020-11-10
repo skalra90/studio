@@ -8179,7 +8179,9 @@
     "/customer/check": {
       "get": {
         "summary": "Get customer info using email",
-        "tags": [],
+        "tags": [
+          "Customer"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -8447,7 +8449,10 @@
             }
           },
           "description": ""
-        }
+        },
+        "tags": [
+          "Customer"
+        ]
       }
     }
   },
@@ -8490,6 +8495,9 @@
     },
     {
       "name": "Contract Proposal"
+    },
+    {
+      "name": "Customer"
     }
   ],
   "security": [
