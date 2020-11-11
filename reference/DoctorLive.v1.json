@@ -8157,6 +8157,470 @@
           "Contract Proposal"
         ]
       }
+    },
+        "/customer/check": {
+      "get": {
+        "summary": "Get customer info using email",
+        "tags": [
+          "Customer"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "is_exist": {
+                          "type": "number"
+                        },
+                        "customer_details": {
+                          "type": "object",
+                          "properties": {
+                            "customer_id": {
+                              "type": "string"
+                            },
+                            "customer_email": {
+                              "type": "string"
+                            },
+                            "customer_first_name": {
+                              "type": "string"
+                            },
+                            "customer_last_name": {
+                              "type": "string"
+                            },
+                            "customer_mobile": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "customer_id",
+                            "customer_email",
+                            "customer_first_name",
+                            "customer_last_name",
+                            "customer_mobile"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "is_exist",
+                        "customer_details"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "string",
+                      "code": "string",
+                      "data": {
+                        "is_exist": 1,
+                        "customer_details": {
+                          "customer_id": "cr_***********",
+                          "customer_email": "example@email.com",
+                          "customer_first_name": "john",
+                          "customer_last_name": "Doe",
+                          "customer_mobile": "+1-342325235"
+                        }
+                      }
+                    }
+                  },
+                  "Not found": {
+                    "value": {
+                      "message": "string",
+                      "code": "string",
+                      "data": {
+                        "is_exist": 0,
+                        "customer_details": null
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-customer-check",
+        "description": "This API can be used to retrieve customer basic information and customer_id which can be used in futher APIs to finance a customer",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "customer_email",
+            "description": "Customer email"
+          }
+        ]
+      }
+    },
+    "/customer/create": {
+      "post": {
+        "summary": "Create a customer",
+        "operationId": "post-customer-create",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "customer_id": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "customer_id"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "string",
+                      "code": "string",
+                      "data": {
+                        "customer_id": "cr_**********"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "If any of the required_field is missing": {
+                    "value": {
+                      "message": "\"required_field\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "If invalid zipcode will be provided": {
+                    "value": {
+                      "message": "Please enter a valid zipcode",
+                      "code": "invalid_zip"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This API can be used to create a customer, this will return a customer ID which can be used in futher APIs to finance a customer",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "customer_email": {
+                    "type": "string"
+                  },
+                  "customer_first_name": {
+                    "type": "string"
+                  },
+                  "customer_last_name": {
+                    "type": "string"
+                  },
+                  "customer_mobile": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "customer_email",
+                  "customer_first_name",
+                  "customer_last_name",
+                  "customer_mobile"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "customer_email": "example@domain.com",
+                    "customer_first_name": "Steven",
+                    "customer_last_name": "Gerrard",
+                    "customer_mobile": "2025550130"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Customer"
+        ]
+      }
+    },
+    "/provider/contract/customer/select": {
+      "post": {
+        "summary": "Select a Plan using customer ID",
+        "operationId": "post-provider-contract-customer-select",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "finance_token": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Finance Token Created",
+                      "code": "success",
+                      "data": {
+                        "finance_token": "64de0703e3b61****************"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If plan_id is invalid": {
+                    "value": {
+                      "message": "Invalid plan.",
+                      "code": "invalid_finance_detail"
+                    }
+                  },
+                  "If any of the required_field is missing": {
+                    "value": {
+                      "message": "\"required_field\" is required",
+                      "code": "parameter_missing"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If invalid auth token is provided": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "plan_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "customer_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "customer_address": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "zipcode": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "customer_ssn": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "dl_number": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "service_array": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "minItems": 1,
+                    "items": {
+                      "required": [
+                        "service",
+                        "price"
+                      ],
+                      "properties": {
+                        "service": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "price": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "plan_id",
+                  "customer_id",
+                  "customer_address",
+                  "zipcode",
+                  "date_of_birth",
+                  "customer_ssn",
+                  "start_date",
+                  "dl_number",
+                  "service_array"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "plan_id": "plan_P6509M12A1200*******",
+                    "customer_id": "cr_********************",
+                    "customer_address": "189 Beaver Ridge Ave.",
+                    "zipcode": "48047",
+                    "date_of_birth": "1980-05-30",
+                    "customer_ssn": "227392778",
+                    "start_date": "2020-07-01",
+                    "dl_number": "DL2181281230123",
+                    "service_array": [
+                      {
+                        "service": "Dental Fee",
+                        "price": 900
+                      },
+                      {
+                        "service": "General Fee",
+                        "price": 100
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "In this API we will be selecting the plan and providing the customer’s details with customer ID.\n\nWe will use the plan_id which we got from the response of the List of plan API.\nstart_date will be the date from when we want the contract to start (first recurring amount payment date).\nservice_array is the breakdown of the services taken by the customer and it is optional.\n\nIn the response we will get the finance_token which will be used in Pay for Contract API.",
+        "tags": [
+          "Contract Generation Process"
+        ]
+      }
     }
   },
   "components": {
