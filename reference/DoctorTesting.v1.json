@@ -8397,22 +8397,7 @@
                   "customer_last_name": {
                     "type": "string"
                   },
-                  "customer_address": {
-                    "type": "string"
-                  },
-                  "zipcode": {
-                    "type": "string"
-                  },
                   "customer_mobile": {
-                    "type": "string"
-                  },
-                  "date_of_birth": {
-                    "type": "string"
-                  },
-                  "customer_ssn": {
-                    "type": "string"
-                  },
-                  "dl_number": {
                     "type": "string"
                   }
                 },
@@ -8420,12 +8405,7 @@
                   "customer_email",
                   "customer_first_name",
                   "customer_last_name",
-                  "customer_address",
-                  "zipcode",
-                  "customer_mobile",
-                  "date_of_birth",
-                  "customer_ssn",
-                  "dl_number"
+                  "customer_mobile"
                 ]
               },
               "examples": {
@@ -8434,12 +8414,7 @@
                     "customer_email": "example@domain.com",
                     "customer_first_name": "Steven",
                     "customer_last_name": "Gerrard",
-                    "customer_address": "189 Beaver Ridge Ave.",
-                    "zipcode": "48047",
-                    "customer_mobile": "2025550130",
-                    "date_of_birth": "1980-05-30",
-                    "customer_ssn": "227392778",
-                    "dl_number": "DL2181281230123"
+                    "customer_mobile": "2025550130"
                   }
                 }
               }
