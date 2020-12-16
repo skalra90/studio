@@ -13,6 +13,10 @@
     {
       "url": "https://endpoint.denefits.com/v1",
       "description": "Live whitelabel"
+    },
+    {
+      "url": "https://testapi.denefits.com/v1",
+      "description": "Test Whitelabel"
     }
   ],
   "paths": {
