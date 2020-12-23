@@ -590,7 +590,7 @@
           }
         },
         "operationId": "get-provider-reports-contract",
-        "description": "In this API we will get the report of all the contracts which are made by the provider so far.\nWe will get the provider_id from the List of providers API.\n",
+        "description": "In this API we will get the report of all the contracts which are made by the provider so far.\nWe will get the provider_id from the List of providers API.\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)",
         "parameters": [
           {
             "schema": {
@@ -3628,7 +3628,7 @@
           }
         },
         "operationId": "get-plans",
-        "description": "To create a contract we need to start with this API. It will list all the possible plans and we can select the one from it. but if month was defined then we will get the plan for that particular month. We can get the provider_id from the the List of providers API. \n\nWe will get plan_id(s) in response which will be required in Select a plan API.\n",
+        "description": "To create a contract we need to start with this API. It will list all the possible plans and we can select the one from it. but if month was defined then we will get the plan for that particular month. We can get the provider_id from the the List of providers API. \n\nWe will get plan_id(s) in response which will be required in Select a plan API.\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)",
         "parameters": [
           {
             "schema": {
@@ -4774,7 +4774,7 @@
             "required": true
           }
         ],
-        "description": "We can get the details of the contract along with the payments with share to the partner and provider from this API.\n\nWe need to provide the -\n    provider_id which we can get from the List of providers API.    \n    contract_id if we have the contract id for that provider then we will use that otherwise we can get the contracts list from the List of contracts of a provider API."
+        "description": "We can get the details of the contract along with the payments with share to the partner and provider from this API.\n\nWe need to provide the -\n    provider_id which we can get from the List of providers API.    \n    contract_id if we have the contract id for that provider then we will use that otherwise we can get the contracts list from the List of contracts of a provider API.\n    \nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)"
       },
       "parameters": []
     },
@@ -5004,7 +5004,7 @@
             "description": "Valid contract_status are \"active\",\"overdue\", \"completed\", \"canceled\""
           }
         ],
-        "description": "We will get the list of all the contracts which were created by the provider.\n\nWe can get the provider_id from the List of providers API.\n"
+        "description": "We will get the list of all the contracts which were created by the provider.\n\nWe can get the provider_id from the List of providers API.\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)"
       },
       "parameters": []
     },
@@ -5372,7 +5372,7 @@
             "name": "skip"
           }
         ],
-        "description": "This API will show the list of contract claims that are already submitted or are paid.\n\nWe need the provider_id which we can get from the List of providers API.\n\nIn the response we will get the claim_id which we will be used in Contract claim details API.",
+        "description": "This API will show the list of contract claims that are already submitted or are paid.\n\nWe need the provider_id which we can get from the List of providers API.\n\nIn the response we will get the claim_id which we will be used in Contract claim details API.\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)",
         "tags": [
           "Claim Process"
         ]
@@ -6587,7 +6587,7 @@
           }
         },
         "operationId": "get-provider-contract-claim-details",
-        "description": "Once the available missing payment's claim has been submitted then we can check the status of the claim in this API. It will give us the information on the contract, payment claims and documents uploaded.\n\nclaim_id which we can get from the List of all claims of a provider API response.\n\nIn response we will get the following –\n\n    claim_uploaded_documents - list of documents we uploaded in Submit claim form API.\n    \n    missing_payments -  missing payments which were shown in the List of missing payments of the contract API. We can check the claim_status_id which will give us the information that whether the documentation needed, documents uploaded, denied, expired, processing or paid.\n    \n    contract_details – it gives us information about the contract.\n    \n    more_document_needed - we will get the list of documents which are further required to approve the claim. It contains more_dcument_id(id), date_added(when it was requested), document_type_name(name of the document required) and reason(why this document is required). \n\nmore_document_id will be required in Need More Documents and Upload extra documents to claim contract APIs.\n",
+        "description": "Once the available missing payment's claim has been submitted then we can check the status of the claim in this API. It will give us the information on the contract, payment claims and documents uploaded.\n\nclaim_id which we can get from the List of all claims of a provider API response.\n\nIn response we will get the following –\n\n    claim_uploaded_documents - list of documents we uploaded in Submit claim form API.\n    \n    missing_payments -  missing payments which were shown in the List of missing payments of the contract API. We can check the claim_status_id which will give us the information that whether the documentation needed, documents uploaded, denied, expired, processing or paid.\n    \n    contract_details – it gives us information about the contract.\n    \n    more_document_needed - we will get the list of documents which are further required to approve the claim. It contains more_dcument_id(id), date_added(when it was requested), document_type_name(name of the document required) and reason(why this document is required). \n\nmore_document_id will be required in Need More Documents and Upload extra documents to claim contract APIs.\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)",
         "parameters": [
           {
             "schema": {
@@ -8583,7 +8583,7 @@
             }
           }
         },
-        "description": "In this API, we are clubbing Payment Processing and Contract generation APIs this means we can use this single API to either Pay full Amount (Payment Processing) or Pay Per Month (Finance a customer). We will provider the customer details along with the details required to finance a customer like service amount, down payment, number of payments, etc.\n\nIn response we will get the payment_link which will be used for the payment. We need to open the payment_link in a browser where we will get the option to pay. If a customer wants to pay now then we have the option to Pay Full Now and if he wants to finance then we can select another option Pay Per Month.\n\n    For payment we can use the Testing cards:\n    4000002500003155    Valid Thru: 12/25     Any 3 digits(CVV) - 3D secure card\n    4242424242424242\tValid Thru: 12/25      Any 3 digits(CVV) - Successful payment\n    4000000000000341    Valid Thru: 12/25     Any 3 digits(CVV) - Attempt to charge will fail",
+        "description": "In this API, we are clubbing Payment Processing and Contract generation APIs this means we can use this single API to either Pay full Amount (Payment Processing) or Pay Per Month (Finance a customer). We will provider the customer details along with the details required to finance a customer like service amount, down payment, number of payments, etc.\n\nIn response we will get the payment_link which will be used for the payment. We need to open the payment_link in a browser where we will get the option to pay. If a customer wants to pay now then we have the option to Pay Full Now and if he wants to finance then we can select another option Pay Per Month.\n\n    For payment we can use the Testing cards:\n    4000002500003155    Valid Thru: 12/25     Any 3 digits(CVV) - 3D secure card\n    4242424242424242\tValid Thru: 12/25      Any 3 digits(CVV) - Successful payment\n    4000000000000341    Valid Thru: 12/25     Any 3 digits(CVV) - Attempt to charge will fail\n    \nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)",
         "requestBody": {
           "content": {
             "application/json": {
@@ -9218,7 +9218,7 @@
             }
           }
         },
-        "description": "We have created our account and now we want to finance a customer. To finance a customer we need to create a contract. This API will be used for providing the details to be used in creating a contract. \n\nIn response we will get a payment_link which will be used for the payment. We need to open the payment_link in a browser where we will get the option to pay.\n\n    For payment we can use the Testing cards:\n    4242424242424242\tValid Thru: 12/25      Any 3 digits(CVV) - Successful payment\n    4000000000000341    Valid Thru: 12/25     Any 3 digits(CVV) - Attempt to charge will fail\n\nWe can verify that a contract is created or not from the List of contracts of a provider API.\n",
+        "description": "We have created our account and now we want to finance a customer. To finance a customer we need to create a contract. This API will be used for providing the details to be used in creating a contract. \n\nIn response we will get a payment_link which will be used for the payment. We need to open the payment_link in a browser where we will get the option to pay.\n\n    For payment we can use the Testing cards:\n    4242424242424242\tValid Thru: 12/25      Any 3 digits(CVV) - Successful payment\n    4000000000000341    Valid Thru: 12/25     Any 3 digits(CVV) - Attempt to charge will fail\n\nWe can verify that a contract is created or not from the List of contracts of a provider API.\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)",
         "requestBody": {
           "content": {
             "application/json": {
@@ -10115,7 +10115,7 @@
             "required": true
           }
         ],
-        "description": "Get the details of the proposal sent to the customer"
+        "description": "Get the details of the proposal sent to the customer\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)"
       }
     },
     "/provider/proposal/resend": {
