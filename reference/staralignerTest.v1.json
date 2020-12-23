@@ -516,6 +516,10 @@
                                     }
                                   }
                                 }
+                              },
+                              "interest_rate_type": {
+                                "type": "number",
+                                "description": "1-Compound interest, 2-Flat interest"
                               }
                             }
                           }
@@ -556,6 +560,7 @@
                             "plan_id": "plan_P5588M24A900D00F100D00",
                             "number_of_payments": 24,
                             "interest_rate": 15.99,
+                            "interest_rate_type": 1,
                             "monthly_payable": {
                               "total": 52.46,
                               "breakdown": {
@@ -652,7 +657,7 @@
             }
           }
         },
-        "description": "We have created our account and now we want to finance a customer. To finance a customer we need to create a contract. This API will be used for providing the details to be used in creating a contract. \n\nIn response we will get a payment_link which will be used for the payment. We need to open the payment_link in a browser where we will get the option to pay.\n\n    For payment we can use the Testing cards:\n    4242424242424242\tValid Thru: 12/25      Any 3 digits(CVV) - Successful payment\n    4000000000000341    Valid Thru: 12/25     Any 3 digits(CVV) - Attempt to charge will fail\n\nWe can verify that a contract is created or not from the List of contracts of a provider API.\n",
+        "description": "We have created our account and now we want to finance a customer. To finance a customer we need to create a contract. This API will be used for providing the details to be used in creating a contract. \n\nIn response we will get a payment_link which will be used for the payment. We need to open the payment_link in a browser where we will get the option to pay.\n\n    For payment we can use the Testing cards:\n    4242424242424242\tValid Thru: 12/25      Any 3 digits(CVV) - Successful payment\n    4000000000000341    Valid Thru: 12/25     Any 3 digits(CVV) - Attempt to charge will fail\n\nWe can verify that a contract is created or not from the List of contracts of a provider API.\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)",
         "requestBody": {
           "content": {
             "application/json": {
@@ -934,6 +939,10 @@
                                     }
                                   }
                                 }
+                              },
+                              "interest_rate_type": {
+                                "type": "number",
+                                "description": "1-Compound interest, 2-Flat interest"
                               }
                             }
                           }
@@ -978,6 +987,7 @@
                             "plan_id": "plan_P5588M24A900D00F100D00",
                             "number_of_payments": 24,
                             "interest_rate": 15.99,
+                            "interest_rate_type": 1,
                             "monthly_payable": {
                               "total": 52.46,
                               "breakdown": {
@@ -1084,7 +1094,7 @@
             }
           }
         },
-        "description": "In this API, we are clubbing Payment Processing and Contract generation APIs this means we can use this single API to either Pay full Amount (Payment Processing) or Pay Per Month (Finance a customer). We will provider the customer details along with the details required to finance a customer like service amount, down payment, number of payments, etc.\n\nIn response we will get the payment_link which will be used for the payment. We need to open the payment_link in a browser where we will get the option to pay. If a customer wants to pay now then we have the option to Pay Full Now and if he wants to finance then we can select another option Pay Per Month.\n\n    For payment we can use the Testing cards:\n    4000002500003155    Valid Thru: 12/25     Any 3 digits(CVV) - 3D secure card\n    4242424242424242\tValid Thru: 12/25      Any 3 digits(CVV) - Successful payment\n    4000000000000341    Valid Thru: 12/25     Any 3 digits(CVV) - Attempt to charge will fail",
+        "description": "In this API, we are clubbing Payment Processing and Contract generation APIs this means we can use this single API to either Pay full Amount (Payment Processing) or Pay Per Month (Finance a customer). We will provider the customer details along with the details required to finance a customer like service amount, down payment, number of payments, etc.\n\nIn response we will get the payment_link which will be used for the payment. We need to open the payment_link in a browser where we will get the option to pay. If a customer wants to pay now then we have the option to Pay Full Now and if he wants to finance then we can select another option Pay Per Month.\n\n    For payment we can use the Testing cards:\n    4000002500003155    Valid Thru: 12/25     Any 3 digits(CVV) - 3D secure card\n    4242424242424242\tValid Thru: 12/25      Any 3 digits(CVV) - Successful payment\n    4000000000000341    Valid Thru: 12/25     Any 3 digits(CVV) - Attempt to charge will fail\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2561,6 +2571,10 @@
                               },
                               "date_added": {
                                 "type": "string"
+                              },
+                              "interest_rate_type": {
+                                "type": "number",
+                                "description": "1-Compound interest, 2-Flat interest"
                               }
                             }
                           }
@@ -2583,6 +2597,7 @@
                             "provider_id": "pr_084aa5f9bad7a2d72a*************",
                             "financed_amount": 1000,
                             "interest_rate": 20,
+                            "interest_rate_type": 2,
                             "next_recurring_date": "2020-06-15T00:00:00.000Z",
                             "recurring_amount": 184.04,
                             "downpayment_amount": 0,
@@ -2602,6 +2617,7 @@
                             "provider_id": "pr_084aa5f9bad7a2d72a*************",
                             "financed_amount": 900,
                             "interest_rate": 20,
+                            "interest_rate_type": 2,
                             "next_recurring_date": "2020-07-01T00:00:00.000Z",
                             "recurring_amount": 66.73,
                             "downpayment_amount": 100,
@@ -2621,6 +2637,7 @@
                             "provider_id": "pr_084aa5f9bad7a2d72a*************",
                             "financed_amount": 3000,
                             "interest_rate": 16.99,
+                            "interest_rate_type": 1,
                             "next_recurring_date": "2020-08-04T00:00:00.000Z",
                             "recurring_amount": 1000,
                             "downpayment_amount": 0,
@@ -2670,7 +2687,7 @@
           }
         },
         "operationId": "get-provider-upcoming_payment",
-        "description": "This API gives us the list of payments which will be done in near future.",
+        "description": "This API gives us the list of payments which will be done in near future.\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)",
         "parameters": [
           {
             "schema": {
@@ -2838,7 +2855,7 @@
         ]
       }
     },
-   "/provider/payment/list": {
+    "/provider/payment/list": {
       "get": {
         "summary": "List of Payments of a provider",
         "tags": [
@@ -3015,7 +3032,7 @@
         ]
       }
     },
-   "/provider/payment/pay": {
+    "/provider/payment/pay": {
       "post": {
         "summary": "Payment Processing",
         "operationId": "post-provider-payment-pay",
@@ -3264,6 +3281,10 @@
                                       }
                                     }
                                   }
+                                },
+                                "interest_rate_type": {
+                                  "type": "number",
+                                  "description": "1-Compound interest, 2-Flat interest"
                                 }
                               }
                             }
@@ -3284,6 +3305,7 @@
                             "plan_id": "plan_P6550M12A12*********",
                             "number_of_payments": 12,
                             "interest_rate": 16.99,
+                            "interest_rate_type": 1,
                             "monthly_payable": {
                               "total": 112.55,
                               "breakdown": {
@@ -3379,7 +3401,7 @@
           }
         },
         "operationId": "get-provider-contract-plans",
-        "description": "To create a contract we need to start with this API. It will list all the possible plans and we can select the one from it. but if month was defined then we will get the plan for that particular month. \n\nWe will get plan_id(s) in response which will be required in Select a plan API.",
+        "description": "To create a contract we need to start with this API. It will list all the possible plans and we can select the one from it. but if month was defined then we will get the plan for that particular month. \n\nWe will get plan_id(s) in response which will be required in Select a plan API.\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)",
         "parameters": [
           {
             "schema": {
@@ -4143,6 +4165,10 @@
                                   }
                                 }
                               }
+                            },
+                            "interest_rate_type": {
+                              "type": "number",
+                              "description": "1-Compound interest, 2-Flat interest"
                             }
                           }
                         },
@@ -4261,6 +4287,7 @@
                           "downpayment_amount": 100,
                           "financed_amount": 900,
                           "interest_rate": 16.99,
+                          "interest_rate_type": 1,
                           "recurring_amount": 69.45,
                           "default_card_last4": "1111",
                           "monthly_payable": {
@@ -4432,7 +4459,7 @@
           }
         },
         "operationId": "get-provider-contract-detail",
-        "description": "We can get the details of the contract along with the payments with share to the partner and provider from this API.\n\nWe need to provide the contract_id if we have the contract id for that provider then we will use that otherwise we can get the contracts list from the List of contracts of a provider API.",
+        "description": "We can get the details of the contract along with the payments with share to the partner and provider from this API.\n\nWe need to provide the contract_id if we have the contract id for that provider then we will use that otherwise we can get the contracts list from the List of contracts of a provider API.\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)",
         "parameters": [
           {
             "schema": {
@@ -4535,6 +4562,10 @@
                               },
                               "contract_code": {
                                 "type": "string"
+                              },
+                              "interest_rate_type": {
+                                "type": "number",
+                                "description": "1-Compound interest, 2-Flat interest"
                               }
                             }
                           }
@@ -4565,6 +4596,7 @@
                             "downpayment_amount": 0,
                             "financed_amount": 1200,
                             "interest_rate": 16.99,
+                            "interest_rate_type": 1,
                             "recurring_amount": 109.27,
                             "number_of_payments": 12,
                             "remaining_payments": 12,
@@ -4612,7 +4644,7 @@
           }
         },
         "operationId": "get-provider-contract-list",
-        "description": "We will get the list of all the contracts which were created by the provider.",
+        "description": "We will get the list of all the contracts which were created by the provider.\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)",
         "parameters": [
           {
             "schema": {
@@ -5470,6 +5502,10 @@
                               },
                               "date_added": {
                                 "type": "string"
+                              },
+                              "interest_rate_type": {
+                                "type": "number",
+                                "description": "1-Compound interest, 2-Flat interest"
                               }
                             }
                           }
@@ -5491,6 +5527,7 @@
                             "financed_amount": 850,
                             "downpayment_amount": "0.00",
                             "interest_rate": 20,
+                            "interest_rate_type": 2,
                             "next_recurring_date": "2020-01-02",
                             "number_of_payments": 6,
                             "remaining_payments": 6,
@@ -5507,6 +5544,7 @@
                             "financed_amount": 900,
                             "downpayment_amount": "0.00",
                             "interest_rate": 20,
+                            "interest_rate_type": 2,
                             "next_recurring_date": "2020-01-15",
                             "number_of_payments": 6,
                             "remaining_payments": 0,
@@ -5523,6 +5561,7 @@
                             "financed_amount": 900,
                             "downpayment_amount": "0.00",
                             "interest_rate": 20,
+                            "interest_rate_type": 2,
                             "next_recurring_date": "2019-12-01",
                             "number_of_payments": 6,
                             "remaining_payments": 0,
@@ -5539,6 +5578,7 @@
                             "financed_amount": 900,
                             "downpayment_amount": "0.00",
                             "interest_rate": 20,
+                            "interest_rate_type": 1,
                             "next_recurring_date": "2019-12-01",
                             "number_of_payments": 6,
                             "remaining_payments": 2,
@@ -5585,7 +5625,7 @@
           }
         },
         "operationId": "get-provider-reports-contract",
-        "description": "In this API we will get the report of all the contracts which are made so far.",
+        "description": "In this API we will get the report of all the contracts which are made so far.\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)",
         "parameters": [
           {
             "schema": {
