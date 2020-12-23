@@ -7808,6 +7808,9 @@
                                   },
                                   "total_payable_today": {
                                     "type": "number"
+                                  },
+                                  "interest_rate_type": {
+                                    "type": "number"
                                   }
                                 },
                                 "required": [
@@ -7875,6 +7878,7 @@
                             {
                               "month": 13,
                               "interest_rate": 16.99,
+                              "interest_rate_type": 1,
                               "recurring_amount": 428.68,
                               "upfront_fee": 428.68,
                               "transaction_fee": 12.86,
