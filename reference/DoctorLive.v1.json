@@ -1361,6 +1361,10 @@
                               },
                               "date_added": {
                                 "type": "string"
+                              },
+                              "interest_rate_type": {
+                                "type": "number",
+                                "description": "1-Compound interest, 2-Flat interest"
                               }
                             }
                           }
@@ -1383,6 +1387,7 @@
                             "provider_id": "pr_084aa5f9bad7a2d72a*************",
                             "financed_amount": 1000,
                             "interest_rate": 20,
+                            "interest_rate_type": 2,
                             "next_recurring_date": "2020-06-15T00:00:00.000Z",
                             "recurring_amount": 184.04,
                             "downpayment_amount": 0,
@@ -1402,6 +1407,7 @@
                             "provider_id": "pr_084aa5f9bad7a2d72a*************",
                             "financed_amount": 900,
                             "interest_rate": 20,
+                            "interest_rate_type": 2,
                             "next_recurring_date": "2020-07-01T00:00:00.000Z",
                             "recurring_amount": 66.73,
                             "downpayment_amount": 100,
@@ -1421,6 +1427,7 @@
                             "provider_id": "pr_084aa5f9bad7a2d72a*************",
                             "financed_amount": 3000,
                             "interest_rate": 16.99,
+                            "interest_rate_type": 1,
                             "next_recurring_date": "2020-08-04T00:00:00.000Z",
                             "recurring_amount": 1000,
                             "downpayment_amount": 0,
@@ -1470,7 +1477,7 @@
           }
         },
         "operationId": "get-provider-upcoming_payment",
-        "description": "Returns the list of upcoming payments",
+        "description": "Returns the list of upcoming payments\n\nNote: Possible values for interest_rate_type is 1 (Compound Interest) , 2 (Flat Interest)",
         "parameters": [
           {
             "schema": {
