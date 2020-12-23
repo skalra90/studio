@@ -494,6 +494,9 @@
                               },
                               "date_added": {
                                 "type": "string"
+                              },
+                              "interest_rate_type": {
+                                "type": "number"
                               }
                             }
                           }
@@ -515,6 +518,7 @@
                             "financed_amount": 850,
                             "downpayment_amount": "0.00",
                             "interest_rate": 20,
+                            "interest_rate_type": 2,
                             "next_recurring_date": "2020-01-02",
                             "number_of_payments": 6,
                             "remaining_payments": 6,
@@ -531,6 +535,7 @@
                             "financed_amount": 900,
                             "downpayment_amount": "0.00",
                             "interest_rate": 20,
+                            "interest_rate_type": 2,
                             "next_recurring_date": "2020-01-15",
                             "number_of_payments": 6,
                             "remaining_payments": 0,
@@ -547,6 +552,7 @@
                             "financed_amount": 900,
                             "downpayment_amount": "0.00",
                             "interest_rate": 20,
+                            "interest_rate_type": 2,
                             "next_recurring_date": "2019-12-01",
                             "number_of_payments": 6,
                             "remaining_payments": 0,
@@ -563,6 +569,7 @@
                             "financed_amount": 900,
                             "downpayment_amount": "0.00",
                             "interest_rate": 20,
+                            "interest_rate_type": 2,
                             "next_recurring_date": "2019-12-01",
                             "number_of_payments": 6,
                             "remaining_payments": 2,
@@ -3514,6 +3521,9 @@
                                       }
                                     }
                                   }
+                                },
+                                "interest_rate_type": {
+                                  "type": "number"
                                 }
                               }
                             }
@@ -3534,6 +3544,7 @@
                             "plan_id": "plan_P6550M12A12*********",
                             "number_of_payments": 12,
                             "interest_rate": 16.99,
+                            "interest_rate_type": 1,
                             "monthly_payable": {
                               "total": 112.55,
                               "breakdown": {
@@ -4471,6 +4482,9 @@
                                   }
                                 }
                               }
+                            },
+                            "interest_rate_type": {
+                              "type": "number"
                             }
                           }
                         },
@@ -4589,6 +4603,7 @@
                           "downpayment_amount": 100,
                           "financed_amount": 900,
                           "interest_rate": 16.99,
+                          "interest_rate_type": 1,
                           "recurring_amount": 69.45,
                           "default_card_last4": "1111",
                           "monthly_payable": {
@@ -4850,6 +4865,10 @@
                               },
                               "contract_code": {
                                 "type": "string"
+                              },
+                              "interest_rate_type": {
+                                "type": "number",
+                                "description": "1-Compound interest, 2-Flat interest"
                               }
                             }
                           }
@@ -4883,6 +4902,7 @@
                             "downpayment_amount": 0,
                             "financed_amount": 1200,
                             "interest_rate": 16.99,
+                            "interest_rate_type": 1,
                             "recurring_amount": 109.27,
                             "number_of_payments": 12,
                             "remaining_payments": 12,
@@ -5203,6 +5223,9 @@
                                 },
                                 "date_added": {
                                   "type": "string"
+                                },
+                                "interest_rate_type": {
+                                  "type": "number"
                                 }
                               }
                             }
@@ -5234,6 +5257,7 @@
                             "downpayment_amount": 100,
                             "financed_amount": 900,
                             "interest_rate": 20,
+                            "interest_rate_type": 2,
                             "recurring_amount": 165.64,
                             "number_of_payments": 6,
                             "remaining_payments": 0,
@@ -5255,6 +5279,7 @@
                             "downpayment_amount": 1000,
                             "financed_amount": 2000,
                             "interest_rate": 12,
+                            "interest_rate_type": 1,
                             "recurring_amount": 51.71,
                             "number_of_payments": 36,
                             "remaining_payments": 36,
@@ -5276,6 +5301,7 @@
                             "downpayment_amount": 300,
                             "financed_amount": 1700,
                             "interest_rate": 11,
+                            "interest_rate_type": 1,
                             "recurring_amount": 299.28,
                             "number_of_payments": 6,
                             "remaining_payments": 5,
@@ -6416,6 +6442,10 @@
                                 },
                                 "date_added": {
                                   "type": "string"
+                                },
+                                "interest_rate_type": {
+                                  "type": "number",
+                                  "description": "1-Compound interest, 2-Flat interest"
                                 }
                               }
                             }
@@ -6493,6 +6523,7 @@
                             "downpayment_amount": 500,
                             "financed_amount": 4500,
                             "interest_rate": 15.99,
+                            "interest_rate_type": 1,
                             "recurring_amount": 247.31,
                             "number_of_payments": 24,
                             "remaining_payments": 24,
@@ -8398,6 +8429,9 @@
                                     }
                                   }
                                 }
+                              },
+                              "interest_rate_type": {
+                                "type": "number"
                               }
                             }
                           }
@@ -8442,6 +8476,7 @@
                             "plan_id": "plan_P5588M24A900D00F100D00",
                             "number_of_payments": 24,
                             "interest_rate": 15.99,
+                            "interest_rate_type": 1,
                             "monthly_payable": {
                               "total": 52.46,
                               "breakdown": {
@@ -9043,6 +9078,9 @@
                                     }
                                   }
                                 }
+                              },
+                              "interest_rate_type": {
+                                "type": "number"
                               }
                             }
                           }
@@ -9083,6 +9121,7 @@
                             "plan_id": "plan_P5588M24A900D00F100D00",
                             "number_of_payments": 24,
                             "interest_rate": 15.99,
+                            "interest_rate_type": 1,
                             "monthly_payable": {
                               "total": 52.46,
                               "breakdown": {
@@ -9921,6 +9960,10 @@
                                   },
                                   "total_payable_today": {
                                     "type": "number"
+                                  },
+                                  "interest_rate_type": {
+                                    "type": "number",
+                                    "description": "1-Compound interest, 2-Flat interest"
                                   }
                                 },
                                 "required": [
@@ -9988,6 +10031,7 @@
                             {
                               "month": 13,
                               "interest_rate": 16.99,
+                              "interest_rate_type": 1,
                               "recurring_amount": 428.68,
                               "upfront_fee": 428.68,
                               "transaction_fee": 12.86,
