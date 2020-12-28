@@ -3863,26 +3863,68 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "description": "",
                   "type": "object",
                   "properties": {
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "minLength": 1
                     },
                     "code": {
-                      "type": "string"
+                      "type": "string",
+                      "minLength": 1
                     },
                     "data": {
                       "type": "object",
                       "properties": {
                         "amount": {
-                          "type": "number"
+                          "type": "object",
+                          "properties": {
+                            "total": {
+                              "type": "number"
+                            },
+                            "breakdown": {
+                              "type": "object",
+                              "properties": {
+                                "late_fee": {
+                                  "type": "number"
+                                },
+                                "change_recurring_date_fee": {
+                                  "type": "number"
+                                }
+                              },
+                              "required": [
+                                "late_fee",
+                                "change_recurring_date_fee"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "total",
+                            "breakdown"
+                          ]
                         },
-                        "new_payment_date": {
-                          "type": "string"
+                        "change_date_token": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "new_recurring_date": {
+                          "type": "string",
+                          "minLength": 1
                         }
-                      }
+                      },
+                      "required": [
+                        "amount",
+                        "change_date_token",
+                        "new_recurring_date"
+                      ]
                     }
-                  }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
                 },
                 "examples": {
                   "Success": {
@@ -3890,8 +3932,15 @@
                       "message": "Request executed successfully",
                       "code": "success",
                       "data": {
-                        "amount": 595.86,
-                        "new_payment_date": "2020-06-19"
+                        "amount": {
+                          "total": 119.07,
+                          "breakdown": {
+                            "late_fee": 0,
+                            "change_recurring_date_fee": 119.07
+                          }
+                        },
+                        "change_date_token": "rec_A119F07Y2021M0****",
+                        "new_recurring_date": "2021-03-25"
                       }
                     }
                   }
