@@ -8867,7 +8867,9 @@
     "/webhook/endpoint": {
       "get": {
         "summary": "Get webhook endpoint list",
-        "tags": [],
+        "tags": [
+          "Webhook"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -9223,7 +9225,10 @@
             }
           }
         },
-        "description": "Update existing webhook endpoint and subscribed events\n\nTo update webhook event types use webhook_type_action with webhook_type and action (1 - add webhook event type, 2-delete webhook event type)"
+        "description": "Update existing webhook endpoint and subscribed events\n\nTo update webhook event types use webhook_type_action with webhook_type and action (1 - add webhook event type, 2-delete webhook event type)",
+        "tags": [
+          "Webhook"
+        ]
       }
     }
   },
