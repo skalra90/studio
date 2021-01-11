@@ -8744,7 +8744,9 @@
     "/webhook/list": {
       "get": {
         "summary": "Get list of webhooks events available",
-        "tags": [],
+        "tags": [
+          "Webhook"
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -9089,7 +9091,10 @@
           },
           "description": "Request Body"
         },
-        "description": "Add endpoint of webhook and subscribe to webhook events"
+        "description": "Add endpoint of webhook and subscribe to webhook events",
+        "tags": [
+          "Webhook"
+        ]
       },
       "put": {
         "summary": "Update webhook endpoint",
@@ -9264,6 +9269,9 @@
     },
     {
       "name": "Customer"
+    },
+    {
+      "name": "Webhook"
     }
   ],
   "security": [
