@@ -8845,14 +8845,16 @@
               "type": "number"
             },
             "in": "query",
-            "name": "limit"
+            "name": "limit",
+            "required": true
           },
           {
             "schema": {
               "type": "number"
             },
             "in": "query",
-            "name": "skip"
+            "name": "skip",
+            "required": true
           },
           {
             "schema": {
