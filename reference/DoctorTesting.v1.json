@@ -9232,6 +9232,203 @@
           "Webhook"
         ]
       }
+    },
+    "/webhook/logs": {
+      "get": {
+        "summary": "Get webhook logs",
+        "tags": [
+          "Webhook"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "number"
+                        },
+                        "list": {
+                          "type": "array",
+                          "uniqueItems": true,
+                          "minItems": 1,
+                          "items": {
+                            "required": [
+                              "trigger_id",
+                              "webhook_type",
+                              "endpoint_id",
+                              "endpoint_url",
+                              "request_body",
+                              "response_body",
+                              "response_code",
+                              "is_error",
+                              "retry_number",
+                              "next_retry_at",
+                              "sent_at"
+                            ],
+                            "properties": {
+                              "trigger_id": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "webhook_type": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "endpoint_id": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "endpoint_url": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "request_body": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "response_body": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "response_code": {
+                                "type": "number"
+                              },
+                              "is_error": {
+                                "type": "number"
+                              },
+                              "retry_number": {
+                                "type": "number"
+                              },
+                              "next_retry_at": {
+                                "type": "string",
+                                "minLength": 1
+                              },
+                              "sent_at": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "count",
+                        "list"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "count": 3,
+                        "list": [
+                          {
+                            "trigger_id": "tri_e7a6w3wb8ckj44xi6y0c",
+                            "webhook_type": "contract.status",
+                            "endpoint_id": "end_pxtcjzw8908q218gksfl",
+                            "endpoint_url": "https://api.denefits.com:5001/webhook_test",
+                            "request_body": "{\"contract\":{\"contract_id\":22413,\"contract_code\":\"ESEUDHQ22413\",\"provider_id\":\"pr_1a9e405670be558804ceb9b5a6352830\",\"customer_first_name\":\"Est\",\"customer_last_name\":\"Esrw\",\"customer_email\":\"sanjeev.kumar+31@bridgingtech.com\",\"customer_mobile\":\"3242342342\",\"customer_address\":\"test\",\"customer_signature\":\"https://denefits.s3.amazonaws.com/patient_profile/dnfts-4Rkv7CY7Eblob\",\"downpayment_amount\":200,\"financed_amount\":3900,\"interest_rate\":16.99,\"interest_rate_type\":1,\"recurring_amount\":264.37,\"number_of_payments\":18,\"remaining_payments\":17,\"next_recurring_date\":\"2021-01-12T00:00:00.000Z\",\"contract_status\":\"Active\",\"date_added\":\"2020-10-01T07:51:08.000Z\"},\"status_change\":{\"previous_status\":3,\"current_status\":2}}",
+                            "response_body": "{\"error\":{}}",
+                            "response_code": 404,
+                            "is_error": 1,
+                            "retry_number": 0,
+                            "next_retry_at": "2021-01-11T11:20:54.000Z",
+                            "sent_at": "2021-01-11T11:15:54.000Z"
+                          },
+                          {
+                            "trigger_id": "tri_ozkwwswl00shjco22cqr",
+                            "webhook_type": "contract.status",
+                            "endpoint_id": "end_pxtcjzw8908q218gksfl",
+                            "endpoint_url": "https://api.denefits.com:5002/webhook_test",
+                            "request_body": "{\"contract\":{\"contract_id\":22413,\"contract_code\":\"ESEUDHQ22413\",\"provider_id\":\"pr_1a9e405670be558804ceb9b5a6352830\",\"customer_first_name\":\"Est\",\"customer_last_name\":\"Esrw\",\"customer_email\":\"sanjeev.kumar+31@bridgingtech.com\",\"customer_mobile\":\"3242342342\",\"customer_address\":\"test\",\"customer_signature\":\"https://denefits.s3.amazonaws.com/patient_profile/dnfts-4Rkv7CY7Eblob\",\"downpayment_amount\":200,\"financed_amount\":3900,\"interest_rate\":16.99,\"interest_rate_type\":1,\"recurring_amount\":264.37,\"number_of_payments\":18,\"remaining_payments\":0,\"next_recurring_date\":\"2021-01-12T00:00:00.000Z\",\"contract_status\":\"Canceled\",\"date_added\":\"2020-10-01T07:51:08.000Z\"},\"status_change\":{\"previous_status\":2,\"current_status\":5}}",
+                            "response_body": "{\"is_error\":0,\"flag\":551}",
+                            "response_code": 200,
+                            "is_error": 1,
+                            "retry_number": 0,
+                            "next_retry_at": "2021-01-11T11:22:39.000Z",
+                            "sent_at": "2021-01-11T11:17:39.000Z"
+                          },
+                          {
+                            "trigger_id": "tri_e7a6w3wb8ckj44xi6y0c",
+                            "webhook_type": "contract.status",
+                            "endpoint_id": "end_pxtcjzw8908q218gksfl",
+                            "endpoint_url": "https://api.denefits.com:5001/webhook_test",
+                            "request_body": "{\"contract\":{\"contract_id\":22413,\"contract_code\":\"ESEUDHQ22413\",\"provider_id\":\"pr_1a9e405670be558804ceb9b5a6352830\",\"customer_first_name\":\"Est\",\"customer_last_name\":\"Esrw\",\"customer_email\":\"sanjeev.kumar+31@bridgingtech.com\",\"customer_mobile\":\"3242342342\",\"customer_address\":\"test\",\"customer_signature\":\"https://denefits.s3.amazonaws.com/patient_profile/dnfts-4Rkv7CY7Eblob\",\"downpayment_amount\":200,\"financed_amount\":3900,\"interest_rate\":16.99,\"interest_rate_type\":1,\"recurring_amount\":264.37,\"number_of_payments\":18,\"remaining_payments\":17,\"next_recurring_date\":\"2021-01-12T00:00:00.000Z\",\"contract_status\":\"Active\",\"date_added\":\"2020-10-01T07:51:08.000Z\"},\"status_change\":{\"previous_status\":3,\"current_status\":2}}",
+                            "response_body": "{\"is_error\":0,\"flag\":551}",
+                            "response_code": 200,
+                            "is_error": 0,
+                            "retry_number": 0,
+                            "next_retry_at": null,
+                            "sent_at": "2021-01-11T11:21:00.000Z"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-webhook-logs",
+        "description": "Get webhook logs",
+        "parameters": [
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "skip",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "trigger_id"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "endpoint_id"
+          }
+        ]
+      }
     }
   },
   "components": {
