@@ -11569,6 +11569,128 @@
           }
         ]
       }
+    },
+        "/webhook/resend": {
+      "post": {
+        "summary": "Resend webhook",
+        "operationId": "post-webhook-resend",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "Invalid trigger ID": {
+                    "value": {
+                      "message": "Invalid trigger_id provided",
+                      "code": "invalid_trigger_id"
+                    }
+                  },
+                  "Inactive endpoint": {
+                    "value": {
+                      "message": "Endpoint is inactive, kindly make it active to resend this webhook",
+                      "code": "inactive_endpoint"
+                    }
+                  },
+                  "Unsubscribed webhook type": {
+                    "value": {
+                      "message": "Endpoint is inactive, kindly make it active to resend this webhook",
+                      "code": "inactive_endpoint"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "trigger_id": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "trigger_id"
+                ]
+              },
+              "examples": {
+                "Body": {
+                  "value": {
+                    "trigger_id": "tri_whrhbdm5wjdy*****"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Webhook"
+        ],
+        "description": "Resend webhook to the endpoint"
+      }
     }
   },
   "components": {
