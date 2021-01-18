@@ -8823,10 +8823,10 @@
                             "description": "Emit on changing contract status"
                           },
                           {
-                            "webhook_id": 2,
-                            "webhook_type": "contract.payment.success",
-                            "category": "Contract",
-                            "description": "Emit when receive payment from customer will be successful"
+                            "webhook_id": 4,
+                            "webhook_type": "provider.payout.success",
+                            "category": "Payout",
+                            "description": "Emit when provider payout will be generated"
                           }
                         ]
                       }
@@ -8947,17 +8947,17 @@
                       "data": {
                         "list": [
                           {
-                            "endpoint_id": "end_ocl1snprc6d3mxb88yb8",
-                            "subscribed_webhook_types": "contract.status,contract.payment.success",
-                            "endpoint_url": "https://www.google.com",
-                            "description": "this is new",
+                            "endpoint_id": "end_ocl1*****d3mxb88yb8",
+                            "subscribed_webhook_types": "contract.status,provider.payout.success",
+                            "endpoint_url": "https://denefits.com/webhook_test",
+                            "description": "description",
                             "is_active": 1
                           },
                           {
-                            "endpoint_id": "end_wasogeliha",
-                            "subscribed_webhook_types": "provider.payout.success,contract.payment.failed,contract.status",
-                            "endpoint_url": "https://api.denefits.com:5002/webhook_test",
-                            "description": "this is eeeee",
+                            "endpoint_id": "end_of41snp******638ofd7",
+                            "subscribed_webhook_types": "provider.payout.success,contract.status",
+                            "endpoint_url": "https://denefits.com/webhook_test",
+                            "description": "description",
                             "is_active": 1
                           }
                         ]
@@ -9084,10 +9084,10 @@
                   "value": {
                     "webhook_types": [
                       "contract.status",
-                      "contract.payment.success"
+                      "provider.payout.success"
                     ],
-                    "endpoint_url": "https://www.google.com",
-                    "description": "this is new"
+                    "endpoint_url": "https://denefits.com/webhook_test",
+                    "description": "description"
                   }
                 }
               }
@@ -9208,7 +9208,7 @@
                 "Example": {
                   "value": {
                     "endpoint_id": "end_ocl1snprc6d3m******",
-                    "endpoint_url": "https://www.yahoo.com",
+                    "endpoint_url": "https://denefits.com/webhook_test",
                     "description": "Description of endpoint",
                     "is_active": 0,
                     "webhook_type_action": [
@@ -9217,7 +9217,7 @@
                         "action": 2
                       },
                       {
-                        "webhook_type": "contract.payment.failed",
+                        "webhook_type": "provider.payout.success",
                         "action": 1
                       }
                     ]
