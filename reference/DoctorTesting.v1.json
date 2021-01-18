@@ -9175,15 +9175,15 @@
                   "is_active": {
                     "type": "number"
                   },
+                  "is_deleted": {
+                    "type": "number"
+                  },
                   "webhook_type_action": {
                     "type": "array",
                     "uniqueItems": true,
                     "minItems": 1,
                     "items": {
-                      "required": [
-                        "webhook_type",
-                        "action"
-                      ],
+                      "type": "object",
                       "properties": {
                         "webhook_type": {
                           "type": "string",
@@ -9197,11 +9197,7 @@
                   }
                 },
                 "required": [
-                  "endpoint_id",
-                  "endpoint_url",
-                  "description",
-                  "is_active",
-                  "webhook_type_action"
+                  "endpoint_id"
                 ]
               },
               "examples": {
@@ -9211,6 +9207,7 @@
                     "endpoint_url": "https://denefits.com/webhook_test",
                     "description": "Description of endpoint",
                     "is_active": 0,
+                    "is_deleted": 0,
                     "webhook_type_action": [
                       {
                         "webhook_type": "contract.payment.success",
