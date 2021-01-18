@@ -11164,11 +11164,16 @@
                       "minLength": 1
                     },
                     "data": {
-                      "type": "array",
-                      "items": {
-                        "required": [],
-                        "properties": {}
-                      }
+                      "type": "object",
+                      "properties": {
+                        "endpoint_id": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "endpoint_id"
+                      ]
                     }
                   },
                   "required": [
@@ -11182,7 +11187,9 @@
                     "value": {
                       "message": "Request executed successfully",
                       "code": "success",
-                      "data": []
+                      "data": {
+                        "endpoint_id": "end_8ojrbow6jcvw*****k6"
+                      }
                     }
                   }
                 }
