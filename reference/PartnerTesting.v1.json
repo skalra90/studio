@@ -11276,7 +11276,7 @@
                 "examples": {
                   "Removing webhook event type which is not present": {
                     "value": {
-                      "message": "Webhook type contract.payment.success not available to remove",
+                      "message": "Webhook type contract.status not available to remove",
                       "code": "invalid_webhook_type"
                     }
                   },
