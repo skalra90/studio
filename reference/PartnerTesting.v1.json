@@ -11349,7 +11349,7 @@
                     "is_deleted": 0,
                     "webhook_type_action": [
                       {
-                        "webhook_type": "contract.payment.success",
+                        "webhook_type": "contract.status",
                         "action": 2
                       },
                       {
