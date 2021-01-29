@@ -8891,19 +8891,16 @@
                     },
                     "data": {
                       "type": "object",
+                      "required": [
+                        "list"
+                      ],
                       "properties": {
                         "list": {
                           "type": "array",
                           "uniqueItems": true,
                           "minItems": 1,
                           "items": {
-                            "required": [
-                              "endpoint_id",
-                              "subscribed_webhook_types",
-                              "endpoint_url",
-                              "description",
-                              "is_active"
-                            ],
+                            "type": "object",
                             "properties": {
                               "endpoint_id": {
                                 "type": "string",
@@ -8923,14 +8920,21 @@
                               },
                               "is_active": {
                                 "type": "number"
+                              },
+                              "  is_retry_on_failure": {
+                                "type": "number"
                               }
-                            }
+                            },
+                            "required": [
+                              "endpoint_id",
+                              "subscribed_webhook_types",
+                              "endpoint_url",
+                              "description",
+                              "is_active"
+                            ]
                           }
                         }
-                      },
-                      "required": [
-                        "list"
-                      ]
+                      }
                     }
                   },
                   "required": [
@@ -8951,6 +8955,7 @@
                             "subscribed_webhook_types": "contract.status,provider.payout.success",
                             "endpoint_url": "https://denefits.com/webhook_test",
                             "description": "description",
+                            "is_retry_on_failure": 1,
                             "is_active": 1
                           },
                           {
@@ -8958,6 +8963,7 @@
                             "subscribed_webhook_types": "provider.payout.success,contract.status",
                             "endpoint_url": "https://denefits.com/webhook_test",
                             "description": "description",
+                            "is_retry_on_failure": 1,
                             "is_active": 1
                           }
                         ]
@@ -9078,6 +9084,9 @@
                   "description": {
                     "type": "string",
                     "minLength": 1
+                  },
+                  "is_retry_on_failure": {
+                    "type": "number"
                   }
                 },
                 "required": [
@@ -9094,7 +9103,8 @@
                       "provider.payout.success"
                     ],
                     "endpoint_url": "https://denefits.com/webhook_test",
-                    "description": "description"
+                    "description": "description",
+                    "is_retry_on_failure": 1
                   }
                 }
               }
