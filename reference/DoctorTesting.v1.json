@@ -9815,7 +9815,7 @@
     "/webhook/endpoint_update": {
       "put": {
         "summary": "Update webhook endpoint only",
-        "operationId": "put-webhook-endpoint",
+        "operationId": "put-webhook-endpoint-update",
         "responses": {
           "200": {
             "description": "OK",
