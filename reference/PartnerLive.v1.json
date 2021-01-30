@@ -10170,7 +10170,7 @@
         ]
       }
     },
-        "/webhook/list": {
+    "/webhook/list": {
       "get": {
         "summary": "Get list of webhooks events available",
         "tags": [
@@ -10320,19 +10320,16 @@
                     },
                     "data": {
                       "type": "object",
+                      "required": [
+                        "list"
+                      ],
                       "properties": {
                         "list": {
                           "type": "array",
                           "uniqueItems": true,
                           "minItems": 1,
                           "items": {
-                            "required": [
-                              "endpoint_id",
-                              "subscribed_webhook_types",
-                              "endpoint_url",
-                              "description",
-                              "is_active"
-                            ],
+                            "type": "object",
                             "properties": {
                               "endpoint_id": {
                                 "type": "string",
@@ -10352,14 +10349,21 @@
                               },
                               "is_active": {
                                 "type": "number"
+                              },
+                              "  is_retry_on_failure": {
+                                "type": "number"
                               }
-                            }
+                            },
+                            "required": [
+                              "endpoint_id",
+                              "subscribed_webhook_types",
+                              "endpoint_url",
+                              "description",
+                              "is_active"
+                            ]
                           }
                         }
-                      },
-                      "required": [
-                        "list"
-                      ]
+                      }
                     }
                   },
                   "required": [
@@ -10380,6 +10384,7 @@
                             "subscribed_webhook_types": "contract.status,provider.payout.success",
                             "endpoint_url": "https://denefits.com/webhook_test",
                             "description": "description",
+                            "is_retry_on_failure": 1,
                             "is_active": 1
                           },
                           {
@@ -10387,6 +10392,7 @@
                             "subscribed_webhook_types": "provider.payout.success,contract.status",
                             "endpoint_url": "https://denefits.com/webhook_test",
                             "description": "description",
+                            "is_retry_on_failure": 1,
                             "is_active": 1
                           }
                         ]
@@ -10507,6 +10513,9 @@
                   "description": {
                     "type": "string",
                     "minLength": 1
+                  },
+                  "is_retry_on_failure": {
+                    "type": "number"
                   }
                 },
                 "required": [
@@ -10523,7 +10532,8 @@
                       "provider.payout.success"
                     ],
                     "endpoint_url": "https://denefits.com/webhook_test",
-                    "description": "description"
+                    "description": "description",
+                    "is_retry_on_failure": 1
                   }
                 }
               }
@@ -10571,17 +10581,44 @@
                   ]
                 },
                 "examples": {
-                  "Removing webhook event type which is not present": {
-                    "value": {
-                      "message": "Webhook type contract.status not available to remove",
-                      "code": "invalid_webhook_type"
-                    }
-                  },
                   "Success": {
                     "value": {
                       "message": "Request executed successfully",
                       "code": "success",
                       "data": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "Removing webhook event type which is not present": {
+                    "value": {
+                      "message": "Webhook type contract.status not available to remove",
+                      "code": "invalid_webhook_type"
                     }
                   }
                 }
@@ -10614,12 +10651,18 @@
                   "is_deleted": {
                     "type": "number"
                   },
+                  "is_retry_on_failure": {
+                    "type": "number"
+                  },
                   "webhook_type_action": {
                     "type": "array",
                     "uniqueItems": true,
                     "minItems": 1,
                     "items": {
-                      "type": "object",
+                      "required": [
+                        "webhook_type",
+                        "action"
+                      ],
                       "properties": {
                         "webhook_type": {
                           "type": "string",
@@ -10633,7 +10676,13 @@
                   }
                 },
                 "required": [
-                  "endpoint_id"
+                  "endpoint_id",
+                  "endpoint_url",
+                  "description",
+                  "is_active",
+                  "is_deleted",
+                  "is_retry_on_failure",
+                  "webhook_type_action"
                 ]
               },
               "examples": {
@@ -10644,6 +10693,7 @@
                     "description": "Description of endpoint",
                     "is_active": 0,
                     "is_deleted": 0,
+                    "is_retry_on_failure": 1,
                     "webhook_type_action": [
                       {
                         "webhook_type": "contract.status",
@@ -10983,6 +11033,354 @@
           "Webhook"
         ],
         "description": "Resend webhook to the endpoint"
+      }
+    },
+    "/webhook/event_type": {
+      "post": {
+        "summary": "Add webhook events to the endpoint",
+        "operationId": "post-webhook-event_type",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "required": [],
+                        "properties": {}
+                      }
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "If webhook event already subscribed in the enpoint": {
+                    "value": {
+                      "message": "Webhook type contract.status already subscribed",
+                      "code": "invalid_webhook_type"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "endpoint_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "webhook_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "endpoint_id",
+                  "webhook_types"
+                ]
+              },
+              "examples": {
+                "Body": {
+                  "value": {
+                    "endpoint_id": "end_7eb0a2******kfac2f",
+                    "webhook_types": [
+                      "provider.payout.success",
+                      "contract.status"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "This API can be used to add more webhooks event to the existing endpoint using endpoint ID",
+        "tags": [
+          "Webhook"
+        ]
+      },
+      "delete": {
+        "summary": "Delete webhook event type from the endpoint",
+        "operationId": "delete-webhook-event_type",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "required": [],
+                        "properties": {}
+                      }
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": []
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code"
+                  ]
+                },
+                "examples": {
+                  "When you try to remove an event type which is not subscribed in the endpoint": {
+                    "value": {
+                      "message": "Webhook type provider.payout.success not available to remove",
+                      "code": "invalid_webhook_type"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "endpoint_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "webhook_types": {
+                    "type": "array",
+                    "items": {
+                      "required": [],
+                      "properties": {}
+                    }
+                  }
+                },
+                "required": [
+                  "endpoint_id",
+                  "webhook_types"
+                ]
+              },
+              "examples": {
+                "Body": {
+                  "value": {
+                    "endpoint_id": "end_7eb0a2******gkfac2f",
+                    "webhook_types": [
+                      "provider.payout.success"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Delete webhook events from an existing endpoind using endpoint ID",
+        "tags": [
+          "Webhook"
+        ]
+      }
+    },
+    "/webhook/endpoint_update": {
+      "put": {
+        "summary": "Update webhook endpoint only",
+        "operationId": "put-webhook-endpoint-update",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "required": [],
+                        "properties": {}
+                      }
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": []
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "endpoint_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "endpoint_url": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "is_active": {
+                    "type": "number"
+                  },
+                  "is_deleted": {
+                    "type": "number"
+                  },
+                  "is_retry_on_failure": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "endpoint_id"
+                ]
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "endpoint_id": "end_ocl1snprc6d3m******",
+                    "endpoint_url": "https://denefits.com/webhook_test",
+                    "description": "Description of endpoint",
+                    "is_active": 0,
+                    "is_deleted": 0,
+                    "is_retry_on_failure": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Update existing webhook endpoint",
+        "tags": [
+          "Webhook"
+        ]
       }
     }
   },
