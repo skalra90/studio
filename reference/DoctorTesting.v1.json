@@ -9195,12 +9195,18 @@
                   "is_deleted": {
                     "type": "number"
                   },
+                  "is_retry_on_failure": {
+                    "type": "number"
+                  },
                   "webhook_type_action": {
                     "type": "array",
                     "uniqueItems": true,
                     "minItems": 1,
                     "items": {
-                      "type": "object",
+                      "required": [
+                        "webhook_type",
+                        "action"
+                      ],
                       "properties": {
                         "webhook_type": {
                           "type": "string",
@@ -9214,7 +9220,13 @@
                   }
                 },
                 "required": [
-                  "endpoint_id"
+                  "endpoint_id",
+                  "endpoint_url",
+                  "description",
+                  "is_active",
+                  "is_deleted",
+                  "is_retry_on_failure",
+                  "webhook_type_action"
                 ]
               },
               "examples": {
@@ -9225,6 +9237,7 @@
                     "description": "Description of endpoint",
                     "is_active": 0,
                     "is_deleted": 0,
+                    "is_retry_on_failure": 1,
                     "webhook_type_action": [
                       {
                         "webhook_type": "contract.status",
