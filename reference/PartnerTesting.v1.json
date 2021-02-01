@@ -11060,7 +11060,7 @@
                               "is_active": {
                                 "type": "number"
                               },
-                              "  is_retry_on_failure": {
+                              "  auto_retry_on_failure": {
                                 "type": "number"
                               }
                             },
@@ -11094,7 +11094,7 @@
                             "subscribed_webhook_types": "contract.status,provider.payout.success",
                             "endpoint_url": "https://denefits.com/webhook_test",
                             "description": "description",
-                            "is_retry_on_failure": 1,
+                            "auto_retry_on_failure": 1,
                             "is_active": 1
                           },
                           {
@@ -11102,7 +11102,7 @@
                             "subscribed_webhook_types": "provider.payout.success,contract.status",
                             "endpoint_url": "https://denefits.com/webhook_test",
                             "description": "description",
-                            "is_retry_on_failure": 1,
+                            "auto_retry_on_failure": 1,
                             "is_active": 1
                           }
                         ]
@@ -11224,7 +11224,7 @@
                     "type": "string",
                     "minLength": 1
                   },
-                  "is_retry_on_failure": {
+                  "auto_retry_on_failure": {
                     "type": "number"
                   }
                 },
@@ -11243,7 +11243,7 @@
                     ],
                     "endpoint_url": "https://denefits.com/webhook_test",
                     "description": "description",
-                    "is_retry_on_failure": 1
+                    "auto_retry_on_failure": 1
                   }
                 }
               }
@@ -11334,7 +11334,7 @@
                   "is_deleted": {
                     "type": "number"
                   },
-                  "is_retry_on_failure": {
+                  "auto_retry_on_failure": {
                     "type": "number"
                   },
                   "webhook_type_action": {
@@ -11364,7 +11364,7 @@
                   "description",
                   "is_active",
                   "is_deleted",
-                  "is_retry_on_failure",
+                  "auto_retry_on_failure",
                   "webhook_type_action"
                 ]
               },
@@ -11376,7 +11376,7 @@
                     "description": "Description of endpoint",
                     "is_active": 0,
                     "is_deleted": 0,
-                    "is_retry_on_failure": 1,
+                    "auto_retry_on_failure": 1,
                     "webhook_type_action": [
                       {
                         "webhook_type": "contract.status",
@@ -12037,7 +12037,7 @@
                   "is_deleted": {
                     "type": "number"
                   },
-                  "is_retry_on_failure": {
+                  "auto_retry_on_failure": {
                     "type": "number"
                   }
                 },
@@ -12053,7 +12053,7 @@
                     "description": "Description of endpoint",
                     "is_active": 0,
                     "is_deleted": 0,
-                    "is_retry_on_failure": 1
+                    "auto_retry_on_failure": 1
                   }
                 }
               }
