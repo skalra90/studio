@@ -9154,7 +9154,7 @@
                 "examples": {
                   "Removing webhook event type which is not present": {
                     "value": {
-                      "message": "Webhook type contract.status not available to remove",
+                      "message": "Webhook type(s) provider.payout.success is/are not available to remove",
                       "code": "invalid_webhook_type"
                     }
                   },
@@ -9651,7 +9651,7 @@
                 "examples": {
                   "If webhook event already subscribed in the enpoint": {
                     "value": {
-                      "message": "Webhook type contract.status already subscribed",
+                      "message": "Webhook type(s) provider.payout.success is/are already subscribed",
                       "code": "invalid_webhook_type"
                     }
                   }
@@ -9773,7 +9773,7 @@
                 "examples": {
                   "When you try to remove an event type which is not subscribed in the endpoint": {
                     "value": {
-                      "message": "Webhook type provider.payout.success not available to remove",
+                      "message": "Webhook type(s) provider.payout.success is/are not available to remove",
                       "code": "invalid_webhook_type"
                     }
                   }

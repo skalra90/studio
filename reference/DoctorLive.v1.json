@@ -8907,7 +8907,7 @@
                               "is_active": {
                                 "type": "number"
                               },
-                              "  is_retry_on_failure": {
+                              "  auto_retry_on_failure": {
                                 "type": "number"
                               }
                             },
@@ -8941,7 +8941,7 @@
                             "subscribed_webhook_types": "contract.status,provider.payout.success",
                             "endpoint_url": "https://denefits.com/webhook_test",
                             "description": "description",
-                            "is_retry_on_failure": 1,
+                            "auto_retry_on_failure": 1,
                             "is_active": 1
                           },
                           {
@@ -8949,7 +8949,7 @@
                             "subscribed_webhook_types": "provider.payout.success,contract.status",
                             "endpoint_url": "https://denefits.com/webhook_test",
                             "description": "description",
-                            "is_retry_on_failure": 1,
+                            "auto_retry_on_failure": 1,
                             "is_active": 1
                           }
                         ]
@@ -9071,7 +9071,7 @@
                     "type": "string",
                     "minLength": 1
                   },
-                  "is_retry_on_failure": {
+                  "auto_retry_on_failure": {
                     "type": "number"
                   }
                 },
@@ -9090,7 +9090,7 @@
                     ],
                     "endpoint_url": "https://denefits.com/webhook_test",
                     "description": "description",
-                    "is_retry_on_failure": 1
+                    "auto_retry_on_failure": 1
                   }
                 }
               }
@@ -9140,7 +9140,7 @@
                 "examples": {
                   "Removing webhook event type which is not present": {
                     "value": {
-                      "message": "Webhook type contract.status not available to remove",
+                      "message": "Webhook type(s) provider.payout.success is/are not available to remove",
                       "code": "invalid_webhook_type"
                     }
                   },
@@ -9181,7 +9181,7 @@
                   "is_deleted": {
                     "type": "number"
                   },
-                  "is_retry_on_failure": {
+                  "auto_retry_on_failure": {
                     "type": "number"
                   },
                   "webhook_type_action": {
@@ -9211,7 +9211,7 @@
                   "description",
                   "is_active",
                   "is_deleted",
-                  "is_retry_on_failure",
+                  "auto_retry_on_failure",
                   "webhook_type_action"
                 ]
               },
@@ -9223,7 +9223,7 @@
                     "description": "Description of endpoint",
                     "is_active": 0,
                     "is_deleted": 0,
-                    "is_retry_on_failure": 1,
+                    "auto_retry_on_failure": 1,
                     "webhook_type_action": [
                       {
                         "webhook_type": "contract.status",
@@ -9637,7 +9637,7 @@
                 "examples": {
                   "If webhook event already subscribed in the enpoint": {
                     "value": {
-                      "message": "Webhook type contract.status already subscribed",
+                      "message": "Webhook type(s) provider.payout.success is/are already subscribed",
                       "code": "invalid_webhook_type"
                     }
                   }
@@ -9759,7 +9759,7 @@
                 "examples": {
                   "When you try to remove an event type which is not subscribed in the endpoint": {
                     "value": {
-                      "message": "Webhook type provider.payout.success not available to remove",
+                      "message": "Webhook type(s) provider.payout.success is/are not available to remove",
                       "code": "invalid_webhook_type"
                     }
                   }
@@ -9884,7 +9884,7 @@
                   "is_deleted": {
                     "type": "number"
                   },
-                  "is_retry_on_failure": {
+                  "auto_retry_on_failure": {
                     "type": "number"
                   }
                 },
@@ -9900,7 +9900,7 @@
                     "description": "Description of endpoint",
                     "is_active": 0,
                     "is_deleted": 0,
-                    "is_retry_on_failure": 1
+                    "auto_retry_on_failure": 1
                   }
                 }
               }
