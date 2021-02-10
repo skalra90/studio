@@ -7093,6 +7093,149 @@
       },
       "parameters": []
     },
+    "/payment/status": {
+      "get": {
+        "summary": "Get payment status",
+        "tags": [
+          "Payment"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Used token": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "status": "unused_token",
+                        "message": "This finance token is not used yet"
+                      }
+                    }
+                  },
+                  "Successful Payment": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "status": "payment_successful",
+                        "message": "Payment successful for this token"
+                      }
+                    }
+                  },
+                  "Failed Payment": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "status": "payment_failed",
+                        "message": "Payment failed with error message 'Your card has expired.'"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If finance token is missing": {
+                    "value": {
+                      "message": "\"finance_token\" is required",
+                      "code": "parameter_missing"
+                    }
+                  },
+                  "Invalid finance token is provided": {
+                    "value": {
+                      "message": "Invalid finance token",
+                      "code": "invalid_finance_token"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "If authorization token is wrong": {
+                    "value": {
+                      "message": "Invalid auth token provided",
+                      "code": "authentication_failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-customer-finance-status",
+        "description": "This API provides the status of the finance token whether it used or not, success or fail.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "finance_token",
+            "required": true,
+            "description": "Finance Token received from /payment/receiveDetails API response."
+          }
+        ]
+      },
+      "parameters": []
+    },
     "/provider/payment/pay_3d": {
       "post": {
         "summary": "Get 3D secure payment client ID",
