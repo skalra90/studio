@@ -1124,9 +1124,7 @@
           },
           {
             "schema": {
-              "type": "integer",
-              "minimum": 12,
-              "maximum": 48
+              "type": "integer"
             },
             "in": "query",
             "name": "filter_month",
