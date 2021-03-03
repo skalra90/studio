@@ -10068,9 +10068,9 @@
         ]
       }
     },
-    "/provider/terms_and_condition": {
+    "/provider/terms_and_conditions": {
       "get": {
-        "summary": "Get Terms and condition",
+        "summary": "Get Terms and conditions",
         "tags": [
           "Providers"
         ],
@@ -10133,7 +10133,8 @@
         },
         "operationId": "get-provider-terms_and_condition",
         "description": "Get terms and condition details"
-      }
+      },
+      "parameters": []
     },
     "/provider/consent_form": {
       "get": {

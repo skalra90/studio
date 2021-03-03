@@ -12209,9 +12209,9 @@
         ]
       }
     },
-    "/provider/terms_and_condition": {
+    "/provider/terms_and_conditions": {
       "get": {
-        "summary": "Get Terms and condition",
+        "summary": "Get Terms and conditions",
         "tags": [
           "Providers"
         ],
@@ -12283,7 +12283,8 @@
             "name": "provider_id"
           }
         ]
-      }
+      },
+      "parameters": []
     },
     "/provider/consent_form": {
       "get": {
