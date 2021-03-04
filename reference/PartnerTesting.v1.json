@@ -4040,26 +4040,45 @@
             "content": {
               "application/json": {
                 "schema": {
+                  "description": "",
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "finance_token": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    },
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "minLength": 1
                     },
                     "code": {
-                      "type": "string"
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "finance_token": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "terms_and_condition": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "consent_form": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "finance_token",
+                        "terms_and_condition",
+                        "consent_form"
+                      ]
                     }
-                  }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
                 },
                 "examples": {
                   "Success": {
@@ -4067,7 +4086,9 @@
                       "message": "Finance Token Created",
                       "code": "success",
                       "data": {
-                        "finance_token": "64de0703e3b61****************"
+                        "finance_token": "64de0703e3b61****************",
+                        "terms_and_condition": "https://endpoint.denefits.com/iframe/terms/term_b9ac5a9b07*****59be5db9006",
+                        "consent_form": "https://endpoint.denefits.com/iframe/consent/consent_78bcd752232e*****5eaaf6055"
                       }
                     }
                   }
