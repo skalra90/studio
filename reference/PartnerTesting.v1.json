@@ -12365,7 +12365,7 @@
               "type": "string"
             },
             "in": "query",
-            "name": "patient_name",
+            "name": "finance_token",
             "required": true
           }
         ]
