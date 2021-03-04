@@ -11523,6 +11523,168 @@
           "Webhook"
         ]
       }
+    },
+    "/provider/terms_and_conditions": {
+      "get": {
+        "summary": "Get Terms and conditions",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "html": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "terms_url": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "html",
+                        "terms_url"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "html": "html string",
+                        "terms_url": "https://endpoint.denefits.com/iframe/terms/term_b9ac*******dskjlk"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-terms_and_condition",
+        "description": "Get terms and condition details",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "provider_id"
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/provider/consent_form": {
+      "get": {
+        "summary": "Get consent form",
+        "tags": [
+          "Providers"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "html": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "consent_url": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "html",
+                        "consent_url"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "html": "string",
+                        "consent_url": "https://endpoint.denefits.com/iframe/consent/consent_6a5979****76c9a8fd7e6810"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-provider-consent_form",
+        "description": "Get Consent form details.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "required": true,
+            "name": "provider_id"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "finance_token",
+            "required": true
+          }
+        ]
+      }
     }
   },
   "components": {
