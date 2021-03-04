@@ -12350,7 +12350,7 @@
           }
         },
         "operationId": "get-provider-consent_form",
-        "description": "Get Consent form details",
+        "description": "Get Consent form details.",
         "parameters": [
           {
             "schema": {
