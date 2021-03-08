@@ -5967,7 +5967,7 @@
           }
         },
         "tags": [
-          "3D Secure Payment"
+          "Three-D Secure Payment"
         ],
         "description": "Get 3D secure payment client ID to make payment",
         "requestBody": {
@@ -10267,7 +10267,7 @@
       "name": "Claim Process"
     },
     {
-      "name": "3D Secure Payment"
+      "name": "Three-D Secure Payment"
     },
     {
       "name": "Payment"
