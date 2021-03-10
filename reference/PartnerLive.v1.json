@@ -3067,6 +3067,127 @@
         ]
       }
     },
+    "/payment/create_bank_token": {
+      "parameters": [],
+      "post": {
+        "summary": "Create bank token",
+        "operationId": "post-payment-bank_token",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "bank_token": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "bank_token"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "code",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Success": {
+                    "value": {
+                      "message": "Request executed successfully",
+                      "code": "success",
+                      "data": {
+                        "bank_token": "btok_1GpaQmGLNiHi**********"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "Success": {}
+                }
+              }
+            }
+          }
+        },
+        "description": "To add a bank account for a provider we have to create a bank token which in return will give us a bank_token which will be required in the Add Provider's bank account API\n\nNow there would be 2 types of accounts – Individual and Company. If we are adding bank details for Individual then we have to select individual from dropdown list next to account_type and in case we are adding bank details for Company then we have to select company.\n\n    For testing purpose we can use following details-\n\n    account_number: 000123456789\n    rounting_number: 110000000\n",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "account_holder_name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "account_type": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "routing_number": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "account_number": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "account_holder_name",
+                  "account_type",
+                  "routing_number",
+                  "account_number"
+                ]
+              },
+              "examples": {
+                "Body": {
+                  "value": {
+                    "account_holder_name": "Name",
+                    "account_type": "company",
+                    "routing_number": "110000000",
+                    "account_number": "000123456789"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        },
+        "tags": [
+          "Providers"
+        ]
+      }
+    },
     "/provider/reports/contract": {
       "get": {
         "summary": "Get provider's contract report",
