@@ -3977,8 +3977,8 @@
                   "value": {
                     "account_holder_name": "Name",
                     "account_type": "company",
-                    "routing_number": "123123123",
-                    "account_number": "123456789000"
+                    "routing_number": "110000000",
+                    "account_number": "000123456789"
                   }
                 }
               }
