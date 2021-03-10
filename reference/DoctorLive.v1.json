@@ -3692,20 +3692,6 @@
                 }
               }
             }
-          },
-          "": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                },
-                "examples": {
-                  "Success": {}
-                }
-              }
-            }
           }
         },
         "description": "To add a bank account for a provider we have to create a bank token which in return will give us a bank_token which will be required in the Add Provider's bank account API\n\nNow there would be 2 types of accounts – Individual and Company. If we are adding bank details for Individual then we have to select individual from dropdown list next to account_type and in case we are adding bank details for Company then we have to select company.\n\n    For testing purpose we can use following details-\n\n    account_number: 000123456789\n    rounting_number: 110000000\n",

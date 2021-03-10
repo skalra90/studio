@@ -5164,7 +5164,7 @@
         ]
       }
     },
-        "/payment/create_bank_token": {
+    "/payment/create_bank_token": {
       "parameters": [],
       "post": {
         "summary": "Create bank token",
@@ -5215,20 +5215,6 @@
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                },
-                "examples": {
-                  "Success": {}
                 }
               }
             }
